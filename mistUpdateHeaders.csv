@@ -1,0 +1,11 @@
+item, type, properties
+category, item, sheetId
+dictionary, category, dictionarySheetNames
+dictionarySheetName, string, ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"]
+word, partOfSpeech, definition
+definition, tsv, dictionarySheetName[word][3]
+item, word, documentId
+documentId, string, `"https://docs.google.com/document/d/"${documentId}"/edit"`
+time, string, item.documentId
+item.documentId, reference, itemPage
+itemPage, blob, []
