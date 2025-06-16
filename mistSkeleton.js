@@ -393,12 +393,25 @@ function transformStream(sessionState, selection) {
   let path = sessionState.path || [];
   path.push(selection);
 
-  // Calculate vectors/orientations for each line
+  // Calculate nD vectors for each line
   let vectors = [];
   for (let i = 0; i < path.length; i++) {
-    if (i === 0) vectors.push({ x: 1, y: 0 });
-    else if (i === 1) vectors.push({ x: 0, y: -1 });
-    else vectors.push({ x: -vectors[i-1].y, y: vectors[i-1].x });
+    if (i === 0) vectors.push([1,0,0]);
+    else if (i === 1) vectors.push([0,1,0]);
+    else {
+      // Cross product of previous two
+      const prev = vectors[i-1];
+      const prev2 = vectors[i-2];
+      let cross = [
+        prev[1]*prev2[2] - prev[2]*prev2[1],
+        prev[2]*prev2[0] - prev[0]*prev2[2],
+        prev[0]*prev2[1] - prev[1]*prev2[0]
+      ];
+      // Normalize
+      const mag = Math.sqrt(cross.reduce((s,v)=>s+v*v,0));
+      cross = cross.map(v => v/mag);
+      vectors.push(cross);
+    }
   }
 
   // Track opened lines/items for session-based visibility
@@ -420,6 +433,7 @@ function transformStream(sessionState, selection) {
 
   return newState;
 }
+
 function saveSessionPath(sessionId, path) {
   const { persist } = getMistSheets();
   persist.appendRow([sessionId, JSON.stringify(path), new Date()]);

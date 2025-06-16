@@ -21,3 +21,11 @@
   * Handles user selection and updates state via Apps Script backend.  
   * Uses a flexbox layout for arranging lines and items.  
   * Implements an `hourGlass` utility for line arrangement (currently 2D).
+
+### **hourGlass**
+  * hourGlass now supports n-dimensional orthogonal vectors using cross products.
+  * Rendering and navigation logic use these vectors for true nD arrangement and  relative navigation.
+
+### **transformStream**
+  * tracks and returns these vectors for session-aware, nD navigation and rendering.
+
