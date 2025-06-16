@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mist Viewport</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #222;
+      color: #eee;
+      margin: 0;
+      padding: 0;
+    }
+    #viewport-container {
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      background: #222;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: flex-start;
+      position: relative;
+    }
+    .line {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 32px;
+      position: relative;
+    }
+    .line.primary {
+      border-left: 4px solid #4fc3f7;
+      min-height: 60vh;
+      margin-left: 6vw;
+      margin-right: 48px;
+    }
+    .line.category {
+      border-bottom: 4px solid #81c784;
+      min-width: 24vw;
+      margin-bottom: 16vh;
+      margin-top: 24px;
+    }
+    .line.item {
+      border-right: 4px solid #ffb74d;
+      min-height: 30vh;
+      margin-left: 48px;
+    }
+    .item-box {
+      background: #444;
+      color: #eee;
+      border-radius: 8px;
+      margin: 8px 0;
+      padding: 8px 16px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+      min-width: 120px;
+      text-align: center;
+      border: 2px solid transparent;
+    }
+    .item-box.selected {
+      background: #eee;
+      color: #222;
+      border: 2px solid #4fc3f7;
+    }
+    .input-box {
+      margin: 16px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .input-box input, .input-box select {
+      padding: 6px 12px;
+      margin: 4px 0;
+      border-radius: 4px;
+      border: 1px solid #888;
+      font-size: 1em;
+    }
+    .input-box button {
+      margin-top: 8px;
+      padding: 6px 16px;
+      border-radius: 4px;
+      border: none;
+      background: #4fc3f7;
+      color: #222;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .input-box button:hover {
+      background: #0288d1;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="viewport-container"></div>
+
+  <script>
+    // --- State ---
+    let state = {
+      primaryLine: [],
+      categoryLines: {},
+      itemLines: {},
+      selected: {
+        timeIndex: null,
+        category: null,
+        item: null
+      },
+      categories: [],
+      items: [],
+      session: {}
+    };
+
+    // --- Initialization ---
+    function initViewport() {
+      google.script.run.withSuccessHandler(function(data) {
+        state.primaryLine = data.primaryLine;
+        state.categories = data.categories;
+        state.items = data.items;
+        renderViewport();
+      }).getMistViewportData();
+    }
+
+    // --- Rendering ---
+    function renderViewport() {
+      const container = document.getElementById('viewport-container');
+      container.innerHTML = '';
+
+      // Primary Line (Time)
+      const primaryDiv = document.createElement('div');
+      primaryDiv.className = 'line primary';
+      state.primaryLine.forEach((time, idx) => {
+        const box = document.createElement('div');
+        box.className = 'item-box' + (state.selected.timeIndex === idx ? ' selected' : '');
+        box.textContent = time;
+        box.onclick = () => selectTimeIndex(idx);
+        primaryDiv.appendChild(box);
+      });
+      // Add button to add new time index
+      const addTimeBtn = document.createElement('button');
+      addTimeBtn.textContent = '+ Add Time Index';
+      addTimeBtn.onclick = showAddTimeInput;
+      primaryDiv.appendChild(addTimeBtn);
+
+      container.appendChild(primaryDiv);
+
+      // Category Line (if time index selected)
+      if (state.selected.timeIndex !== null) {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.className = 'line category';
+        const time = state.primaryLine[state.selected.timeIndex];
+        const categories = state.categories[time] || [];
+        categories.forEach((cat, idx) => {
+          const box = document.createElement('div');
+          box.className = 'item-box' + (state.selected.category === idx ? ' selected' : '');
+          box.textContent = cat;
+          box.onclick = () => selectCategory(idx);
+          categoryDiv.appendChild(box);
+        });
+        // Add button to add new category
+        const addCatBtn = document.createElement('button');
+        addCatBtn.textContent = '+ Add Category';
+        addCatBtn.onclick = showAddCategoryInput;
+        categoryDiv.appendChild(addCatBtn);
+
+        container.appendChild(categoryDiv);
+      }
+
+      // Item Line (if category selected)
+      if (state.selected.category !== null && state.selected.timeIndex !== null) {
+        const itemDiv = document.createElement('div');
+        itemDiv.className = 'line item';
+        const time = state.primaryLine[state.selected.timeIndex];
+        const category = state.categories[time][state.selected.category];
+        const items = (state.items[category] || []);
+        items.forEach((item, idx) => {
+          const box = document.createElement('div');
+          box.className = 'item-box' + (state.selected.item === idx ? ' selected' : '');
+          box.textContent = item;
+          box.onclick = () => selectItem(idx);
+          itemDiv.appendChild(box);
+        });
+        // Add button to add new item
+        const addItemBtn = document.createElement('button');
+        addItemBtn.textContent = '+ Add Item';
+        addItemBtn.onclick = showAddItemInput;
+        itemDiv.appendChild(addItemBtn);
+
+        container.appendChild(itemDiv);
+      }
+    }
+
+    // --- User Interactions ---
+function selectTimeIndex(idx) {
+  handleSelection({ type: 'time', index: idx, value: state.primaryLine[idx] });
+}
+function selectCategory(idx) {
+  const time = state.primaryLine[state.selected.timeIndex];
+  handleSelection({ type: 'category', index: idx, value: state.categories[time][idx] });
+}
+function selectItem(idx) {
+  const time = state.primaryLine[state.selected.timeIndex];
+  const category = state.categories[time][state.selected.category];
+  handleSelection({ type: 'item', index: idx, value: state.items[category][idx] });
+} 
+
+    function showAddTimeInput() {
+      showInputBox('Add Time Index', 'Enter new time index:', function(value) {
+        google.script.run.withSuccessHandler(function(newLine) {
+          state.primaryLine = newLine;
+          renderViewport();
+        }).addTimeIndex(value);
+      });
+    }
+
+    function showAddCategoryInput() {
+      const time = state.primaryLine[state.selected.timeIndex];
+      showInputBox('Add Category', 'Enter new category:', function(value) {
+        google.script.run.withSuccessHandler(function(newCategories) {
+          state.categories = newCategories;
+          renderViewport();
+        }).addCategory(time, value);
+      });
+    }
+
+    function showAddItemInput() {
+      const time = state.primaryLine[state.selected.timeIndex];
+      const category = state.categories[time][state.selected.category];
+      showInputBox('Add Item', 'Enter new item:', function(value) {
+        google.script.run.withSuccessHandler(function(newItems) {
+          state.items = newItems;
+          renderViewport();
+        }).addItem(category, value);
+      });
+    }
+
+    function showInputBox(title, prompt, callback) {
+      const container = document.getElementById('viewport-container');
+      const inputDiv = document.createElement('div');
+      inputDiv.className = 'input-box';
+      inputDiv.innerHTML = `<strong>${title}</strong><label>${prompt}</label>`;
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.autofocus = true;
+      inputDiv.appendChild(input);
+      const submitBtn = document.createElement('button');
+      submitBtn.textContent = 'Submit';
+      submitBtn.onclick = function() {
+        if (input.value.trim()) {
+          callback(input.value.trim());
+        }
+      };
+      inputDiv.appendChild(submitBtn);
+      container.appendChild(inputDiv);
+      input.focus();
+    }
+
+    function handleSelection(selection) {
+        // Pass current state and new selection to Apps Script
+        google.script.run.withSuccessHandler(function(newState) {
+        state = newState;
+        renderViewport();
+        }).transformStream(state, selection);
+    }
+
+
+
+    // --- On Load ---
+    window.onload = initViewport;
+  </script>
+</body>
+</html>
