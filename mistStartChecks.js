@@ -1,8 +1,3 @@
-ensureMistSpreadsheet(); //ensure that the Mist spreadsheet exists and is accessible
-ensureMistDataSpreadsheet(); //ensure that the Mist Data spreadsheet exists and is accessible
-updateMistData(); //update the Mist Data spreadsheet with the latest data from the Story document
-updateMistDict(); //update the Mist dictionary with the latest data from dictionary folder
-loadMistUser(); //load the Mist user data from the Mist User sheet in Mist spreadsheet
 startSession(); //start a new session for the user, initializing necessary variables and state
 endSession(); //end the current session for the user, saving necessary data and state
 onExit(); //exception for when session ends unexpectedly, such as when the user closes the browser or navigates away from the page
@@ -10,8 +5,7 @@ priorState(); //back function to load the previous state from Current State shee
 nextState(); //forward function to load the next state from Current State sheet in Mist spreadsheet
 
 
-storyWriter(); //load information from Story document into Mist Data spreadsheet
-transformStream(); //use data from Mist spreadsheet to perform transformations and save results in Current State sheet in Mist spreadsheet
+
 captureViewport(); //capture the current viewport and save it in the Viewport sheet of Mist spreadsheet
 selectMenuItems(); //select menu items based on the current state and viewport, save results in Menu Items sheet of Mist spreadsheet
 userInput(); //capture user input and save it in the User Input sheet of Mist spreadsheet

@@ -123,72 +123,49 @@
 
     // --- Rendering ---
     function renderViewport() {
-      const container = document.getElementById('viewport-container');
-      container.innerHTML = '';
+  const container = document.getElementById('viewport-container');
+  container.innerHTML = '';
 
-      // Primary Line (Time)
-      const primaryDiv = document.createElement('div');
-      primaryDiv.className = 'line primary';
-      state.primaryLine.forEach((time, idx) => {
-        const box = document.createElement('div');
-        box.className = 'item-box' + (state.selected.timeIndex === idx ? ' selected' : '');
-        box.textContent = time;
-        box.onclick = () => selectTimeIndex(idx);
-        primaryDiv.appendChild(box);
-      });
-      // Add button to add new time index
-      const addTimeBtn = document.createElement('button');
-      addTimeBtn.textContent = '+ Add Time Index';
-      addTimeBtn.onclick = showAddTimeInput;
-      primaryDiv.appendChild(addTimeBtn);
+  // Gather lines and their data
+  const lines = [];
+  lines.push({ type: 'primary', data: state.primaryLine });
+  if (state.selected.timeIndex !== null) {
+    const time = state.primaryLine[state.selected.timeIndex];
+    lines.push({ type: 'category', data: state.categories[time] || [] });
+  }
+  if (state.selected.category !== null && state.selected.timeIndex !== null) {
+    const time = state.primaryLine[state.selected.timeIndex];
+    const category = state.categories[time][state.selected.category];
+    lines.push({ type: 'item', data: state.items[category] || [] });
+  }
 
-      container.appendChild(primaryDiv);
-
-      // Category Line (if time index selected)
-      if (state.selected.timeIndex !== null) {
-        const categoryDiv = document.createElement('div');
-        categoryDiv.className = 'line category';
-        const time = state.primaryLine[state.selected.timeIndex];
-        const categories = state.categories[time] || [];
-        categories.forEach((cat, idx) => {
-          const box = document.createElement('div');
-          box.className = 'item-box' + (state.selected.category === idx ? ' selected' : '');
-          box.textContent = cat;
-          box.onclick = () => selectCategory(idx);
-          categoryDiv.appendChild(box);
-        });
-        // Add button to add new category
-        const addCatBtn = document.createElement('button');
-        addCatBtn.textContent = '+ Add Category';
-        addCatBtn.onclick = showAddCategoryInput;
-        categoryDiv.appendChild(addCatBtn);
-
-        container.appendChild(categoryDiv);
-      }
-
-      // Item Line (if category selected)
-      if (state.selected.category !== null && state.selected.timeIndex !== null) {
-        const itemDiv = document.createElement('div');
-        itemDiv.className = 'line item';
-        const time = state.primaryLine[state.selected.timeIndex];
-        const category = state.categories[time][state.selected.category];
-        const items = (state.items[category] || []);
-        items.forEach((item, idx) => {
-          const box = document.createElement('div');
-          box.className = 'item-box' + (state.selected.item === idx ? ' selected' : '');
-          box.textContent = item;
-          box.onclick = () => selectItem(idx);
-          itemDiv.appendChild(box);
-        });
-        // Add button to add new item
-        const addItemBtn = document.createElement('button');
-        addItemBtn.textContent = '+ Add Item';
-        addItemBtn.onclick = showAddItemInput;
-        itemDiv.appendChild(addItemBtn);
-
-        container.appendChild(itemDiv);
-      }
-    }
+  // Render each line at its computed position
+  lines.forEach((line, depth) => {
+    const lineDiv = document.createElement('div');
+    lineDiv.className = 'line ' + line.type;
+    line.data.forEach((item, idx) => {
+      const box = document.createElement('div');
+      box.className = 'item-box' + (
+        (depth === 0 && state.selected.timeIndex === idx) ||
+        (depth === 1 && state.selected.category === idx) ||
+        (depth === 2 && state.selected.item === idx)
+        ? ' selected' : ''
+      );
+      box.textContent = item;
+      // Position using hourGlass
+      const pos = hourGlass.getPosition(depth, idx);
+      box.style.position = 'absolute';
+      box.style.left = pos.x + 'px';
+      box.style.top = pos.y + 'px';
+      // Selection handlers...
+      if (depth === 0) box.onclick = () => selectTimeIndex(idx);
+      if (depth === 1) box.onclick = () => selectCategory(idx);
+      if (depth === 2) box.onclick = () => selectItem(idx);
+      lineDiv.appendChild(box);
+    });
+    container.appendChild(lineDiv);
+  });
+}
 
     // --- User Interactions ---
 function selectTimeIndex(idx) {
@@ -267,6 +244,51 @@ function selectItem(idx) {
 
     // --- On Load ---
     window.onload = initViewport;
+
+    // hourGlass: manages line vectors and positions for n-dimensional orthogonal layouts
+const hourGlass = {
+  // Predefined base vectors for the first two lines (vertical, then horizontal)
+  baseVectors: [
+    { x: 1, y: 0 },   // Primary (vertical)
+    { x: 0, y: -1 }   // Category (horizontal)
+  ],
+  // Compute the vector for a given depth (line index)
+  getVector: function(depth) {
+    if (depth < this.baseVectors.length) return this.baseVectors[depth];
+    // For 2D, alternate between the two base vectors (for 3D, use cross product)
+    // For demonstration, rotate 90 degrees for each new line
+    const prev = this.getVector(depth - 1);
+    return { x: -prev.y, y: prev.x };
+  },
+  // Compute the absolute position for an item on a line
+  getPosition: function(depth, index, basePos = { x: 200, y: 400 }) {
+    let pos = { ...basePos };
+    for (let d = 0; d <= depth; d++) {
+      const v = this.getVector(d);
+      pos.x += v.x * 140 * (d === depth ? index : 0);
+      pos.y += v.y * 80 * (d === depth ? index : 0);
+    }
+    return pos;
+  }
+};
+function enableRelativeNavigation(lineDiv, depth) {
+  let isDragging = false, start = null;
+  lineDiv.onmousedown = (e) => {
+    isDragging = true;
+    start = { x: e.clientX, y: e.clientY };
+  };
+  document.onmousemove = (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - start.x, dy = e.clientY - start.y;
+    const v = hourGlass.getVector(depth);
+    // Project mouse movement onto line vector
+    const proj = (dx * v.x + dy * v.y) / Math.sqrt(v.x * v.x + v.y * v.y);
+    // Use proj to determine navigation (e.g., proj > threshold => next item)
+    // Implement selection logic here
+  };
+  document.onmouseup = () => { isDragging = false; };
+}
+
   </script>
 </body>
 </html>

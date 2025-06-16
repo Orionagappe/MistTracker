@@ -389,33 +389,37 @@ function getMistViewportData() {
 
 // Transform stream function to handle user selections and update session state
 function transformStream(sessionState, selection) {
-  // 1. Update session path
   const sessionId = getSessionId();
   let path = sessionState.path || [];
   path.push(selection);
 
-  // 2. Calculate orientation for the new line
-  const orientation = calculateLineOrientation(path);
+  // Calculate vectors/orientations for each line
+  let vectors = [];
+  for (let i = 0; i < path.length; i++) {
+    if (i === 0) vectors.push({ x: 1, y: 0 });
+    else if (i === 1) vectors.push({ x: 0, y: -1 });
+    else vectors.push({ x: -vectors[i-1].y, y: vectors[i-1].x });
+  }
 
-  // 3. Update session state
+  // Track opened lines/items for session-based visibility
+  let opened = sessionState.opened || {};
+  opened[path.length - 1] = opened[path.length - 1] || [];
+  opened[path.length - 1].push(selection.index);
+
   const newState = {
     ...sessionState,
-    path: path,
-    orientation: orientation,
+    path,
+    vectors,
+    opened,
     lastSelection: selection,
     timestamp: new Date()
   };
 
-  // 4. Save path to Mist Persist
   saveSessionPath(sessionId, path);
-
-  // 5. Save current state to Current State sheet
   saveCurrentState(sessionId, newState);
 
-  // 6. Return new state for viewport rendering
   return newState;
 }
-
 function saveSessionPath(sessionId, path) {
   const { persist } = getMistSheets();
   persist.appendRow([sessionId, JSON.stringify(path), new Date()]);
