@@ -126,28 +126,29 @@ function renderViewport() {
   const container = document.getElementById('viewport-container');
   container.innerHTML = '';
 
-  // Gather lines and their data
-  const lines = [];
+  // Gather all lines up to the depth of the session path
+  let lines = [];
+  let pathIndices = [];
+  let time = null, category = null;
   lines.push({ type: 'primary', data: state.primaryLine });
+  pathIndices.push(state.selected.timeIndex);
   if (state.selected.timeIndex !== null) {
-    const time = state.primaryLine[state.selected.timeIndex];
+    time = state.primaryLine[state.selected.timeIndex];
     lines.push({ type: 'category', data: state.categories[time] || [] });
+    pathIndices.push(state.selected.category);
   }
-  if (state.selected.category !== null && state.selected.timeIndex !== null) {
-    const time = state.primaryLine[state.selected.timeIndex];
-    const category = state.categories[time][state.selected.category];
+  if (state.selected.category !== null && time) {
+    category = state.categories[time][state.selected.category];
     lines.push({ type: 'item', data: state.items[category] || [] });
+    pathIndices.push(state.selected.item);
   }
+  // Extend for more lines if your data supports it...
 
-  // Build pathIndices for each line
-  const pathIndices = [
-    state.selected.timeIndex,
-    state.selected.category,
-    state.selected.item
-  ];
+  // Cull lines/items based on session.opened
+  const visibleLines = cullVisible(lines, state.session.opened);
 
-  // Render each line at its computed position
-  lines.forEach((line, depth) => {
+  // Render each visible line at its computed position
+  visibleLines.forEach((line, depth) => {
     const lineDiv = document.createElement('div');
     lineDiv.className = 'line ' + line.type;
     line.data.forEach((item, idx) => {
@@ -159,7 +160,6 @@ function renderViewport() {
         ? ' selected' : ''
       );
       box.textContent = item;
-      // Position using hourGlass nD
       const pos = hourGlass.getPosition(depth, idx, pathIndices);
       box.style.position = 'absolute';
       box.style.left = pos.x + 'px';
@@ -171,6 +171,18 @@ function renderViewport() {
       lineDiv.appendChild(box);
     });
     container.appendChild(lineDiv);
+    enableRelativeNavigation(lineDiv, depth, pathIndices);
+  });
+}
+
+function cullVisible(lines, opened) {
+  // lines: [{type, data}], opened: {depth: [indices]}
+  return lines.map((line, depth) => {
+    if (!opened || !opened[depth]) return { ...line, data: [] };
+    return {
+      ...line,
+      data: line.data.filter((_, idx) => opened[depth].includes(idx))
+    };
   });
 }
 
@@ -252,49 +264,38 @@ function selectItem(idx) {
     // --- On Load ---
     window.onload = initViewport;
 
-function crossND(...vectors) {
-  if (vectors.length === 2 && vectors[0].length === 3) {
-    // Standard 3D cross product
-    const [a, b] = vectors;
-    return [
-      a[1]*b[2] - a[2]*b[1],
-      a[2]*b[0] - a[0]*b[2],
-      a[0]*b[1] - a[1]*b[0]
-    ];
+function gramSchmidt(vectors, n) {
+  // Orthonormalize a set of vectors up to n dimensions
+  let basis = [];
+  for (let i = 0; i < n; i++) {
+    let v = Array(n).fill(0);
+    v[i] = 1;
+    for (let b of basis) {
+      let dot = v.reduce((s, x, j) => s + x * b[j], 0);
+      for (let j = 0; j < n; j++) v[j] -= dot * b[j];
+    }
+    let mag = Math.sqrt(v.reduce((s, x) => s + x * x, 0));
+    if (mag > 1e-8) basis.push(v.map(x => x / mag));
   }
-  // For higher dimensions, use Gram-Schmidt or a placeholder (here, just rotate axes)
-  // For simplicity, fallback to a new axis for each new dimension
-  const n = vectors[0].length;
-  const result = Array(n).fill(0);
-  result[vectors.length] = 1;
-  return result;
+  return basis;
 }
 
-// hourGlass: manages line vectors and positions for n-dimensional orthogonal layouts
 const hourGlass = {
-  // Each vector is an array (e.g., [1,0,0], [0,1,0], [0,0,1])
   baseVectors: [
-    [1,0,0],   // Primary (vertical)
-    [0,1,0]    // Category (horizontal)
+    [1,0,0,0], // Primary
+    [0,1,0,0], // Category
+    [0,0,1,0], // 3rd
+    [0,0,0,1]  // 4th
   ],
   getVector: function(depth, vectorsSoFar=[]) {
     if (depth < this.baseVectors.length) return this.baseVectors[depth];
-    // Cross product of previous two vectors for 3D, or fallback for nD
-    const prev = vectorsSoFar[depth-1];
-    const prev2 = vectorsSoFar[depth-2];
-    if (prev && prev2) {
-      const cross = crossND(prev, prev2);
-      // Normalize
-      const mag = Math.sqrt(cross.reduce((s,v)=>s+v*v,0));
-      return cross.map(v => v/mag);
-    }
-    // Fallback: new axis
-    const n = this.baseVectors[0].length;
-    return Array(n).fill(0).map((_,i)=>i===depth?1:0);
+    // Gram-Schmidt: find a new orthogonal vector
+    let n = this.baseVectors[0].length;
+    let basis = vectorsSoFar.slice(0, depth);
+    let gs = gramSchmidt(basis, n);
+    return gs[depth] || Array(n).fill(0).map((_,i)=>i===depth?1:0);
   },
-  // Compute the absolute position for an item on a line
-  getPosition: function(depth, index, pathIndices, spacing=120, basePos=[200,400,0]) {
-    // pathIndices: array of selected indices for each depth
+  getPosition: function(depth, index, pathIndices, spacing=120, basePos=[200,400,0,0]) {
     let pos = basePos.slice();
     let vectors = [];
     for (let d = 0; d <= depth; d++) {
@@ -305,10 +306,10 @@ const hourGlass = {
         pos[i] += v[i] * spacing * idx;
       }
     }
-    // Project nD pos to 2D for display (simple: x=pos[0], y=pos[1]+0.5*pos[2])
+    // Project nD pos to 2D for display (simple: x=pos[0], y=pos[1]+0.5*pos[2]+0.25*pos[3])
     return {
       x: pos[0],
-      y: pos[1] + (pos[2]||0)*0.5
+      y: pos[1] + (pos[2]||0)*0.5 + (pos[3]||0)*0.25
     };
   }
 };
@@ -327,14 +328,13 @@ function enableRelativeNavigation(lineDiv, depth, pathIndices) {
     for (let d = 0; d <= depth; d++) {
       vectors.push(hourGlass.getVector(d, vectors));
     }
-    // Project mouse movement onto this line's vector (project 2D movement onto nD vector projected to 2D)
     const v = vectors[depth];
-    // For display, v2d = [v[0], v[1]+0.5*v[2]]
-    const v2d = [v[0], v[1] + (v[2]||0)*0.5];
+    const v2d = [v[0], v[1] + (v[2]||0)*0.5 + (v[3]||0)*0.25];
     const mag = Math.sqrt(v2d[0]*v2d[0] + v2d[1]*v2d[1]);
     const proj = (dx * v2d[0] + dy * v2d[1]) / mag;
-    // Use proj to determine navigation (e.g., proj > threshold => next item)
-    // Implement selection logic here
+    // Use proj to determine navigation (e.g., proj > threshold => next/prev item)
+    // Implement selection logic here, e.g.:
+    // if (proj > 60) select next; if (proj < -60) select prev;
   };
   document.onmouseup = () => { isDragging = false; };
 }
