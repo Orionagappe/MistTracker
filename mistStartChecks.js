@@ -3,14 +3,9 @@ endSession(); //end the current session for the user, saving necessary data and 
 onExit(); //exception for when session ends unexpectedly, such as when the user closes the browser or navigates away from the page
 priorState(); //back function to load the previous state from Current State sheet in Mist spreadsheet
 nextState(); //forward function to load the next state from Current State sheet in Mist spreadsheet
-
-
-
 captureViewport(); //capture the current viewport and save it in the Viewport sheet of Mist spreadsheet
 selectMenuItems(); //select menu items based on the current state and viewport, save results in Menu Items sheet of Mist spreadsheet
-userInput(); //capture user input and save it in the User Input sheet of Mist spreadsheet
 createViewport(); //create a viewport based on the current state and user input, save it in the Viewport sheet of Mist spreadsheet
-hourGlass(); //a function within viewport to render an 3d environment based on the current state, user input, and Mist Persist items, save results in the Viewport sheet of Mist spreadsheet
 persistUpdate(); //save the current state of viewport items in the Current State sheet of Mist spreadsheet to Mist Persist sheet. Ignores user path information from session and only saves rendered items in the viewport.
 userPath(); //save the user path information from the session to the User Path sheet in Mist spreadsheet. This is used to track the user's navigation through the application.
 
@@ -48,3 +43,4 @@ showAddCategoryInput // Show input box for adding a new category
 showAddItemInput // Show input box for adding a new item
 showInputBox // Show input box for user input, such as adding a new time index, category, or item
 handleSelection // Handle user selection from the Mist UI, updating the session state and saving to Mist Persist
+hourGlass; //a function within viewport to render an 3d environment based on the current state, user input, and Mist Persist items, save results in the Viewport sheet of Mist spreadsheet
