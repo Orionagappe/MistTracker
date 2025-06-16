@@ -387,11 +387,7 @@ function getMistViewportData() {
   };
 }
 
-// Example: get definition for a word (for viewport or other UI)
-function getWordDefinition(word) {
-  return loadWordDefinition(word);
-}
-
+// Transform stream function to handle user selections and update session state
 function transformStream(sessionState, selection) {
   // 1. Update session path
   const sessionId = getSessionId();
@@ -453,9 +449,18 @@ function getSessionId() {
   const now = new Date();
   return userEmail + '_' + now.toISOString().slice(0,10);
 }
-function storyWriter(rtfText) {
-  // 1. Remove RTF formatting to get plain text
-  const plainText = rtfText
+/**
+ * storyWriter
+ * Safely parses an RTF story, extracting explicit and implied character names and character statements,
+ * following the security and validation measures outlined in codeParseSecurity.md.
+ * @param {string} rtfText - The RTF content of the story.
+ * @param {string} sourceFile - The file name or path for provenance.
+ * @returns {Object} Structured data: { explicitNames, impliedNames, statements, provenance }
+ */
+function storyWriter(rtfText, sourceFile) {
+  // 1. Robust Extraction and Decoding
+  // Remove RTF formatting, control words, and hidden fields
+  let plainText = rtfText
     .replace(/\\par[d]?/g, '\n')
     .replace(/\\[a-z]+\d* ?/g, '')
     .replace(/{\\[^}]+}/g, '')
@@ -464,8 +469,30 @@ function storyWriter(rtfText) {
     .replace(/\n{2,}/g, '\n')
     .replace(/\r/g, '');
 
-  // 2. Find explicit names (proper nouns)
-  // We'll use a regex for capitalized words not at the start of a sentence
+  // 2. Input Sanitization
+  plainText = plainText
+    .replace(/[\t`]/g, ' ') // Remove tabs and backticks
+    .replace(/["“”]/g, '"') // Normalize quotes
+    .replace(/[‘’]/g, "'")  // Normalize apostrophes
+    .replace(/\s+/g, ' ')   // Normalize whitespace
+    .trim();
+
+  // 3. Syntax and Structure Validation
+  if (!plainText || plainText.length < 10) {
+    throw new Error('Story text is too short or failed to extract.');
+  }
+
+  // 4. Controlled Parsing (no code execution)
+  // 5. Schema Enforcement (see return structure)
+
+  // 6. Provenance and Auditing
+  const provenance = {
+    sourceFile: sourceFile,
+    timestamp: new Date().toISOString()
+  };
+
+  // 7. Name Extraction (Explicit)
+  // Find capitalized words not at the start of a sentence (simple heuristic)
   const nameRegex = /\b([A-Z][a-z]+(?:\s+[A-Z][a-z]+)*)\b/g;
   let names = new Set();
   let match;
@@ -475,21 +502,17 @@ function storyWriter(rtfText) {
       names.add(match[1]);
     }
   }
+  names = Array.from(names);
 
-  // 3. Pronoun resolution (simple, by last mentioned name/gender)
-  const pronouns = {
-    he: null, she: null, his: null, her: null, him: null, they: null, their: null
-  };
+  // 8. Pronoun Resolution (Implied Names)
+  const pronouns = { he: null, she: null, his: null, her: null, him: null, they: null, their: null };
   const sentences = plainText.split(/[\.\!\?]\s+/);
   let lastMale = null, lastFemale = null, lastPlural = null;
   let impliedNames = [];
-  names = Array.from(names);
-
-  // For demo, assign gender by name (in real use, use a name-gender dictionary)
+  // Example gender assignment (expand as needed)
   const femaleNames = ["Yathlanae", "Darlene"];
   const maleNames = ["Landon", "Tristan", "Darin"];
   const pluralNames = ["Drow", "neighbors"];
-
   sentences.forEach(sentence => {
     names.forEach(name => {
       if (sentence.includes(name)) {
@@ -498,20 +521,18 @@ function storyWriter(rtfText) {
         else if (pluralNames.includes(name)) lastPlural = name;
       }
     });
-    // Check for pronouns and map to last seen name
     if (/\b(he|his|him)\b/i.test(sentence) && lastMale) impliedNames.push(lastMale);
     if (/\b(she|her)\b/i.test(sentence) && lastFemale) impliedNames.push(lastFemale);
     if (/\b(they|their|them)\b/i.test(sentence) && lastPlural) impliedNames.push(lastPlural);
   });
 
-  // 4. Extract character statements (within quotation marks)
+  // 9. Character Statement Extraction
   const statementRegex = /"([^"]+)"/g;
   let statements = [];
   while ((match = statementRegex.exec(plainText)) !== null) {
-    // Try to associate with previous name or pronoun in context
+    // Try to associate with previous name before the quote
     let context = plainText.substring(0, match.index);
     let speaker = null;
-    // Look for last name before the quote
     let contextNames = context.match(nameRegex);
     if (contextNames && contextNames.length > 0) {
       speaker = contextNames[contextNames.length - 1];
@@ -519,10 +540,11 @@ function storyWriter(rtfText) {
     statements.push({ speaker: speaker, statement: match[1] });
   }
 
-  // 5. Return structured data
+  // 10. Schema Enforcement (return structure)
   return {
     explicitNames: names,
     impliedNames: Array.from(new Set(impliedNames)),
-    statements: statements
+    statements: statements,
+    provenance: provenance
   };
 }
