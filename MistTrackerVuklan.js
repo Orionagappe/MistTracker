@@ -27,6 +27,15 @@ class CharacterLocation {
   }
 }
 
+class SelectionModeState {
+  constructor() {
+    this.currentStep = 'time'; // 'time', 'category', 'item', etc.
+    this.selectedIndices = []; // [timeIndex, categoryIndex, itemIndex, ...]
+    this.inputBoxOpen = false;
+    this.inputBoxType = null; // 'time', 'category', 'item'
+  }
+}
+
 // --- In-Memory Data Model ---
 const MistModel = {
   lines: [],
@@ -62,8 +71,29 @@ function startSession(user) {
   };
 }
 
-function endSession(session) {
-  // Persist session state to file or DB if needed
+function endSession(session, db) {
+  if (!session || !db) return;
+  // Persist session state to the database
+  db.query(
+    `INSERT INTO ${MIST_SCHEMA}.${TABLES.currentState} (sessionId, state, timestamp) VALUES (?, ?, NOW())`,
+    [session.user, JSON.stringify(session)]
+  );
+}
+
+// Example: Attach to process exit (Node.js style)
+if (typeof process !== 'undefined') {
+  process.on('exit', () => {
+    // Assume currentSession and db are in scope
+    if (typeof currentSession !== 'undefined' && typeof db !== 'undefined') {
+      endSession(currentSession, db);
+    }
+  });
+  process.on('SIGINT', () => {
+    if (typeof currentSession !== 'undefined' && typeof db !== 'undefined') {
+      endSession(currentSession, db);
+    }
+    process.exit();
+  });
 }
 
 function captureViewport(session, viewportState) {
@@ -237,6 +267,65 @@ function loadWordDefinition(word, db) {
 }
 
 // --- Viewport and UI Logic ---
+function advanceSelectionMode(selectionModeState, selection) {
+  // Update selectedIndices and currentStep based on selection
+  // Set inputBoxOpen and inputBoxType as needed
+  // Example logic:
+  if (selectionModeState.currentStep === 'time') {
+    selectionModeState.selectedIndices[0] = selection.index;
+    selectionModeState.currentStep = 'category';
+    selectionModeState.inputBoxOpen = true;
+    selectionModeState.inputBoxType = 'category';
+  } else if (selectionModeState.currentStep === 'category') {
+    selectionModeState.selectedIndices[1] = selection.index;
+    selectionModeState.currentStep = 'item';
+    selectionModeState.inputBoxOpen = true;
+    selectionModeState.inputBoxType = 'item';
+  } else if (selectionModeState.currentStep === 'item') {
+    selectionModeState.selectedIndices[2] = selection.index;
+    selectionModeState.inputBoxOpen = false;
+    selectionModeState.inputBoxType = null;
+  }
+}
+
+function getViewportCentering(selectionModeState) {
+  // Returns { timeLineOffsetX, categoryLineOffsetY }
+  return {
+    timeLineOffsetX: window.innerWidth / 6,
+    categoryLineOffsetY: window.innerHeight / 6
+  };
+}
+
+function isItemVisible(session, depth, index) {
+  return session.opened && session.opened[depth] && session.opened[depth].includes(index);
+}
+
+function handleSelectionBackend(session, selection, selectionModeState) {
+  // 1. Update the navigation path
+  if (!session.path) session.path = [];
+  session.path.push(selection);
+
+  // 2. Mark the selected item as opened in the session
+  if (!session.opened) session.opened = {};
+  const depth = selectionModeState.selectedIndices.length;
+  if (!session.opened[depth]) session.opened[depth] = [];
+  if (!session.opened[depth].includes(selection.index)) {
+    session.opened[depth].push(selection.index);
+  }
+
+  // 3. Advance the selection mode state
+  advanceSelectionMode(selectionModeState, selection);
+
+  // 4. Optionally update vectors or other in-memory session fields
+  // (e.g., recalculate vectors for nD navigation if needed)
+  // session.vectors = recalculateVectors(session.path);
+
+  // 5. Update lastSelection
+  session.lastSelection = selection;
+
+  // No database writes here; all changes are in-memory.
+}
+
 async function getMistViewportData(db) {
   const primaryLine = await loadPrimaryLine(db);
   const categoriesByTime = {};
@@ -410,14 +499,23 @@ function storyWriter(rtfText, sourceFile) {
 
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
+  // --- Data Structures ---
   Line,
   DefiniteItem,
+  CharacterLocation,
+  SelectionModeState,
+
+  // --- In-Memory Model ---
   MistModel,
+
+  // --- Session and State Management ---
   startSession,
   endSession,
   captureViewport,
   saveSessionPath,
   saveCurrentState,
+
+  // --- Data Model and CRUD Operations ---
   createPrimaryLine,
   addCategoryLine,
   addItemLine,
@@ -427,14 +525,32 @@ module.exports = {
   addTimeIndex,
   addCategory,
   addItem,
+  addCharacterLocation,
+  getCharacterLocationsByTime,
+  getCharacterLocation,
+
+  // --- Data Integrity and Utilities ---
   ensureMistDatabase,
+  ensureCharacterLocationsTable,
   loadMistUser,
   getMistDataTables,
   getMistTables,
   loadWordDefinition,
+
+  // --- Viewport and UI Logic ---
   getMistViewportData,
+  advanceSelectionMode,
+  getViewportCentering,
+  isItemVisible,
+  handleSelectionBackend,
+
+  // --- Advanced Rendering and Navigation ---
   gramSchmidt,
   calculateLineOrientation,
   hourGlass,
+  projectItemsTo3D,
+  getMapModeProjection,
+
+  // --- Story Parsing Utility ---
   storyWriter
 };
