@@ -247,49 +247,7 @@ Based on the provided scripts and documentation, the \*\*current functionality o
 \---
 
 \*\*In summary:\*\*    
-The current "mist" solution provides a robust backend for a 4D definite item tracker, handling all workspace setup, user/session management, and data import. It lays the groundwork for a visual, interactive system as described in mist.md, with all data and relationships persisted in Google Sheets and CSVs, ready for further UI and logic development.  
+The V0.2 "mist" solution provides a robust backend for a 4D definite item tracker, handling all workspace setup, user/session management, and data import. It lays the groundwork for a visual, interactive system, with all data and relationships persisted in Google Sheets and CSVs, ready for further UI and logic development.  
 
 
-Mist Functions and Classes
-
-Classes:
-
-* Line  
-* DefiniteItem
-
-Functions:
-
-* createPrimaryLine // Initialize the primary line (time axis)  
-* addCategoryLine // Add a category line at a specific time index  
-* addItemLine // Add an item line for a category  
-* showMistUI // UI and selection logic would use HTML Service and client-side JS  
-* ensureMistSpreadsheet //ensure that the Mist spreadsheet exists and is accessible  
-* ensureMistDataSpreadsheet //ensure that the Mist Data spreadsheet exists and is accessible  
-* updateMistData //update the Mist Data spreadsheet with the latest data from the Story document  
-* loadMistUser //load the Mist user data from the Mist User sheet in Mist spreadsheet  
-* getMistDataSheets // Utility: Get Mist Data spreadsheet and relevant sheets  
-* getMistSheets // Utility: Get Mist spreadsheet and relevant sheets  
-* loadPrimaryLine // Load primary line (time indexes) from Mist spreadsheet  
-* loadCategoriesForTime // Load categories for a given time index from Mist Data spreadsheet  
-* loadItemsForCategory // Load items for a given category from Mist Data spreadsheet  
-* loadWordDefinition // Load dictionary definition for a word from dictionary sheets  
-* addTimeIndex // Add a new time index to the PrimaryLine sheet  
-* addCategory // Add a new category for a given time index  
-* addItem // Add a new item for a given category  
-* getMistViewportData // Provide data for the viewport UI  
-* transformStream // Transform stream function to handle user selections and update session state. Use data from Mist spreadsheet to perform transformations and save results in Current State sheet in Mist spreadsheet.  
-* saveSessionPath // Save path to Mist Persist  
-* saveCurrentState // Save current state to Current State sheet  
-* calculateLineOrientation // Calculate orientation of lines based on viewport and user input  
-* getSessionId // Use user email \+ session start time or similar unique identifier  
-* storyWriter // Safely parses an RTF story, extracting explicit and implied character names and character statements  
-* initViewport // Initialize the viewport with the current state and user input  
-* renderViewport // Render the viewport based on the current state, user input, and Mist Persist items  
-* selectTimeIndex // Select a time index from the PrimaryLine sheet  
-* selectCategory // Select a category from the Categories sheet based on the selected time index  
-* selectItem // Select an item from the Items sheet based on the selected category  
-* showAddTimeInput // Show input box for adding a new time index  
-* showAddCategoryInput // Show input box for adding a new category  
-* showAddItemInput // Show input box for adding a new item  
-* showInputBox // Show input box for user input, such as adding a new time index, category, or item  
-* handleSelection // Handle user selection from the Mist UI, updating the session state and saving to Mist Persist
+Mist Functions and Classes: See x11LibreMigration.txt
