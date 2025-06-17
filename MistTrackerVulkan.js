@@ -36,6 +36,15 @@ class SelectionModeState {
   }
 }
 
+class MapModeState {
+  constructor() {
+    this.cameraPosition = [0, 0, 10];
+    this.projectionType = 'perspective'; // or 'orthographic'
+    this.focusItem = null;
+    // Add more as needed for 3D navigation
+  }
+}
+
 // --- In-Memory Data Model ---
 const MistModel = {
   lines: [],
@@ -419,9 +428,13 @@ async function getMapModeProjection(db, timeMap, locationMap) {
   return projectItemsTo3D(items, characterLocations, timeMap, locationMap);
 }
 
+function getLineTransformationMatrix(path, vectors) {
+  // Returns a 4x4 matrix for Vulkan/OpenGL rendering, based on the current selection path and vectors
+  // (Implementation depends on your math library)
+}
+
 // --- Story Parsing Utility ---
 function storyWriter(rtfText, sourceFile) {
-  // (Same as previous implementation)
   let plainText = rtfText
     .replace(/\\par[d]?/g, '\n')
     .replace(/\\[a-z]+\d* ?/g, '')
@@ -496,6 +509,41 @@ function storyWriter(rtfText, sourceFile) {
     provenance: provenance
   };
 }
+function mapRead(){
+  const fs = require('fs');
+  const { createCanvas, loadImage } = require('canvas'); // or use a native image library
+  const options = { createCanvas, loadImage }
+  mapReader(imagePath, options);
+}
+
+async function mapReader(imagePath, options = {}) {
+  // Load the image
+  const img = await loadImage(imagePath);
+  const canvas = createCanvas(img.width, img.height);
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+
+  // Example: Parse colored dots or QR codes as location markers
+  // This is a placeholder; real implementation would depend on your encoding scheme
+  let locations = [];
+  for (let y = 0; y < img.height; y++) {
+    for (let x = 0; x < img.width; x++) {
+      const [r, g, b, a] = ctx.getImageData(x, y, 1, 1).data;
+      // Example: Red dots represent character locations
+      if (r > 200 && g < 50 && b < 50 && a > 200) {
+        locations.push({ x, y, color: [r, g, b], description: 'Possible character location' });
+      }
+    }
+  }
+  // Optionally, use OCR or QR code libraries to extract text/labels from the image
+
+  return {
+    imagePath,
+    width: img.width,
+    height: img.height,
+    locations
+  };
+}
 
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
@@ -545,12 +593,15 @@ module.exports = {
   handleSelectionBackend,
 
   // --- Advanced Rendering and Navigation ---
+  MapModeState,
   gramSchmidt,
   calculateLineOrientation,
   hourGlass,
   projectItemsTo3D,
   getMapModeProjection,
+  getLineTransformationMatrix,
 
   // --- Story Parsing Utility ---
-  storyWriter
+  storyWriter,
+  mapReader
 };

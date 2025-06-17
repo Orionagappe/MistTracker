@@ -7,6 +7,7 @@ nextState              // Load next state from persistent storage (e.g., mySQL)
 captureViewport        // Capture current viewport state and persist to database
 persistUpdate          // Save current rendered items (not full user path) to persistent storage
 userPath               // Save user navigation path for session tracking
+MapModeState           // Class for 3D navigation state
 
 // --- Data Model and CRUD Operations ---
 createPrimaryLine      // Initialize the primary (time) line in the database
@@ -18,14 +19,14 @@ loadItemsForCategory   // Load items for a given category from database
 addTimeIndex           // Add a new time index to the primary line
 addCategory            // Add a new category for a given time index
 addItem                // Add a new item for a given category
-addCharacterLocation              // NEW: Add a character's location at a given time
-getCharacterLocationsByTime       // NEW: Get all character locations for a given time
-getCharacterLocation              // NEW: Get a character's location at a specific time
+addCharacterLocation              // Add a character's location at a given time
+getCharacterLocationsByTime       // Get all character locations for a given time
+getCharacterLocation              // Get a character's location at a specific time
 
 // --- Data Integrity and Utilities ---
 ensureMistDatabase     // Ensure the mySQL database and required tables exist
 updateMistData         // Update database with latest data from external sources (e.g., story files)
-ensureCharacterLocationsTable      // NEW: Ensure the CharacterLocations table exists
+ensureCharacterLocationsTable      // Ensure the CharacterLocations table exists
 loadMistUser           // Load user data from database
 getMistDataTables      // Utility: Get references to required tables in the database
 getMistTables          // Utility: Get references to main tables in the database
@@ -33,10 +34,10 @@ loadWordDefinition     // Load dictionary definition for a word from database
 
 // --- Viewport and UI Logic ---
 getMistViewportData    // Provide structured data for the UI (lines, categories, items)
-advanceSelectionMode    // NEW: Advance selection mode state
-getViewportCentering    // NEW: Compute viewport centering offsets
-isItemVisible           // NEW: Check if an item is visible in the current session
-handleSelectionBackend  // NEW: Handle selection logic in memory
+advanceSelectionMode    // Advance selection mode state
+getViewportCentering    // Compute viewport centering offsets
+isItemVisible           // Check if an item is visible in the current session
+handleSelectionBackend  // Handle selection logic in memory
 transformStream        // Handle user selections, update session state, and compute nD vectors for lines
 saveSessionPath        // Save user navigation path to persistent storage
 saveCurrentState       // Save current session state to persistent storage
@@ -52,15 +53,18 @@ showAddCategoryInput   // Show input for adding a new category
 showAddItemInput       // Show input for adding a new item
 showInputBox           // Show generic input box for user input
 handleSelection        // Handle user selection, update session state, and persist as needed
+getLineTransformationMatrix     // For Vulkan/OpenGL rendering.
 
 // --- Advanced Rendering and Navigation ---
 hourGlass              // Compute nD orthogonal vectors for line arrangement; project to 2D/3D for display
 enableRelativeNavigation // Enable mouse or input-based navigation along any line, relative to parent/plane
 cullVisible            // Only show items/lines opened by the user in the current session (use session.opened)
 gramSchmidt            // Orthonormalize vectors for nD arrangement (for GPU or CPU)
-projectItemsTo3D       // NEW: Project items and locations to 3D for map mode
-getMapModeProjection   // NEW: Get 3D projection for map mode
+projectItemsTo3D       // Project items and locations to 3D for map mode
+getMapModeProjection   // Get 3D projection for map mode
 storyWriter            // Parse and extract structured data from story files (RTF or plain text)
+mapRead                // Requirements block for mapReader
+mapReader              // Map reader for image-based location extraction
 
 // --- Migration Notes ---
 // - Replace all Google Sheets/Drive operations with mySQL queries and file I/O.
