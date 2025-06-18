@@ -126,6 +126,125 @@ function shutdownMist() {
   // Cleanly shut down MistIllum and all Mist modules.
 }
 
+// --- Physics Engine for MistTrackerVulkan.js ---
+
+// --- Dimensional Stacking ---
+/**
+ * Stack objects or spaces in higher dimensions.
+ * @param {Array} objects - Array of objects or spaces to stack.
+ * @param {number} dimension - The dimension to stack along.
+ * @returns {Array} - Stacked representation.
+ */
+function dimensionalStack(objects, dimension) {
+  // Implement stacking logic for nD objects
+}
+
+// --- Distance and Size Change from Different Dimensional Perspectives ---
+/**
+ * Calculate apparent distance and size of an object from a given dimensional perspective.
+ * @param {Object} object - The object to observe.
+ * @param {number} observerDimension - The dimension of the observer.
+ * @param {number} objectDimension - The dimension of the object.
+ * @returns {Object} - { apparentDistance, apparentSize }
+ */
+function perspectiveTransform(object, observerDimension, objectDimension) {
+  // Implement transformation logic
+}
+
+// --- Higher Dimensions Observed in Lower Dimensions Through Motion/Time ---
+/**
+ * Project a higher-dimensional object into a lower dimension over time or motion.
+ * @param {Object} object - The higher-dimensional object.
+ * @param {number} fromDimension - The original dimension.
+ * @param {number} toDimension - The target (lower) dimension.
+ * @param {number} time - Time parameter for the projection.
+ * @returns {Object} - Lower-dimensional projection at given time.
+ */
+function projectToLowerDimension(object, fromDimension, toDimension, time) {
+  // Implement projection logic
+}
+
+// --- Single Object in Higher Dimension as Multiple in Lower Dimensions ---
+/**
+ * Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices.
+ * @param {Object} object - The higher-dimensional object.
+ * @param {number} lowerDimension - The dimension to decompose into.
+ * @returns {Array} - Array of lower-dimensional objects.
+ */
+function decomposeHigherToLower(object, lowerDimension) {
+  // Implement decomposition logic
+}
+
+// --- Extra Dimensions as Objects vs Space ---
+/**
+ * Treat extra dimensions as either spatial axes or as object properties.
+ * @param {Object} object - The object to analyze.
+ * @param {boolean} asObject - If true, treat extra dimensions as object properties.
+ * @returns {Object} - Modified object or space.
+ */
+function extraDimensionMode(object, asObject) {
+  // Implement logic for treating extra dimensions as objects or space
+}
+
+// --- Limited vs Infinite Extra Dimensions ---
+/**
+ * Set limits or boundaries for extra dimensions.
+ * @param {Object} space - The space or object.
+ * @param {number} dimension - The dimension to limit.
+ * @param {number|null} limit - The limit value, or null for infinite.
+ * @returns {Object} - Modified space/object.
+ */
+function setDimensionLimit(space, dimension, limit) {
+  // Implement logic for limiting or making dimensions infinite
+}
+
+// --- Energy Distribution Through Extra Dimensions ---
+/**
+ * Calculate or simulate energy distribution across extra dimensions.
+ * @param {Object} system - The physical system or object.
+ * @param {Array} dimensions - Array of dimensions to distribute energy through.
+ * @returns {Object} - Energy distribution result.
+ */
+function energyDistribution(system, dimensions) {
+  // Implement energy distribution logic
+}
+
+// --- Non-Flat Extra Dimensions (Caveat) ---
+/**
+ * Apply curvature or non-flat geometry to extra dimensions.
+ * @param {Object} space - The space or object.
+ * @param {Function} curvatureFn - Function describing curvature.
+ * @returns {Object} - Modified space/object with curvature.
+ */
+function applyCurvature(space, curvatureFn) {
+  // Implement non-flat geometry logic
+}
+
+// --- Physics Engine Class ---
+class MistPhysicsEngine {
+  constructor(config = {}) {
+    this.config = config;
+    // Store state, constants, etc.
+  }
+
+  // Example: Step simulation forward in time
+  step(deltaTime) {
+    // Advance physics simulation by deltaTime
+  }
+
+  // Example: Attach to MistTrackerVulkan.js scene or data
+  attachScene(scene) {
+    this.scene = scene;
+  }
+
+  // Example: Query or update object state
+  updateObjectState(objectId, newState) {
+    // Update object in simulation
+  }
+}
+
+// --- Export API ---
+
 module.exports = {
   tileMode,
   tileSpan,
@@ -149,5 +268,14 @@ module.exports = {
   mistMenu,
   launchMistCore,
   launchMistMulti,
-  shutdownMist
+  shutdownMist,
+  dimensionalStack,
+  perspectiveTransform,
+  projectToLowerDimension,
+  decomposeHigherToLower,
+  extraDimensionMode,
+  setDimensionLimit,
+  energyDistribution,
+  applyCurvature,
+  MistPhysicsEngine
 };
