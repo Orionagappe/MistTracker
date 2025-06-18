@@ -43,9 +43,9 @@ metricTensor = {
         [0, 0, 0, 0, 1]
     ]
 }
-T = metricTensor[1];
-X = metricTensor[2];
-Y = metricTensor[3];
-Z = metricTensor[4];
-W = metricTensor[5];
+T = metricTensor[1]; //time
+X = metricTensor[2]; //space
+Y = metricTensor[3]; //space
+Z = metricTensor[4]; //space
+W = metricTensor[5]; //gravity
 //  * Distribute energy across extra dimensions.

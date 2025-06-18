@@ -38,10 +38,17 @@ Caveat: What if Extra Dimensions Aren’t flat
 
 dimensionalStack // Stack objects or spaces in higher dimensions.
 perspectiveTransform // Calculate apparent distance and size of an object from a given dimensional perspective.
-projectToLowerDimension, // Project a higher-dimensional object into a lower dimension over time or motion
-decomposeHigherToLower, // Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices
-extraDimensionMode, // Treat extra dimensions as either spatial axes or as object properties.
-setDimensionLimit, // Set limits or boundaries for extra dimensions.
-energyDistribution, // Calculate or simulate energy distribution across extra dimensions.
-applyCurvature, // Apply curvature or non-flat geometry to extra dimensions
-MistPhysicsEngine // Physics Engine Class
+projectToLowerDimension // Project a higher-dimensional object into a lower dimension over time or motion
+decomposeHigherToLower // Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices
+extraDimensionMode // Treat extra dimensions as either spatial axes or as object properties.
+setDimensionLimit // Set limits or boundaries for extra dimensions.
+energyDistribution // Calculate or simulate energy distribution across extra dimensions.
+applyCurvature // Apply curvature or non-flat geometry to extra dimensions
+MistPhysicsEngine // Physics Engine 3D/4D mode and gravity
+MetricTensor // global calculation class
+MetricTensor3D // Spacial only calculations class
+getGravityAtPoint // Gravity in 3D mode
+navigate // Navigation in ND mode
+navigate3D // Navigation in 3D mode
+renderObject3D // Render an object in 3D mode
+renderObjectND // Render an object in ND mode

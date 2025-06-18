@@ -242,6 +242,172 @@ class MistPhysicsEngine {
     // Update object in simulation
   }
 }
+// --- Metric Tensor for 3D Mode ---
+class MetricTensor3D {
+  constructor() {
+    // Only spatial dimensions: X, Y, Z
+    this.rank = 3;
+    this.data = [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ];
+  }
+
+  intervalSquared(p1, p2) {
+    // p1, p2: [x, y, z]
+    let delta = p1.map((v, i) => v - p2[i]);
+    let sum = 0;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        sum += this.data[i][j] * delta[i] * delta[j];
+      }
+    }
+    return sum;
+  }
+}
+
+// --- Metric Tensor for nD Physics ---
+class MetricTensor {
+  /**
+   * @param {number} rank - The rank (dimensions) of the tensor.
+   * @param {Array<Array<number>>} data - The metric tensor matrix.
+   */
+  constructor(rank, data) {
+    this.rank = rank;
+    this.data = data; // e.g., 4x4 or 5x5 array
+  }
+
+  /**
+   * Calculate the squared interval (distance) between two points in this metric.
+   * @param {Array<number>} p1 - First point (array of coordinates).
+   * @param {Array<number>} p2 - Second point.
+   * @returns {number} - The squared interval.
+   */
+  intervalSquared(p1, p2) {
+    let delta = p1.map((v, i) => v - p2[i]);
+    let sum = 0;
+    for (let i = 0; i < this.rank; i++) {
+      for (let j = 0; j < this.rank; j++) {
+        sum += this.data[i][j] * delta[i] * delta[j];
+      }
+    }
+    return sum;
+  }
+  
+
+  /**
+   * Project a vector from higher to lower dimension using the metric.
+   * @param {Array<number>} vec - The vector to project.
+   * @param {number} targetRank - The target dimension.
+   * @returns {Array<number>} - Projected vector.
+   */
+  project(vec, targetRank) {
+    return vec.slice(0, targetRank);
+  }
+
+  /**
+   * Apply the metric to transform a vector (for orientation/navigation).
+   * @param {Array<number>} vec
+   * @returns {Array<number>}
+   */
+  transform(vec) {
+    let result = Array(this.rank).fill(0);
+    for (let i = 0; i < this.rank; i++) {
+      for (let j = 0; j < this.rank; j++) {
+        result[i] += this.data[i][j] * vec[j];
+      }
+    }
+    return result;
+  }
+}
+
+class MistPhysicsEngine {
+  constructor(config = {}) {
+    // Default to 4D Minkowski metric, but allow 3D mode
+    this.metric3D = new MetricTensor3D();
+    this.metric4D = config.metric || new MetricTensor(4, [
+      [-1, 0, 0, 0],
+      [0, 1, 0, 0],
+      [0, 0, 1, 0],
+      [0, 0, 0, 1]
+    ]);
+    this.mode = config.mode || '4D'; // '3D' or '4D'
+    this.G = config.G || 6.67430e-11; // Gravitational constant
+    this.M = config.M || 1.0; // Mass for gravity calculations
+  }
+
+  setMode(mode) {
+    this.mode = mode;
+  }
+
+  // Use the appropriate metric for distance
+  distance(p1, p2) {
+    if (this.mode === '3D') {
+      return Math.sqrt(this.metric3D.intervalSquared(p1, p2));
+    } else {
+      return Math.sqrt(this.metric4D.intervalSquared(p1, p2));
+    }
+  }
+
+  // Gravity as a function of distance in 3D at a given time
+  gravityAt(p, mass = this.M) {
+    // p: [x, y, z]
+    const r = Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
+    if (r === 0) return 0;
+    // Newtonian gravity: g = G * M / r^2
+    return this.G * mass / (r * r);
+  }
+
+  // For compatibility: project to 3D view
+  projectToView(vec, viewRank = 3) {
+    if (this.mode === '3D') {
+      return this.metric3D.project ? this.metric3D.project(vec, viewRank) : vec.slice(0, 3);
+    } else {
+      return this.metric4D.project(vec, viewRank);
+    }
+  }
+
+  // For compatibility: collision detection in 3D
+  checkCollision3D(p1, p2, threshold = 1e-6) {
+    return Math.abs(this.metric3D.intervalSquared(p1, p2)) < threshold;
+  }
+}
+
+function navigate3D(currentPosition, direction, step, physicsEngine) {
+  let move = direction.map(d => d * step);
+  let newPos = currentPosition.map((v, i) => v + move[i]);
+  return newPos; // Already 3D
+}
+
+// Example: Rendering in 3D mode
+function renderObject3D(object, camera, physicsEngine) {
+  let projected = physicsEngine.projectToView(object.position, 3);
+  // ...pass projected to renderer
+  return projected;
+}
+
+// Example: Gravity at a point in 3D
+function getGravityAtPoint(point, physicsEngine) {
+  return physicsEngine.gravityAt(point);
+}
+
+// Example: Use metric for navigation/orientation
+function navigate(currentPosition, direction, step, physicsEngine) {
+  // direction: unit vector in nD
+  let move = direction.map(d => d * step);
+  let newPos = currentPosition.map((v, i) => v + move[i]);
+  // Optionally transform using metric
+  return physicsEngine.transformVector(newPos);
+}
+
+// Example: Use metric for rendering projection
+function renderObjectND(object, camera, physicsEngine, viewRank = 3) {
+  // Project object's nD position to 3D for rendering
+  let projected = physicsEngine.projectToView(object.position, viewRank);
+  // ...pass projected to renderer
+  return projected;
+}
 
 // --- Export API ---
 
@@ -277,5 +443,12 @@ module.exports = {
   setDimensionLimit,
   energyDistribution,
   applyCurvature,
-  MistPhysicsEngine
+  MistPhysicsEngine,
+  MetricTensor,
+  MetricTensor3D,
+  getGravityAtPoint,
+  navigate,
+  navigate3D,
+  renderObject3D,
+  renderObjectND
 };
