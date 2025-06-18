@@ -1,0 +1,25 @@
+MistIllum Functions
+
+tileMode // Used for tileing MistTracker viewport.
+tileSpan // Used for spanning multiple monitors.
+lightSource // Class of all light sources.
+globalIllumination // Light source positioning, orientation, and ray direction treat light as wave function.
+fastTransform // Fourier transform ray to wave.
+worldWarp // Transform to make 3d projected volume have different geometries, eg: plane, sphere, cube, torus, hypercube, etc
+wireFrames // Used for mapping textures onto items.
+rastRenderMap // Used with wireframes to combine wireframes with texture information from texture map tables.
+audioQueue // trigger for sound file from soundScape table.
+volumeGlobal // setting for global volume.
+volumeAmbient // setting for ambient sound volume.
+volumeInteract // setting for object interaction volume.
+volumeDialogue // setting for character dialogue.
+settingsMenu // Menu setup to allow user to change settings in GUI.
+mistFirstStart // Displays title, credits, and disclaimers for MistTrackerVulkan, MistMulti, and MistIllum.
+mistSetup // setup function to check, create, and update required dependances for MistTracker, MistMulti, and MistIllum.
+mistDepend // checks user system for soft and hardware dependances eg MySQL, Vulkan. If failed, warn user.
+mistWarn // module for warning message to user.
+warnTypes // class to define warnings based on function that is calling mistWarn.
+mistMenu // menu overlay for Mist solution.
+launchMistCore // Launches MistTrackerVulkan.
+launcheMistMulti // Launches MistTrackerVulkan with MistMulti enabled.
+shutdownMist // Mist Client Exit.

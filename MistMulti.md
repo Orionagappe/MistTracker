@@ -10,3 +10,8 @@ Communication: All game state changes (selections, navigation, edits) are sent a
 State Sync: The host (or a consensus of peers) maintains the authoritative state and broadcasts updates to all connected clients.
 Rate Limit: Limit the number of updates per second to less than 50 kbps.
 End to end encryption: Suggest strategy within bounds of Rate Limit.
+
+### Update Requirements
+Shifting key encryption: peer to peer protocol for changing and updating session keys on from session host.
+Pit Boss: Handles bans on swarm.
+Rate Limit Warn: Used by client to determine violations of rate limiting and issue warnings to user.
