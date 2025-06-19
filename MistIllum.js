@@ -20,59 +20,271 @@ class LightSource {
   }
 }
 
-function globalIllumination(lightSources, scene) {
-  // Calculate global illumination for the scene using all light sources.
-  // Treat light as a wave function for advanced effects.
+// --- Wave Function Utilities ---
+function waveFunction(amplitude, k, x, omega, t) {
+  // psi = A * exp(i * (k * x - omega * t))
+  // Returns complex value as [real, imag]
+  const phase = k * x - omega * t;
+  return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
+}
+
+function interferencePattern(source, obj1, obj2, lambda) {
+  // Calculate the interference pattern of light waves from a single source
+  const D = (p1, p2) => Math.sqrt(
+    Math.pow(p2[0] - p1[0], 2) +
+    Math.pow(p2[1] - p1[1], 2) +
+    Math.pow(p2[2] - p1[2], 2)
+  );
+  const distance1 = D(source, obj1);
+  const distance2 = D(source, obj2);
+  const phaseDifference = (distance1 - distance2) * (2 * Math.PI / lambda);
+  return Math.cos(phaseDifference); // Interference pattern
+}
+
+function applyInterference(source, obj1, obj2, lambda) {
+  const pattern = interferencePattern(source, obj1.position, obj2.position, lambda);
+  obj1.intensity = (obj1.intensity || 1) * pattern;
+  obj2.intensity = (obj2.intensity || 1) * pattern;
+}
+function globalIllumination(lightSources, scene, waveParams = {}) {
+  // lightSources: array of LightSource
+  // scene: array of objects with position, intensity, etc.
+  // waveParams: { lambda, amplitude, omega, t }
+  scene.forEach(obj => {
+    let totalIntensity = 0;
+    lightSources.forEach(light => {
+      // Calculate distance and phase
+      const D = (p1, p2) => Math.sqrt(
+        Math.pow(p2[0] - p1[0], 2) +
+        Math.pow(p2[1] - p1[1], 2) +
+        Math.pow(p2[2] - p1[2], 2)
+      );
+      const distance = D(light.position, obj.position);
+      const k = 2 * Math.PI / (waveParams.lambda || 1);
+      const [real, imag] = waveFunction(
+        waveParams.amplitude || 1,
+        k,
+        distance,
+        waveParams.omega || 1,
+        waveParams.t || 0
+      );
+      // Interference with other lights (optional)
+      totalIntensity += real * (light.intensity || 1);
+    });
+    obj.intensity = totalIntensity;
+  });
 }
 
 function fastTransform(ray) {
-  // Apply a Fourier transform to convert a ray to a wave.
-  // Used for wave-based lighting calculations.
+  // ray: array of sample values (e.g., intensity along a path)
+  // Returns: array of frequency components (magnitude, phase)
+  // Simple DFT for demonstration; replace with optimized FFT as needed
+  const N = ray.length;
+  let result = [];
+  for (let k = 0; k < N; k++) {
+    let real = 0, imag = 0;
+    for (let n = 0; n < N; n++) {
+      const angle = (2 * Math.PI * k * n) / N;
+      real += ray[n] * Math.cos(angle);
+      imag -= ray[n] * Math.sin(angle);
+    }
+    result.push({ magnitude: Math.sqrt(real * real + imag * imag), phase: Math.atan2(imag, real) });
+  }
+  return result;
 }
 
-function worldWarp(geometryType, params) {
-  // Transform the 3D projected volume to a different geometry.
+function worldWarp(geometryType, params, metricTensor) {
   // geometryType: 'plane', 'sphere', 'cube', 'torus', 'hypercube', etc.
-  // params: geometry-specific parameters
+  // params: geometry-specific parameters (e.g., radius for sphere)
+  // metricTensor: for curved space
+  // Returns a transformation function
+  switch (geometryType) {
+    case 'sphere':
+      // Project (x, y, z) onto sphere of radius r
+      return (point) => {
+        const [x, y, z] = point;
+        const r = params.radius || 1;
+        const norm = Math.sqrt(x * x + y * y + z * z) || 1;
+        return [r * x / norm, r * y / norm, r * z / norm];
+      };
+    case 'torus':
+      // Project onto torus (R: major, r: minor)
+      return (point) => {
+        const [x, y, z] = point;
+        const R = params.R || 2, r = params.r || 1;
+        const theta = Math.atan2(y, x);
+        const phi = Math.atan2(z, Math.sqrt(x * x + y * y) - R);
+        return [
+          (R + r * Math.cos(phi)) * Math.cos(theta),
+          (R + r * Math.cos(phi)) * Math.sin(theta),
+          r * Math.sin(phi)
+        ];
+      };
+    // Add more geometries as needed
+    default:
+      // Identity (no warp)
+      return (point) => point;
+  }
 }
 
-function wireFrames(item, options) {
-  // Generate or retrieve wireframe mesh for an item.
+function wireFrames(item, options = {}, metricTensor) {
+  // item: object with position, shape, etc.
   // options: { levelOfDetail, color, ... }
+  // metricTensor: for nD geometry
+  // Returns: array of edges (pairs of points)
+  // Example: cube wireframe in 3D
+  if (item.shape === 'cube') {
+    const size = options.size || 1;
+    const vertices = [
+      [0, 0, 0], [size, 0, 0], [size, size, 0], [0, size, 0],
+      [0, 0, size], [size, 0, size], [size, size, size], [0, size, size]
+    ].map(v => metricTensor ? metricTensor.transform(v) : v);
+    const edges = [
+      [0,1],[1,2],[2,3],[3,0],
+      [4,5],[5,6],[6,7],[7,4],
+      [0,4],[1,5],[2,6],[3,7]
+    ];
+    return edges.map(([a, b]) => [vertices[a], vertices[b]]);
+  }
+  // Add more shapes as needed
+  return [];
 }
 
-function rastRenderMap(wireframe, textureMap) {
-  // Rasterize the wireframe and combine with texture information.
+function rastRenderMap(wireframe, textureMap, waveParams = {}) {
+  // wireframe: array of edges (pairs of points)
   // textureMap: lookup table or image
+  // waveParams: for wave-based shading
+  // Returns: rasterized image or buffer
+  // Skeleton: For each edge, sample points and modulate intensity by wave function
+  let raster = [];
+  wireframe.forEach(([p1, p2]) => {
+    // Simple linear interpolation between p1 and p2
+    const steps = 20;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const point = p1.map((v, idx) => v + t * (p2[idx] - v));
+      // Use wave function for intensity
+      const [real, imag] = waveFunction(
+        waveParams.amplitude || 1,
+        waveParams.k || 1,
+        point[0], // x
+        waveParams.omega || 1,
+        waveParams.t || 0
+      );
+      // Sample texture (placeholder)
+      const texColor = textureMap ? textureMap(point) : [real, real, real];
+      raster.push({ point, color: texColor, intensity: real });
+    }
+  });
+  return raster;
 }
 
 // --- Audio and Soundscape ---
-function audioQueue(soundId, options) {
-  // Queue a sound file for playback.
-  // soundId: reference to soundScape table
-  // options: { volume, loop, position }
+/**
+ * Queue a sound file for playback, modulated by wave and geometric logic.
+ * @param {string} soundId - Reference to soundScape table.
+ * @param {Object} options - { volume, loop, position, frequency, amplitude, phase }
+ * @param {Object} listenerPosition - [x, y, z] of the listener for geometric modulation.
+ */
+function audioQueue(soundId, options = {}, listenerPosition = [0,0,0]) {
+  // Example: Use wave function for amplitude modulation based on distance
+  // and apply geometric attenuation/interference
+  const { position = [0,0,0], frequency = 440, amplitude = 1, phase = 0, t = 0 } = options;
+  // Distance-based attenuation (inverse square law)
+  const D = (p1, p2) => Math.sqrt(
+    Math.pow(p2[0] - p1[0], 2) +
+    Math.pow(p2[1] - p1[1], 2) +
+    Math.pow(p2[2] - p1[2], 2)
+  );
+  const distance = D(listenerPosition, position);
+  const attenuation = 1 / (1 + distance * distance);
+  // Wave function for sound pressure at listener
+  const omega = 2 * Math.PI * frequency;
+  const k = omega / 343; // 343 m/s speed of sound (air)
+  const [real, imag] = waveFunction(amplitude * attenuation, k, distance, omega, t + phase);
+  // Queue sound with calculated intensity
+  // (Implementation: pass to audio engine, e.g., WebAudio API or native)
+  return {
+    soundId,
+    effectiveAmplitude: real,
+    frequency,
+    phase,
+    position,
+    listenerPosition,
+    time: t
+  };
 }
 
+/**
+ * Set global volume for all audio, modulated by wave logic if desired.
+ * @param {number} level - Volume level (0.0 to 1.0).
+ */
 function volumeGlobal(level) {
-  // Set global volume for all audio.
+  // Optionally, modulate by global wave envelope or geometric mean
+  // (Implementation: set master gain in audio engine)
+  // Example: globalVolume = level * waveEnvelope(t)
 }
 
-function volumeAmbient(level) {
-  // Set ambient sound volume.
+/**
+ * Set ambient sound volume, modulated by spatial/temporal wave logic.
+ * @param {number} level - Volume level (0.0 to 1.0).
+ * @param {Object} options - { frequency, amplitude, t }
+ */
+function volumeAmbient(level, options = {}) {
+  // Example: Use slow wave for ambient modulation
+  const { frequency = 0.1, amplitude = 1, t = 0 } = options;
+  const omega = 2 * Math.PI * frequency;
+  const [real] = waveFunction(amplitude, omega, 0, omega, t);
+  // Set ambient volume as product
+  // ambientVolume = level * (0.5 + 0.5 * real)
 }
 
-function volumeInteract(level) {
-  // Set volume for object interaction sounds.
+/**
+ * Set volume for object interaction sounds, modulated by proximity/interference.
+ * @param {number} level - Volume level (0.0 to 1.0).
+ * @param {Object} obj1 - First object (with position).
+ * @param {Object} obj2 - Second object (with position).
+ * @param {Object} options - { lambda }
+ */
+function volumeInteract(level, obj1, obj2, options = {}) {
+  // Use interference pattern for interaction volume
+  const { lambda = 1 } = options;
+  const pattern = interferencePattern([0,0,0], obj1.position, obj2.position, lambda);
+  // interactionVolume = level * Math.abs(pattern)
 }
 
-function volumeDialogue(level) {
-  // Set volume for character dialogue.
+/**
+ * Set volume for character dialogue, modulated by distance and wave envelope.
+ * @param {number} level - Volume level (0.0 to 1.0).
+ * @param {Object} speakerPosition - [x, y, z] of the speaker.
+ * @param {Object} listenerPosition - [x, y, z] of the listener.
+ * @param {Object} options - { frequency, amplitude, t }
+ */
+function volumeDialogue(level, speakerPosition, listenerPosition, options = {}) {
+  const D = (p1, p2) => Math.sqrt(
+    Math.pow(p2[0] - p1[0], 2) +
+    Math.pow(p2[1] - p1[1], 2) +
+    Math.pow(p2[2] - p1[2], 2)
+  );
+  const distance = D(speakerPosition, listenerPosition);
+  const { frequency = 220, amplitude = 1, t = 0 } = options;
+  const omega = 2 * Math.PI * frequency;
+  const k = omega / 343;
+  const [real] = waveFunction(amplitude / (1 + distance), k, distance, omega, t);
+  // dialogueVolume = level * Math.abs(real)
 }
 
 // --- Settings and UI ---
 function settingsMenu(config) {
-  // Display and manage the settings menu in the GUI.
-  // config: current settings, callbacks for changes
+  // Display settings for:
+  // - Global volume
+  // - Ambient volume
+  // - Interaction volume
+  // - Dialogue volume
+  // - Wave parameters (frequency, amplitude, phase)
+  // - Geometry parameters (listener position, spatialization)
+  // - Callbacks to update config and propagate to audio engine
+  // (Implementation: UI code, not shown here)
 }
 
 function mistFirstStart() {
@@ -401,12 +613,53 @@ function navigate(currentPosition, direction, step, physicsEngine) {
   return physicsEngine.transformVector(newPos);
 }
 
-// Example: Use metric for rendering projection
-function renderObjectND(object, camera, physicsEngine, viewRank = 3) {
+// Rendering with wave-based intensity
+function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
   // Project object's nD position to 3D for rendering
   let projected = physicsEngine.projectToView(object.position, viewRank);
-  // ...pass projected to renderer
+  // Apply wave function for intensity modulation
+  if (waveParams.amplitude && waveParams.k && waveParams.omega && waveParams.t !== undefined) {
+    const [real, imag] = waveFunction(
+      waveParams.amplitude,
+      waveParams.k,
+      projected[0], // x
+      waveParams.omega,
+      waveParams.t
+    );
+    object.intensity = real; // Use real part for intensity
+  }
+  // ...pass projected and intensity to renderer
   return projected;
+}
+
+// Collision with wave-based culling
+function checkCollisionWithWave(obj1, obj2, physicsEngine, lambda) {
+  // Standard collision
+  const collision = physicsEngine.checkCollision3D(obj1.position, obj2.position);
+  // Wave-based culling: if interference pattern is destructive, cull
+  if (lambda && collision) {
+    const pattern = interferencePattern([0,0,0], obj1.position, obj2.position, lambda);
+    if (pattern < 0.1) { // Destructive interference
+      cullObject(obj1);
+      cullObject(obj2);
+      return false;
+    }
+  }
+  return collision;
+}
+
+function cullObject(obj) {
+  // Remove object from scene/model
+  // ...existing culling logic...
+  if (obj.type === 'user' && obj.userId) {
+    deleteUser(obj.userId);
+  }
+}
+
+function deleteUser(userId) {
+  // Remove user from active sessions and either warn and add strike to user or remove from DB
+  // Use probability distribution to determine if user is removed or warned
+  // ...implement DB/user removal logic...
 }
 
 // --- Export API ---
@@ -415,6 +668,9 @@ module.exports = {
   tileMode,
   tileSpan,
   LightSource,
+  waveFunction,
+  interferencePattern,
+  applyInterference,
   globalIllumination,
   fastTransform,
   worldWarp,
@@ -450,5 +706,7 @@ module.exports = {
   navigate,
   navigate3D,
   renderObject3D,
-  renderObjectND
+  renderObjectND,
+  checkCollisionWithWave,
+  cullObject
 };

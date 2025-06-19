@@ -52,3 +52,9 @@ navigate // Navigation in ND mode
 navigate3D // Navigation in 3D mode
 renderObject3D // Render an object in 3D mode
 renderObjectND // Render an object in ND mode
+waveFunction // Wave logic
+interferencePattern // Constructor for interactions
+applyInterference // Check if objects interfere
+checkCollisionWithWave // Collision handler
+cullObject // Check if object is user
+deleteUser // Delete user for violating rules.
