@@ -34,10 +34,10 @@ loadWordDefinition     // Load dictionary definition for a word from database
 
 // --- Viewport and UI Logic ---
 getMistViewportData    // Provide structured data for the UI (lines, categories, items)
-advanceSelectionMode    // Advance selection mode state
-getViewportCentering    // Compute viewport centering offsets
-isItemVisible           // Check if an item is visible in the current session
-handleSelectionBackend  // Handle selection logic in memory
+advanceSelectionMode   // Advance selection mode state
+getViewportCentering   // Compute viewport centering offsets
+isItemVisible          // Check if an item is visible in the current session
+handleSelectionBackend // Handle selection logic in memory
 transformStream        // Handle user selections, update session state, and compute nD vectors for lines
 saveSessionPath        // Save user navigation path to persistent storage
 saveCurrentState       // Save current session state to persistent storage
@@ -53,9 +53,9 @@ showAddCategoryInput   // Show input for adding a new category
 showAddItemInput       // Show input for adding a new item
 showInputBox           // Show generic input box for user input
 handleSelection        // Handle user selection, update session state, and persist as needed
-getLineTransformationMatrix     // For Vulkan/OpenGL rendering.
+getLineTransformationMatrix     // For Vulkan/OpenGL rendering
 
-// --- Advanced Rendering and Navigation ---
+// --- Advanced Rendering and Navigation (MistIllum.js, MistTrackerVulkan.js) ---
 hourGlass              // Compute nD orthogonal vectors for line arrangement; project to 2D/3D for display
 enableRelativeNavigation // Enable mouse or input-based navigation along any line, relative to parent/plane
 cullVisible            // Only show items/lines opened by the user in the current session (use session.opened)
@@ -66,9 +66,83 @@ storyWriter            // Parse and extract structured data from story files (RT
 mapRead                // Requirements block for mapReader
 mapReader              // Map reader for image-based location extraction
 
+// --- Lighting, Rendering, and Physics (MistIllum.js, pureMathPhysicsEngine.js) ---
+LightSource            // Class for all light sources (point, directional, ambient, etc.)
+globalIllumination     // Wave-based global illumination using interference and metric tensors
+fastTransform          // Fourier transform for ray/wave analysis (DFT/FFT)
+worldWarp              // Transform 3D projected volume to different geometries (plane, sphere, torus, etc.)
+wireFrames             // Generate wireframe mesh for items using metric tensor
+rastRenderMap          // Rasterize wireframes and combine with texture/wave-based shading
+waveFunction           // Core wave function: psi = A * exp(i(kx - wt)), used for light/sound
+interferencePattern    // Calculate interference pattern for wave-based rendering and audio
+applyInterference      // Apply interference pattern to objects (modulate intensity, color, etc.)
+
+// --- Audio and Soundscape (MistIllum.js, pureMathPhysicsEngine.js) ---
+audioQueue             // Queue a sound file for playback, modulated by wave/geometric logic
+volumeGlobal           // Set global volume, optionally modulated by wave envelope
+volumeAmbient          // Set ambient sound volume, modulated by spatial/temporal wave logic
+volumeInteract         // Set volume for object interaction sounds, modulated by proximity/interference
+volumeDialogue         // Set volume for character dialogue, modulated by distance and wave envelope
+
+// --- Settings and UI (MistIllum.js) ---
+settingsMenu           // Display and manage the settings menu, including audio/wave/geometric parameters
+mistFirstStart         // Display title, credits, and disclaimers for Mist modules
+mistSetup              // Setup/check dependencies for MistTracker, MistMulti, MistIllum
+mistDepend             // Check user system for software/hardware dependencies
+mistWarn               // Display a warning message to the user
+warnTypes              // Enum/class for warning types
+mistMenu               // Display a menu overlay for the Mist solution
+
+// --- Multi-User, P2P, and Real-Time Collaboration (MistMulti.js) ---
+addUserSession         // Add or update a user session in memory
+removeUserSession      // Remove a user session from memory
+updateUserPresence     // Update user's lastSeen and state in memory
+announceHostSession    // Announce host's public key/session info to DHT
+discoverHostSession    // Discover host's session by searching DHT
+generateSessionToken   // Generate a secure random session token
+signMessage            // Sign a message using user's private key
+verifyMessage          // Verify a message signature using sender's public key
+onEvent                // Register an event handler for a specific event type
+emitEvent              // Emit an event to all handlers and broadcast to peers
+broadcastToPeers       // Use P2P transport to send messages to all connected peers
+syncStateWithPeer      // Send local state to peer, receive remote state, and merge
+encryptMessage         // Encrypt message using recipient's public key (ECC/AES)
+decryptMessage         // Decrypt message using own private key (ECC/AES)
+canSendMessage         // Rate limiting for outgoing messages per user
+mergeState             // Merge local and remote session state, resolving conflicts
+
+// --- Physics Engine and Metric Tensor (MistIllum.js, pureMathPhysicsEngine.js) ---
+MistPhysicsEngine      // Physics engine using metric tensor for all spatial logic
+MetricTensor           // General nD metric tensor for distance, projection, transformation
+MetricTensor3D         // 3D-only metric tensor for spatial calculations
+dimensionalStack       // Stack objects/spaces in higher dimensions
+perspectiveTransform   // Calculate apparent distance/size from different dimensional perspectives
+projectToLowerDimension// Project higher-dimensional object into lower dimension over time/motion
+decomposeHigherToLower // Decompose higher-dimensional object into lower-dimensional "shadows"
+extraDimensionMode     // Treat extra dimensions as spatial axes or object properties
+setDimensionLimit      // Set limits/boundaries for extra dimensions
+energyDistribution     // Simulate energy distribution across extra dimensions
+applyCurvature         // Apply curvature/non-flat geometry to extra dimensions
+
+// --- Advanced Physics and Math (pureMathPhysicsEngine.js) ---
+eulerLagrange          // Euler-Lagrange equation for wave function
+gaussLawMagnetism      // Gauss's law for magnetism
+principleOfStationaryAction // Principle of stationary action
+pilotWave              // Pilot wave theory for defined objects
+bellTheorem            // Bell's theorem culling logic
+locality               // Check if two points are local to each other
+lightWave              // Relationship between light wave and arrival at objects
+relativeAcceleration   // Relative acceleration between two velocities over time
+
+// --- Moderation and Security (MistMulti.js) ---
+cullObject             // Remove object from scene/model, call deleteUser if user
+deleteUser             // Remove user from active sessions and/or database
+rateLimitWarn          // Warn user if rate limit is exceeded (from MistMulti.md)
+
 // --- Migration Notes ---
 // - Replace all Google Sheets/Drive operations with mySQL queries and file I/O.
 // - Replace HTML Service UI with x11 or other native UI toolkit.
 // - Use Vulkan/OpenCL for vector math, rendering, and possibly data processing.
 // - All session and state persistence should use mySQL or equivalent.
 // - All vector and matrix operations should be GPU-accelerated where possible.
+// - All wave, metric, and physics logic should reference pureMathPhysicsEngine.js for consistency.
