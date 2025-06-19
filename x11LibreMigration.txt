@@ -1,4 +1,4 @@
-// --- Session and State Management ---
+// --- Session and State Management (MistTrackerVulkan.js) ---
 startSession           // Initialize a new user session, set up session variables and state (user, time, etc.)
 endSession             // End the current session, persist state to database
 onExit                 // Handle unexpected session termination (e.g., window close), persist state
@@ -9,7 +9,7 @@ persistUpdate          // Save current rendered items (not full user path) to pe
 userPath               // Save user navigation path for session tracking
 MapModeState           // Class for 3D navigation state
 
-// --- Data Model and CRUD Operations ---
+// --- Data Model and CRUD Operations (MistTrackerVulkan.js) ---
 createPrimaryLine      // Initialize the primary (time) line in the database
 addCategoryLine        // Add a category line at a specific time index
 addItemLine            // Add an item line for a category
@@ -23,7 +23,7 @@ addCharacterLocation              // Add a character's location at a given time
 getCharacterLocationsByTime       // Get all character locations for a given time
 getCharacterLocation              // Get a character's location at a specific time
 
-// --- Data Integrity and Utilities ---
+// --- Data Integrity and Utilities (MistTrackerVulkan.js) ---
 ensureMistDatabase     // Ensure the mySQL database and required tables exist
 updateMistData         // Update database with latest data from external sources (e.g., story files)
 ensureCharacterLocationsTable      // Ensure the CharacterLocations table exists
@@ -32,7 +32,7 @@ getMistDataTables      // Utility: Get references to required tables in the data
 getMistTables          // Utility: Get references to main tables in the database
 loadWordDefinition     // Load dictionary definition for a word from database
 
-// --- Viewport and UI Logic ---
+// --- Viewport and UI Logic (MistTrackerVulkan.js) ---
 getMistViewportData    // Provide structured data for the UI (lines, categories, items)
 advanceSelectionMode   // Advance selection mode state
 getViewportCentering   // Compute viewport centering offsets
@@ -55,6 +55,11 @@ showInputBox           // Show generic input box for user input
 handleSelection        // Handle user selection, update session state, and persist as needed
 getLineTransformationMatrix     // For Vulkan/OpenGL rendering
 
+// --- Keybinds and Input (MistTrackerVulkan.js) ---
+mapKeybinds            // Allow user to change keybinds via user input (X11 or fallback)
+handleInput            // Handle key or mouse input event, dispatch to menu/environment
+userKeybinds           // Current user keybinds mapping
+
 // --- Advanced Rendering and Navigation (MistIllum.js, MistTrackerVulkan.js) ---
 hourGlass              // Compute nD orthogonal vectors for line arrangement; project to 2D/3D for display
 enableRelativeNavigation // Enable mouse or input-based navigation along any line, relative to parent/plane
@@ -73,7 +78,7 @@ fastTransform          // Fourier transform for ray/wave analysis (DFT/FFT)
 worldWarp              // Transform 3D projected volume to different geometries (plane, sphere, torus, etc.)
 wireFrames             // Generate wireframe mesh for items using metric tensor
 rastRenderMap          // Rasterize wireframes and combine with texture/wave-based shading
-waveFunction           // Core wave function: psi = A * exp(i(kx - wt)), used for light/sound
+waveFunction           // Core wave function: psi = A * exp(i(kx - wt)), used for light/sound (see pureMathPhysicsEngine.js)
 interferencePattern    // Calculate interference pattern for wave-based rendering and audio
 applyInterference      // Apply interference pattern to objects (modulate intensity, color, etc.)
 
@@ -92,6 +97,12 @@ mistDepend             // Check user system for software/hardware dependencies
 mistWarn               // Display a warning message to the user
 warnTypes              // Enum/class for warning types
 mistMenu               // Display a menu overlay for the Mist solution
+
+// --- Menu and Environment Interaction (MistIllum.js) ---
+MistMenuControl        // Menu control logic using viewport functions and 3D/nD mode switching
+handleUserInput        // Route input to menu or environment logic
+handleMenuInput        // Handle input for menu objects
+handleEnvironmentInput // Handle input for environment (scene/world) objects
 
 // --- Multi-User, P2P, and Real-Time Collaboration (MistMulti.js) ---
 addUserSession         // Add or update a user session in memory
@@ -112,7 +123,7 @@ canSendMessage         // Rate limiting for outgoing messages per user
 mergeState             // Merge local and remote session state, resolving conflicts
 
 // --- Physics Engine and Metric Tensor (MistIllum.js, pureMathPhysicsEngine.js) ---
-MistPhysicsEngine      // Physics engine using metric tensor for all spatial logic
+MistPhysicsEngine      // Physics engine using metric tensor for all spatial logic (see pureMathPhysicsEngine.js)
 MetricTensor           // General nD metric tensor for distance, projection, transformation
 MetricTensor3D         // 3D-only metric tensor for spatial calculations
 dimensionalStack       // Stack objects/spaces in higher dimensions
@@ -135,9 +146,17 @@ lightWave              // Relationship between light wave and arrival at objects
 relativeAcceleration   // Relative acceleration between two velocities over time
 
 // --- Moderation and Security (MistMulti.js) ---
-cullObject             // Remove object from scene/model, call deleteUser if user
+cullObject             // Remove object from scene/model, call deleteUser if user (see Bell's theorem and event horizon logic)
 deleteUser             // Remove user from active sessions and/or database
 rateLimitWarn          // Warn user if rate limit is exceeded (from MistMulti.md)
+
+// --- Swarm Health and Data Coherence (MistTrackerVulkan.js, MistMulti.js, pureMathPhysicsEngine.js) ---
+checkAndSyncEvent      // Check event probability, sync to swarm, require confirms for anomalies, ban if needed
+AnomalousResults       // Table of anomalous results for error checking and moderation
+isInteractionBanned    // Check if an interaction is banned for a user
+eventHorizonUser       // Ban user and flush all Mist data from host
+flushUserData          // Remove all user data from persistent tables
+banInteraction         // Ban a specific interaction type or event
 
 // --- Migration Notes ---
 // - Replace all Google Sheets/Drive operations with mySQL queries and file I/O.
@@ -146,3 +165,4 @@ rateLimitWarn          // Warn user if rate limit is exceeded (from MistMulti.md
 // - All session and state persistence should use mySQL or equivalent.
 // - All vector and matrix operations should be GPU-accelerated where possible.
 // - All wave, metric, and physics logic should reference pureMathPhysicsEngine.js for consistency.
+// - All multi-user and moderation logic should follow MistMulti.md guidelines.

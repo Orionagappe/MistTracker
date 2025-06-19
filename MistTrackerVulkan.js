@@ -589,6 +589,224 @@ function handleInput(input, context) {
   }
 }
 
+const { broadcastToPeers, onEvent } = require('./MistMulti.js');
+const { probabilityOfEvent } = require('./pureMathPhysicsEngine.js'); // Should return a probability (0..1)
+const { v4: uuidv4 } = require('uuid');
+
+// --- Anomalous Result Table (in-memory, should be persisted in DB in production) ---
+const AnomalousResults = new Map(); // eventId -> { event, provenance, confirms, fails, status }
+const BannedInteractions = new Set(); // Set of banned interaction types or event hashes
+const BannedUsers = new Set(); // Set of banned user IDs
+
+// --- Provenance Helper ---
+function createProvenance(event, user) {
+  return {
+    eventId: uuidv4(),
+    user,
+    timestamp: new Date().toISOString(),
+    sessionId: event.sessionId || null,
+    source: event.source || 'MistIllum',
+    details: event.details || {}
+  };
+}
+
+// --- Data Coherence Check and Swarm Sync ---
+async function checkAndSyncEvent(event, user, db) {
+  // 1. Check if interaction is banned
+  if (isInteractionBanned(event, user)) {
+    eventHorizonUser(user, db);
+    return { error: 'Interaction banned. User event-horizoned.' };
+  }
+
+  // 2. Calculate event probability using pureMathPhysicsEngine.js
+  const prob = probabilityOfEvent(event); // Should return a probability (0..1)
+  const sigma = probToSigma(prob);
+
+  // 3. Create provenance
+  const provenance = createProvenance(event, user);
+
+  // 4. Handle anomalous results
+  if (Math.abs(sigma) > 3) {
+    // Add to anomalous result table
+    const entry = {
+      event,
+      provenance,
+      confirms: 0,
+      fails: 0,
+      status: 'pending'
+    };
+    AnomalousResults.set(provenance.eventId, entry);
+
+    // Broadcast to swarm for error checking/confirmation
+    broadcastToPeers({
+      type: 'anomalyCheck',
+      event,
+      provenance,
+      sigma
+    });
+
+    // If >5 sigma, require multiple confirms
+    if (Math.abs(sigma) > 5) {
+      entry.status = 'requires_multiple_confirms';
+    }
+    return { eventId: provenance.eventId, status: entry.status };
+  } else {
+    // Normal event, add to persistent tables and propagate
+    await addEventToPersistentTables(event, provenance, db);
+    broadcastToPeers({
+      type: 'eventConfirmed',
+      event,
+      provenance
+    });
+    return { status: 'confirmed' };
+  }
+}
+
+// --- Sigma Calculation Helper ---
+function probToSigma(prob) {
+  if (prob === 0.5) return 0;
+  if (prob === 1) return 0;
+  if (prob === 0) return 10; // Arbitrary large sigma for impossible
+  const z = Math.sqrt(2) * inverseErfc(2 * (1 - prob));
+  return z;
+}
+
+function inverseErfc(x) {
+  let z = Math.sqrt(-Math.log((x / 2)));
+  return z - (Math.log(z) / (2 * z));
+}
+
+// --- Swarm Confirmation Handling ---
+onEvent('anomalyCheck', (data) => {
+  const { event, provenance, sigma } = data;
+  if (isInteractionBanned(event, provenance.user)) {
+    // If banned, event horizon immediately
+    eventHorizonUser(provenance.user);
+    return;
+  }
+  const prob = probabilityOfEvent(event);
+  const localSigma = probToSigma(prob);
+  const confirm = Math.abs(localSigma) <= Math.abs(sigma);
+  broadcastToPeers({
+    type: 'anomalyVote',
+    eventId: provenance.eventId,
+    confirm,
+    provenance: { ...provenance, peer: true }
+  });
+});
+
+onEvent('anomalyVote', async (data) => {
+  const { eventId, confirm, provenance } = data;
+  const entry = AnomalousResults.get(eventId);
+  if (!entry) return;
+  if (confirm) {
+    entry.confirms += 1;
+  } else {
+    entry.fails += 1;
+  }
+
+  const total = entry.confirms + entry.fails;
+  if (entry.status === 'requires_multiple_confirms') {
+    if (entry.confirms >= 3 && entry.confirms / total > 0.95) {
+      entry.status = 'confirmed';
+      await addEventToPersistentTables(entry.event, entry.provenance);
+      broadcastToPeers({
+        type: 'eventConfirmed',
+        event: entry.event,
+        provenance: entry.provenance
+      });
+    }
+  } else if (entry.confirms > 0 && entry.fails / entry.confirms > 0.05) {
+    await removeEventFromPersistentTables(entry.event, entry.provenance);
+    entry.status = 'removed';
+  } else if (entry.fails / total > 0.5) {
+    entry.status = 'banned';
+    banInteraction(entry.event, entry.provenance);
+    broadcastToPeers({
+      type: 'interactionBanned',
+      event: entry.event,
+      provenance: entry.provenance
+    });
+  } else if (entry.fails >= 30 && entry.confirms === 0) {
+    entry.status = 'eventHorizon';
+    banInteraction(entry.event, entry.provenance, true);
+    eventHorizonUser(entry.provenance.user);
+    broadcastToPeers({
+      type: 'eventHorizon',
+      event: entry.event,
+      provenance: entry.provenance
+    });
+  }
+});
+
+// --- Helper: Add/Remove Event from Persistent Tables ---
+async function addEventToPersistentTables(event, provenance, db) {
+  await db.query(
+    `INSERT INTO PersistentEvents (eventId, eventData, provenance, timestamp) VALUES (?, ?, ?, NOW())`,
+    [provenance.eventId, JSON.stringify(event), JSON.stringify(provenance)]
+  );
+}
+
+async function removeEventFromPersistentTables(event, provenance, db) {
+  await db.query(
+    `DELETE FROM PersistentEvents WHERE eventId = ?`,
+    [provenance.eventId]
+  );
+}
+
+// --- Helper: Ban Interaction ---
+function banInteraction(event, provenance, eventHorizon = false) {
+  const interactionHash = hashInteraction(event);
+  BannedInteractions.add(interactionHash);
+  if (eventHorizon) {
+    eventHorizonUser(provenance.user);
+  }
+}
+
+// --- Helper: Check if Interaction is Banned ---
+function isInteractionBanned(event, user) {
+  const interactionHash = hashInteraction(event);
+  return BannedInteractions.has(interactionHash) || BannedUsers.has(user);
+}
+
+// --- Helper: Hash Interaction ---
+function hashInteraction(event) {
+  // Simple hash: could use JSON.stringify + hash function for uniqueness
+  return require('crypto').createHash('sha256').update(JSON.stringify(event)).digest('hex');
+}
+
+// --- Helper: Event Horizon User (Ban and Flush) ---
+async function eventHorizonUser(user, db) {
+  BannedUsers.add(user);
+  // Remove user from all sessions, flush Mist data from host, and delete from DB
+  await flushUserData(user, db);
+  // Optionally broadcast ban to swarm
+  broadcastToPeers({
+    type: 'userEventHorizon',
+    user
+  });
+}
+
+// --- Helper: Flush User Data ---
+async function flushUserData(user, db) {
+  // Remove user from Users table and all related Mist data
+  await db.query(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
+  // Optionally, remove or anonymize user data in other tables
+}
+
+// --- Export for integration with native UI and GPU logic ---
+module.exports = {
+  // ...existing exports,
+  checkAndSyncEvent,
+  AnomalousResults,
+  isInteractionBanned,
+  eventHorizonUser,
+  flushUserData,
+  banInteraction
+};
+
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
   // --- Data Structures ---
@@ -652,5 +870,14 @@ module.exports = {
   // --- Keybinds Management ---
   mapKeybinds,
   handleInput,
-  userKeybinds
+  userKeybinds,
+
+  // --- Swarm Health Maintainer ---
+  checkAndSyncEvent,
+  checkAndSyncEvent,
+  AnomalousResults,
+  isInteractionBanned,
+  eventHorizonUser,
+  flushUserData,
+  banInteraction
 };
