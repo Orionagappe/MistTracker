@@ -662,6 +662,182 @@ function deleteUser(userId) {
   // ...implement DB/user removal logic...
 }
 
+const {
+  getMistViewportData,
+  advanceSelectionMode,
+  getViewportCentering,
+  isItemVisible,
+  handleSelectionBackend,
+  MapModeState,
+  initViewport,
+  renderViewport,
+  selectTimeIndex,
+  selectCategory,
+  selectItem,
+  showAddTimeInput,
+  showAddCategoryInput,
+  showAddItemInput,
+  showInputBox,
+  handleSelection
+} = require('./MistTrackerVulkan.js');
+
+const { MistPhysicsEngine, MetricTensor, MetricTensor3D } = require('./MistIllum.js');
+
+// --- Menu State ---
+class MistMenuControl {
+  constructor(db, uiRenderer) {
+    this.db = db;
+    this.uiRenderer = uiRenderer;
+    this.session = null;
+    this.selectionModeState = new (require('./MistTrackerVulkan.js').SelectionModeState)();
+    this.mapModeState = new MapModeState();
+    this.physicsEngine = new MistPhysicsEngine();
+    this.mode = '3D'; // or 'nD'
+  }
+
+  async start(user) {
+    // Initialize session and viewport
+    this.session = require('./MistTrackerVulkan.js').startSession(user);
+    await initViewport(this.session, this.db);
+    this.viewportData = await getMistViewportData(this.db);
+    this.renderMenu();
+  }
+
+  renderMenu() {
+    // Render the menu and viewport
+    renderViewport(this.session, this.uiRenderer);
+    this.uiRenderer.showMenu(this.getMenuOptions());
+  }
+
+  getMenuOptions() {
+    // Build menu options based on current state
+    const options = [
+      { label: 'Select Time Index', action: () => this.promptTimeIndex() },
+      { label: 'Select Category', action: () => this.promptCategory() },
+      { label: 'Select Item', action: () => this.promptItem() },
+      { label: 'Add Time Index', action: () => showAddTimeInput(this.uiRenderer) },
+      { label: 'Add Category', action: () => showAddCategoryInput(this.uiRenderer) },
+      { label: 'Add Item', action: () => showAddItemInput(this.uiRenderer) },
+      { label: `Switch to ${this.mode === '3D' ? 'nD' : '3D'} Mode`, action: () => this.toggleMode() }
+    ];
+    return options;
+  }
+
+  promptTimeIndex() {
+    // Show input for selecting time index
+    const timeIndices = this.viewportData.primaryLine;
+    this.uiRenderer.promptSelect('Select Time Index', timeIndices, (idx) => {
+      selectTimeIndex(this.session, idx);
+      this.renderMenu();
+    });
+  }
+
+  promptCategory() {
+    // Show input for selecting category
+    const categories = this.viewportData.categories[this.session.selectedTimeIndex] || [];
+    this.uiRenderer.promptSelect('Select Category', categories, (idx) => {
+      selectCategory(this.session, idx);
+      this.renderMenu();
+    });
+  }
+
+  promptItem() {
+    // Show input for selecting item
+    const items = this.viewportData.items[this.session.selectedCategory] || [];
+    this.uiRenderer.promptSelect('Select Item', items, (idx) => {
+      selectItem(this.session, idx);
+      this.renderMenu();
+    });
+  }
+
+  toggleMode() {
+    // Switch between 3D and nD modes
+    if (this.mode === '3D') {
+      this.mode = 'nD';
+      this.physicsEngine.setMode('nD');
+      this.physicsEngine.metric = new MetricTensor(4, [
+        [-1, 0, 0, 0],
+        [0, 1, 0, 0],
+        [0, 0, 1, 0],
+        [0, 0, 0, 1]
+      ]);
+    } else {
+      this.mode = '3D';
+      this.physicsEngine.setMode('3D');
+      this.physicsEngine.metric = new MetricTensor3D();
+    }
+    this.renderMenu();
+  }
+}
+
+// --- Menu and Environment Interaction ---
+
+/**
+ * Handle user input, routing to menu or environment as appropriate.
+ * @param {string} input - Key or mouse button identifier.
+ * @param {object} menuState - Current menu state (null if no menu).
+ * @param {object} envState - Current environment state.
+ */
+function handleUserInput(input, menuState, envState) {
+  if (menuState && menuState.isActive) {
+    handleMenuInput(input, menuState);
+  } else {
+    handleEnvironmentInput(input, envState);
+  }
+}
+
+/**
+ * Handle input for menu objects.
+ * @param {string} input
+ * @param {object} menuState
+ */
+function handleMenuInput(input, menuState) {
+  // Example: navigate menu, select item, close menu, etc.
+  switch (input) {
+    case 'up':
+      menuState.moveSelection(-1);
+      break;
+    case 'down':
+      menuState.moveSelection(1);
+      break;
+    case 'select':
+      menuState.selectCurrent();
+      break;
+    case 'menu':
+      menuState.close();
+      break;
+    // Add more as needed
+  }
+}
+
+/**
+ * Handle input for environment (scene/world) objects.
+ * @param {string} input
+ * @param {object} envState
+ */
+function handleEnvironmentInput(input, envState) {
+  // Example: move camera, interact with object, etc.
+  switch (input) {
+    case 'up':
+      envState.moveCamera(0, 1, 0);
+      break;
+    case 'down':
+      envState.moveCamera(0, -1, 0);
+      break;
+    case 'left':
+      envState.moveCamera(-1, 0, 0);
+      break;
+    case 'right':
+      envState.moveCamera(1, 0, 0);
+      break;
+    case 'select':
+      envState.interact();
+      break;
+    // Add more as needed
+  }
+}
+
+
 // --- Export API ---
 
 module.exports = {
@@ -708,5 +884,9 @@ module.exports = {
   renderObject3D,
   renderObjectND,
   checkCollisionWithWave,
-  cullObject
+  cullObject,
+  MistMenuControl,
+  handleUserInput,
+  handleMenuInput,
+  handleEnvironmentInput
 };

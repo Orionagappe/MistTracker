@@ -545,6 +545,50 @@ async function mapReader(imagePath, options = {}) {
   };
 }
 
+// --- Keybinds Management ---
+const defaultKeybinds = {
+  select: 'Enter',
+  up: 'ArrowUp',
+  down: 'ArrowDown',
+  left: 'ArrowLeft',
+  right: 'ArrowRight',
+  menu: 'Escape',
+  mouseSelect: 'Button1',
+  mouseContext: 'Button3'
+};
+
+let userKeybinds = { ...defaultKeybinds };
+
+/**
+ * Allow user to change keybinds via input (X11 or fallback).
+ * @param {function} promptFn - Function to prompt user for new key/mouse input.
+ * @param {function} onUpdate - Callback when keybinds are updated.
+ */
+function mapKeybinds(promptFn, onUpdate) {
+  // For each action, prompt user to press a key or mouse button
+  Object.keys(defaultKeybinds).forEach(action => {
+    promptFn(`Press new key or mouse button for "${action}" (current: ${userKeybinds[action]}):`, (input) => {
+      userKeybinds[action] = input;
+      if (onUpdate) onUpdate(userKeybinds);
+    });
+  });
+}
+
+/**
+ * Handle key or mouse input event.
+ * @param {string} input - Key or mouse button identifier.
+ * @param {object} context - Current UI or environment context.
+ */
+function handleInput(input, context) {
+  // Map input to action
+  const action = Object.keys(userKeybinds).find(a => userKeybinds[a] === input);
+  if (!action) return;
+  // Dispatch action based on context (menu/environment)
+  if (context && context.handleAction) {
+    context.handleAction(action);
+  }
+}
+
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
   // --- Data Structures ---
@@ -603,5 +647,10 @@ module.exports = {
 
   // --- Story Parsing Utility ---
   storyWriter,
-  mapReader
+  mapReader,
+
+  // --- Keybinds Management ---
+  mapKeybinds,
+  handleInput,
+  userKeybinds
 };
