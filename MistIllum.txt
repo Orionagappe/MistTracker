@@ -1,60 +1,60 @@
 MistIllum Functions
 
-tileMode // Used for tileing MistTracker viewport.
-tileSpan // Used for spanning multiple monitors.
-lightSource // Class of all light sources.
-globalIllumination // Light source positioning, orientation, and ray direction treat light as wave function.
-fastTransform // Fourier transform ray to wave.
-worldWarp // Transform to make 3d projected volume have different geometries, eg: plane, sphere, cube, torus, hypercube, etc
-wireFrames // Used for mapping textures onto items.
-rastRenderMap // Used with wireframes to combine wireframes with texture information from texture map tables.
-audioQueue // trigger for sound file from soundScape table.
-volumeGlobal // setting for global volume.
-volumeAmbient // setting for ambient sound volume.
-volumeInteract // setting for object interaction volume.
-volumeDialogue // setting for character dialogue.
-settingsMenu // Menu setup to allow user to change settings in GUI.
-mistFirstStart // Displays title, credits, and disclaimers for MistTrackerVulkan, MistMulti, and MistIllum.
-mistSetup // setup function to check, create, and update required dependances for MistTracker, MistMulti, and MistIllum.
-mistDepend // checks user system for soft and hardware dependances eg MySQL, Vulkan. If failed, warn user.
-mistWarn // module for warning message to user.
-warnTypes // class to define warnings based on function that is calling mistWarn.
-mistMenu // menu overlay for Mist solution.
-launchMistCore // Launches MistTrackerVulkan.
-launcheMistMulti // Launches MistTrackerVulkan with MistMulti enabled.
-shutdownMist // Mist Client Exit.
+tileMode // Enable/disable tiling of the MistTracker viewport for multi-monitor setups.
+tileSpan // Span the viewport across multiple monitors for immersive visualization.
+lightSource // Class for all light sources, supporting wave-based and physical illumination.
+globalIllumination // Calculate scene lighting using wave functions and interference patterns.
+fastTransform // Apply Fourier transform to rays for wave-based rendering.
+worldWarp // Transform 3D projected volumes into alternate geometries (sphere, torus, etc.).
+wireFrames // Generate wireframe meshes for objects, supporting metric tensor transformations.
+rastRenderMap // Rasterize wireframes and combine with texture and wave-based shading.
+audioQueue // Queue and spatialize audio, modulated by wave and geometric logic.
+volumeGlobal // Set and modulate global audio volume.
+volumeAmbient // Set and modulate ambient sound volume.
+volumeInteract // Set and modulate interaction sound volume.
+volumeDialogue // Set and modulate dialogue sound volume.
+settingsMenu // Display and manage settings, including milestone-based mode unlocks.
+mistFirstStart // Show title, credits, and disclaimers for all Mist modules.
+mistSetup // Check and initialize dependencies for all Mist modules.
+mistDepend // Check for required software/hardware (MySQL, Vulkan, etc.).
+mistWarn // Display warnings to the user.
+warnTypes // Define warning types for system, performance, security, etc.
+mistMenu // Overlay menu for Mist solution, milestone-aware.
+launchMistCore // Launch MistTrackerVulkan core engine.
+launchMistMulti // Launch MistTrackerVulkan with MistMulti for multi-user support.
+shutdownMist // Cleanly shut down MistIllum and all Mist modules.
 
 Physics Engine Update:
 
-Core concepts of physic engine:
-Concept 1: Dimensional Stacking
-Concept 2: Distance and Size Change from Different Dimensional Perspectives
-Concept 3: Higher Dimensions Can Only Be Observed in Lower Dimensions Through Relative Motion and Time
-Concept 4: A Single Object (or Connected Objects) in a Higher Dimension Can Be Perceived as Separate Objects on Lower Dimensions.
-Concept 5: Extra Dimensions as Objects vs Space
-Concept 6: Limited vs Infinite Extra Dimensions
-Concept 7: Energy Distribution Through Extra Dimensions
-Caveat: What if Extra Dimensions Aren’t flat
+dimensionalStack // Stack objects/spaces in higher dimensions for nD physics.
+perspectiveTransform // Calculate apparent distance/size from different dimensional perspectives.
+projectToLowerDimension // Project higher-dimensional objects into lower dimensions over time/motion.
+decomposeHigherToLower // Decompose higher-dimensional objects into lower-dimensional "shadows".
+extraDimensionMode // Treat extra dimensions as spatial axes or object properties.
+setDimensionLimit // Set finite/infinite limits for extra dimensions.
+energyDistribution // Simulate energy distribution across extra dimensions.
+applyCurvature // Apply curvature/non-flat geometry to extra dimensions.
+MistPhysicsEngine // Physics engine supporting 3D/4D/nD, gravity, and metric tensors.
+MetricTensor // General nD metric tensor for global calculations.
+MetricTensor3D // 3D-only metric tensor for spatial calculations.
+getGravityAtPoint // Calculate gravity at a point in 3D mode.
+navigate // Navigation in nD mode.
+navigate3D // Navigation in 3D mode.
+renderObject3D // Render objects in 3D mode.
+renderObjectND // Render objects in nD mode.
+waveFunction // Core wave logic for light and sound.
+interferencePattern // Calculate interference for interactions.
+applyInterference // Apply interference effects to objects.
+checkCollisionWithWave // Handle collisions, including wave-based culling.
+cullObject // Remove object from scene/model, with moderation logic.
+deleteUser // Remove user for rule violations, with provenance and moderation.
+getAvailableModes // Return available projection/render modes based on milestones.
+showModeSelectionMenu // UI for selecting modes, milestone-aware.
+trySwitchMode // Attempt to switch mode, only if milestone is achieved.
+getMenuOptionsWithMilestones // Menu options filtered by milestone unlocks.
+handleUserInput // Route input to menu or environment logic.
+handleMenuInput // Handle input for menu objects.
+handleEnvironmentInput // Handle input for environment/scene objects.
 
-dimensionalStack // Stack objects or spaces in higher dimensions.
-perspectiveTransform // Calculate apparent distance and size of an object from a given dimensional perspective.
-projectToLowerDimension // Project a higher-dimensional object into a lower dimension over time or motion
-decomposeHigherToLower // Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices
-extraDimensionMode // Treat extra dimensions as either spatial axes or as object properties.
-setDimensionLimit // Set limits or boundaries for extra dimensions.
-energyDistribution // Calculate or simulate energy distribution across extra dimensions.
-applyCurvature // Apply curvature or non-flat geometry to extra dimensions
-MistPhysicsEngine // Physics Engine 3D/4D mode and gravity
-MetricTensor // global calculation class
-MetricTensor3D // Spacial only calculations class
-getGravityAtPoint // Gravity in 3D mode
-navigate // Navigation in ND mode
-navigate3D // Navigation in 3D mode
-renderObject3D // Render an object in 3D mode
-renderObjectND // Render an object in ND mode
-waveFunction // Wave logic
-interferencePattern // Constructor for interactions
-applyInterference // Check if objects interfere
-checkCollisionWithWave // Collision handler
-cullObject // Check if object is user
-deleteUser // Delete user for violating rules.
+// All moderation actions (cullObject, deleteUser) must include provenance and be synced to MistMulti for distributed review.
+// Advanced projection and render modes are only available if unlocked by milestone (see milestoneManager).
