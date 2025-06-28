@@ -69,15 +69,26 @@ function onEvent(type, handler) {
   if (EventHandlers[type]) EventHandlers[type].push(handler);
 }
 
-function emitEvent(type, data, senderSessionToken) {
-  // Rate limit outgoing events per user
-  // (Implement a per-user rate limiter here)
-  if (EventHandlers[type]) {
-    EventHandlers[type].forEach(handler => handler(data, senderSessionToken));
+// When syncing state:
+emitEvent('physicsUpdate', {
+  mode: physicsEngine.mode,
+  metric: physicsEngine.mode === '3D' ? physicsEngine.metric3D : physicsEngine.metric4D,
+  G: physicsEngine.G,
+  M: physicsEngine.M
+}, senderSessionToken);
+
+// On receiving a physicsUpdate event:
+function onPhysicsUpdate(data) {
+  physicsEngine.setMode(data.mode);
+  if (data.mode === '3D') {
+    physicsEngine.metric3D = data.metric;
+  } else {
+    physicsEngine.metric4D = data.metric;
   }
-  // Broadcast to peers (P2P)
-  broadcastToPeers({ type, data, senderSessionToken });
+  physicsEngine.G = data.G;
+  physicsEngine.M = data.M;
 }
+onEvent('physicsUpdate', onPhysicsUpdate);
 
 /*
 broadcastToPeers: Use P2P transport libtorrent-inspired method.
@@ -182,7 +193,7 @@ onEvent('selection', (data, senderSessionToken) => {
 
 // --- Export new multi-user/P2P functions ---
 module.exports = {
-  // ...existing exports,
+
   addUserSession,
   removeUserSession,
   updateUserPresence,

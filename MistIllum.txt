@@ -1,0 +1,54 @@
+MistIllum Functions
+
+tileMode // Used for tileing MistTracker viewport.
+tileSpan // Used for spanning multiple monitors.
+lightSource // Class of all light sources.
+globalIllumination // Light source positioning, orientation, and ray direction treat light as wave function.
+fastTransform // Fourier transform ray to wave.
+worldWarp // Transform to make 3d projected volume have different geometries, eg: plane, sphere, cube, torus, hypercube, etc
+wireFrames // Used for mapping textures onto items.
+rastRenderMap // Used with wireframes to combine wireframes with texture information from texture map tables.
+audioQueue // trigger for sound file from soundScape table.
+volumeGlobal // setting for global volume.
+volumeAmbient // setting for ambient sound volume.
+volumeInteract // setting for object interaction volume.
+volumeDialogue // setting for character dialogue.
+settingsMenu // Menu setup to allow user to change settings in GUI.
+mistFirstStart // Displays title, credits, and disclaimers for MistTrackerVulkan, MistMulti, and MistIllum.
+mistSetup // setup function to check, create, and update required dependances for MistTracker, MistMulti, and MistIllum.
+mistDepend // checks user system for soft and hardware dependances eg MySQL, Vulkan. If failed, warn user.
+mistWarn // module for warning message to user.
+warnTypes // class to define warnings based on function that is calling mistWarn.
+mistMenu // menu overlay for Mist solution.
+launchMistCore // Launches MistTrackerVulkan.
+launcheMistMulti // Launches MistTrackerVulkan with MistMulti enabled.
+shutdownMist // Mist Client Exit.
+
+Physics Engine Update:
+
+Core concepts of physic engine:
+Concept 1: Dimensional Stacking
+Concept 2: Distance and Size Change from Different Dimensional Perspectives
+Concept 3: Higher Dimensions Can Only Be Observed in Lower Dimensions Through Relative Motion and Time
+Concept 4: A Single Object (or Connected Objects) in a Higher Dimension Can Be Perceived as Separate Objects on Lower Dimensions.
+Concept 5: Extra Dimensions as Objects vs Space
+Concept 6: Limited vs Infinite Extra Dimensions
+Concept 7: Energy Distribution Through Extra Dimensions
+Caveat: What if Extra Dimensions Aren’t flat
+
+dimensionalStack // Stack objects or spaces in higher dimensions.
+perspectiveTransform // Calculate apparent distance and size of an object from a given dimensional perspective.
+projectToLowerDimension // Project a higher-dimensional object into a lower dimension over time or motion
+decomposeHigherToLower // Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices
+extraDimensionMode // Treat extra dimensions as either spatial axes or as object properties.
+setDimensionLimit // Set limits or boundaries for extra dimensions.
+energyDistribution // Calculate or simulate energy distribution across extra dimensions.
+applyCurvature // Apply curvature or non-flat geometry to extra dimensions
+MistPhysicsEngine // Physics Engine 3D/4D mode and gravity
+MetricTensor // global calculation class
+MetricTensor3D // Spacial only calculations class
+getGravityAtPoint // Gravity in 3D mode
+navigate // Navigation in ND mode
+navigate3D // Navigation in 3D mode
+renderObject3D // Render an object in 3D mode
+renderObjectND // Render an object in ND mode
