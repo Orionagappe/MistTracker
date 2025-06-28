@@ -204,6 +204,65 @@ function createProvenance(actionType, user, sessionToken, context = {}) {
   };
 }
 
+/**
+ * grimReaper:
+ * Tracks database tensor inputs for the specific tensor in power,
+ * based on "How-to-play-notes-from-words-under-the-influence-of-starlight-Worksheet.csv".
+ * This function monitors, logs, and can act on anomalous or critical tensor input patterns.
+ * 
+ * @param {object} db - Database connection or query interface.
+ * @param {string} tensorId - The identifier for the tensor in power.
+ * @param {function} onAnomaly - Callback for handling detected anomalies.
+ * @returns {Promise<Array>} - Returns a promise resolving to the tracked tensor input records.
+ */
+async function grimReaper(db, tensorId, onAnomaly) {
+  // Load tensor input records from the relevant worksheet/table
+  // Assume a table "StarlightTensorInputs" with columns: id, tensorId, inputData, timestamp, provenance
+  // The CSV "How-to-play-notes-from-words-under-the-influence-of-starlight-Worksheet.csv"
+  // should be imported into this table or referenced as needed.
+
+  const rows = await db.query(
+    `SELECT * FROM StarlightTensorInputs WHERE tensorId = ? ORDER BY timestamp DESC`,
+    [tensorId]
+  );
+
+  // Analyze each input for anomalies or critical patterns
+  for (const row of rows) {
+    // Example: Check for out-of-bounds values, missing provenance, or suspicious patterns
+    let anomaly = false;
+    let reason = '';
+
+    // Check for missing or malformed provenance
+    if (!row.provenance || typeof row.provenance !== 'string' || row.provenance.length < 5) {
+      anomaly = true;
+      reason = 'Missing or malformed provenance';
+    }
+
+    // Example: Check for extreme inputData values (customize as needed)
+    try {
+      const inputData = JSON.parse(row.inputData);
+      if (Array.isArray(inputData)) {
+        const maxAbs = Math.max(...inputData.map(x => Math.abs(Number(x) || 0)));
+        if (maxAbs > 1e12) {
+          anomaly = true;
+          reason = 'Tensor input value exceeds safe threshold';
+        }
+      }
+    } catch (e) {
+      anomaly = true;
+      reason = 'Malformed inputData';
+    }
+
+    // If anomaly detected, invoke callback and/or log
+    if (anomaly && typeof onAnomaly === 'function') {
+      onAnomaly({ row, reason });
+    }
+  }
+
+  // Return all tracked records for further processing or review
+  return rows;
+}
+
 // --- Export new multi-user/P2P functions ---
 module.exports = {
 
@@ -223,5 +282,6 @@ module.exports = {
   encryptMessage,
   decryptMessage,
   canSendMessage,
-  createProvenance
+  createProvenance,
+  grimReaper
 };
