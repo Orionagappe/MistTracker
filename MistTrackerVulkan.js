@@ -796,6 +796,164 @@ async function flushUserData(user, db) {
   // Optionally, remove or anonymize user data in other tables
 }
 
+// --- Milestone Modeling for Tensor Metrics and Interaction Distributions ---
+
+/**
+ * Milestone class to track precision, table size, and enablement of new modes.
+ * Each milestone is an order of magnitude (10^n), up to int256.
+ */
+class Milestone {
+  constructor(order, description = '') {
+    this.order = order; // e.g., 1, 2, 3, ... up to 256
+    this.value = BigInt(10) ** BigInt(order); // 10^order
+    this.description = description;
+    this.enabled = false;
+    this.achievedAt = null;
+  }
+}
+
+/**
+ * MilestoneManager manages milestones, precision, and mode enablement.
+ */
+class MilestoneManager {
+  constructor() {
+    this.milestones = [];
+    this.currentOrder = 0;
+    this.maxOrder = 256;
+    // Track which modes are enabled at which milestone
+    this.enabledProjectionModes = new Set();
+    this.enabledRenderModes = new Set();
+    this.tensorMetricTables = {}; // order -> table reference
+    this.interactionDistributions = {}; // order -> distribution reference
+  }
+
+  /**
+   * Add a new milestone (if not already present).
+   */
+  addMilestone(order, description = '') {
+    if (order > this.maxOrder) return null;
+    if (this.milestones.find(m => m.order === order)) return null;
+    const milestone = new Milestone(order, description);
+    this.milestones.push(milestone);
+    this.milestones.sort((a, b) => a.order - b.order);
+    return milestone;
+  }
+
+  /**
+   * Achieve a milestone, enabling new precision and modes.
+   */
+  achieveMilestone(order) {
+    const milestone = this.milestones.find(m => m.order === order);
+    if (!milestone) return false;
+    milestone.enabled = true;
+    milestone.achievedAt = new Date();
+
+    // Increase tensor metric table precision/size
+    this.tensorMetricTables[order] = this.createTensorMetricTable(order);
+
+    // Increase interaction approximation distribution precision
+    this.interactionDistributions[order] = this.createInteractionDistribution(order);
+
+    // Enable new projection/render modes if conditions met
+    this.updateEnabledModes(order);
+
+    return true;
+  }
+
+  /**
+   * Create a new tensor metric table for the given milestone order.
+   */
+  createTensorMetricTable(order) {
+    // Example: Table size/precision increases with milestone order
+    const size = Number(BigInt(10) ** BigInt(order));
+    // Placeholder: In practice, allocate or reference a DB or in-memory table
+    return { order, size, precision: order, data: new Array(size).fill(0) };
+  }
+
+  /**
+   * Create a new interaction approximation distribution for the given milestone order.
+   */
+  createInteractionDistribution(order) {
+    // Example: More precise or higher-resolution distribution
+    const bins = Number(BigInt(10) ** BigInt(order));
+    // Placeholder: In practice, allocate or reference a DB or in-memory distribution
+    return { order, bins, data: new Array(bins).fill(0) };
+  }
+
+  /**
+   * Enable new projection or render modes based on milestone conditions.
+   */
+  updateEnabledModes(order) {
+    // Example: Enable new modes at specific orders
+    if (order >= 3) this.enabledProjectionModes.add('4D');
+    if (order >= 6) this.enabledProjectionModes.add('nD');
+    if (order >= 4) this.enabledRenderModes.add('wave-based');
+    if (order >= 8) this.enabledRenderModes.add('quantum');
+    // Add more as needed
+  }
+
+  /**
+   * Check if a mode is enabled.
+   */
+  isModeEnabled(modeType, modeName) {
+    if (modeType === 'projection') return this.enabledProjectionModes.has(modeName);
+    if (modeType === 'render') return this.enabledRenderModes.has(modeName);
+    return false;
+  }
+
+  /**
+   * Get the highest achieved milestone.
+   */
+  getCurrentMilestone() {
+    return this.milestones.filter(m => m.enabled).slice(-1)[0] || null;
+  }
+}
+
+// --- Example Usage ---
+// Initialize milestone manager (singleton or per-session as needed)
+const milestoneManager = new MilestoneManager();
+// Add milestones up to int256 (practically, you may want to limit this)
+for (let i = 1; i <= 18; i++) { // 10^18 is already very large; int256 is 10^77+
+  milestoneManager.addMilestone(i, `Order ${i} milestone`);
+}
+
+// Achieve a milestone (e.g., after a computation or user action)
+milestoneManager.achieveMilestone(3); // Enables 4D projection mode, increases precision
+
+// Check if a mode is enabled
+if (milestoneManager.isModeEnabled('projection', '4D')) {
+  // Enable 4D projection logic in the UI/rendering pipeline
+}
+
+// --- User Profile Management ---
+function nominateSuccessor(userId, email, db) {
+  db.query(
+    `UPDATE Users SET successorEmail = ? WHERE accountId = ?`,
+    [email, userId]
+  );
+}
+
+function nominateSuccessorPGP(userId, pgpPublicKey, db) {
+  db.query(
+    `UPDATE Users SET successorPGP = ? WHERE accountId = ?`,
+    [pgpPublicKey, userId]
+  );
+}
+
+const { milestoneManager } = require('./MistTrackerVulkan.js');
+
+function canUsePGPNomination() {
+  return milestoneManager.getCurrentMilestone() && milestoneManager.getCurrentMilestone().order >= 6;
+}
+
+function nominateSuccessorFlexible(userId, value, db) {
+  if (canUsePGPNomination()) {
+    return nominateSuccessorPGP(userId, value, db);
+  } else {
+    return nominateSuccessor(userId, value, db);
+  }
+}
+
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
   // ...existing exports,
@@ -879,5 +1037,15 @@ module.exports = {
   isInteractionBanned,
   eventHorizonUser,
   flushUserData,
-  banInteraction
+  banInteraction,
+
+  // --- Milestone Modeling ---
+  Milestone,
+  MilestoneManager,
+  milestoneManager,
+
+  // --- User Profile Management ---
+  nominateSuccessor,
+  nominateSuccessorPGP,
+  nominateSuccessorFlexible
 };

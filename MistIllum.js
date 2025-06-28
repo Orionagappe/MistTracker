@@ -837,6 +837,110 @@ function handleEnvironmentInput(input, envState) {
   }
 }
 
+// --- Import MilestoneManager from MistTrackerVulkan.js ---
+const { MilestoneManager, milestoneManager } = require('./MistTrackerVulkan.js');
+
+// --- Milestone-Aware Mode Selection ---
+
+/**
+ * Returns available projection and render modes based on achieved milestones.
+ * @returns {Object} { projectionModes: Array, renderModes: Array }
+ */
+function getAvailableModes() {
+  const projectionModes = [];
+  const renderModes = [];
+
+  if (milestoneManager.isModeEnabled('projection', '3D')) {
+    projectionModes.push('3D');
+  }
+  if (milestoneManager.isModeEnabled('projection', '4D')) {
+    projectionModes.push('4D');
+  }
+  if (milestoneManager.isModeEnabled('projection', 'nD')) {
+    projectionModes.push('nD');
+  }
+
+  if (milestoneManager.isModeEnabled('render', 'standard')) {
+    renderModes.push('standard');
+  }
+  if (milestoneManager.isModeEnabled('render', 'wave-based')) {
+    renderModes.push('wave-based');
+  }
+  if (milestoneManager.isModeEnabled('render', 'quantum')) {
+    renderModes.push('quantum');
+  }
+
+  return { projectionModes, renderModes };
+}
+
+/**
+ * Presents mode selection menu, only showing modes enabled by milestones.
+ * @param {Object} uiRenderer - UI rendering interface.
+ * @param {Function} onSelect - Callback when a mode is selected.
+ */
+function showModeSelectionMenu(uiRenderer, onSelect) {
+  const { projectionModes, renderModes } = getAvailableModes();
+
+  // Only show menu if at least one mode is available
+  if (projectionModes.length === 0 && renderModes.length === 0) {
+    uiRenderer.showMessage('No advanced modes available. Achieve more milestones to unlock.');
+    return;
+  }
+
+  const options = [];
+  projectionModes.forEach(mode => options.push({ label: `Projection: ${mode}`, value: { type: 'projection', mode } }));
+  renderModes.forEach(mode => options.push({ label: `Render: ${mode}`, value: { type: 'render', mode } }));
+
+  uiRenderer.promptSelect('Select Mode', options, (selected) => {
+    if (onSelect) onSelect(selected.value);
+  });
+}
+
+/**
+ * Example: Attempt to switch mode, only if milestone is met.
+ * @param {string} modeType - 'projection' or 'render'
+ * @param {string} modeName
+ * @param {Function} onSuccess - Callback if mode switch is allowed.
+ * @param {Function} onFail - Callback if not allowed.
+ */
+function trySwitchMode(modeType, modeName, onSuccess, onFail) {
+  if (milestoneManager.isModeEnabled(modeType, modeName)) {
+    if (onSuccess) onSuccess();
+  } else {
+    if (onFail) onFail(`Mode "${modeName}" not enabled. Achieve the required milestone to unlock.`);
+  }
+}
+
+// In MistMenuControl.getMenuOptions or similar:
+function getMenuOptionsWithMilestones() {
+  const { projectionModes, renderModes } = getAvailableModes();
+  const options = [
+    // ...other menu options...
+  ];
+  projectionModes.forEach(mode => {
+    options.push({
+      label: `Switch to Projection Mode: ${mode}`,
+      action: () => trySwitchMode('projection', mode, () => {
+        // Switch logic here
+      }, (msg) => {
+        // Show warning
+        uiRenderer.showMessage(msg);
+      })
+    });
+  });
+  renderModes.forEach(mode => {
+    options.push({
+      label: `Switch to Render Mode: ${mode}`,
+      action: () => trySwitchMode('render', mode, () => {
+        // Switch logic here
+      }, (msg) => {
+        uiRenderer.showMessage(msg);
+      })
+    });
+  });
+  return options;
+}
+
 
 // --- Export API ---
 
@@ -888,5 +992,9 @@ module.exports = {
   MistMenuControl,
   handleUserInput,
   handleMenuInput,
-  handleEnvironmentInput
+  handleEnvironmentInput,
+  getAvailableModes,
+  showModeSelectionMenu,
+  trySwitchModes,
+  getMenuOptionsWithMilestones,
 };

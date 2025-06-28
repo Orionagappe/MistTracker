@@ -183,13 +183,26 @@ function canSendMessage(sessionToken, messageSize) {
   return true;
 }
 
-// --- Example: Handling a Selection Event ---
-onEvent('selection', (data, senderSessionToken) => {
-  // Validate, merge, and broadcast selection
-  // Update in-memory state
-  updateUserPresence(senderSessionToken, { selection: data });
-  // Optionally, sync state with other peers
-});
+// Example: In MistMulti.js event handler
+function onEvent(type, handler) {
+  if (EventHandlers[type]) {
+    EventHandlers[type].push((data, senderSessionToken) => {
+      // Only process if senderSessionToken matches the current user's session
+      if (senderSessionToken !== currentSessionToken) return;
+      handler(data, senderSessionToken);
+    });
+  }
+}
+
+function createProvenance(actionType, user, sessionToken, context = {}) {
+  return {
+    actionType,
+    user,
+    sessionToken,
+    timestamp: new Date().toISOString(),
+    context
+  };
+}
 
 // --- Export new multi-user/P2P functions ---
 module.exports = {
@@ -209,5 +222,6 @@ module.exports = {
   syncStateWithPeer,
   encryptMessage,
   decryptMessage,
-  canSendMessage
+  canSendMessage,
+  createProvenance
 };

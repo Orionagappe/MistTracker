@@ -44,7 +44,7 @@ saveCurrentState       // Save current session state to persistent storage
 calculateLineOrientation // Compute orientation of lines for nD arrangement (for GPU or CPU)
 getSessionId           // Generate unique session identifier (user + timestamp)
 initViewport           // Initialize the viewport with current state and user input
-renderViewport         // Render the viewport using current state and visible items (for Vulkan/OpenGL)
+renderViewport         // Render the viewport using current state and visible items (for GPU or CPU)
 selectTimeIndex        // Select a time index from the primary line
 selectCategory         // Select a category from the categories for the selected time index
 selectItem             // Select an item from the items for the selected category
@@ -151,7 +151,7 @@ deleteUser             // Remove user from active sessions and/or database
 rateLimitWarn          // Warn user if rate limit is exceeded (from MistMulti.md)
 
 // --- Swarm Health and Data Coherence (MistTrackerVulkan.js, MistMulti.js, pureMathPhysicsEngine.js) ---
-checkAndSyncEvent      // Check event probability, sync to swarm, require confirms for anomalies, ban if needed
+checkAndSyncEvent      // Check event probability, sync to swarm, require confirms for anomalies, ban if needed (see Mist V0008.md)
 AnomalousResults       // Table of anomalous results for error checking and moderation
 isInteractionBanned    // Check if an interaction is banned for a user
 eventHorizonUser       // Ban user and flush all Mist data from host
@@ -159,17 +159,12 @@ flushUserData          // Remove all user data from persistent tables
 banInteraction         // Ban a specific interaction type or event
 
 // --- Milestone Modeling (MistTrackerVulkan.js, MistIllum.js) ---
-Milestone              // Milestone class for precision and mode enablement (see Mist V00089.md)
+Milestone              // Milestone class for precision and mode enablement (see Mist V0008.md)
 MilestoneManager       // Manages milestones, tensor metric tables, and mode unlocks
 milestoneManager       // Singleton instance for milestone tracking
 getAvailableModes      // Returns available projection/render modes based on milestones
 showModeSelectionMenu  // UI for selecting modes, only if milestones are met
 trySwitchMode          // Attempt to switch mode, only if milestone is achieved
-
-// --- User Profile Management (MistTrackerVulkan.js) ---
-nominateSuccessor              // Nominate a successor by email (before 6th milestone)
-nominateSuccessorPGP           // Nominate a successor by PGP cert (after 6th milestone)
-nominateSuccessorFlexible      // Nominate successor, enforcing milestone-based method
 
 // --- Migration Notes ---
 // - Replace all Google Sheets/Drive operations with mySQL queries and file I/O.
@@ -180,4 +175,3 @@ nominateSuccessorFlexible      // Nominate successor, enforcing milestone-based 
 // - All wave, metric, and physics logic should reference pureMathPhysicsEngine.js for consistency.
 // - All multi-user and moderation logic should follow MistMulti.md guidelines.
 // - Milestone-based mode enablement should be enforced for all advanced features.
-// - Provenance should be attached to all user actions and events.
