@@ -1,12 +1,51 @@
 // --- Tiling and Multi-Monitor Support ---
-function tileMode(enable, config) {
-  // Enable or disable tiling of the MistTracker viewport.
-  // config: { rows, cols, monitorLayout }
+function tileMode(enable, config = {}) {
+  // If not enabled, reset to single window (fullscreen or default)
+  if (!enable) {
+    exec('wmctrl -r :ACTIVE: -b remove,maximized_vert,maximized_horz', () => {
+      exec('wmctrl -r :ACTIVE: -e 0,0,0,-1,-1'); // Move to 0,0 and resize to default
+    });
+    return;
+  }
+
+  // If enabled, tile according to config
+  const { rows = 1, cols = 1, monitorLayout = [] } = config;
+  // Calculate window size and position for each tile
+  const screenWidth = 1920; // Default fallback, should query xrandr for actual size
+  const screenHeight = 1080;
+  const tileWidth = Math.floor(screenWidth / cols);
+  const tileHeight = Math.floor(screenHeight / rows);
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = c * tileWidth;
+      const y = r * tileHeight;
+      // Use wmctrl to move/resize window (assumes one instance per tile)
+      // In a real implementation, you would launch separate MistIllum instances per tile or use a window manager API
+      exec(`wmctrl -r :ACTIVE: -e 0,${x},${y},${tileWidth},${tileHeight}`);
+    }
+  }
+
+  // If monitorLayout is provided, use it to position windows
+  if (monitorLayout.length > 0) {
+    monitorLayout.forEach((mon, idx) => {
+      exec(`wmctrl -r :ACTIVE: -e 0,${mon.x},${mon.y},${mon.width},${mon.height}`);
+    });
+  }
 }
 
-function tileSpan(monitors) {
-  // Span the viewport across multiple monitors.
-  // monitors: array of monitor descriptors (position, resolution)
+/**
+ * Span the MistIllum viewport across multiple monitors in the user's X11 session.
+ * @param {Array} monitors - Array of monitor descriptors [{x, y, width, height}]
+ */
+function tileSpan(monitors = []) {
+  if (!Array.isArray(monitors) || monitors.length === 0) return;
+
+  // For each monitor, move/resize the window to span that monitor
+  monitors.forEach((mon, idx) => {
+    // In a real implementation, you may want to launch a new window per monitor or use X11 multi-head APIs
+    exec(`wmctrl -r :ACTIVE: -e 0,${mon.x},${mon.y},${mon.width},${mon.height}`);
+  });
 }
 
 // --- Lighting and Rendering ---
@@ -19,6 +58,28 @@ class LightSource {
     this.direction = direction;
   }
 }
+
+class MetricTensor {
+  constructor(rank, dimensions, data) {
+    this.rank = rank;
+    this.dimensions = dimensions;
+    this.data = data;
+  }
+}
+
+// Define metricTensor5D outside the class
+const metricTensor5D = new MetricTensor(
+  5,
+  [5, 5],
+  [
+    [-1, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 1]
+  ]
+);
+
 
 // --- Wave Function Utilities ---
 function waveFunction(amplitude, k, x, omega, t) {
@@ -46,6 +107,15 @@ function applyInterference(source, obj1, obj2, lambda) {
   obj1.intensity = (obj1.intensity || 1) * pattern;
   obj2.intensity = (obj2.intensity || 1) * pattern;
 }
+
+function createVoxelObject(center, size, angularMomentumMap = {}) { /* ... */ }
+function updateDistanceFromObserver(object, observer) { /* ... */ }
+function computeAngularMomentumMap(object) { /* ... */ }
+function isEdgeVoxel(v, object) { /* ... */ }
+function interactObjects(objA, objB, tensor = metricTensor5D) { /* ... */ }
+function spawnObjectNearPlayer(player, objectData) { /* ... */ }
+
+// --- Global Illumination and Wave-Based Rendering ---
 function globalIllumination(lightSources, scene, waveParams = {}) {
   // lightSources: array of LightSource
   // scene: array of objects with position, intensity, etc.
@@ -220,9 +290,20 @@ function audioQueue(soundId, options = {}, listenerPosition = [0,0,0]) {
  * @param {number} level - Volume level (0.0 to 1.0).
  */
 function volumeGlobal(level) {
-  // Optionally, modulate by global wave envelope or geometric mean
-  // (Implementation: set master gain in audio engine)
-  // Example: globalVolume = level * waveEnvelope(t)
+  // Clamp level between 0.0 and 1.0
+  const clampedLevel = Math.max(0, Math.min(1, level));
+  // Set master gain in audio engine (WebAudio API, ALSA, or PulseAudio)
+  // Example for PulseAudio (X11/Linux):
+  const { exec } = require('child_process');
+  // This sets the volume for the current process (replace 'MistIllum' with the actual sink if needed)
+  // Note: Requires 'pactl' and appropriate permissions
+  exec(`pactl set-sink-volume @DEFAULT_SINK@ ${Math.round(clampedLevel * 100)}%`);
+  // Optionally, update in-app audio engine if present
+  if (typeof globalAudioEngine !== 'undefined' && globalAudioEngine.setMasterGain) {
+    globalAudioEngine.setMasterGain(clampedLevel);
+  }
+  // Store the current global volume for reference
+  global.currentMistIllumVolume = clampedLevel;
 }
 
 /**
@@ -275,36 +356,244 @@ function volumeDialogue(level, speakerPosition, listenerPosition, options = {}) 
 }
 
 // --- Settings and UI ---
-function settingsMenu(config) {
-  // Display settings for:
-  // - Global volume
-  // - Ambient volume
-  // - Interaction volume
-  // - Dialogue volume
-  // - Wave parameters (frequency, amplitude, phase)
-  // - Geometry parameters (listener position, spatialization)
-  // - Callbacks to update config and propagate to audio engine
-  // (Implementation: UI code, not shown here)
+/**
+ * Display and manage the settings menu for MistIllum session in the user's X11 session.
+ * Allows user to configure session settings such as:
+ * - Global volume
+ * - Ambient volume
+ * - Interaction volume
+ * - Dialogue volume
+ * - Wave parameters (frequency, amplitude, phase)
+ * - Geometry parameters (listener position, spatialization)
+ * - Tiling and multi-monitor display
+ * - Keybinds
+ * - Save/load session config
+ * @param {Object} uiRenderer - UI rendering interface for X11 session.
+ * @param {Object} currentConfig - Current session config (optional).
+ * @param {Function} onUpdate - Callback when settings are updated.
+ */
+function settingsMenu(uiRenderer, currentConfig = {}, onUpdate) {
+  // Build settings options
+  const options = [
+    {
+      label: 'Global Volume',
+      type: 'slider',
+      min: 0, max: 1, step: 0.01,
+      value: currentConfig.globalVolume || 1,
+      onChange: (val) => {
+        volumeGlobal(val);
+        if (onUpdate) onUpdate({ ...currentConfig, globalVolume: val });
+      }
+    },
+    {
+      label: 'Ambient Volume',
+      type: 'slider',
+      min: 0, max: 1, step: 0.01,
+      value: currentConfig.ambientVolume || 0.5,
+      onChange: (val) => {
+        volumeAmbient(val);
+        if (onUpdate) onUpdate({ ...currentConfig, ambientVolume: val });
+      }
+    },
+    {
+      label: 'Interaction Volume',
+      type: 'slider',
+      min: 0, max: 1, step: 0.01,
+      value: currentConfig.interactionVolume || 0.7,
+      onChange: (val) => {
+        volumeInteract(val);
+        if (onUpdate) onUpdate({ ...currentConfig, interactionVolume: val });
+      }
+    },
+    {
+      label: 'Dialogue Volume',
+      type: 'slider',
+      min: 0, max: 1, step: 0.01,
+      value: currentConfig.dialogueVolume || 0.8,
+      onChange: (val) => {
+        volumeDialogue(val);
+        if (onUpdate) onUpdate({ ...currentConfig, dialogueVolume: val });
+      }
+    },
+    {
+      label: 'Wave Frequency',
+      type: 'number',
+      min: 0.01, max: 10000, step: 0.01,
+      value: currentConfig.waveFrequency || 440,
+      onChange: (val) => {
+        if (onUpdate) onUpdate({ ...currentConfig, waveFrequency: val });
+      }
+    },
+    {
+      label: 'Wave Amplitude',
+      type: 'number',
+      min: 0, max: 10, step: 0.01,
+      value: currentConfig.waveAmplitude || 1,
+      onChange: (val) => {
+        if (onUpdate) onUpdate({ ...currentConfig, waveAmplitude: val });
+      }
+    },
+    {
+      label: 'Wave Phase',
+      type: 'number',
+      min: 0, max: 2 * Math.PI, step: 0.01,
+      value: currentConfig.wavePhase || 0,
+      onChange: (val) => {
+        if (onUpdate) onUpdate({ ...currentConfig, wavePhase: val });
+      }
+    },
+    {
+      label: 'Listener Position',
+      type: 'vector3',
+      value: currentConfig.listenerPosition || [0, 0, 0],
+      onChange: (val) => {
+        if (onUpdate) onUpdate({ ...currentConfig, listenerPosition: val });
+      }
+    },
+    {
+      label: 'Tiling/Display Mode',
+      type: 'button',
+      onClick: () => {
+        uiRenderer.promptTilingConfig((tileConfig) => {
+          tileMode(true, tileConfig);
+          if (onUpdate) onUpdate({ ...currentConfig, tileConfig });
+        });
+      }
+    },
+    {
+      label: 'Keybinds',
+      type: 'button',
+      onClick: () => {
+        uiRenderer.promptKeybinds((newKeybinds) => {
+          if (onUpdate) onUpdate({ ...currentConfig, keybinds: newKeybinds });
+        });
+      }
+    },
+    {
+      label: 'Save Session Config',
+      type: 'button',
+      onClick: () => {
+        uiRenderer.saveSessionConfig(currentConfig);
+      }
+    },
+    {
+      label: 'Load Session Config',
+      type: 'button',
+      onClick: () => {
+        uiRenderer.loadSessionConfig((loadedConfig) => {
+          if (onUpdate) onUpdate(loadedConfig);
+        });
+      }
+    }
+  ];
+
+  // Render the settings menu using the provided UI renderer
+  uiRenderer.showSettingsMenu(options, currentConfig);
 }
 
 function mistFirstStart() {
   // Display title, credits, and disclaimers for MistTrackerVulkan, MistMulti, and MistIllum.
 }
 
+/**
+ * Setup function to check, create, and update required dependencies for MistTracker, MistMulti, and MistIllum.
+ * Scans the user system for required software/hardware and attempts to configure or prompt as needed.
+ */
 function mistSetup() {
-  // Setup function to check, create, and update required dependencies for MistTracker, MistMulti, and MistIllum.
-  mistDepend();
+  // Scan for dependencies using MistTrackerVulkan.js utilities
+  const missingDeps = checkSystemDependencies([
+    'MySQL',
+    'Vulkan',
+    'wmctrl',
+    'pactl'
+    // Add other dependencies as needed
+  ]);
+
+  if (missingDeps.length > 0) {
+    // Attempt to configure or prompt user for each missing dependency
+    missingDeps.forEach(dep => {
+      const configured = configureDependency(dep);
+      if (!configured) {
+        mistWarn(`Dependency "${dep}" is missing or not configured. Please install or configure it to continue.`, warnTypes.DEPENDENCY);
+      }
+    });
+  }
   // Additional setup logic...
 }
 
+/**
+ * Check user system for software and hardware dependencies (e.g., MySQL, Vulkan).
+ * Uses MistTrackerVulkan.js functions for detection and configuration.
+ * If failed, call mistWarn.
+ */
 function mistDepend() {
-  // Check user system for software and hardware dependencies (e.g., MySQL, Vulkan).
-  // If failed, call mistWarn.
+  const requiredDeps = [
+    'MySQL',
+    'Vulkan',
+    'wmctrl',
+    'pactl'
+    // Add other dependencies as needed
+  ];
+  const missingDeps = checkSystemDependencies(requiredDeps);
+
+  if (missingDeps.length > 0) {
+    missingDeps.forEach(dep => {
+      mistWarn(`Dependency "${dep}" is missing or not configured.`, warnTypes.DEPENDENCY);
+    });
+    return false;
+  }
+  return true;
 }
 
+/**
+ * Display a warning message to the user in MistIllum CLI or dialog box.
+ * If running in a GUI/X11 session, show a dialog with copy and close buttons.
+ * @param {string} message - The warning message to display.
+ * @param {string} type - Warning type (from warnTypes).
+ */
 function mistWarn(message, type) {
-  // Display a warning message to the user.
-  // type: from warnTypes
+  // Detect if running in CLI or GUI/X11 session
+  const isCLI = !global.uiRenderer || typeof global.uiRenderer.showDialog !== 'function';
+
+  if (isCLI) {
+    // Fallback: Print to console
+    console.warn(`[MistIllum Warning${type ? ' - ' + type : ''}]: ${message}`);
+  } else {
+    // GUI/X11: Show dialog with copy and close buttons
+    global.uiRenderer.showDialog({
+      title: `MistIllum Warning${type ? ' - ' + type : ''}`,
+      message: message,
+      buttons: [
+        {
+          label: 'Copy to Clipboard',
+          onClick: () => {
+            // Use xclip or clipboardy for X11 clipboard support
+            try {
+              const { exec } = require('child_process');
+              // Try xclip (Linux/X11)
+              exec(`echo "${message.replace(/"/g, '\\"')}" | xclip -selection clipboard`);
+            } catch (e) {
+              // Fallback: try clipboardy (cross-platform, if installed)
+              try {
+                require('clipboardy').writeSync(message);
+              } catch (err) {
+                // If all fails, show error in dialog
+                global.uiRenderer.showDialog({
+                  title: 'Clipboard Error',
+                  message: 'Could not copy to clipboard. Please copy manually.',
+                  buttons: [{ label: 'Close', onClick: () => global.uiRenderer.closeDialog() }]
+                });
+              }
+            }
+          }
+        },
+        {
+          label: 'Close',
+          onClick: () => global.uiRenderer.closeDialog()
+        }
+      ]
+    });
+  }
 }
 
 class warnTypes {
@@ -320,22 +609,203 @@ class warnTypes {
 }
 
 // --- Overlay and Menu ---
-function mistMenu(overlayConfig) {
-  // Display a menu overlay for the Mist solution.
-  // overlayConfig: menu structure, callbacks, etc.
+/**
+ * Display a menu overlay for the Mist solution.
+ * The menu is shown as a dialog box and can be opened/closed with the "esc" key.
+ * Allows the user to alter any MistIllum setting (globalVolume, precision, mode selection, etc).
+ * @param {Object} overlayConfig - Optional menu structure, callbacks, etc.
+ */
+function mistMenu(overlayConfig = {}) {
+  // Use global.uiRenderer if available, otherwise fallback to CLI
+  const ui = global.uiRenderer;
+  let menuOpen = true;
+
+  // Helper to build menu options dynamically from current settings
+  function buildMenuOptions(currentConfig, onUpdate) {
+    const options = [
+      {
+        label: 'Global Volume',
+        type: 'slider',
+        min: 0, max: 1, step: 0.01,
+        value: currentConfig.globalVolume || 1,
+        onChange: (val) => {
+          volumeGlobal(val);
+          if (onUpdate) onUpdate({ ...currentConfig, globalVolume: val });
+        }
+      },
+      {
+        label: 'Precision',
+        type: 'number',
+        min: 1, max: 18, step: 1,
+        value: currentConfig.precision || 3,
+        onChange: (val) => {
+          // Example: set milestone for precision
+          if (typeof milestoneManager !== 'undefined') {
+            milestoneManager.achieveMilestone(val);
+          }
+          if (onUpdate) onUpdate({ ...currentConfig, precision: val });
+        }
+      },
+      {
+        label: 'Mode Selection',
+        type: 'button',
+        onClick: () => {
+          showModeSelectionMenu(ui, (selected) => {
+            if (onUpdate) onUpdate({ ...currentConfig, mode: selected });
+          });
+        }
+      },
+      // Add more settings as needed (ambient volume, interaction volume, etc.)
+      {
+        label: 'Close Menu',
+        type: 'button',
+        onClick: () => {
+          menuOpen = false;
+          if (ui && ui.closeDialog) ui.closeDialog();
+        }
+      }
+    ];
+    return options;
+  }
+
+  // Initial config (could be loaded from session or overlayConfig)
+  let currentConfig = overlayConfig.currentConfig || {};
+
+  // Handler for updating config from menu
+  function handleUpdate(newConfig) {
+    currentConfig = { ...currentConfig, ...newConfig };
+    // Optionally persist config or update session
+  }
+
+  // Show the menu dialog
+  function showMenuDialog() {
+    if (ui && ui.showSettingsMenu) {
+      ui.showSettingsMenu(buildMenuOptions(currentConfig, handleUpdate), currentConfig);
+    } else {
+      // CLI fallback: print options and wait for input
+      console.log('MistIllum Menu:');
+      console.log('1. Global Volume');
+      console.log('2. Precision');
+      console.log('3. Mode Selection');
+      console.log('4. Close Menu');
+      // Implement CLI input handling as needed
+    }
+  }
+
+  // Keyboard event handler for "esc" to close menu
+  function onKeyDown(e) {
+    if (e.key === 'Escape' || e.key === 'esc') {
+      menuOpen = false;
+      if (ui && ui.closeDialog) ui.closeDialog();
+      window.removeEventListener('keydown', onKeyDown);
+    }
+  }
+
+  // Open the menu and listen for "esc"
+  showMenuDialog();
+  if (typeof window !== 'undefined' && window.addEventListener) {
+    window.addEventListener('keydown', onKeyDown);
+  }
 }
 
 // --- Integration with Core and Multi-User Modules ---
-function launchMistCore(config) {
-  // Launch and initialize MistTrackerVulkan.js core functionality.
-}
+/**
+ * Display a menu overlay for the Mist solution.
+ * The menu is shown as a dialog box and can be opened/closed with the "esc" key.
+ * Allows the user to alter any MistIllum setting (globalVolume, precision, mode selection, etc).
+ * @param {Object} overlayConfig - Optional menu structure, callbacks, etc.
+ */
+function mistMenu(overlayConfig = {}) {
+  // Use global.uiRenderer if available, otherwise fallback to CLI
+  const ui = global.uiRenderer;
+  let menuOpen = true;
 
-function launchMistMulti(config) {
-  // Optionally launch and initialize MistMulti.js for multi-user support.
-}
+  // Helper to build menu options dynamically from current settings
+  function buildMenuOptions(currentConfig, onUpdate) {
+    const options = [
+      {
+        label: 'Global Volume',
+        type: 'slider',
+        min: 0, max: 1, step: 0.01,
+        value: currentConfig.globalVolume || 1,
+        onChange: (val) => {
+          volumeGlobal(val);
+          if (onUpdate) onUpdate({ ...currentConfig, globalVolume: val });
+        }
+      },
+      {
+        label: 'Precision',
+        type: 'number',
+        min: 1, max: 18, step: 1,
+        value: currentConfig.precision || 3,
+        onChange: (val) => {
+          // Example: set milestone for precision
+          if (typeof milestoneManager !== 'undefined') {
+            milestoneManager.achieveMilestone(val);
+          }
+          if (onUpdate) onUpdate({ ...currentConfig, precision: val });
+        }
+      },
+      {
+        label: 'Mode Selection',
+        type: 'button',
+        onClick: () => {
+          showModeSelectionMenu(ui, (selected) => {
+            if (onUpdate) onUpdate({ ...currentConfig, mode: selected });
+          });
+        }
+      },
+      // Add more settings as needed (ambient volume, interaction volume, etc.)
+      {
+        label: 'Close Menu',
+        type: 'button',
+        onClick: () => {
+          menuOpen = false;
+          if (ui && ui.closeDialog) ui.closeDialog();
+        }
+      }
+    ];
+    return options;
+  }
 
-function shutdownMist() {
-  // Cleanly shut down MistIllum and all Mist modules.
+  // Initial config (could be loaded from session or overlayConfig)
+  let currentConfig = overlayConfig.currentConfig || {};
+
+  // Handler for updating config from menu
+  function handleUpdate(newConfig) {
+    currentConfig = { ...currentConfig, ...newConfig };
+    // Optionally persist config or update session
+  }
+
+  // Show the menu dialog
+  function showMenuDialog() {
+    if (ui && ui.showSettingsMenu) {
+      ui.showSettingsMenu(buildMenuOptions(currentConfig, handleUpdate), currentConfig);
+    } else {
+      // CLI fallback: print options and wait for input
+      console.log('MistIllum Menu:');
+      console.log('1. Global Volume');
+      console.log('2. Precision');
+      console.log('3. Mode Selection');
+      console.log('4. Close Menu');
+      // Implement CLI input handling as needed
+    }
+  }
+
+  // Keyboard event handler for "esc" to close menu
+  function onKeyDown(e) {
+    if (e.key === 'Escape' || e.key === 'esc') {
+      menuOpen = false;
+      if (ui && ui.closeDialog) ui.closeDialog();
+      window.removeEventListener('keydown', onKeyDown);
+    }
+  }
+
+  // Open the menu and listen for "esc"
+  showMenuDialog();
+  if (typeof window !== 'undefined' && window.addEventListener) {
+    window.addEventListener('keydown', onKeyDown);
+  }
 }
 
 // --- Physics Engine for MistTrackerVulkan.js ---
@@ -374,6 +844,7 @@ function perspectiveTransform(object, observerDimension, objectDimension) {
  */
 function projectToLowerDimension(object, fromDimension, toDimension, time) {
   // Implement projection logic
+  return null;
 }
 
 // --- Single Object in Higher Dimension as Multiple in Lower Dimensions ---
@@ -385,6 +856,7 @@ function projectToLowerDimension(object, fromDimension, toDimension, time) {
  */
 function decomposeHigherToLower(object, lowerDimension) {
   // Implement decomposition logic
+  return null;
 }
 
 // --- Extra Dimensions as Objects vs Space ---
@@ -396,6 +868,7 @@ function decomposeHigherToLower(object, lowerDimension) {
  */
 function extraDimensionMode(object, asObject) {
   // Implement logic for treating extra dimensions as objects or space
+  return null;
 }
 
 // --- Limited vs Infinite Extra Dimensions ---
@@ -408,6 +881,7 @@ function extraDimensionMode(object, asObject) {
  */
 function setDimensionLimit(space, dimension, limit) {
   // Implement logic for limiting or making dimensions infinite
+  return null;
 }
 
 // --- Energy Distribution Through Extra Dimensions ---
@@ -417,8 +891,31 @@ function setDimensionLimit(space, dimension, limit) {
  * @param {Array} dimensions - Array of dimensions to distribute energy through.
  * @returns {Object} - Energy distribution result.
  */
-function energyDistribution(system, dimensions) {
+function distributeEnergy (energy, dimensions) {
+  
   // Implement energy distribution logic
+  const energyDistribution = {};
+  dimensions.forEach(dim => {
+    energyDistribution[dim] = energy / dimensions.length; // Simple equal distribution
+  })
+}
+
+function energyDistribution(system, dimensions) {
+  // Calculate energy distribution across specified dimensions
+  const energy = system.energy || 0; // Get energy from system
+  return distributeEnergy(energy, dimensions);
+
+}
+
+function deformObject(object, energyDistribution){
+  // Apply energy distribution to deform the object
+  // Example: modify vertices based on energy levels in dimensions
+  object.vertices.forEach(vertex => {
+    dimensions.forEach((dim, index) => {
+      vertex[index] += energyDistribution[dim] || 0;
+    });
+  });
+  return object;
 }
 
 // --- Non-Flat Extra Dimensions (Caveat) ---
@@ -430,6 +927,7 @@ function energyDistribution(system, dimensions) {
  */
 function applyCurvature(space, curvatureFn) {
   // Implement non-flat geometry logic
+  return null;
 }
 
 // --- Physics Engine Class ---
@@ -584,6 +1082,76 @@ class MistPhysicsEngine {
   checkCollision3D(p1, p2, threshold = 1e-6) {
     return Math.abs(this.metric3D.intervalSquared(p1, p2)) < threshold;
   }
+
+  bellTheorem = (a, b, c, d) => {
+    return Math.abs(a * b + c * d) <= 2; // Bell's inequality
+};
+//pilot wave theory only for use on defined objects
+pilotWave = (psi, potential) => {
+    // Calculate the pilot wave based on the wave function and potential
+    return psi * potential; // Simplified representation
+};
+
+locality = (p1, p2) => {
+    // Check if two points are local to each other
+    return D(p1, p2) < 1; // Local if distance is less than 1 unit
+}
+
+// relationship between light wave emitted by a single source object and the wave arrives at two objects at the sme time
+lightWave = (source, obj1, obj2) => {
+    const distance1 = D(source, obj1);
+    const distance2 = D(source, obj2);
+    const time1 = distance1 / C; // Time taken for light to reach obj1
+}
+
+eulerLagrange = (L, q, qDot) => {
+    // L is the Lagrangian, q is the generalized coordinate, and qDot is the generalized velocity
+    // Placeholder: Euler-Lagrange equation cannot be computed symbolically in JS
+    return null;
+};
+
+gaussLawMagnetism = (B) => {
+    // Gauss's law for magnetism states that the magnetic flux through a closed surface is zero
+    return Math.abs(B) === 0; // Returns true if magnetic field B is zero
+};
+// principle of stationary action
+principleOfStationaryAction = (action) => {
+    // The action is stationary if the variation of the action is zero
+    // In actual physics, this would be: d/dt(∂L/∂qDot) - ∂L/∂q = 0
+    // Here, we return a placeholder as this cannot be computed directly in JS
+    return action === 0; // Placeholder: Returns true if the action is stationary
+};
+
+// multiple wave object composer
+composeWaves = (waves) => {
+    // waves is an array of wave objects
+    return waves.reduce((acc, wave) => {
+        acc.intensity += wave.intensity; // Sum intensities of all waves
+        return acc;
+    }, { intensity: 0 }); // Initialize accumulator with intensity 0
+};
+
+// intensity relationship with object hardness
+intensityHardnessRelationship = (intensity, hardness) => {
+    // Placeholder relationship: Higher intensity leads to higher hardness
+    return intensity * hardness; // Returns a product of intensity and hardness
+};
+
+// Example usage of the intensity relationship
+intensity = 10; // Example intensity
+hardness = 5; // Example hardness
+hardnessEffect = intensityHardnessRelationship(intensity, hardness);
+
+// Partical wave duality
+particleWaveDuality = (particle, wave) => {
+    // Placeholder for particle-wave duality relationship
+    return {
+        position: particle.position,
+        wavelength: wave.wavelength,
+        frequency: wave.frequency
+    };
+};
+
 }
 
 function navigate3D(currentPosition, direction, step, physicsEngine) {
@@ -951,6 +1519,12 @@ module.exports = {
   waveFunction,
   interferencePattern,
   applyInterference,
+  createVoxelObject,
+  updateDistanceFromObserver,
+  computeAngularMomentumMap,
+  isEdgeVoxel,
+  interactObjects,
+  spawnObjectNearPlayer,
   globalIllumination,
   fastTransform,
   worldWarp,
@@ -977,9 +1551,22 @@ module.exports = {
   decomposeHigherToLower,
   extraDimensionMode,
   setDimensionLimit,
+  distributeEnergy,
   energyDistribution,
+  deformObject,
   applyCurvature,
   MistPhysicsEngine,
+  bellTheorem,
+  pilotWave,
+  locality,
+  lightWave,
+  relativeAcceleration,
+  eulerLagrange,
+  gaussLawMagnetism,
+  principleOfStationaryAction,
+  composeWaves,
+  intensityHardnessRelationship,
+  particleWaveDuality,
   MetricTensor,
   MetricTensor3D,
   getGravityAtPoint,

@@ -19,7 +19,7 @@ let C = Math.sqrt(1 / (1 - (2 * G * M) / R));
 let X = 0, Y = 0, Z = 0, S = 1;
 let D2 = Math.pow(X, 2) + Math.pow(Y, 2) + Math.pow(Z, 2); // D squared = X squared + Y squared + Z squared
 
-// Hypothetical physics engine for pure math and physics simulations pure math
+// Hypothetical physics engine for pure math and physics simulations
 // Time dilation
 let T = [0, 0];
 let W = T[0] - T[1]; // Perspective time difference.
@@ -29,16 +29,19 @@ let D = 1;
 let eventResult = Math.pow(D * Math.pow(S, 2), 1) === Math.pow(C, 2) * Math.pow(T[1] - T[0], 2) - Math.pow(X - X, 2) - Math.pow(Y - Y, 2) - Math.pow(Z - Z, 2); // Events in space time.
 if (W > X) {
     // Event horizon reached, cull object.
-    // cullObject(obj); // Test - obj is not defined, comment out or define obj if needed
-    // if (objType === 'user'){
-    //     deleteAccount(user);
-    // }
+    cullObject(obj); // Test - obj is not defined, comment out or define obj if needed
+    if (objType === 'user'){
+        deleteAccount(user);
+    }
 }
 
-// if (obj && obj.T && self && self.T) {
-//     let V = 0;
-//     let objTimeDiff = obj.T[1] - obj.T[0] === (self.T[1] - self.T[0]) * ( 1 / Math.sqrt(1 - (Math.pow(V, 2) / Math.pow(C, 2))));  // object perspective time difference. Time dilation effect.
-// }
+if (obj && obj.T && self && self.T) {
+    let V = 0;
+    let objTimeDiff = obj.T[1] - obj.T[0] === (self.T[1] - self.T[0]) * ( 1 / Math.sqrt(1 - (Math.pow(V, 2) / Math.pow(C, 2))));  // object perspective time difference. Time dilation effect.
+    if (objTimeDiff > 0) {
+        
+    }
+}
 
 let metricTensor = {
     rank: 5,
@@ -71,7 +74,7 @@ theta = 0 // Angle in radians
 I[0] = 1;
 // Probablistic wave function
 let A = 1, k = 1, x = 1, omega = 1, t = 1;
-let psi = A * Math.exp(1j * (k * x - omega * t)); // Wave function (note: 1j is not valid in JS, use complex library if needed)
+let psi = A * Math.exp(j * (k * x - omega * t)); // Wave function (note: 1j is not valid in JS, use complex library if needed)
 
 // Probablistic wave function
 psi = A * exp(i * (k * x - omega * t)) // Wave function
@@ -153,3 +156,228 @@ let principleOfStationaryAction = (action) => {
     return action === 0; // Placeholder: Returns true if the action is stationary
 };
 
+// multiple wave object composer
+let composeWaves = (waves) => {
+    // waves is an array of wave objects
+    return waves.reduce((acc, wave) => {
+        acc.intensity += wave.intensity; // Sum intensities of all waves
+        return acc;
+    }, { intensity: 0 }); // Initialize accumulator with intensity 0
+};
+
+// intensity relationship with object hardness
+let intensityHardnessRelationship = (intensity, hardness) => {
+    // Placeholder relationship: Higher intensity leads to higher hardness
+    return intensity * hardness; // Returns a product of intensity and hardness
+};
+
+// Example usage of the intensity relationship
+let intensity = 10; // Example intensity
+let hardness = 5; // Example hardness
+let hardnessEffect = intensityHardnessRelationship(intensity, hardness);
+
+// Partical wave duality
+let particleWaveDuality = (particle, wave) => {
+    // Placeholder for particle-wave duality relationship
+    return {
+        position: particle.position,
+        wavelength: wave.wavelength,
+        frequency: wave.frequency
+    };
+};
+
+// Energy distribution across extra dimensions
+let distributeEnergy = (energy, dimensions) => {
+    // Distribute energy across extra dimensions
+    let distribution = {};
+    dimensions.forEach(dim => {
+        distribution[dim] = energy / dimensions.length; // Equal distribution for simplicity
+    });
+    return distribution;
+};
+
+// Example usage of energy distribution
+let energy = 100; // Example energy
+let extraDimensions = ['x', 'y', 'z', 'w']; // Example extra dimensions
+let energyDistribution = distributeEnergy(energy, extraDimensions);
+
+// Deform objects based on energy distribution
+let deformObject = (object, energyDistribution) => {
+    // Deform object based on energy distribution
+    Object.keys(energyDistribution).forEach(dim => {
+        if (object[dim] !== undefined) {
+            object[dim] += energyDistribution[dim]; // Adjust dimension based on energy distribution
+        }
+    });
+    return object;
+};
+
+// Example object to deform
+let object = { x: 1, y: 2, z: 3 }; // Example object by location.
+let selfLocation = { x: 0, y: 0, z: 0 }; // Self location for reference
+let deformedObject = deformObject(object, energyDistribution); // Deform the object based on energy distribution
+
+// User interaction with objects
+let userInteraction = (user, object) => {
+    // User interacts with an object
+    if (user && object) {
+        // Example interaction: User applies force to the object
+        object.force = user.force; // User's force applied to the object
+        return object;
+    }
+    return null; // No interaction if user or object is not defined
+};
+
+// Project object from data based on user menu interaction. Object definitions are in data.
+let projectObject = (object, userMenu) => {
+    // Project object based on user menu interaction
+    if (userMenu && object) {
+        // Example projection: Adjust object's properties based on user menu selection
+        object.projectedProperty = userMenu.selectedProperty; // User's selected property applied to the object
+        return object;
+    }
+    return null; // No projection if user menu or object is not defined
+};
+
+// Initial 3d mode landscape generation
+let generateLandscape = (width, height, depth) => {
+    // Generate a 3D landscape based on width, height, and depth
+    let landscape = [];
+    for (let x = 0; x < width; x++) {
+        for (let y = 0; y < height; y++) {
+            for (let z = 0; z < depth; z++) {
+                landscape.push({ x: x, y: y, z: z }); // Add point to landscape
+            }
+        }
+    }
+    return landscape; // Return generated landscape
+};
+
+// Example usage of landscape generation
+let landscape = generateLandscape(10, 10, 10); // Generate a 10x10x10 landscape
+
+// Unless otherwise defined assume Gravity is 9.81 m/s^2 and is applied to all objects.
+// Within the 3d environment of the physics engine, gravity can be applied to objects based on their mass and distance from the bottom of the landscape assuming the landscape is a projection on a sphere that is the same size as the Earth in the 3d environment.
+let applyGravity = (object, gravity = 9.81) => {
+    // Apply gravity to the object based on its mass
+    if (object && object.mass) {
+        object.weight = object.mass * gravity; // Weight = mass * gravity
+        return object;
+    }
+    return null; // No gravity applied if object or mass is not defined
+}
+
+// 5D metric tensor: [time, x, y, z, w] (w = gravity/energy)
+const metricTensor5D = {
+    rank: 5,
+    dimensions: [5, 5],
+    data: [
+        [-1, 0, 0, 0, 0],
+        [0, 1, 0, 0, 0],
+        [0, 0, 1, 0, 0],
+        [0, 0, 0, 1, 0],
+        [0, 0, 0, 0, 1]
+    ]
+};
+
+const defaultLightSource = {
+    type: 'star',
+    position: [0, 0, 0], // Sun at origin
+    intensity: 1.0,
+    color: [1, 1, 0.9],
+    radius: 6.96e8 // meters (Sun radius)
+};
+
+const defaultObserver = {
+    position: [1.496e11, 0, 0], // 1 AU from Sun
+};
+
+function createVoxelObject(center, size, angularMomentumMap = {}) {
+    // size: [x, y, z] in voxels
+    let voxels = [];
+    for (let x = 0; x < size[0]; x++) {
+        for (let y = 0; y < size[1]; y++) {
+            for (let z = 0; z < size[2]; z++) {
+                voxels.push({ x: center[0] + x, y: center[1] + y, z: center[2] + z });
+            }
+        }
+    }
+    return {
+        center,
+        voxels,
+        angularMomentumMap, // { edgeIndex: {axis: [lx,ly,lz], value: L} }
+        distanceFromObserver: null, // to be computed
+        hardness: 1, // default
+        energy: 0
+    };
+}
+
+function updateDistanceFromObserver(object, observer) {
+    const dx = object.center[0] - observer.position[0];
+    const dy = object.center[1] - observer.position[1];
+    const dz = object.center[2] - observer.position[2];
+    object.distanceFromObserver = Math.sqrt(dx*dx + dy*dy + dz*dz);
+}
+
+function computeAngularMomentumMap(object) {
+    // For each edge voxel, assign or compute angular momentum
+    // Placeholder: assign random or default values
+    object.angularMomentumMap = {};
+    object.voxels.forEach((v, idx) => {
+        if (isEdgeVoxel(v, object)) {
+            object.angularMomentumMap[idx] = { axis: [0, 1, 0], value: 1 }; // Example
+        }
+    });
+}
+function isEdgeVoxel(v, object) {
+    // Simple check: if voxel is on the boundary of the object
+    const minX = Math.min(...object.voxels.map(vox => vox.x));
+    const maxX = Math.max(...object.voxels.map(vox => vox.x));
+    const minY = Math.min(...object.voxels.map(vox => vox.y));
+    const maxY = Math.max(...object.voxels.map(vox => vox.y));
+    const minZ = Math.min(...object.voxels.map(vox => vox.z));
+    const maxZ = Math.max(...object.voxels.map(vox => vox.z));
+    return v.x === minX || v.x === maxX || v.y === minY || v.y === maxY || v.z === minZ || v.z === maxZ;
+}
+
+function interactObjects(objA, objB, tensor = metricTensor5D) {
+    // Example: Use tensor to compute deformation and energy transfer
+    // Deformation depends on hardness and energy distribution
+    let deformationA = objB.energy / objA.hardness;
+    let deformationB = objA.energy / objB.hardness;
+    deformObject(objA, distributeEnergy(deformationA, ['x', 'y', 'z', 'w']));
+    deformObject(objB, distributeEnergy(deformationB, ['x', 'y', 'z', 'w']));
+    // Optionally update angular momentum maps
+}
+
+function spawnObjectNearPlayer(player, objectData) {
+    // Assume player has a position and a reference surface normal
+    const normal = player.referenceNormal || [1, 0, 0];
+    const spawnPos = player.position.map((v, i) => v + normal[i] * 1); // 1 meter away
+    let obj = createVoxelObject(spawnPos, objectData.size, objectData.angularMomentumMap);
+    obj.momentum = player.momentum || [0, 0, 0];
+    return obj;
+}
+
+// Set up environment
+const observer = defaultObserver;
+const sun = defaultLightSource;
+
+// Create two objects
+let obj1 = createVoxelObject([5, 5, 5], [3, 3, 3]);
+let obj2 = createVoxelObject([8, 5, 5], [3, 3, 3]);
+
+// Update distances
+updateDistanceFromObserver(obj1, observer);
+updateDistanceFromObserver(obj2, observer);
+
+// Compute angular momentum maps
+computeAngularMomentumMap(obj1);
+computeAngularMomentumMap(obj2);
+
+// Interact objects using power 5 tensor
+interactObjects(obj1, obj2);
+
+// If user loads a new object
+let player = { position: [0, 0, 0], referenceNormal: [1, 0, 0], momentum: [0, 0, 0] };
+let newObj = spawnObjectNearPlayer(player, { size: [2, 2, 2], angularMomentumMap: {} });

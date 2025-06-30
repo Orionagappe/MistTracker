@@ -19,14 +19,14 @@ loadItemsForCategory   // Load items for a given category from database
 addTimeIndex           // Add a new time index to the primary line
 addCategory            // Add a new category for a given time index
 addItem                // Add a new item for a given category
-addCharacterLocation              // Add a character's location at a given time
-getCharacterLocationsByTime       // Get all character locations for a given time
-getCharacterLocation              // Get a character's location at a specific time
+addCharacterLocation   // Add a character's location at a given time
+getCharacterLocationsByTime // Get all character locations for a given time
+getCharacterLocation   // Get a character's location at a specific time
 
 // --- Data Integrity and Utilities (MistTrackerVulkan.js) ---
 ensureMistDatabase     // Ensure the mySQL database and required tables exist
 updateMistData         // Update database with latest data from external sources (e.g., story files)
-ensureCharacterLocationsTable      // Ensure the CharacterLocations table exists
+ensureCharacterLocationsTable // Ensure the CharacterLocations table exists
 loadMistUser           // Load user data from database
 getMistDataTables      // Utility: Get references to required tables in the database
 getMistTables          // Utility: Get references to main tables in the database
@@ -53,7 +53,7 @@ showAddCategoryInput   // Show input for adding a new category
 showAddItemInput       // Show input for adding a new item
 showInputBox           // Show generic input box for user input
 handleSelection        // Handle user selection, update session state, and persist as needed
-getLineTransformationMatrix     // For Vulkan/OpenGL rendering
+getLineTransformationMatrix // For Vulkan/OpenGL rendering
 
 // --- Keybinds and Input (MistTrackerVulkan.js) ---
 mapKeybinds            // Allow user to change keybinds via user input (X11 or fallback)
@@ -118,7 +118,7 @@ emitEvent              // Emit an event to all handlers and broadcast to peers
 broadcastToPeers       // Use P2P transport to send messages to all connected peers
 syncStateWithPeer      // Send local state to peer, receive remote state, and merge
 encryptMessage         // Encrypt message using recipient's public key (ECC/AES)
-decryptMessage         // Decrypt message using own private key (ECC/AES)
+decryptMessage         // Decrypt message using own private key (ECC/AES) *WIP*
 canSendMessage         // Rate limiting for outgoing messages per user
 mergeState             // Merge local and remote session state, resolving conflicts
 
@@ -126,17 +126,17 @@ mergeState             // Merge local and remote session state, resolving confli
 MistPhysicsEngine      // Physics engine using metric tensor for all spatial logic (see pureMathPhysicsEngine.js)
 MetricTensor           // General nD metric tensor for distance, projection, transformation
 MetricTensor3D         // 3D-only metric tensor for spatial calculations
-dimensionalStack       // Stack objects/spaces in higher dimensions
-perspectiveTransform   // Calculate apparent distance/size from different dimensional perspectives
-projectToLowerDimension// Project higher-dimensional object into lower dimension over time/motion
-decomposeHigherToLower // Decompose higher-dimensional object into lower-dimensional "shadows"
-extraDimensionMode     // Treat extra dimensions as spatial axes or object properties
-setDimensionLimit      // Set limits/boundaries for extra dimensions
+dimensionalStack       // Stack objects/spaces in higher dimensions *WIP*
+perspectiveTransform   // Calculate apparent distance/size from different dimensional perspectives *WIP*
+projectToLowerDimension// Project higher-dimensional object into lower dimension over time/motion *WIP*
+decomposeHigherToLower // Decompose higher-dimensional object into lower-dimensional "shadows" *WIP*
+extraDimensionMode     // Treat extra dimensions as spatial axes or object properties *WIP*
+setDimensionLimit      // Set limits/boundaries for extra dimensions *WIP*
 energyDistribution     // Simulate energy distribution across extra dimensions
-applyCurvature         // Apply curvature/non-flat geometry to extra dimensions
+applyCurvature         // Apply curvature/non-flat geometry to extra dimensions *WIP*
 
 // --- Advanced Physics and Math (pureMathPhysicsEngine.js) ---
-eulerLagrange          // Euler-Lagrange equation for wave function (see pureMathPhysicsEngine.js)
+eulerLagrange          // Euler-Lagrange equation for wave function (see pureMathPhysicsEngine.js) *WIP*
 gaussLawMagnetism      // Gauss's law for magnetism
 principleOfStationaryAction // Principle of stationary action
 pilotWave              // Pilot wave theory for defined objects
@@ -170,6 +170,34 @@ trySwitchMode          // Attempt to switch mode, only if milestone is achieved
 nominateSuccessor              // Nominate a successor by email (before 6th milestone)
 nominateSuccessorPGP           // Nominate a successor by PGP cert (after 6th milestone)
 nominateSuccessorFlexible      // Nominate successor, enforcing milestone-based method
+
+// --- Miscellaneous and Utility (MistIllum.js, MistMulti.js, MistTrackerVulkan.js) ---
+createVoxelObject       // Create a voxel-based 3D object
+updateDistanceFromObserver // Update object's distance from observer
+computeAngularMomentumMap // Compute angular momentum map for object
+isEdgeVoxel            // Determine if a voxel is on the edge of an object
+interactObjects        // Cause interaction between objects using tensors
+spawnObjectNearPlayer  // Spawn a new object near the player
+distributeEnergy       // Distribute energy across dimensions
+deformObject           // Apply deformation to object based on energy distribution
+composeWaves           // Compose multiple wave objects
+intensityHardnessRelationship // Relationship between intensity and object hardness
+particleWaveDuality    // Model particle-wave duality
+
+// --- Multi-User Moderation and Provenance (MistMulti.js) ---
+createProvenance       // Attach provenance to user actions/events
+grimReaper             // Track database tensor inputs for moderation
+
+// --- Functions returning null (Work In Progress) ---
+projectToLowerDimension// *WIP* Returns null
+decomposeHigherToLower // *WIP* Returns null
+extraDimensionMode     // *WIP* Returns null
+setDimensionLimit      // *WIP* Returns null
+perspectiveTransform   // *WIP* Returns null
+dimensionalStack       // *WIP* Returns null
+applyCurvature         // *WIP* Returns null
+eulerLagrange          // *WIP* Returns null
+decryptMessage         // *WIP* Returns null
 
 // --- Migration Notes ---
 // - Replace all Google Sheets/Drive operations with mySQL queries and file I/O.
