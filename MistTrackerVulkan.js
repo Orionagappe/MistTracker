@@ -590,7 +590,7 @@ function handleInput(input, context) {
 }
 
 const { broadcastToPeers, onEvent } = require('./MistMulti.js');
-const { probabilityOfEvent } = require('./pureMathPhysicsEngine.js'); // Should return a probability (0..1)
+const { probabilityOfEvent } = require('./MistIllum.js'); // Should return a probability (0..1)
 const { v4: uuidv4 } = require('uuid');
 
 // --- Anomalous Result Table (in-memory, should be persisted in DB in production) ---
@@ -618,7 +618,7 @@ async function checkAndSyncEvent(event, user, db) {
     return { error: 'Interaction banned. User event-horizoned.' };
   }
 
-  // 2. Calculate event probability using pureMathPhysicsEngine.js
+  // 2. Calculate event probability using MistIllum.js
   const prob = probabilityOfEvent(event); // Should return a probability (0..1)
   const sigma = probToSigma(prob);
 
