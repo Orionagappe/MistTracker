@@ -40,3 +40,5 @@ readme.md
 aa*.pdf
 Planck_*.pdf
 Planck_*.png
+MySQL*.*
+*.xml
