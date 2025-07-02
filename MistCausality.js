@@ -10,8 +10,8 @@ const MistIllum = require('./MistIllum.js');
 const dbConfig = {
   host: 'localhost',
   user: 'root',
-  password: 'mistpass',
-  database: 'Jefferson_Brain'
+  password: 'password',
+  database: 'dbname'
 };
 
 // --- Initialize Database Connection ---
