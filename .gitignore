@@ -37,8 +37,8 @@ A-Persuit-of-Understanding-Manuscript-Complete.pdf
 theGame.md
 settings.json
 readme.md
-aa*.pdf
-Planck_*.pdf
+*.pdf
 Planck_*.png
 MySQL*.*
 *.xml
+/test
