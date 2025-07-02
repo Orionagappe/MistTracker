@@ -20,19 +20,29 @@ class DefiniteItem {
 }
 
 class CharacterLocation {
-  constructor(name, time, location) {
+  constructor(name, timeVec, location) {
     this.name = name;
-    this.time = time;
+    this.timeVec = timeVec; // [T0, T1, T2]
     this.location = location; // Could be a string or a 3D vector
+  }
+}
+
+class DefiniteItem {
+  constructor(value, line, position, timeVec = [0,0,0]) {
+    this.value = value;
+    this.line = line;
+    this.position = position;
+    this.timeVec = timeVec; // [T0, T1, T2]
+    this.relatedItems = [];
   }
 }
 
 class SelectionModeState {
   constructor() {
     this.currentStep = 'time'; // 'time', 'category', 'item', etc.
-    this.selectedIndices = []; // [timeIndex, categoryIndex, itemIndex, ...]
+    this.selectedIndices = []; // [t0Index, t1Index, t2Index, categoryIndex, itemIndex, ...]
     this.inputBoxOpen = false;
-    this.inputBoxType = null; // 'time', 'category', 'item'
+    this.inputBoxType = null;
   }
 }
 
@@ -69,6 +79,11 @@ const TABLES = {
 };
 
 // --- Session and State Management ---
+
+const { createMistConnection } = require('./MistMySQL');
+const db = createMistConnection(config);
+await db.connectAsync();
+
 function startSession(user) {
   return {
     user,
@@ -76,7 +91,8 @@ function startSession(user) {
     opened: {},
     vectors: [],
     lastSelection: null,
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    timeVec: [0, 0, 0] // Add time vector to session
   };
 }
 
@@ -189,23 +205,23 @@ function addItem(categoryLineId, itemValue, db) {
   return loadItemsForCategory(categoryLineId, db);
 }
 
-async function addCharacterLocation(name, time, location, db) {
-  await db.query(
-    `INSERT INTO CharacterLocations (name, time, location) VALUES (?, ?, ?)`,
-    [name, time, location]
+async function addCharacterLocation(name, timeVec, location, db) {
+  await db.queryAsync(
+    `INSERT INTO CharacterLocations (name, t0, t1, t2, location) VALUES (?, ?, ?, ?, ?)`,
+    [name, timeVec[0], timeVec[1], timeVec[2], location]
   );
 }
 
-async function getCharacterLocationsByTime(time, db) {
-  const rows = await db.query(
-    `SELECT name, location FROM CharacterLocations WHERE time = ?`,
-    [time]
+async function getCharacterLocationsByTime(timeVec, db) {
+  const rows = await db.queryAsync(
+    `SELECT name, location FROM CharacterLocations WHERE t0 = ? AND t1 = ? AND t2 = ?`,
+    [timeVec[0], timeVec[1], timeVec[2]]
   );
-  return rows.map(row => new CharacterLocation(row.name, time, row.location));
+  return rows.map(row => new CharacterLocation(row.name, timeVec, row.location));
 }
 
 async function getCharacterLocation(name, time, db) {
-  const rows = await db.query(
+  const rows = await db.queryAsync(
     `SELECT location FROM CharacterLocations WHERE name = ? AND time = ?`,
     [name, time]
   );
@@ -398,19 +414,16 @@ function hourGlass(depth, vectorsSoFar = []) {
 }
 
 // Utility to convert time/location data to 3D coordinates for projection
+const { timeToSpace } = require('./MistIllum.js');
+
 function projectItemsTo3D(items, characterLocations, timeMap, locationMap) {
-  // items: array of DefiniteItem or similar
-  // characterLocations: array of CharacterLocation
-  // timeMap/locationMap: mapping from time/location to 3D coordinates
-  // Returns: array of {item, x, y, z}
   return items.map(item => {
     const loc = characterLocations.find(
-      cl => cl.name === item.value && timeMap[cl.time]
+      cl => cl.name === item.value && timeMap[JSON.stringify(cl.timeVec)]
     );
     if (!loc) return { item, x: 0, y: 0, z: 0 };
-    const tCoord = timeMap[loc.time] || [0, 0, 0];
+    const tCoord = timeToSpace(cl.timeVec);
     const lCoord = locationMap[loc.location] || [0, 0, 0];
-    // Combine time and location into a 3D point (customize as needed)
     return {
       item,
       x: tCoord[0] + lCoord[0],
@@ -423,7 +436,7 @@ function projectItemsTo3D(items, characterLocations, timeMap, locationMap) {
 async function getMapModeProjection(db, timeMap, locationMap) {
   // Load all items and character locations
   const items = MistModel.items; // or load from DB if needed
-  const rows = await db.query(`SELECT name, time, location FROM CharacterLocations`);
+  const rows = await db.queryAsync(`SELECT name, time, location FROM CharacterLocations`);
   const characterLocations = rows.map(row => new CharacterLocation(row.name, row.time, row.location));
   return projectItemsTo3D(items, characterLocations, timeMap, locationMap);
 }
@@ -741,14 +754,14 @@ onEvent('anomalyVote', async (data) => {
 
 // --- Helper: Add/Remove Event from Persistent Tables ---
 async function addEventToPersistentTables(event, provenance, db) {
-  await db.query(
+  await db.queryAsync(
     `INSERT INTO PersistentEvents (eventId, eventData, provenance, timestamp) VALUES (?, ?, ?, NOW())`,
     [provenance.eventId, JSON.stringify(event), JSON.stringify(provenance)]
   );
 }
 
 async function removeEventFromPersistentTables(event, provenance, db) {
-  await db.query(
+  await db.queryAsync(
     `DELETE FROM PersistentEvents WHERE eventId = ?`,
     [provenance.eventId]
   );
@@ -772,7 +785,26 @@ function isInteractionBanned(event, user) {
 // --- Helper: Hash Interaction ---
 function hashInteraction(event) {
   // Simple hash: could use JSON.stringify + hash function for uniqueness
-  return require('crypto').createHash('sha256').update(JSON.stringify(event)).digest('hex');
+  const crypto = {
+  randomBytes: (n) => Buffer.from(Array(n).fill(0)),
+  createHash: () => ({
+    update: () => ({
+      digest: () => 'stubhash'
+    })
+  }),
+  createSign: () => ({
+    update: () => {},
+    end: () => {},
+    sign: () => 'stubsig'
+  }),
+  createVerify: () => ({
+    update: () => {},
+    end: () => {},
+    verify: () => true
+  })
+};
+  return crypto.createHash('sha256')
+    .update(JSON.stringify(event));
 }
 
 // --- Helper: Event Horizon User (Ban and Flush) ---
@@ -790,9 +822,9 @@ async function eventHorizonUser(user, db) {
 // --- Helper: Flush User Data ---
 async function flushUserData(user, db) {
   // Remove user from Users table and all related Mist data
-  await db.query(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
-  await db.query(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
-  await db.query(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
+  await db.queryAsync(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
+  await db.queryAsync(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
+  await db.queryAsync(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
   // Optionally, remove or anonymize user data in other tables
 }
 
@@ -971,6 +1003,7 @@ module.exports = {
   Line,
   DefiniteItem,
   CharacterLocation,
+  DefiniteItem,
   SelectionModeState,
 
   // --- In-Memory Model ---

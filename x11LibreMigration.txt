@@ -19,8 +19,8 @@ loadItemsForCategory   // Load items for a given category from database
 addTimeIndex           // Add a new time index to the primary line
 addCategory            // Add a new category for a given time index
 addItem                // Add a new item for a given category
-addCharacterLocation   // Add a character's location at a given time
-getCharacterLocationsByTime // Get all character locations for a given time
+addCharacterLocation   // Now requires (name, [t0, t1, t2], location, db)
+getCharacterLocationsByTime // Now requires ([t0, t1, t2], db)
 getCharacterLocation   // Get a character's location at a specific time
 
 // --- Data Integrity and Utilities (MistTrackerVulkan.js) ---
@@ -54,6 +54,8 @@ showAddItemInput       // Show input for adding a new item
 showInputBox           // Show generic input box for user input
 handleSelection        // Handle user selection, update session state, and persist as needed
 getLineTransformationMatrix // For Vulkan/OpenGL rendering
+SelectionModeState     // Now tracks [t0Index, t1Index, t2Index, ...]
+projectItemsTo3D       // Uses timeToSpace for spatial mapping
 
 // --- Keybinds and Input (MistTrackerVulkan.js) ---
 mapKeybinds            // Allow user to change keybinds via user input (X11 or fallback)
@@ -126,6 +128,9 @@ mergeState             // Merge local and remote session state, resolving confli
 MistPhysicsEngine      // Physics engine using metric tensor for all spatial logic (see pureMathPhysicsEngine.js)
 MetricTensor           // General nD metric tensor for distance, projection, transformation
 MetricTensor3D         // 3D-only metric tensor for spatial calculations
+metricTensor7D         // 7D tensor: [T0, T1, T2, X, Y, Z, W]
+timeToSpace            // Map 3 time dimensions to 3D space for environment generation
+generateLandscapeFromTime // Generate 3D environment as a product of time dimensions
 dimensionalStack       // Stack objects/spaces in higher dimensions *WIP*
 perspectiveTransform   // Calculate apparent distance/size from different dimensional perspectives *WIP*
 projectToLowerDimension// Project higher-dimensional object into lower dimension over time/motion *WIP*

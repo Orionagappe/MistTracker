@@ -381,3 +381,122 @@ interactObjects(obj1, obj2);
 // If user loads a new object
 let player = { position: [0, 0, 0], referenceNormal: [1, 0, 0], momentum: [0, 0, 0] };
 let newObj = spawnObjectNearPlayer(player, { size: [2, 2, 2], angularMomentumMap: {} });
+
+
+let m1 = 1, m2 = 4.5, m3 = 21.0;
+// Use T[0] to evolve quantum states or mass-dependent calculations
+t = T[1]; // Use for waveFunction, interferencePattern, etc.
+let deltaV = 1.5e-55 * C; // For cosmological calculations
+
+const metricTensor7D = {
+    rank: 7,
+    dimensions: [7, 7],
+    data: [
+        // T[0] (quantum time), T[1] (interaction time), T[2] (cosmo time), X, Y, Z, W
+        [-1, 0, 0, 0, 0, 0, 0], // T[0]
+        [0, -1, 0, 0, 0, 0, 0], // T[1]
+        [0, 0, -1, 0, 0, 0, 0], // T[2]
+        [0, 0, 0, 1, 0, 0, 0],  // X
+        [0, 0, 0, 0, 1, 0, 0],  // Y
+        [0, 0, 0, 0, 0, 1, 0],  // Z
+        [0, 0, 0, 0, 0, 0, 1]   // W (energy/gravity)
+    ]
+};
+
+function waveFunction(A, k, x, omega, T) {
+    // T is [T0, T1, T2]
+    let t = T[1];
+    return A * Math.exp(1 * j * (k * x - omega * t));
+}
+function quantumMassEvolution(masses, T) {
+    // masses: [m1, m2, m3]
+    // T[0] is quantum time
+    // Example: evolve mass states over T[0]
+    return masses.map((m, i) => m * Math.exp(-T[0] / (i + 1)));
+}
+function gravWaveDeltaV(T) {
+    // T[2] is cosmological time
+    return 1.5e-55 * C * T[2];
+}
+// Example: position = [T0, T1, T2, X, Y, Z, W]
+function tensorTransform(tensor, vec) {
+    let result = new Array(tensor.rank).fill(0);
+    for (let i = 0; i < tensor.rank; ++i)
+        for (let j = 0; j < tensor.rank; ++j)
+            result[i] += tensor.data[i][j] * vec[j];
+    return result;
+}
+// Define time vector for a simulation step
+let T = [quantumTime, interactionTime, cosmologicalTime];
+
+// Use T[1] for all current time-based calculations
+psi = waveFunction(A, k, x, omega, T);
+
+// Use T[0] for quantum mass calculations
+evolvedMasses = quantumMassEvolution([1, 4.5, 21.0], T);
+
+// Use T[2] for cosmological/gravitational wave calculations
+deltaV = gravWaveDeltaV(T);
+
+// Use the extended tensor for all metric operations
+let position = [T[0], T[1], T[2], X, Y, Z, W];
+let transformed = tensorTransform(metricTensor7D, position);
+
+// --- Map 3 time dimensions to 3D space ---
+// Example: X = f(T[0], T[1], T[2]), etc.
+function timeToSpace(T) {
+    // T: [T0, T1, T2]
+    // Example mapping: simple product and scaling (customize as needed)
+    let scale = 1; // Adjust scale as needed
+    let X = scale * T[0] * T[1];
+    let Y = scale * T[1] * T[2];
+    let Z = scale * T[2] * T[0];
+    return [X, Y, Z];
+}
+
+// --- Revised landscape generation using time dimensions ---
+function generateLandscapeFromTime(T0_range, T1_range, T2_range, scale = 1) {
+    // T0_range, T1_range, T2_range: arrays of allowed values for each time dimension
+    let landscape = [];
+    for (let t0 of T0_range) {
+        for (let t1 of T1_range) {
+            for (let t2 of T2_range) {
+                let [x, y, z] = timeToSpace([t0, t1, t2]);
+                landscape.push({ x, y, z, T: [t0, t1, t2] });
+            }
+        }
+    }
+    return landscape;
+}
+
+// --- Example usage ---
+// Define ranges for each time dimension (quantum, interaction, cosmological)
+let T0_range = [0, 1, 2]; // quantum time steps
+let T1_range = [0, 1, 2]; // interaction time steps
+let T2_range = [0, 1, 2]; // cosmological time steps
+
+let userEnvironment = generateLandscapeFromTime(T0_range, T1_range, T2_range);
+
+// Now userEnvironment is a 3D grid where each point is a product of the three time dimensions
+
+// --- Update object placement and movement to use time-based space ---
+// For any object, its position is determined by its T vector:
+function setObjectPositionFromTime(object, T) {
+    let [x, y, z] = timeToSpace(T);
+    object.x = x;
+    object.y = y;
+    object.z = z;
+    object.T = T;
+    return object;
+}
+
+// Example: Place an object at a specific time triple
+let myObject = {};
+setObjectPositionFromTime(myObject, [1, 2, 3]);
+
+// --- Optionally, update all spatial calculations to use this mapping ---
+// For example, when moving an object in time, update its spatial position:
+function moveObjectInTime(object, dT) {
+    let newT = object.T.map((t, i) => t + (dT[i] || 0));
+    return setObjectPositionFromTime(object, newT);
+}

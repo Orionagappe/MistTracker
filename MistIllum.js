@@ -80,13 +80,48 @@ const metricTensor5D = new MetricTensor(
   ]
 );
 
+// --- 7D Metric Tensor for Multi-Time Physics ---
+const metricTensor7D = new MetricTensor(
+  7,
+  [7, 7],
+  [
+    [-1, 0, 0, 0, 0, 0, 0], // T[0] (quantum time)
+    [0, -1, 0, 0, 0, 0, 0], // T[1] (interaction time)
+    [0, 0, -1, 0, 0, 0, 0], // T[2] (cosmo time)
+    [0, 0, 0, 1, 0, 0, 0],  // X
+    [0, 0, 0, 0, 1, 0, 0],  // Y
+    [0, 0, 0, 0, 0, 1, 0],  // Z
+    [0, 0, 0, 0, 0, 0, 1]   // W (energy/gravity)
+  ]
+);
+
+// Map 3 time dimensions to 3D space
+function timeToSpace(T) {
+  let scale = 1;
+  let X = scale * T[0] * T[1];
+  let Y = scale * T[1] * T[2];
+  let Z = scale * T[2] * T[0];
+  return [X, Y, Z];
+}
+
 
 // --- Wave Function Utilities ---
-function waveFunction(amplitude, k, x, omega, t) {
-  // psi = A * exp(i * (k * x - omega * t))
-  // Returns complex value as [real, imag]
+function waveFunction(amplitude, k, x, omega, T) {
+  // T: [T0, T1, T2]
+  let t = T[1];
   const phase = k * x - omega * t;
   return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
+}
+
+function quantumMassEvolution(masses, T) {
+  // masses: [m1, m2, m3], T[0]: quantum time
+  return masses.map((m, i) => m * Math.exp(-T[0] / (i + 1)));
+}
+
+function gravWaveDeltaV(T) {
+  // T[2]: cosmological time
+  const C = 299792458;
+  return 1.5e-55 * C * T[2];
 }
 
 function interferencePattern(source, obj1, obj2, lambda) {
@@ -247,6 +282,31 @@ function rastRenderMap(wireframe, textureMap, waveParams = {}) {
     }
   });
   return raster;
+}
+
+function generateLandscapeFromTime(T0_range, T1_range, T2_range, scale = 1) {
+  let landscape = [];
+  for (let t0 of T0_range) {
+    for (let t1 of T1_range) {
+      for (let t2 of T2_range) {
+        let [x, y, z] = timeToSpace([t0, t1, t2]);
+        landscape.push({ x, y, z, T: [t0, t1, t2] });
+      }
+    }
+  }
+  return landscape;
+}
+
+function setObjectPositionFromTime(object, T) {
+  let [x, y, z] = timeToSpace(T);
+  object.position = [x, y, z];
+  object.T = T;
+  return object;
+}
+
+function moveObjectInTime(object, dT) {
+  let newT = object.T.map((t, i) => t + (dT[i] || 0));
+  return setObjectPositionFromTime(object, newT);
 }
 
 // --- Audio and Soundscape ---
@@ -1167,6 +1227,8 @@ function renderObject3D(object, camera, physicsEngine) {
   return projected;
 }
 
+
+
 // Example: Gravity at a point in 3D
 function getGravityAtPoint(point, physicsEngine) {
   return physicsEngine.gravityAt(point);
@@ -1182,9 +1244,9 @@ function navigate(currentPosition, direction, step, physicsEngine) {
 }
 
 // Rendering with wave-based intensity
-function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
-  // Project object's nD position to 3D for rendering
-  let projected = physicsEngine.projectToView(object.position, viewRank);
+function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}, T = [0,0,0]) {
+  // Project object's nD position to 3D for rendering using timeToSpace
+  let projected = timeToSpace(T);
   // Apply wave function for intensity modulation
   if (waveParams.amplitude && waveParams.k && waveParams.omega && waveParams.t !== undefined) {
     const [real, imag] = waveFunction(
@@ -1194,7 +1256,7 @@ function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams 
       waveParams.omega,
       waveParams.t
     );
-    object.intensity = real; // Use real part for intensity
+    object.intensity = real;
   }
   // ...pass projected and intensity to renderer
   return projected;
@@ -1517,6 +1579,8 @@ module.exports = {
   tileSpan,
   LightSource,
   waveFunction,
+  quantumMassEvolution,
+  gravWaveDeltaV,
   interferencePattern,
   applyInterference,
   createVoxelObject,
@@ -1530,6 +1594,9 @@ module.exports = {
   worldWarp,
   wireFrames,
   rastRenderMap,
+  setObjectPositionFromTime,
+  moveObjectInTime,
+  generateLandscapeFromTime,
   audioQueue,
   volumeGlobal,
   volumeAmbient,
@@ -1569,6 +1636,7 @@ module.exports = {
   particleWaveDuality,
   MetricTensor,
   MetricTensor3D,
+  MetricTensor7D,
   getGravityAtPoint,
   navigate,
   navigate3D,
