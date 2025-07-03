@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "canvas": "^3.1.2",
+    "elliptic": "^6.6.1",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.14.1",
+    "mysql2-async": "^2.0.1",
+    "pactl": "^1.0.0",
+    "uuid": "^11.1.0",
+    "wmctrl": "^0.0.3"
+  }
+}
