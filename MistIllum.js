@@ -1505,7 +1505,7 @@ const {
   showAddItemInput,
   showInputBox,
   handleSelection
-} = require('./MistTrackerVulkan.js');
+} = require('./MistCore.js');
 
 // --- Menu State ---
 
