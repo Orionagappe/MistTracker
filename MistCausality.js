@@ -2,7 +2,7 @@
 
 // Use mysql2 for DB (node-mysql2-master inspired)
 const mysql = require('mysql2/promise');
-const MistTracker = require('./test/MistTrackerVulkan.js');
+const MistTracker = require('./MistTrackerVulkan.js');
 const MistMulti = require('./MistMulti.js');
 const MistIllum = require('./MistIllum.js');
 
