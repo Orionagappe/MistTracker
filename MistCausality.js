@@ -4,6 +4,8 @@
 const mysql = require('mysql2/promise');
 const MistTracker = require('./MistTrackerVulkan.js');
 const MistMulti = require('./MistMulti.js');
+const { MistMenuControl } = require('./MistIllum.js');
+const { startSession, ensureMistDatabase } = require('./MistTrackerVulkan.js');
 const MistIllum = require('./MistIllum.js');
 
 

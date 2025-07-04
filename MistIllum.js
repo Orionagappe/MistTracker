@@ -617,7 +617,6 @@ class warnTypes {
  * @param {Object} overlayConfig - Optional menu structure, callbacks, etc.
  */
 
-const { MistMenuControl } = require('./MistIllum.js');
 function mistMenu(overlayConfig = {}) {
   // Use global.uiRenderer if available, otherwise fallback to CLI
   const ui = global.uiRenderer;
@@ -1507,8 +1506,6 @@ const {
   showInputBox,
   handleSelection
 } = require('./MistTrackerVulkan.js');
-
-const { MistPhysicsEngine, MetricTensor, MetricTensor3D, MistMenuControl } = require('./MistIllum.js');
 
 // --- Menu State ---
 
