@@ -20,29 +20,19 @@ class DefiniteItem {
 }
 
 class CharacterLocation {
-  constructor(name, timeVec, location) {
+  constructor(name, time, location) {
     this.name = name;
-    this.timeVec = timeVec; // [T0, T1, T2]
+    this.time = time;
     this.location = location; // Could be a string or a 3D vector
-  }
-}
-
-class DefiniteItem {
-  constructor(value, line, position, timeVec = [0,0,0]) {
-    this.value = value;
-    this.line = line;
-    this.position = position;
-    this.timeVec = timeVec; // [T0, T1, T2]
-    this.relatedItems = [];
   }
 }
 
 class SelectionModeState {
   constructor() {
     this.currentStep = 'time'; // 'time', 'category', 'item', etc.
-    this.selectedIndices = []; // [t0Index, t1Index, t2Index, categoryIndex, itemIndex, ...]
+    this.selectedIndices = []; // [timeIndex, categoryIndex, itemIndex, ...]
     this.inputBoxOpen = false;
-    this.inputBoxType = null;
+    this.inputBoxType = null; // 'time', 'category', 'item'
   }
 }
 
@@ -64,6 +54,33 @@ const MistModel = {
   sessions: [],
 };
 
+function resetMistModel() {
+  MistModel.lines = [];
+  MistModel.users = [];
+  MistModel.categories = [];
+  MistModel.items = [];
+  MistModel.sessions = [];
+}
+
+/**
+ * Add a user to MistModel.
+ * @param {Object} user - User object with at least userName and accountId.
+ */
+function addUserToMistModel(user) {
+  if (!MistModel.users.find(u => u.accountId === user.accountId)) {
+    MistModel.users.push(user);
+  }
+}
+
+/**
+ * Find a user in MistModel by accountId.
+ * @param {string} accountId
+ * @returns {Object|null}
+ */
+function findUserInMistModel(accountId) {
+  return MistModel.users.find(u => u.accountId === accountId) || null;
+}
+
 // --- Database Schema/Table Names ---
 const MIST_SCHEMA = 'mist';
 const TABLES = {
@@ -79,11 +96,6 @@ const TABLES = {
 };
 
 // --- Session and State Management ---
-
-const { createMistConnection } = require('./MistMySQL');
-const db = createMistConnection(config);
-await db.connectAsync();
-
 function startSession(user) {
   return {
     user,
@@ -91,8 +103,7 @@ function startSession(user) {
     opened: {},
     vectors: [],
     lastSelection: null,
-    timestamp: Date.now(),
-    timeVec: [0, 0, 0] // Add time vector to session
+    timestamp: Date.now()
   };
 }
 
@@ -205,23 +216,23 @@ function addItem(categoryLineId, itemValue, db) {
   return loadItemsForCategory(categoryLineId, db);
 }
 
-async function addCharacterLocation(name, timeVec, location, db) {
-  await db.queryAsync(
-    `INSERT INTO CharacterLocations (name, t0, t1, t2, location) VALUES (?, ?, ?, ?, ?)`,
-    [name, timeVec[0], timeVec[1], timeVec[2], location]
+async function addCharacterLocation(name, time, location, db) {
+  await db.query(
+    `INSERT INTO CharacterLocations (name, time, location) VALUES (?, ?, ?)`,
+    [name, time, location]
   );
 }
 
-async function getCharacterLocationsByTime(timeVec, db) {
-  const rows = await db.queryAsync(
-    `SELECT name, location FROM CharacterLocations WHERE t0 = ? AND t1 = ? AND t2 = ?`,
-    [timeVec[0], timeVec[1], timeVec[2]]
+async function getCharacterLocationsByTime(time, db) {
+  const rows = await db.query(
+    `SELECT name, location FROM CharacterLocations WHERE time = ?`,
+    [time]
   );
-  return rows.map(row => new CharacterLocation(row.name, timeVec, row.location));
+  return rows.map(row => new CharacterLocation(row.name, time, row.location));
 }
 
 async function getCharacterLocation(name, time, db) {
-  const rows = await db.queryAsync(
+  const rows = await db.query(
     `SELECT location FROM CharacterLocations WHERE name = ? AND time = ?`,
     [name, time]
   );
@@ -414,16 +425,19 @@ function hourGlass(depth, vectorsSoFar = []) {
 }
 
 // Utility to convert time/location data to 3D coordinates for projection
-const { timeToSpace } = require('./MistIllum.js');
-
 function projectItemsTo3D(items, characterLocations, timeMap, locationMap) {
+  // items: array of DefiniteItem or similar
+  // characterLocations: array of CharacterLocation
+  // timeMap/locationMap: mapping from time/location to 3D coordinates
+  // Returns: array of {item, x, y, z}
   return items.map(item => {
     const loc = characterLocations.find(
-      cl => cl.name === item.value && timeMap[JSON.stringify(cl.timeVec)]
+      cl => cl.name === item.value && timeMap[cl.time]
     );
     if (!loc) return { item, x: 0, y: 0, z: 0 };
-    const tCoord = timeToSpace(cl.timeVec);
+    const tCoord = timeMap[loc.time] || [0, 0, 0];
     const lCoord = locationMap[loc.location] || [0, 0, 0];
+    // Combine time and location into a 3D point (customize as needed)
     return {
       item,
       x: tCoord[0] + lCoord[0],
@@ -436,7 +450,7 @@ function projectItemsTo3D(items, characterLocations, timeMap, locationMap) {
 async function getMapModeProjection(db, timeMap, locationMap) {
   // Load all items and character locations
   const items = MistModel.items; // or load from DB if needed
-  const rows = await db.queryAsync(`SELECT name, time, location FROM CharacterLocations`);
+  const rows = await db.query(`SELECT name, time, location FROM CharacterLocations`);
   const characterLocations = rows.map(row => new CharacterLocation(row.name, row.time, row.location));
   return projectItemsTo3D(items, characterLocations, timeMap, locationMap);
 }
@@ -573,6 +587,32 @@ const defaultKeybinds = {
 let userKeybinds = { ...defaultKeybinds };
 
 /**
+ * Get the current keybind for an action.
+ * @param {string} action
+ * @returns {string|null}
+ */
+function getUserKeybind(action) {
+  return userKeybinds[action] || null;
+}
+
+/**
+ * Set a keybind for a specific action.
+ * @param {string} action
+ * @param {string} key
+ */
+function setUserKeybind(action, key) {
+  userKeybinds[action] = key;
+}
+
+/**
+ * Reset all user keybinds to default.
+ * @param {Object} [defaults]
+ */
+function resetUserKeybinds(defaults = null) {
+  userKeybinds = { ...(defaults || defaultKeybinds) };
+}
+
+/**
  * Allow user to change keybinds via input (X11 or fallback).
  * @param {function} promptFn - Function to prompt user for new key/mouse input.
  * @param {function} onUpdate - Callback when keybinds are updated.
@@ -610,6 +650,31 @@ const { v4: uuidv4 } = require('uuid');
 const AnomalousResults = new Map(); // eventId -> { event, provenance, confirms, fails, status }
 const BannedInteractions = new Set(); // Set of banned interaction types or event hashes
 const BannedUsers = new Set(); // Set of banned user IDs
+
+/**
+ * Get all anomalous results as an array.
+ * @returns {Array}
+ */
+function getAllAnomalousResults() {
+  return Array.from(AnomalousResults.values());
+}
+
+/**
+ * Remove an anomalous result by eventId.
+ * @param {string} eventId
+ */
+function removeAnomalousResult(eventId) {
+  AnomalousResults.delete(eventId);
+}
+
+/**
+ * Add or update an anomalous result.
+ * @param {string} eventId
+ * @param {Object} entry
+ */
+function setAnomalousResult(eventId, entry) {
+  AnomalousResults.set(eventId, entry);
+}
 
 // --- Provenance Helper ---
 function createProvenance(event, user) {
@@ -754,14 +819,14 @@ onEvent('anomalyVote', async (data) => {
 
 // --- Helper: Add/Remove Event from Persistent Tables ---
 async function addEventToPersistentTables(event, provenance, db) {
-  await db.queryAsync(
+  await db.query(
     `INSERT INTO PersistentEvents (eventId, eventData, provenance, timestamp) VALUES (?, ?, ?, NOW())`,
     [provenance.eventId, JSON.stringify(event), JSON.stringify(provenance)]
   );
 }
 
 async function removeEventFromPersistentTables(event, provenance, db) {
-  await db.queryAsync(
+  await db.query(
     `DELETE FROM PersistentEvents WHERE eventId = ?`,
     [provenance.eventId]
   );
@@ -785,26 +850,7 @@ function isInteractionBanned(event, user) {
 // --- Helper: Hash Interaction ---
 function hashInteraction(event) {
   // Simple hash: could use JSON.stringify + hash function for uniqueness
-  const crypto = {
-  randomBytes: (n) => Buffer.from(Array(n).fill(0)),
-  createHash: () => ({
-    update: () => ({
-      digest: () => 'stubhash'
-    })
-  }),
-  createSign: () => ({
-    update: () => {},
-    end: () => {},
-    sign: () => 'stubsig'
-  }),
-  createVerify: () => ({
-    update: () => {},
-    end: () => {},
-    verify: () => true
-  })
-};
-  return crypto.createHash('sha256')
-    .update(JSON.stringify(event));
+  return require('crypto').createHash('sha256').update(JSON.stringify(event)).digest('hex');
 }
 
 // --- Helper: Event Horizon User (Ban and Flush) ---
@@ -822,9 +868,9 @@ async function eventHorizonUser(user, db) {
 // --- Helper: Flush User Data ---
 async function flushUserData(user, db) {
   // Remove user from Users table and all related Mist data
-  await db.queryAsync(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
-  await db.queryAsync(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
-  await db.queryAsync(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
   // Optionally, remove or anonymize user data in other tables
 }
 
@@ -892,6 +938,8 @@ class MilestoneManager {
     return true;
   }
 
+  
+
   /**
    * Create a new tensor metric table for the given milestone order.
    */
@@ -941,6 +989,44 @@ class MilestoneManager {
   }
 }
 
+/**
+ * Get the current milestone order.
+ * @returns {number}
+ */
+function getCurrentMilestoneOrder() {
+  const current = milestoneManager.getCurrentMilestone();
+  return current ? current.order : 0;
+}
+
+/**
+ * Enable a projection or render mode if milestone is achieved.
+ * @param {string} modeType - 'projection' or 'render'
+ * @param {string} modeName
+ * @returns {boolean} - True if enabled, false otherwise.
+ */
+function enableModeIfMilestone(modeType, modeName) {
+  if (milestoneManager.isModeEnabled(modeType, modeName)) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * List all enabled projection and render modes.
+ * @returns {Object} { projectionModes: Array, renderModes: Array }
+ */
+function listEnabledModes() {
+  const projectionModes = [];
+  const renderModes = [];
+  ['3D', '4D', 'nD'].forEach(mode => {
+    if (milestoneManager.isModeEnabled('projection', mode)) projectionModes.push(mode);
+  });
+  ['standard', 'wave-based', 'quantum'].forEach(mode => {
+    if (milestoneManager.isModeEnabled('render', mode)) renderModes.push(mode);
+  });
+  return { projectionModes, renderModes };
+}
+
 // --- Example Usage ---
 // Initialize milestone manager (singleton or per-session as needed)
 const milestoneManager = new MilestoneManager();
@@ -972,7 +1058,7 @@ function nominateSuccessorPGP(userId, pgpPublicKey, db) {
   );
 }
 
-const { milestoneManager } = require('./MistTrackerVulkan.js');
+//const { milestoneManager } = require('./MistTrackerVulkan.js');
 
 function canUsePGPNomination() {
   return milestoneManager.getCurrentMilestone() && milestoneManager.getCurrentMilestone().order >= 6;
@@ -1003,11 +1089,12 @@ module.exports = {
   Line,
   DefiniteItem,
   CharacterLocation,
-  DefiniteItem,
   SelectionModeState,
 
   // --- In-Memory Model ---
-  MistModel,
+  resetMistModel,
+  addUserToMistModel,
+  findUserInMistModel,
 
   // --- Session and State Management ---
   startSession,
@@ -1061,12 +1148,13 @@ module.exports = {
   // --- Keybinds Management ---
   mapKeybinds,
   handleInput,
-  userKeybinds,
+  getUserKeybind,
+  setUserKeybind,
+  resetUserKeybinds,
 
   // --- Swarm Health Maintainer ---
   checkAndSyncEvent,
   checkAndSyncEvent,
-  AnomalousResults,
   isInteractionBanned,
   eventHorizonUser,
   flushUserData,
@@ -1075,7 +1163,12 @@ module.exports = {
   // --- Milestone Modeling ---
   Milestone,
   MilestoneManager,
-  milestoneManager,
+  getAllAnomalousResults,
+  removeAnomalousResult,
+  setAnomalousResult,
+  getCurrentMilestoneOrder,
+  enableModeIfMilestone,
+  listEnabledModes,
 
   // --- User Profile Management ---
   nominateSuccessor,
