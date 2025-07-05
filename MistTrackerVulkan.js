@@ -639,11 +639,190 @@ function storyWriter(rtfText, sourceFile) {
     provenance: provenance
   };
 }
+const { createCanvas, loadImage } = require('canvas');
+
+async function loadPulsarMapImage(imagePath) {
+  const img = await loadImage(imagePath);
+  const canvas = createCanvas(img.width, img.height);
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  return { canvas, ctx, width: img.width, height: img.height };
+}
+
+/**
+ * Detect the central point and radiating lines in a pulsar map image.
+ * Uses basic image processing; for production, consider Hough transform or OpenCV.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} width
+ * @param {number} height
+ * @returns {{center: {x, y}, lines: Array<{angle, points: Array<{x, y}>}>}}
+ */
+function detectCentralPointAndLines(ctx, width, height) {
+  // 1. Find the darkest pixel cluster (likely the center)
+  let minSum = 255 * 3, center = { x: width / 2, y: height / 2 };
+  for (let y = height * 0.3; y < height * 0.7; y++) {
+    for (let x = width * 0.3; x < width * 0.7; x++) {
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+      const sum = r + g + b;
+      if (sum < minSum) {
+        minSum = sum;
+        center = { x, y };
+      }
+    }
+  }
+  // 2. Radially sample lines from center, looking for dark pixels (lines)
+  const lines = [];
+  for (let angle = 0; angle < 2 * Math.PI; angle += Math.PI / 16) {
+    let points = [];
+    for (let r = 0; r < Math.min(width, height) / 2; r += 2) {
+      const x = Math.round(center.x + r * Math.cos(angle));
+      const y = Math.round(center.y + r * Math.sin(angle));
+      if (x < 0 || y < 0 || x >= width || y >= height) break;
+      const [red, green, blue] = ctx.getImageData(x, y, 1, 1).data;
+      if (red + green + blue < 100) points.push({ x, y });
+    }
+    if (points.length > 10) {
+      lines.push({ angle, points });
+    }
+  }
+  return { center, lines };
+}
+
+/**
+ * Parse binary tick marks along a pulsar line.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {Object} line - {angle, points}
+ * @returns {{binary: string, decimal: number}}
+ */
+function parseBinaryTicksAlongLine(ctx, line) {
+  // Sample along the line, detect tick marks (short/long dashes)
+  let binary = '';
+  let lastWasDash = false;
+  let dashLength = 0;
+  for (let i = 0; i < line.points.length; i++) {
+    const { x, y } = line.points[i];
+    const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+    const isDash = (r + g + b < 100);
+    if (isDash) {
+      dashLength++;
+      lastWasDash = true;
+    } else if (lastWasDash) {
+      // Classify dash as short (0) or long (1)
+      binary += dashLength > 6 ? '1' : '0';
+      dashLength = 0;
+      lastWasDash = false;
+    }
+  }
+  const decimal = parseInt(binary, 2);
+  return { binary, decimal };
+}
+
+/**
+ * Extract reference geometry (hydrogen molecule, human figures) from the image.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} width
+ * @param {number} height
+ * @returns {{hydrogen: Object, humans: Array<Object>}}
+ */
+function extractReferenceGeometry(ctx, width, height) {
+  // Detect two circles (hydrogen) near the top
+  // Detect two large bounding boxes (humans) on the right
+  // This is a simple heuristic; for production use shape detection libraries
+  let hydrogen = null, humans = [];
+  // Hydrogen: scan top 20% for circles
+  for (let y = 0; y < height * 0.2; y++) {
+    for (let x = 0; x < width; x++) {
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+      if (r + g + b < 100) {
+        // Found a dark pixel, check for circle by sampling neighbors
+        let count = 0;
+        for (let dx = -5; dx <= 5; dx++) {
+          for (let dy = -5; dy <= 5; dy++) {
+            if (dx * dx + dy * dy < 25) {
+              const [rr, gg, bb] = ctx.getImageData(x + dx, y + dy, 1, 1).data;
+              if (rr + gg + bb < 100) count++;
+            }
+          }
+        }
+        if (count > 30) {
+          hydrogen = hydrogen || [];
+          hydrogen.push({ x, y });
+        }
+      }
+    }
+  }
+  // Humans: scan right 40% for tall dark regions
+  for (let x = width * 0.6; x < width; x += 5) {
+    let yStart = null, yEnd = null;
+    for (let y = height * 0.3; y < height * 0.9; y += 2) {
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+      if (r + g + b < 100) {
+        if (yStart === null) yStart = y;
+        yEnd = y;
+      }
+    }
+    if (yStart !== null && yEnd - yStart > height * 0.2) {
+      humans.push({ x, y: yStart, height: yEnd - yStart });
+    }
+  }
+  return { hydrogen, humans };
+}
+
+/**
+ * Integrate parsed pulsar map data into MistModel and/or database.
+ * @param {Object} center
+ * @param {Array} pulsars - Array of {direction, period, position}
+ * @param {Object} referenceGeometry
+ * @param {Object} db
+ */
+function integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db) {
+  // Use MistModel and DefiniteItem from MistTrackerVulkan.js
+  pulsars.forEach((pulsar, idx) => {
+    const line = new Line('Pulsar', null);
+    MistModel.lines.push(line);
+    const item = new DefiniteItem(
+      `Pulsar-${idx}`,
+      line,
+      { x: pulsar.position.x, y: pulsar.position.y, angle: pulsar.direction }
+    );
+    item.period = pulsar.period;
+    MistModel.items.push(item);
+    // Optionally, persist to DB
+    if (db) {
+      db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
+        [1, `Pulsar-${idx}: period=${pulsar.period.decimal}`]
+      );
+    }
+  });
+  // Store reference geometry for scaling/orientation if needed
+  MistModel.referenceGeometry = referenceGeometry;
+}
+
 function mapRead(){
   const fs = require('fs');
   const { createCanvas, loadImage } = require('canvas'); // or use a native image library
   const options = { createCanvas, loadImage }
   mapReader(imagePath, options);
+}
+
+async function parsePulsarMap(imagePath, db) {
+  const { canvas, ctx, width, height } = await loadPulsarMapImage(imagePath);
+  const { center, lines } = detectCentralPointAndLines(ctx, width, height);
+  const referenceGeometry = extractReferenceGeometry(ctx, width, height);
+
+  const pulsars = [];
+  for (const line of lines) {
+    const period = parseBinaryTicksAlongLine(ctx, line);
+    pulsars.push({
+      direction: line.angle,
+      period,
+      position: { x: line.points[1].x, y: line.points[1].y }
+    });
+  }
+
+  integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db);
+  return { center, pulsars, referenceGeometry };
 }
 
 async function mapReader(imagePath, options = {}) {
