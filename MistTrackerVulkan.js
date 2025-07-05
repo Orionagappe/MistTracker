@@ -311,6 +311,107 @@ function ensureMistDatabase(db) {
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255), state TEXT, timestamp DATETIME)`);
 }
 
+// --- Data Integrity and Utilities ---
+
+/**
+ * Update Mist Data tables in the MySQL database using CSV files in the local filesystem.
+ * This replaces the previous Google Drive/Sheets logic.
+ * @param {object} db - MySQL connection.
+ * @param {string} [csvDir='./data'] - Directory containing CSV files.
+ */
+async function updateMistData(db, csvDir = './data') {
+  const fs = require('fs');
+  const path = require('path');
+  const csvParse = require('csv-parse/sync');
+
+  // List of table names to update (should match your schema)
+  const tables = [
+    'DataRelationships',
+    'WordDefinitions',
+    'Categories',
+    'Users'
+    // Add more as needed
+  ];
+
+  for (const table of tables) {
+    const csvPath = path.join(csvDir, `${table}.csv`);
+    if (!fs.existsSync(csvPath)) continue;
+    const content = fs.readFileSync(csvPath, 'utf8');
+    const rows = csvParse.parse(content, { columns: true, skip_empty_lines: true });
+    if (rows.length === 0) continue;
+
+    // Clear table before inserting new data
+    await db.query(`DELETE FROM ${MIST_SCHEMA}.${table}`);
+
+    // Insert each row
+    for (const row of rows) {
+      const columns = Object.keys(row);
+      const values = columns.map(col => row[col]);
+      const placeholders = columns.map(() => '?').join(',');
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${table} (${columns.join(',')}) VALUES (${placeholders})`,
+        values
+      );
+    }
+  }
+}
+
+/**
+ * Ensure a user exists in the Users table, or create if missing.
+ * @param {string} userEmail - User's email (used as accountId).
+ * @param {object} db - MySQL connection.
+ * @returns {Promise<Object>} - User record.
+ */
+async function loadMistUser(userEmail, db) {
+  const [rows] = await db.query(
+    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
+    [userEmail]
+  );
+  if (rows.length === 0) {
+    const userName = userEmail.split('@')[0];
+    await db.query(
+      `INSERT INTO ${MIST_SCHEMA}.${TABLES.users} (userName, accountId, dateCreated) VALUES (?, ?, NOW())`,
+      [userName, userEmail]
+    );
+    return { userName, accountId: userEmail };
+  }
+  return rows[0];
+}
+
+/**
+ * Get references to Mist Data tables (for "data" schema).
+ * @returns {Object} - Table name mapping for data schema.
+ */
+function getMistDataSheets() {
+  // If you use a separate schema for data, change 'mist_data' as needed
+  const DATA_SCHEMA = 'mist_data';
+  return {
+    dataRelationships: `${DATA_SCHEMA}.DataRelationships`,
+    wordDefinitions: `${DATA_SCHEMA}.WordDefinitions`,
+    categories: `${DATA_SCHEMA}.Categories`,
+    users: `${DATA_SCHEMA}.Users`
+    // Add more as needed
+  };
+}
+
+/**
+ * Get references to Mist main tables (for "mist" schema).
+ * @returns {Object} - Table name mapping for main schema.
+ */
+function getMistSheets() {
+  return {
+    persist: `${MIST_SCHEMA}.${TABLES.persist}`,
+    primaryLine: `${MIST_SCHEMA}.${TABLES.primaryLine}`,
+    categoryLine: `${MIST_SCHEMA}.${TABLES.categoryLine}`,
+    itemLine: `${MIST_SCHEMA}.${TABLES.itemLine}`,
+    dataRelationships: `${MIST_SCHEMA}.${TABLES.dataRelationships}`,
+    wordDefinitions: `${MIST_SCHEMA}.${TABLES.wordDefinitions}`,
+    categories: `${MIST_SCHEMA}.${TABLES.categories}`,
+    users: `${MIST_SCHEMA}.${TABLES.users}`
+    // Add more as needed
+  };
+}
+
 function ensureCharacterLocationsTable(db) {
   db.query(`
     CREATE TABLE IF NOT EXISTS CharacterLocations (
@@ -1117,6 +1218,10 @@ module.exports = {
 
   // --- Data Integrity and Utilities ---
   ensureMistDatabase,
+  updateMistData,
+  loadMistUser,
+  getMistDataSheets,
+  getMistSheets,
   ensureCharacterLocationsTable,
   loadMistUser,
   getMistDataTables,
