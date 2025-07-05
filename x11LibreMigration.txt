@@ -23,15 +23,26 @@ addItem                // Add a new item for a given category
 addCharacterLocation   // Add a character's location at a specific time
 getCharacterLocationsByTime // Get all character locations for a given time
 getCharacterLocation   // Get a character's location at a specific time
+resetMistModel         // Reset the in-memory MistModel to its initial state
+addUserToMistModel     // Add a user to MistModel
+findUserInMistModel    // Find a user in MistModel by accountId
 
 // --- Data Integrity and Utilities (MistTrackerVulkan.js) ---
 ensureMistDatabase     // Ensure the mySQL database and required tables exist
 updateMistData         // Update database with latest data from external sources (e.g., story files)
 ensureCharacterLocationsTable // Ensure the CharacterLocations table exists
 loadMistUser           // Load user data from database, create if missing
+getMistDataSheets      // Utility: Get references to data tables in the database (data schema)
+getMistSheets          // Utility: Get references to main tables in the database (main schema)
 getMistDataTables      // Utility: Get references to required tables in the database
 getMistTables          // Utility: Get references to main tables in the database
 loadWordDefinition     // Load dictionary definition for a word from database
+flushUserData          // Remove all user data from persistent tables
+banInteraction         // Ban a specific interaction type or event
+eventHorizonUser       // Ban user and flush all Mist data from host
+isInteractionBanned    // Check if an interaction is banned for a user
+hashInteraction        // Hash an event for moderation
+createProvenance       // Attach provenance to user actions/events
 
 // --- Viewport and UI Logic (MistCore.js, MistIllum.js) ---
 getMistViewportData    // Provide structured data for the UI (lines, categories, items)
@@ -111,6 +122,11 @@ MistMenuControl        // Menu control logic using viewport functions and 3D/nD 
 handleUserInput        // Route input to menu or environment logic
 handleMenuInput        // Handle input for menu objects
 handleEnvironmentInput // Handle input for environment (scene/world) objects
+getAvailableModes      // Returns available projection/render modes based on milestones
+showModeSelectionMenu  // UI for selecting modes, only if milestones are met
+trySwitchMode          // Attempt to switch mode, only if milestone is achieved
+trySwitchModes         // Alternate signature for mode switching
+getMenuOptionsWithMilestones // Get menu options for all milestone-enabled modes
 
 // --- Multi-User, P2P, and Real-Time Collaboration (MistMulti.js) ---
 addUserSession         // Add or update a user session in memory
@@ -189,11 +205,6 @@ milestoneManager       // Singleton instance for milestone tracking
 getCurrentMilestoneOrder // Get the highest achieved milestone order
 enableModeIfMilestone  // Enable a projection or render mode if milestone is achieved
 listEnabledModes       // List all enabled projection and render modes
-getAvailableModes      // Returns available projection/render modes based on milestones
-showModeSelectionMenu  // UI for selecting modes, only if milestones are met
-trySwitchMode          // Attempt to switch mode, only if milestone is achieved
-trySwitchModes         // Same as above, alternate signature
-getMenuOptionsWithMilestones // Get menu options for all milestone-enabled modes
 
 // --- User Profile Management (MistTrackerVulkan.js) ---
 nominateSuccessor              // Nominate a successor by email (before 6th milestone)
