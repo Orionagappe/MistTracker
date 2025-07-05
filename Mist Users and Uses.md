@@ -145,4 +145,4 @@
 
 \---
 
-**\*\*Each group chooses Mist for its unique combination of nD data modeling, real-time collaboration, provenance, moderation, and extensibility—features not found together in any other open-source solution.\*\***  
+**\*\*Each group should choose Mist for its unique combination of nD data modeling, real-time collaboration, provenance, moderation, and extensibility—features not found together in any other open-source solution.\*\***  
