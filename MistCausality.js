@@ -63,10 +63,17 @@ async function main() {
     }
   }
 
-  // 7. Setup current user in db
-  const userName = process.argv[2] || 'alice';
-  const userEmail = `${userName}@example.com`;
-  const user = await loadMistUser(userEmail, db);
+    // 7. Setup current user in db
+  let userName = process.argv[2] || process.env.USER || process.env.USERNAME || 'alice';
+  let userEmail = `${userName}@example.com`;
+
+  // Check if user exists in database, add if not
+  let user = await loadMistUser(userEmail, db);
+  if (!user || !user.accountId) {
+    // Use MistTrackerVulkan function to add user
+    await MistTracker.addUserToMistModel({ userName, accountId: userEmail });
+    user = { userName, accountId: userEmail };
+  }
 
   // 8. Launch MistIllum 3D environment
   // Prepare a minimal uiRenderer for CLI/X11 demo

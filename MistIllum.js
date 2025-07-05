@@ -1521,8 +1521,29 @@ class MistMenuControl {
   }
 
   async start(user) {
+    // If user is undefined, use default user from MistCausality (process.env.MIST_DEFAULT_USER)
+    if (!user) {
+      user = process.env.MIST_DEFAULT_USER || 'guest';
+    }
+
+    // Save user information in database using MistTrackerVulkan functions
+    const MistTracker = require('./MistTrackerVulkan.js');
+    const db = this.db;
+    let userObj;
+    if (typeof user === 'string') {
+      // If user is a string, treat as userName and construct email
+      const userEmail = `${user}@example.com`;
+      userObj = await MistTracker.loadMistUser(userEmail, db);
+    } else if (user && user.accountId) {
+      // If user is already an object with accountId, use as is
+      userObj = user;
+    } else {
+      // Fallback: treat as guest
+      userObj = await MistTracker.loadMistUser('guest@example.com', db);
+    }
+
     // Initialize session and viewport
-    this.session = require('./MistTrackerVulkan.js').startSession(user);
+    this.session = require('./MistTrackerVulkan.js').startSession(userObj);
     await initViewport(this.session, this.db);
     this.viewportData = await getMistViewportData(this.db);
     this.renderMenu();

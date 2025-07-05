@@ -1,15 +1,161 @@
-/**
- * Shared core logic for MistIllum.js and MistTrackerVulkan.js.
- * Move all shared functions/classes here to eliminate circular dependencies.
- */
+const MIST_SCHEMA = 'mist';
+const TABLES = {
+  persist: 'MistPersist',
+  primaryLine: 'PrimaryLine',
+  categoryLine: 'CategoryLine',
+  itemLine: 'ItemLine',
+  dataRelationships: 'DataRelationships',
+  wordDefinitions: 'WordDefinitions',
+  categories: 'Categories',
+  users: 'Users',
+  currentState: 'CurrentState'
+};
 
-// --- Viewport and Selection Utilities ---
-const {
-  loadPrimaryLine,
-  loadCategoriesForTime,
-  loadItemsForCategory,
-  getMistViewportData
-} = require('./MistTrackerVulkan.js');
+async function getMistViewportData(db) {
+  const primaryLine = await loadPrimaryLine(db);
+  const categoriesByTime = {};
+  for (let i = 0; i < primaryLine.length; i++) {
+    const categories = await loadCategoriesForTime(i + 1, db);
+    categoriesByTime[primaryLine[i]] = categories;
+  }
+  const itemsByCategory = {};
+  for (const time in categoriesByTime) {
+    for (let i = 0; i < categoriesByTime[time].length; i++) {
+      const category = categoriesByTime[time][i];
+      const items = await loadItemsForCategory(i + 1, db);
+      itemsByCategory[category] = items;
+    }
+  }
+  return {
+    primaryLine: primaryLine,
+    categories: categoriesByTime,
+    items: itemsByCategory
+  };
+}
+
+async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
+  let rows = await db.query(
+    `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
+  );
+  let primaryLine = rows.map(row => row.value);
+
+  // If no primary line exists, generate one from story context
+  if (primaryLine.length === 0 && storyText) {
+    const context = storyWriter(storyText, sourceFile);
+    // Use explicitNames or impliedNames as time indices
+    const timeIndices = context.explicitNames.length > 0
+      ? context.explicitNames
+      : context.impliedNames.length > 0
+        ? context.impliedNames
+        : ['Time0'];
+    for (const value of timeIndices) {
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.primaryLine} (value) VALUES (?)`,
+        [value]
+      );
+    }
+    // Reload after insertion
+    rows = await db.query(
+      `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
+    );
+    primaryLine = rows.map(row => row.value);
+  }
+  return primaryLine;
+}
+
+/**
+ * Loads categories for a given time (primary line index).
+ * If no categories exist, generates new ones using context from storyWriter.
+ * @param {number} primaryLineId - The primary line index (1-based).
+ * @param {object} db - Database connection.
+ * @param {string} [storyText] - Optional RTF/text for context.
+ * @param {string} [sourceFile] - Optional source file for provenance.
+ * @returns {Promise<Array>} - Array of category names.
+ */
+async function loadCategoriesForTime(primaryLineId, db, storyText = null, sourceFile = null) {
+  let rows = await db.query(
+    `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
+    [primaryLineId]
+  );
+  let categories = rows.map(row => row.category);
+
+  // If no categories exist, generate from story context
+  if (categories.length === 0 && storyText) {
+    const context = storyWriter(storyText, sourceFile);
+    // Use statements or fallback to generic categories
+    const categoryNames = context.statements.length > 0
+      ? context.statements.map(s => s.speaker || 'Unknown')
+      : ['Category0'];
+    for (const category of categoryNames) {
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
+        [primaryLineId, category]
+      );
+    }
+    // Reload after insertion
+    rows = await db.query(
+      `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
+      [primaryLineId]
+    );
+    categories = rows.map(row => row.category);
+  }
+  return categories;
+}
+
+async function loadItemsForCategory(categoryLineId, db) {
+  let [rows] = await db.query(
+    `SELECT itemValue FROM ${MIST_SCHEMA}.${TABLES.itemLine} WHERE categoryLineId = ? ORDER BY id`,
+    [categoryLineId]
+  );
+  return rows.map(row => row.itemValue);
+}
+
+async function addTimeIndex(value, db) {
+  await db.query(
+    `INSERT INTO ${MIST_SCHEMA}.${TABLES.primaryLine} (value) VALUES (?)`,
+    [value]
+  );
+  return loadPrimaryLine(db);
+}
+
+async function addCategory(primaryLineId, category, db) {
+  await db.query(
+    `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
+    [primaryLineId, category]
+  );
+  return loadCategoriesForTime(primaryLineId, db);
+}
+
+async function addItem(categoryLineId, itemValue, db) {
+  await db.query(
+    `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
+    [categoryLineId, itemValue]
+  );
+  return loadItemsForCategory(categoryLineId, db);
+}
+
+async function addCharacterLocation(name, time, location, db) {
+  await db.query(
+    `INSERT INTO CharacterLocations (name, time, location) VALUES (?, ?, ?)`,
+    [name, time, location]
+  );
+}
+
+async function getCharacterLocationsByTime(time, db) {
+  const rows = await db.query(
+    `SELECT name, location FROM CharacterLocations WHERE time = ?`,
+    [time]
+  );
+  return rows.map(row => new CharacterLocation(row.name, time, row.location));
+}
+
+async function getCharacterLocation(name, time, db) {
+  const rows = await db.query(
+    `SELECT location FROM CharacterLocations WHERE name = ? AND time = ?`,
+    [name, time]
+  );
+  return rows.length > 0 ? rows[0].location : null;
+}
 
 function advanceSelectionMode(selectionModeState, selection) {
   // Update selectedIndices and currentStep based on selection
@@ -82,48 +228,244 @@ class MapModeState {
 
 // --- Viewport Initialization and Rendering ---
 
-function initViewport(/* args */) {
-  // ...implementation...
+/**
+ * Initialize the viewport state for a session.
+ * Sets up initial selection indices and loads the first available data.
+ * @param {Object} session - The current session object.
+ * @param {Object} db - Database connection.
+ */
+async function initViewport(session, db) {
+  // Start a new session from DB user info if available
+  if (db && session && session.user) {
+    const { startSession } = require('./MistTrackerVulkan.js');
+    // Replace session object with a fresh session for this user
+    Object.assign(session, startSession(session.user));
+  }
+
+  // Load initial data for viewport
+  const viewportData = await getMistViewportData(db);
+
+  // Set initial selection indices if not already set
+  if (!session.selectionModeState) {
+    session.selectionModeState = new MapModeState();
+  }
+  session.selectedTimeIndex = 0;
+  session.selectedCategory = viewportData.categories[viewportData.primaryLine[0]]?.[0] || null;
+  session.selectedItem = viewportData.items[session.selectedCategory]?.[0] || null;
+  session.viewportData = viewportData;
 }
 
-function renderViewport(/* args */) {
-  // ...implementation...
+/**
+ * Render the viewport using the current session and UI renderer.
+ * @param {Object} session - The current session object.
+ * @param {Object} uiRenderer - The UI rendering interface.
+ */
+function renderViewport(session, uiRenderer) {
+  // Example: Render current selection and available options
+  const { primaryLine, categories, items } = session.viewportData || {};
+  const timeIdx = session.selectedTimeIndex || 0;
+  const timeValue = primaryLine ? primaryLine[timeIdx] : null;
+  const categoryList = categories && timeValue ? categories[timeValue] : [];
+  const category = session.selectedCategory || categoryList[0];
+  const itemList = items && category ? items[category] : [];
+  const item = session.selectedItem || itemList[0];
+
+  uiRenderer.showMessage(
+    `Time: ${timeValue || '-'}\nCategory: ${category || '-'}\nItem: ${item || '-'}`
+  );
 }
 
-// --- Selection Functions ---
-
-function selectTimeIndex(/* args */) {
-  // ...implementation...
+/**
+ * Handle selection of a time index.
+ * Updates session state and advances to category selection.
+ * @param {Object} session - The current session object.
+ * @param {number} index - Index of the selected time.
+ */
+function selectTimeIndex(session, index) {
+  session.selectedTimeIndex = index;
+  const timeValue = session.viewportData.primaryLine[index];
+  const categories = session.viewportData.categories[timeValue] || [];
+  session.selectedCategory = categories[0] || null;
+  session.selectedItem = session.selectedCategory
+    ? (session.viewportData.items[session.selectedCategory] || [])[0]
+    : null;
+  session.selectionModeState.currentStep = 'category';
 }
 
-function selectCategory(/* args */) {
-  // ...implementation...
+/**
+ * Handle selection of a category.
+ * Updates session state and advances to item selection.
+ * @param {Object} session - The current session object.
+ * @param {number} index - Index of the selected category.
+ */
+function selectCategory(session, index) {
+  const timeValue = session.viewportData.primaryLine[session.selectedTimeIndex];
+  const categories = session.viewportData.categories[timeValue] || [];
+  session.selectedCategory = categories[index];
+  session.selectedItem = session.selectedCategory
+    ? (session.viewportData.items[session.selectedCategory] || [])[0]
+    : null;
+  session.selectionModeState.currentStep = 'item';
 }
 
-function selectItem(/* args */) {
-  // ...implementation...
+/**
+ * Handle selection of an item.
+ * Updates session state to reflect the selected item.
+ * @param {Object} session - The current session object.
+ * @param {number} index - Index of the selected item.
+ */
+function selectItem(session, index) {
+  const items = session.viewportData.items[session.selectedCategory] || [];
+  session.selectedItem = items[index];
+  session.selectionModeState.currentStep = null; // End of selection path
 }
 
 // --- UI Input Functions ---
 
-function showAddTimeInput(/* args */) {
-  // ...implementation...
+/**
+ * Show input for adding a new time index.
+ * @param {Object} uiRenderer - The UI rendering interface.
+ * @param {Function} onAdd - Callback when a new time index is added.
+ * @param {Object} db - Database connection.
+ */
+function showAddTimeInput(uiRenderer, onAdd, db) {
+  uiRenderer.showInputBox('Enter new time index:', '', async (value) => {
+    if (value && value.trim()) {
+      await addTimeIndex(value.trim(), db);
+      if (typeof onAdd === 'function') onAdd(value.trim());
+    }
+  });
 }
 
-function showAddCategoryInput(/* args */) {
-  // ...implementation...
+/**
+ * Show input for adding a new category.
+ * @param {Object} uiRenderer - The UI rendering interface.
+ * @param {number} primaryLineId - The selected primary line index (1-based).
+ * @param {Function} onAdd - Callback when a new category is added.
+ * @param {Object} db - Database connection.
+ */
+function showAddCategoryInput(uiRenderer, primaryLineId, onAdd, db) {
+  uiRenderer.showInputBox('Enter new category:', '', async (value) => {
+    if (value && value.trim()) {
+      await addCategory(primaryLineId, value.trim(), db);
+      if (typeof onAdd === 'function') onAdd(value.trim());
+    }
+  });
 }
 
-function showAddItemInput(/* args */) {
-  // ...implementation...
+/**
+ * Show a generic input box for user input.
+ * @param {string} prompt - The prompt to display.
+ * @param {string} defaultValue - The default value for the input.
+ * @param {Function} onSubmit - Callback when input is submitted.
+ */
+function showInputBox(prompt, defaultValue, onSubmit) {
+  // This function is UI-agnostic; actual implementation is provided by uiRenderer
+  // Example usage: uiRenderer.showInputBox(prompt, defaultValue, onSubmit)
+  // This is a stub for integration.
 }
 
-function showInputBox(/* args */) {
-  // ...implementation...
+/**
+ * Handle user selection, update session state, and persist as needed.
+ * @param {Object} session - The current session object.
+ * @param {Object} selection - { type: 'time'|'category'|'item', index: number }
+ * @param {Object} db - Database connection.
+ */
+async function handleSelection(session, selection, db) {
+  // Update session state based on selection type
+  if (selection.type === 'time') {
+    selectTimeIndex(session, selection.index);
+  } else if (selection.type === 'category') {
+    selectCategory(session, selection.index);
+  } else if (selection.type === 'item') {
+    selectItem(session, selection.index);
+  }
+  // Optionally persist session state or path
+  if (session && session.user && session.path) {
+    const { saveSessionPath, saveCurrentState } = require('./MistTrackerVulkan.js');
+    await saveSessionPath(session.user.accountId, session.path, db);
+    await saveCurrentState(session.user.accountId, session, db);
+  }
 }
 
-function handleSelection(/* args */) {
-  // ...implementation...
+/**
+ * Show input for adding a new time index.
+ * @param {Object} uiRenderer - The UI rendering interface.
+ * @param {Function} onAdd - Callback when a new time index is added.
+ * @param {Object} db - Database connection.
+ */
+function showAddTimeInput(uiRenderer, onAdd, db) {
+  uiRenderer.showInputBox('Enter new time index:', '', async (value) => {
+    if (value && value.trim()) {
+      await addTimeIndex(value.trim(), db);
+      if (typeof onAdd === 'function') onAdd(value.trim());
+    }
+  });
+}
+
+/**
+ * Show input for adding a new category.
+ * @param {Object} uiRenderer - The UI rendering interface.
+ * @param {number} primaryLineId - The selected primary line index (1-based).
+ * @param {Function} onAdd - Callback when a new category is added.
+ * @param {Object} db - Database connection.
+ */
+function showAddCategoryInput(uiRenderer, primaryLineId, onAdd, db) {
+  uiRenderer.showInputBox('Enter new category:', '', async (value) => {
+    if (value && value.trim()) {
+      await addCategory(primaryLineId, value.trim(), db);
+      if (typeof onAdd === 'function') onAdd(value.trim());
+    }
+  });
+}
+
+/**
+ * Show input for adding a new item.
+ * @param {Object} uiRenderer - The UI rendering interface.
+ * @param {number} categoryLineId - The selected category line index (1-based).
+ * @param {Function} onAdd - Callback when a new item is added.
+ * @param {Object} db - Database connection.
+ */
+function showAddItemInput(uiRenderer, categoryLineId, onAdd, db) {
+  uiRenderer.showInputBox('Enter new item:', '', async (value) => {
+    if (value && value.trim()) {
+      await addItem(categoryLineId, value.trim(), db);
+      if (typeof onAdd === 'function') onAdd(value.trim());
+    }
+  });
+}
+
+/**
+ * Show a generic input box for user input.
+ * @param {string} prompt - The prompt to display.
+ * @param {string} defaultValue - The default value for the input.
+ * @param {Function} onSubmit - Callback when input is submitted.
+ */
+function showInputBox(prompt, defaultValue, onSubmit) {
+  // This function is UI-agnostic; actual implementation is provided by uiRenderer
+  // Example usage: uiRenderer.showInputBox(prompt, defaultValue, onSubmit)
+}
+
+/**
+ * Handle user selection, update session state, and persist as needed.
+ * @param {Object} session - The current session object.
+ * @param {Object} selection - { type: 'time'|'category'|'item', index: number }
+ * @param {Object} db - Database connection.
+ */
+async function handleSelection(session, selection, db) {
+  if (selection.type === 'time') {
+    selectTimeIndex(session, selection.index);
+  } else if (selection.type === 'category') {
+    selectCategory(session, selection.index);
+  } else if (selection.type === 'item') {
+    selectItem(session, selection.index);
+  }
+  // Optionally persist session state or path
+  if (session && session.user && session.path) {
+    const { saveSessionPath, saveCurrentState } = require('./MistTrackerVulkan.js');
+    await saveSessionPath(session.user.accountId, session.path, db);
+    await saveCurrentState(session.user.accountId, session, db);
+  }
 }
 
 // --- Export all shared modules ---
@@ -139,6 +481,11 @@ module.exports = {
   selectTimeIndex,
   selectCategory,
   selectItem,
+  showAddTimeInput,
+  showAddCategoryInput,
+  showAddItemInput,
+  showInputBox,
+  handleSelection,
   showAddTimeInput,
   showAddCategoryInput,
   showAddItemInput,
