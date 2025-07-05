@@ -43,3 +43,4 @@ MySQL*.*
 *.xml
 /test
 /node_modules
+/Documentation Archive
