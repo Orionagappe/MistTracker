@@ -7,30 +7,9 @@
 const {
   loadPrimaryLine,
   loadCategoriesForTime,
-  loadItemsForCategory
+  loadItemsForCategory,
+  getMistViewportData
 } = require('./MistTrackerVulkan.js');
-
-async function getMistViewportData(db) {
-  const primaryLine = await loadPrimaryLine(db);
-  const categoriesByTime = {};
-  for (let i = 0; i < primaryLine.length; i++) {
-    const categories = await loadCategoriesForTime(i + 1, db);
-    categoriesByTime[primaryLine[i]] = categories;
-  }
-  const itemsByCategory = {};
-  for (const time in categoriesByTime) {
-    for (let i = 0; i < categoriesByTime[time].length; i++) {
-      const category = categoriesByTime[time][i];
-      const items = await loadItemsForCategory(i + 1, db);
-      itemsByCategory[category] = items;
-    }
-  }
-  return {
-    primaryLine: primaryLine,
-    categories: categoriesByTime,
-    items: itemsByCategory
-  };
-}
 
 function advanceSelectionMode(selectionModeState, selection) {
   // Update selectedIndices and currentStep based on selection

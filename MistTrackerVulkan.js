@@ -144,22 +144,22 @@ function saveCurrentState(sessionId, state, db) {
 }
 
 // --- Data Model and CRUD Operations ---
-function createPrimaryLine(db) {
-  db.query(
+async function createPrimaryLine(db) {
+  await db.query(
     `CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.${TABLES.primaryLine} (id INT AUTO_INCREMENT PRIMARY KEY, value VARCHAR(255))`
   );
   return loadPrimaryLine(db);
 }
 
-function addCategoryLine(primaryLineId, category, db) {
-  db.query(
+async function addCategoryLine(primaryLineId, category, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
     [primaryLineId, category]
   );
 }
 
-function addItemLine(categoryLineId, itemValue, db) {
-  db.query(
+async function addItemLine(categoryLineId, itemValue, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
     [categoryLineId, itemValue]
   );
@@ -242,31 +242,32 @@ async function loadCategoriesForTime(primaryLineId, db, storyText = null, source
   return categories;
 }
 
-function loadItemsForCategory(categoryLineId, db) {
-  return db.query(
+async function loadItemsForCategory(categoryLineId, db) {
+  let [rows] = await db.query(
     `SELECT itemValue FROM ${MIST_SCHEMA}.${TABLES.itemLine} WHERE categoryLineId = ? ORDER BY id`,
     [categoryLineId]
-  ).then(rows => rows.map(row => row.itemValue));
+  );
+  return rows.map(row => row.itemValue);
 }
 
-function addTimeIndex(value, db) {
-  db.query(
+async function addTimeIndex(value, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.primaryLine} (value) VALUES (?)`,
     [value]
   );
   return loadPrimaryLine(db);
 }
 
-function addCategory(primaryLineId, category, db) {
-  db.query(
+async function addCategory(primaryLineId, category, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
     [primaryLineId, category]
   );
   return loadCategoriesForTime(primaryLineId, db);
 }
 
-function addItem(categoryLineId, itemValue, db) {
-  db.query(
+async function addItem(categoryLineId, itemValue, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
     [categoryLineId, itemValue]
   );
@@ -453,15 +454,37 @@ function getMistTables() {
   };
 }
 
-function loadWordDefinition(word, db) {
-  return db.query(
+async function loadWordDefinition(word, db) {
+  let [rows] = await db.query(
     `SELECT * FROM ${MIST_SCHEMA}.${TABLES.wordDefinitions} WHERE word = ?`,
     [word]
-  ).then(rows => rows[0] || null);
+  );
+  return rows[0] || null;
 }
 
 // --- Viewport and UI Logic ---
 
+async function getMistViewportData(db) {
+  const primaryLine = await loadPrimaryLine(db);
+  const categoriesByTime = {};
+  for (let i = 0; i < primaryLine.length; i++) {
+    const categories = await loadCategoriesForTime(i + 1, db);
+    categoriesByTime[primaryLine[i]] = categories;
+  }
+  const itemsByCategory = {};
+  for (const time in categoriesByTime) {
+    for (let i = 0; i < categoriesByTime[time].length; i++) {
+      const category = categoriesByTime[time][i];
+      const items = await loadItemsForCategory(i + 1, db);
+      itemsByCategory[category] = items;
+    }
+  }
+  return {
+    primaryLine: primaryLine,
+    categories: categoriesByTime,
+    items: itemsByCategory
+  };
+}
 
 
 // --- Advanced Rendering and Navigation (Vulkan/OpenCL-ready) ---
@@ -1153,7 +1176,6 @@ function nominateSuccessorFlexible(userId, value, db) {
 }
 
 const {
-  getMistViewportData,
   advanceSelectionMode,
   getViewportCentering,
   isItemVisible,
@@ -1227,6 +1249,7 @@ module.exports = {
   getMistDataTables,
   getMistTables,
   loadWordDefinition,
+  getMistViewportData,
 
   // --- Advanced Rendering and Navigation ---
   gramSchmidt,
