@@ -42,3 +42,5 @@ Planck_*.png
 MySQL*.*
 *.xml
 /test
+/node_modules
+/Documentation Archive

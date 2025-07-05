@@ -5,7 +5,7 @@
       "type": "node",
       "request": "launch",
       "name": "Launch MistIllum",
-      "program": "${workspaceFolder}/MistIllumStartup.js"
+      "program": "${workspaceFolder}/MistCausality.js"
     },
     {
       "type": "cmake",

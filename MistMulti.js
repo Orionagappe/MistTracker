@@ -36,6 +36,8 @@ async function discoverHostSession(publicKey, dht) {
 }
 
 // --- Authentication & Secure Communication ---
+const crypto = require('crypto');
+
 function generateSessionToken() {
   return crypto.randomBytes(32).toString('hex');
 }
@@ -67,14 +69,37 @@ function onEvent(type, handler) {
   if (EventHandlers[type]) EventHandlers[type].push(handler);
 }
 
+function emitEvent(type, data, senderSessionToken) {
+  // Call all local handlers for this event type
+  if (EventHandlers[type]) {
+    EventHandlers[type].forEach(handler => {
+      try {
+        handler(data, senderSessionToken);
+      } catch (err) {
+        // Optionally log or handle handler errors
+        console.error(`Error in event handler for type "${type}":`, err);
+      }
+    });
+  }
+  // Optionally broadcast to peers if this is a P2P event
+  if (type !== 'presence' && typeof broadcastToPeers === 'function') {
+    broadcastToPeers({
+      type,
+      data,
+      senderSessionToken
+    });
+  }
+}
+
 // When syncing state:
+/*
 emitEvent('physicsUpdate', {
   mode: physicsEngine.mode,
   metric: physicsEngine.mode === '3D' ? physicsEngine.metric3D : physicsEngine.metric4D,
   G: physicsEngine.G,
   M: physicsEngine.M
 }, senderSessionToken);
-
+*/
 // On receiving a physicsUpdate event:
 function onPhysicsUpdate(data) {
   physicsEngine.setMode(data.mode);
@@ -134,25 +159,7 @@ function syncStateWithPeer(peerSessionToken, state) {
 encryptMessage: Use recipient's public key to encrypt the message.
 Use elliptic curve cryptography (ECC), curve can be derived from map.png if desired.
 */
-const crypto = {
-  randomBytes: (n) => Buffer.from(Array(n).fill(0)),
-  createHash: () => ({
-    update: () => ({
-      digest: () => 'stubhash'
-    })
-  }),
-  createSign: () => ({
-    update: () => {},
-    end: () => {},
-    sign: () => 'stubsig'
-  }),
-  createVerify: () => ({
-    update: () => {},
-    end: () => {},
-    verify: () => true
-  })
-};
-
+//const crypto = require('crypto');
 const EC = require('elliptic').ec;
 const ec = new EC('secp256k1'); // Example curve; replace with curve derived from map.png if needed
 
@@ -197,17 +204,6 @@ function canSendMessage(sessionToken, messageSize) {
   rate.bytesSent += messageSize;
   userRateLimits.set(sessionToken, rate);
   return true;
-}
-
-// Example: In MistMulti.js event handler
-function onEvent(type, handler) {
-  if (EventHandlers[type]) {
-    EventHandlers[type].push((data, senderSessionToken) => {
-      // Only process if senderSessionToken matches the current user's session
-      if (senderSessionToken !== currentSessionToken) return;
-      handler(data, senderSessionToken);
-    });
-  }
 }
 
 function createProvenance(actionType, user, sessionToken, context = {}) {
@@ -279,6 +275,109 @@ async function grimReaper(db, tensorId, onAnomaly) {
   return rows;
 }
 
+// --- Reed-Solomon Inspired FEC for MistMulti.js Message Reliability ---
+
+/**
+ * Encode a message with Reed-Solomon FEC using a JS library (e.g., reed-solomon npm package).
+ * Splits the message into data shards and adds parity shards.
+ * @param {Buffer} message - The message to encode.
+ * @param {number} dataShards - Number of data shards.
+ * @param {number} parityShards - Number of parity shards.
+ * @returns {Array<Buffer>} - Array of encoded shards (data + parity).
+ */
+function encodeMessageFEC(message, dataShards = 4, parityShards = 2) {
+  const ReedSolomon = require('reed-solomon');
+  const rs = ReedSolomon.create(dataShards, parityShards);
+
+  // Pad message to fit evenly into dataShards
+  const shardSize = Math.ceil(message.length / dataShards);
+  const padded = Buffer.concat([message, Buffer.alloc(shardSize * dataShards - message.length)]);
+  const shards = [];
+  for (let i = 0; i < dataShards; i++) {
+    shards.push(padded.slice(i * shardSize, (i + 1) * shardSize));
+  }
+
+  // Generate parity shards
+  const parity = rs.encode(shards);
+  return shards.concat(parity);
+}
+
+/**
+ * Decode and recover the original message from received shards using Reed-Solomon FEC.
+ * @param {Array<Buffer>} shards - Array of received shards (some may be null).
+ * @param {number} dataShards - Number of data shards.
+ * @param {number} parityShards - Number of parity shards.
+ * @returns {Buffer|null} - The recovered message, or null if recovery failed.
+ */
+function decodeMessageFEC(shards, dataShards = 4, parityShards = 2) {
+  const ReedSolomon = require('reed-solomon');
+  const rs = ReedSolomon.create(dataShards, parityShards);
+
+  // Attempt to reconstruct missing shards
+  if (!rs.decode(shards)) return null;
+
+  // Concatenate data shards to recover the original message
+  return Buffer.concat(shards.slice(0, dataShards));
+}
+
+/**
+ * Send a message with FEC shards to all peers.
+ * Each peer receives a shard (data or parity); lost shards can be recovered if enough are received.
+ * @param {Buffer} message - The message to send.
+ * @param {number} dataShards
+ * @param {number} parityShards
+ */
+function sendReliableMessageToPeers(message, dataShards = 4, parityShards = 2) {
+  const shards = encodeMessageFEC(message, dataShards, parityShards);
+  let i = 0;
+  for (const [peerId, peer] of Peers.entries()) {
+    // Distribute shards round-robin or by some assignment
+    const shard = shards[i % shards.length];
+    peer.send(JSON.stringify({
+      type: 'FEC_SHARD',
+      shardIndex: i % shards.length,
+      totalShards: shards.length,
+      dataShards,
+      parityShards,
+      payload: shard.toString('base64')
+    }));
+    i++;
+  }
+}
+
+/**
+ * Handle incoming FEC_SHARD messages and attempt to reconstruct the original message.
+ * Store shards by message/session ID and attempt decode when enough are received.
+ */
+const receivedShards = new Map(); // messageId -> { shards: [], count: 0, total: 0, dataShards, parityShards }
+
+function onFECShardMessage(msg, messageId) {
+  const { shardIndex, totalShards, dataShards, parityShards, payload } = msg;
+  if (!receivedShards.has(messageId)) {
+    receivedShards.set(messageId, {
+      shards: Array(totalShards).fill(null),
+      count: 0,
+      total: totalShards,
+      dataShards,
+      parityShards
+    });
+  }
+  const entry = receivedShards.get(messageId);
+  if (!entry.shards[shardIndex]) {
+    entry.shards[shardIndex] = Buffer.from(payload, 'base64');
+    entry.count++;
+  }
+  // Attempt decode if enough shards received
+  if (entry.count >= entry.dataShards) {
+    const recovered = decodeMessageFEC(entry.shards, entry.dataShards, entry.parityShards);
+    if (recovered) {
+      // Handle the recovered message (e.g., emit event)
+      // handleReliableMessage(recovered);
+      receivedShards.delete(messageId);
+    }
+  }
+}
+
 // --- Export new multi-user/P2P functions ---
 module.exports = {
 
@@ -299,5 +398,9 @@ module.exports = {
   decryptMessage,
   canSendMessage,
   createProvenance,
-  grimReaper
+  grimReaper,
+  encodeMessageFEC,
+  decodeMessageFEC,
+  sendReliableMessageToPeers,
+  onFECShardMessage
 };

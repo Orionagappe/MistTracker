@@ -80,48 +80,13 @@ const metricTensor5D = new MetricTensor(
   ]
 );
 
-// --- 7D Metric Tensor for Multi-Time Physics ---
-const metricTensor7D = new MetricTensor(
-  7,
-  [7, 7],
-  [
-    [-1, 0, 0, 0, 0, 0, 0], // T[0] (quantum time)
-    [0, -1, 0, 0, 0, 0, 0], // T[1] (interaction time)
-    [0, 0, -1, 0, 0, 0, 0], // T[2] (cosmo time)
-    [0, 0, 0, 1, 0, 0, 0],  // X
-    [0, 0, 0, 0, 1, 0, 0],  // Y
-    [0, 0, 0, 0, 0, 1, 0],  // Z
-    [0, 0, 0, 0, 0, 0, 1]   // W (energy/gravity)
-  ]
-);
-
-// Map 3 time dimensions to 3D space
-function timeToSpace(T) {
-  let scale = 1;
-  let X = scale * T[0] * T[1];
-  let Y = scale * T[1] * T[2];
-  let Z = scale * T[2] * T[0];
-  return [X, Y, Z];
-}
-
 
 // --- Wave Function Utilities ---
-function waveFunction(amplitude, k, x, omega, T) {
-  // T: [T0, T1, T2]
-  let t = T[1];
+function waveFunction(amplitude, k, x, omega, t) {
+  // psi = A * exp(i * (k * x - omega * t))
+  // Returns complex value as [real, imag]
   const phase = k * x - omega * t;
   return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
-}
-
-function quantumMassEvolution(masses, T) {
-  // masses: [m1, m2, m3], T[0]: quantum time
-  return masses.map((m, i) => m * Math.exp(-T[0] / (i + 1)));
-}
-
-function gravWaveDeltaV(T) {
-  // T[2]: cosmological time
-  const C = 299792458;
-  return 1.5e-55 * C * T[2];
 }
 
 function interferencePattern(source, obj1, obj2, lambda) {
@@ -282,31 +247,6 @@ function rastRenderMap(wireframe, textureMap, waveParams = {}) {
     }
   });
   return raster;
-}
-
-function generateLandscapeFromTime(T0_range, T1_range, T2_range, scale = 1) {
-  let landscape = [];
-  for (let t0 of T0_range) {
-    for (let t1 of T1_range) {
-      for (let t2 of T2_range) {
-        let [x, y, z] = timeToSpace([t0, t1, t2]);
-        landscape.push({ x, y, z, T: [t0, t1, t2] });
-      }
-    }
-  }
-  return landscape;
-}
-
-function setObjectPositionFromTime(object, T) {
-  let [x, y, z] = timeToSpace(T);
-  object.position = [x, y, z];
-  object.T = T;
-  return object;
-}
-
-function moveObjectInTime(object, dT) {
-  let newT = object.T.map((t, i) => t + (dT[i] || 0));
-  return setObjectPositionFromTime(object, newT);
 }
 
 // --- Audio and Soundscape ---
@@ -669,105 +609,6 @@ class warnTypes {
 }
 
 // --- Overlay and Menu ---
-/**
- * Display a menu overlay for the Mist solution.
- * The menu is shown as a dialog box and can be opened/closed with the "esc" key.
- * Allows the user to alter any MistIllum setting (globalVolume, precision, mode selection, etc).
- * @param {Object} overlayConfig - Optional menu structure, callbacks, etc.
- */
-function mistMenu(overlayConfig = {}) {
-  // Use global.uiRenderer if available, otherwise fallback to CLI
-  const ui = global.uiRenderer;
-  let menuOpen = true;
-
-  // Helper to build menu options dynamically from current settings
-  function buildMenuOptions(currentConfig, onUpdate) {
-    const options = [
-      {
-        label: 'Global Volume',
-        type: 'slider',
-        min: 0, max: 1, step: 0.01,
-        value: currentConfig.globalVolume || 1,
-        onChange: (val) => {
-          volumeGlobal(val);
-          if (onUpdate) onUpdate({ ...currentConfig, globalVolume: val });
-        }
-      },
-      {
-        label: 'Precision',
-        type: 'number',
-        min: 1, max: 18, step: 1,
-        value: currentConfig.precision || 3,
-        onChange: (val) => {
-          // Example: set milestone for precision
-          if (typeof milestoneManager !== 'undefined') {
-            milestoneManager.achieveMilestone(val);
-          }
-          if (onUpdate) onUpdate({ ...currentConfig, precision: val });
-        }
-      },
-      {
-        label: 'Mode Selection',
-        type: 'button',
-        onClick: () => {
-          showModeSelectionMenu(ui, (selected) => {
-            if (onUpdate) onUpdate({ ...currentConfig, mode: selected });
-          });
-        }
-      },
-      // Add more settings as needed (ambient volume, interaction volume, etc.)
-      {
-        label: 'Close Menu',
-        type: 'button',
-        onClick: () => {
-          menuOpen = false;
-          if (ui && ui.closeDialog) ui.closeDialog();
-        }
-      }
-    ];
-    return options;
-  }
-
-  // Initial config (could be loaded from session or overlayConfig)
-  let currentConfig = overlayConfig.currentConfig || {};
-
-  // Handler for updating config from menu
-  function handleUpdate(newConfig) {
-    currentConfig = { ...currentConfig, ...newConfig };
-    // Optionally persist config or update session
-  }
-
-  // Show the menu dialog
-  function showMenuDialog() {
-    if (ui && ui.showSettingsMenu) {
-      ui.showSettingsMenu(buildMenuOptions(currentConfig, handleUpdate), currentConfig);
-    } else {
-      // CLI fallback: print options and wait for input
-      console.log('MistIllum Menu:');
-      console.log('1. Global Volume');
-      console.log('2. Precision');
-      console.log('3. Mode Selection');
-      console.log('4. Close Menu');
-      // Implement CLI input handling as needed
-    }
-  }
-
-  // Keyboard event handler for "esc" to close menu
-  function onKeyDown(e) {
-    if (e.key === 'Escape' || e.key === 'esc') {
-      menuOpen = false;
-      if (ui && ui.closeDialog) ui.closeDialog();
-      window.removeEventListener('keydown', onKeyDown);
-    }
-  }
-
-  // Open the menu and listen for "esc"
-  showMenuDialog();
-  if (typeof window !== 'undefined' && window.addEventListener) {
-    window.addEventListener('keydown', onKeyDown);
-  }
-}
-
 // --- Integration with Core and Multi-User Modules ---
 /**
  * Display a menu overlay for the Mist solution.
@@ -775,6 +616,7 @@ function mistMenu(overlayConfig = {}) {
  * Allows the user to alter any MistIllum setting (globalVolume, precision, mode selection, etc).
  * @param {Object} overlayConfig - Optional menu structure, callbacks, etc.
  */
+
 function mistMenu(overlayConfig = {}) {
   // Use global.uiRenderer if available, otherwise fallback to CLI
   const ui = global.uiRenderer;
@@ -868,80 +710,189 @@ function mistMenu(overlayConfig = {}) {
   }
 }
 
-// --- Physics Engine for MistTrackerVulkan.js ---
+/**
+ * Launch the core MistIllum environment (single-user mode).
+ * Initializes the physics engine, menu, and rendering loop.
+ * @param {Object} config - Optional configuration object.
+ * @param {Object} uiRenderer - UI rendering interface.
+ */
+function launchMistCore(config = {}, uiRenderer = global.uiRenderer) {
+  const db = config.db || null;
+  const menuControl = new MistMenuControl(db, uiRenderer);
+  menuControl.start(config.userName || 'guest');
+  // Start main render loop (single-user)
+  function mainLoop() {
+    menuControl.renderMenu();
+    setTimeout(mainLoop, 1000 / 30); // 30 FPS
+  }
+  mainLoop();
+  console.log('MistIllum core launched (single-user mode).');
+}
+
+/**
+ * Launch MistIllum in multi-user (P2P) mode.
+ * Sets up event handlers and connects to MistMulti for real-time collaboration.
+ * @param {Object} config - Optional configuration object.
+ * @param {Object} uiRenderer - UI rendering interface.
+ */
+function launchMistMulti(config = {}, uiRenderer = global.uiRenderer) {
+  const MistMulti = require('./MistMulti.js');
+  const db = config.db || null;
+  const menuControl = new MistMenuControl(db, uiRenderer);
+  menuControl.start(config.userName || 'guest');
+
+  // Register multi-user event handlers
+  MistMulti.onEvent('selection', (data, sender) => {
+    // Handle selection event from peers
+    if (menuControl.session) {
+      require('./MistTrackerVulkan.js').handleSelectionBackend(
+        menuControl.session,
+        data.selection,
+        menuControl.selectionModeState
+      );
+      menuControl.renderMenu();
+    }
+  });
+
+  MistMulti.onEvent('physicsUpdate', (data, sender) => {
+    if (menuControl.physicsEngine) {
+      menuControl.physicsEngine.setMode(data.mode);
+      // Optionally update other physics state
+    }
+  });
+
+  // Start main render loop (multi-user)
+  function mainLoop() {
+    menuControl.renderMenu();
+    setTimeout(mainLoop, 1000 / 30); // 30 FPS
+  }
+  mainLoop();
+  console.log('MistIllum launched in multi-user (P2P) mode.');
+}
+
+/**
+ * Shutdown MistIllum session, clean up resources, and close UI.
+ * @param {Object} menuControl - The active MistMenuControl instance.
+ * @param {Function} [onShutdown] - Optional callback after shutdown.
+ */
+function shutdownMist(menuControl, onShutdown) {
+  if (menuControl && typeof menuControl.uiRenderer?.closeDialog === 'function') {
+    menuControl.uiRenderer.closeDialog();
+  }
+  // Additional cleanup logic (e.g., save session, disconnect peers)
+  if (typeof onShutdown === 'function') onShutdown();
+  console.log('MistIllum session shutdown complete.');
+}
 
 // --- Dimensional Stacking ---
 /**
  * Stack objects or spaces in higher dimensions.
+ * Each object is placed along the specified dimension, spaced equally.
  * @param {Array} objects - Array of objects or spaces to stack.
- * @param {number} dimension - The dimension to stack along.
- * @returns {Array} - Stacked representation.
+ * @param {number} dimension - The dimension to stack along (e.g., 3 for W in 4D).
+ * @returns {Array} - Stacked representation (array of objects with updated positions).
  */
 function dimensionalStack(objects, dimension) {
-  // Implement stacking logic for nD objects
+  // Place each object at a unique coordinate along the stacking dimension
+  return objects.map((obj, idx) => {
+    let pos = Array.isArray(obj.position) ? [...obj.position] : [0, 0, 0, 0];
+    pos[dimension] = idx; // Stack along the specified dimension
+    return { ...obj, position: pos };
+  });
 }
 
-// --- Distance and Size Change from Different Dimensional Perspectives ---
 /**
  * Calculate apparent distance and size of an object from a given dimensional perspective.
- * @param {Object} object - The object to observe.
+ * If observerDimension < objectDimension, projects object down and scales size.
+ * @param {Object} object - The object to observe (with position and size).
  * @param {number} observerDimension - The dimension of the observer.
  * @param {number} objectDimension - The dimension of the object.
  * @returns {Object} - { apparentDistance, apparentSize }
  */
 function perspectiveTransform(object, observerDimension, objectDimension) {
-  // Implement transformation logic
+  // Project position to observerDimension
+  const pos = object.position || [];
+  const projected = pos.slice(0, observerDimension);
+  // Apparent size shrinks exponentially with extra dimensions
+  const apparentSize = (object.size || 1) / Math.pow(2, objectDimension - observerDimension);
+  // Apparent distance is Euclidean in observerDimension
+  const apparentDistance = Math.sqrt(projected.reduce((sum, v) => sum + v * v, 0));
+  return { apparentDistance, apparentSize };
 }
 
-// --- Higher Dimensions Observed in Lower Dimensions Through Motion/Time ---
 /**
  * Project a higher-dimensional object into a lower dimension over time or motion.
- * @param {Object} object - The higher-dimensional object.
+ * @param {Object} object - The higher-dimensional object (with position).
  * @param {number} fromDimension - The original dimension.
  * @param {number} toDimension - The target (lower) dimension.
- * @param {number} time - Time parameter for the projection.
+ * @param {number} time - Time parameter for the projection (optional).
  * @returns {Object} - Lower-dimensional projection at given time.
  */
-function projectToLowerDimension(object, fromDimension, toDimension, time) {
-  // Implement projection logic
-  return null;
+function projectToLowerDimension(object, fromDimension, toDimension, time = 0) {
+  // Simple orthogonal projection: drop extra dimensions
+  const pos = object.position || [];
+  const projected = pos.slice(0, toDimension);
+  // Optionally, animate projection over time (e.g., interpolate extra dims to zero)
+  if (fromDimension > toDimension && time > 0) {
+    for (let i = toDimension; i < fromDimension; i++) {
+      projected[toDimension - 1] += (pos[i] || 0) * Math.exp(-time); // Fade out extra dims
+    }
+  }
+  return { ...object, position: projected };
 }
 
-// --- Single Object in Higher Dimension as Multiple in Lower Dimensions ---
 /**
  * Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices.
- * @param {Object} object - The higher-dimensional object.
+ * @param {Object} object - The higher-dimensional object (with position).
  * @param {number} lowerDimension - The dimension to decompose into.
- * @returns {Array} - Array of lower-dimensional objects.
+ * @returns {Array} - Array of lower-dimensional objects (slices).
  */
 function decomposeHigherToLower(object, lowerDimension) {
-  // Implement decomposition logic
-  return null;
+  // For each possible value in the extra dimensions, create a slice
+  const pos = object.position || [];
+  const extraDims = pos.slice(lowerDimension);
+  const slices = [];
+  // For simplicity, create one slice per unique value in the first extra dimension
+  const numSlices = extraDims.length > 0 ? Math.max(1, Math.round(Math.abs(extraDims[0]) || 1)) : 1;
+  for (let i = 0; i < numSlices; i++) {
+    const slicePos = pos.slice(0, lowerDimension);
+    slices.push({ ...object, position: slicePos, sliceIndex: i });
+  }
+  return slices;
 }
 
-// --- Extra Dimensions as Objects vs Space ---
 /**
  * Treat extra dimensions as either spatial axes or as object properties.
- * @param {Object} object - The object to analyze.
+ * @param {Object} object - The object to analyze (with position).
  * @param {boolean} asObject - If true, treat extra dimensions as object properties.
  * @returns {Object} - Modified object or space.
  */
 function extraDimensionMode(object, asObject) {
-  // Implement logic for treating extra dimensions as objects or space
-  return null;
+  const pos = object.position || [];
+  if (asObject) {
+    // Move extra dimensions into object properties
+    const extra = pos.slice(3); // Assume 3D is spatial, rest are "object"
+    return { ...object, extraDimensions: extra, position: pos.slice(0, 3) };
+  } else {
+    // Treat all as spatial
+    return { ...object, position: pos };
+  }
 }
 
-// --- Limited vs Infinite Extra Dimensions ---
 /**
  * Set limits or boundaries for extra dimensions.
- * @param {Object} space - The space or object.
+ * @param {Object} space - The space or object (with position).
  * @param {number} dimension - The dimension to limit.
  * @param {number|null} limit - The limit value, or null for infinite.
  * @returns {Object} - Modified space/object.
  */
 function setDimensionLimit(space, dimension, limit) {
-  // Implement logic for limiting or making dimensions infinite
-  return null;
+  // If limit is null, dimension is infinite; otherwise, clamp position
+  let pos = Array.isArray(space.position) ? [...space.position] : [];
+  if (limit !== null && pos[dimension] !== undefined) {
+    pos[dimension] = Math.max(Math.min(pos[dimension], limit), -limit);
+  }
+  return { ...space, position: pos, dimensionLimits: { ...(space.dimensionLimits || {}), [dimension]: limit } };
 }
 
 // --- Energy Distribution Through Extra Dimensions ---
@@ -981,37 +932,87 @@ function deformObject(object, energyDistribution){
 // --- Non-Flat Extra Dimensions (Caveat) ---
 /**
  * Apply curvature or non-flat geometry to extra dimensions.
- * @param {Object} space - The space or object.
- * @param {Function} curvatureFn - Function describing curvature.
- * @returns {Object} - Modified space/object with curvature.
+ * Modifies the object's position or space according to a curvature function (e.g., Schwarzschild, spherical, or custom).
+ * @param {Object} space - The space or object (with position: Array).
+ * @param {Function} curvatureFn - Function describing curvature. Should accept (position:Array) and return new position.
+ * @returns {Object} - Modified space/object with curved position.
  */
 function applyCurvature(space, curvatureFn) {
-  // Implement non-flat geometry logic
-  return null;
+  if (!space || typeof curvatureFn !== 'function') return space;
+  // Example: Apply curvature to position vector
+  const pos = Array.isArray(space.position) ? space.position : [];
+  const curvedPos = curvatureFn(pos);
+  return { ...space, position: curvedPos };
 }
 
-// --- Physics Engine Class ---
+// --- Example curvature functions for integration ---
+
+/**
+ * Schwarzschild curvature for 4D spacetime (inspired by pureMathPhysicsEngine.js).
+ * @param {Array<number>} pos - [t, x, y, z]
+ * @param {Object} params - { G, M, c }
+ * @returns {Array<number>} - Curved position vector
+ */
+function schwarzschildCurvature(pos, params = { G: 6.67430e-11, M: 1, c: 299792458 }) {
+  const [t, x, y, z] = pos;
+  const { G, M, c } = params;
+  const r = Math.sqrt((x || 0) ** 2 + (y || 0) ** 2 + (z || 0) ** 2) || 1;
+  const factor = Math.sqrt(1 - (2 * G * M) / (r * c * c));
+  // Time dilation and spatial contraction
+  return [
+    t * factor,
+    x / factor,
+    y / factor,
+    z / factor
+  ];
+}
+
+/**
+ * Spherical curvature for extra dimensions (maps to a hypersphere).
+ * @param {Array<number>} pos - Position vector.
+ * @param {number} radius - Sphere radius.
+ * @returns {Array<number>} - Curved position vector.
+ */
+function sphericalCurvature(pos, radius = 1) {
+  const norm = Math.sqrt(pos.reduce((sum, v) => sum + v * v, 0)) || 1;
+  return pos.map(v => (radius * v) / norm);
+}
+
+
+// --- Physics Engine for Menu and Menu Navigation (UI only) ---
 class MistPhysicsEngine {
+  /**
+   * This class is used for menu logic, menu navigation, and UI-related physics only.
+   * It does NOT handle 3D/4D world interactions, rendering, or simulation.
+   */
   constructor(config = {}) {
     this.config = config;
-    // Store state, constants, etc.
+    this.menuState = null;
+    this.selectionIndex = 0;
+    this.options = [];
   }
 
-  // Example: Step simulation forward in time
-  step(deltaTime) {
-    // Advance physics simulation by deltaTime
+  setMenuOptions(options) {
+    this.options = options;
+    this.selectionIndex = 0;
   }
 
-  // Example: Attach to MistTrackerVulkan.js scene or data
-  attachScene(scene) {
-    this.scene = scene;
+  moveSelection(delta) {
+    if (!this.options.length) return;
+    this.selectionIndex = (this.selectionIndex + delta + this.options.length) % this.options.length;
   }
 
-  // Example: Query or update object state
-  updateObjectState(objectId, newState) {
-    // Update object in simulation
+  selectCurrent() {
+    if (this.options[this.selectionIndex] && typeof this.options[this.selectionIndex].action === 'function') {
+      this.options[this.selectionIndex].action();
+    }
+  }
+
+  getCurrentOption() {
+    return this.options[this.selectionIndex] || null;
   }
 }
+
 // --- Metric Tensor for 3D Mode ---
 class MetricTensor3D {
   constructor() {
@@ -1038,7 +1039,7 @@ class MetricTensor3D {
 }
 
 // --- Metric Tensor for nD Physics ---
-class MetricTensor {
+class MetricTensorND {
   /**
    * @param {number} rank - The rank (dimensions) of the tensor.
    * @param {Array<Array<number>>} data - The metric tensor matrix.
@@ -1092,11 +1093,11 @@ class MetricTensor {
   }
 }
 
-class MistPhysicsEngine {
+class MistPhysicsEngineND {
   constructor(config = {}) {
     // Default to 4D Minkowski metric, but allow 3D mode
     this.metric3D = new MetricTensor3D();
-    this.metric4D = config.metric || new MetricTensor(4, [
+    this.metric4D = config.metric || new MetricTensorND(4, [
       [-1, 0, 0, 0],
       [0, 1, 0, 0],
       [0, 0, 1, 0],
@@ -1143,75 +1144,234 @@ class MistPhysicsEngine {
     return Math.abs(this.metric3D.intervalSquared(p1, p2)) < threshold;
   }
 
-  bellTheorem = (a, b, c, d) => {
-    return Math.abs(a * b + c * d) <= 2; // Bell's inequality
-};
-//pilot wave theory only for use on defined objects
-pilotWave = (psi, potential) => {
-    // Calculate the pilot wave based on the wave function and potential
-    return psi * potential; // Simplified representation
-};
+/**
+   * Bell's theorem culling logic.
+   * Returns true if Bell's inequality is satisfied for the given variables.
+   * @param {number} a
+   * @param {number} b
+   * @param {number} c
+   * @param {number} d
+   * @returns {boolean}
+   */
+  bellTheorem(a, b, c, d) {
+    return Math.abs(a * b + c * d) <= 2;
+  }
 
-locality = (p1, p2) => {
-    // Check if two points are local to each other
-    return D(p1, p2) < 1; // Local if distance is less than 1 unit
-}
+  // --- Pilot Wave Theory ---
+  /**
+   * Pilot wave theory for defined objects.
+   * Calculates the pilot wave based on the wave function and potential.
+   * @param {number} psi - The wave function value.
+   * @param {number} potential - The potential at the object's location.
+   * @returns {number}
+   */
+  pilotWave(psi, potential) {
+    return psi * potential;
+  }
 
-// relationship between light wave emitted by a single source object and the wave arrives at two objects at the sme time
-lightWave = (source, obj1, obj2) => {
+  // --- Locality ---
+  /**
+   * Check if two points are local to each other (distance < 1 unit).
+   * @param {Array<number>} p1 - First point [x, y, z].
+   * @param {Array<number>} p2 - Second point [x, y, z].
+   * @returns {boolean}
+   */
+  locality(p1, p2) {
+    const distance = Math.sqrt(
+      Math.pow(p2[0] - p1[0], 2) +
+      Math.pow(p2[1] - p1[1], 2) +
+      Math.pow(p2[2] - p1[2], 2)
+    );
+    return distance < 1;
+  }
+
+  // --- Light Wave Propagation ---
+  /**
+   * Relationship between light wave emitted by a single source object and the wave arriving at two objects.
+   * Returns the time taken for light to reach each object.
+   * @param {Array<number>} source - Source position [x, y, z].
+   * @param {Array<number>} obj1 - First object position [x, y, z].
+   * @param {Array<number>} obj2 - Second object position [x, y, z].
+   * @returns {{time1: number, time2: number}}
+   */
+  lightWave(source, obj1, obj2) {
+    const D = (p1, p2) => Math.sqrt(
+      Math.pow(p2[0] - p1[0], 2) +
+      Math.pow(p2[1] - p1[1], 2) +
+      Math.pow(p2[2] - p1[2], 2)
+    );
     const distance1 = D(source, obj1);
     const distance2 = D(source, obj2);
-    const time1 = distance1 / C; // Time taken for light to reach obj1
+    return {
+      time1: distance1 / this.C,
+      time2: distance2 / this.C
+    };
+  }
+
+  // --- Relative Acceleration ---
+  /**
+   * Relative acceleration between two velocities over time.
+   * @param {number} v1 - Initial velocity.
+   * @param {number} v2 - Final velocity.
+   * @param {number} t - Time interval.
+   * @returns {number}
+   */
+  relativeAcceleration(v1, v2, t) {
+    return (v2 - v1) / t;
+  }
+
+eulerLagrange(L, q, qDot, t = 0, dt = 1e-5) {
+    const n = q.length;
+    const result = [];
+    for (let i = 0; i < n; i++) {
+      // ∂L/∂q_i
+      const dq = [...q];
+      dq[i] += dt;
+      const dL_dq = (L(dq, qDot, t) - L(q, qDot, t)) / dt;
+
+      // ∂L/∂qDot_i
+      const dqDot = [...qDot];
+      dqDot[i] += dt;
+      const dL_dqDot = (L(q, dqDot, t) - L(q, qDot, t)) / dt;
+
+      // d/dt(∂L/∂qDot_i) ≈ (∂L/∂qDot_i at t+dt - ∂L/∂qDot_i at t) / dt
+      const dqDotNext = [...qDot];
+      dqDotNext[i] += dt;
+      const dL_dqDot_next = (L(q, dqDotNext, t + dt) - L(q, qDot, t + dt)) / dt;
+      const d_dt_dL_dqDot = (dL_dqDot_next - dL_dqDot) / dt;
+
+      // Euler-Lagrange: d/dt(∂L/∂qDot_i) - ∂L/∂q_i
+      result.push(d_dt_dL_dqDot - dL_dq);
+    }
+    return result;
+  }
+
+  /**
+   * Gauss's law for magnetism: net magnetic flux through any closed surface is zero.
+   * @param {number|Array<number>} B - Magnetic field or array of flux values.
+   * @param {number} [tolerance=1e-10]
+   * @returns {boolean}
+   */
+  gaussLawMagnetism(B, tolerance = 1e-10) {
+    let totalFlux = Array.isArray(B) ? B.reduce((sum, val) => sum + val, 0) : B;
+    return Math.abs(totalFlux) < tolerance;
+  }
+
+  /**
+   * Principle of stationary action: action is stationary (variation ≈ 0).
+   * @param {number|Array<number>} actionVariation
+   * @param {number} [tolerance=1e-10]
+   * @returns {boolean}
+   */
+  principleOfStationaryAction(actionVariation, tolerance = 1e-10) {
+    let variation = Array.isArray(actionVariation)
+      ? Math.max(...actionVariation.map(Math.abs))
+      : Math.abs(actionVariation);
+    return variation < tolerance;
+  }
+
+  /**
+   * Compose multiple wave objects by summing intensities and averaging properties.
+   * @param {Array<Object>} waves
+   * @returns {Object}
+   */
+  composeWaves(waves) {
+    if (!Array.isArray(waves) || waves.length === 0) return { intensity: 0 };
+    let totalIntensity = 0;
+    let totalFrequency = 0;
+    let totalWavelength = 0;
+    let count = 0;
+    waves.forEach(wave => {
+      totalIntensity += wave.intensity || 0;
+      if (wave.frequency) totalFrequency += wave.frequency;
+      if (wave.wavelength) totalWavelength += wave.wavelength;
+      count++;
+    });
+    return {
+      intensity: totalIntensity,
+      frequency: count ? totalFrequency / count : undefined,
+      wavelength: count ? totalWavelength / count : undefined
+    };
+  }
+
+  /**
+   * Relationship between intensity and object hardness.
+   * @param {number} intensity
+   * @param {number} hardness
+   * @returns {number}
+   */
+  intensityHardnessRelationship(intensity, hardness) {
+    return intensity * hardness;
+  }
+
+  /**
+   * Particle-wave duality model.
+   * @param {Object} particle - { position, mass }
+   * @param {Object} wave - { wavelength, frequency }
+   * @returns {Object}
+   */
+  particleWaveDuality(particle, wave) {
+    return {
+      position: particle.position,
+      mass: particle.mass,
+      wavelength: wave.wavelength,
+      frequency: wave.frequency,
+      duality: true
+    };
+  };
+
 }
 
-eulerLagrange = (L, q, qDot) => {
-    // L is the Lagrangian, q is the generalized coordinate, and qDot is the generalized velocity
-    // Placeholder: Euler-Lagrange equation cannot be computed symbolically in JS
-    return null;
-};
-
-gaussLawMagnetism = (B) => {
-    // Gauss's law for magnetism states that the magnetic flux through a closed surface is zero
-    return Math.abs(B) === 0; // Returns true if magnetic field B is zero
-};
-// principle of stationary action
-principleOfStationaryAction = (action) => {
-    // The action is stationary if the variation of the action is zero
-    // In actual physics, this would be: d/dt(∂L/∂qDot) - ∂L/∂q = 0
-    // Here, we return a placeholder as this cannot be computed directly in JS
-    return action === 0; // Placeholder: Returns true if the action is stationary
-};
-
-// multiple wave object composer
-composeWaves = (waves) => {
-    // waves is an array of wave objects
-    return waves.reduce((acc, wave) => {
-        acc.intensity += wave.intensity; // Sum intensities of all waves
-        return acc;
-    }, { intensity: 0 }); // Initialize accumulator with intensity 0
-};
-
-// intensity relationship with object hardness
-intensityHardnessRelationship = (intensity, hardness) => {
-    // Placeholder relationship: Higher intensity leads to higher hardness
-    return intensity * hardness; // Returns a product of intensity and hardness
-};
-
-// Example usage of the intensity relationship
-intensity = 10; // Example intensity
-hardness = 5; // Example hardness
-hardnessEffect = intensityHardnessRelationship(intensity, hardness);
-
-// Partical wave duality
-particleWaveDuality = (particle, wave) => {
-    // Placeholder for particle-wave duality relationship
-    return {
-        position: particle.position,
-        wavelength: wave.wavelength,
-        frequency: wave.frequency
-    };
-};
-
+function eulerLagrange(L, q, qDot, t = 0, dt = 1e-5) {
+  return (new MistPhysicsEngineND()).eulerLagrange(L, q, qDot, t, dt);
+}
+function gaussLawMagnetism(B, tolerance = 1e-10) {
+  return (new MistPhysicsEngineND()).gaussLawMagnetism(B, tolerance);
+}
+function principleOfStationaryAction(actionVariation, tolerance = 1e-10) {
+  return (new MistPhysicsEngineND()).principleOfStationaryAction(actionVariation, tolerance);
+}
+function composeWaves(waves) {
+  return (new MistPhysicsEngineND()).composeWaves(waves);
+}
+function intensityHardnessRelationship(intensity, hardness) {
+  return (new MistPhysicsEngineND()).intensityHardnessRelationship(intensity, hardness);
+}
+function particleWaveDuality(particle, wave) {
+  return (new MistPhysicsEngineND()).particleWaveDuality(particle, wave);
+}
+function bellTheorem(a, b, c, d) {
+  return (new MistPhysicsEngineND()).bellTheorem(a, b, c, d);
+}
+function pilotWave(psi, potential) {
+  return (new MistPhysicsEngineND()).pilotWave(psi, potential);
+}
+function locality(p1, p2) {
+  return (new MistPhysicsEngineND()).locality(p1, p2);
+}
+function lightWave(source, obj1, obj2) {
+  return (new MistPhysicsEngineND()).lightWave(source, obj1, obj2);
+}
+function relativeAcceleration(v1, v2, t) {
+  return (new MistPhysicsEngineND()).relativeAcceleration(v1, v2, t);
+}
+/**
+ * Attempt to switch to a new projection or render mode, only if milestone is met.
+ * Calls onSuccess if allowed, onFail with a message if not.
+ * @param {string} modeType - 'projection' or 'render'
+ * @param {string} modeName - The mode to switch to (e.g., '3D', 'nD', 'wave-based')
+ * @param {Function} onSuccess - Callback if mode switch is allowed.
+ * @param {Function} onFail - Callback if not allowed.
+ */
+function trySwitchModes(modeType, modeName, onSuccess, onFail) {
+  const { milestoneManager } = require('./MistTrackerVulkan.js');
+  if (milestoneManager && milestoneManager.isModeEnabled(modeType, modeName)) {
+    if (typeof onSuccess === 'function') onSuccess();
+  } else {
+    if (typeof onFail === 'function') {
+      onFail(`Mode "${modeName}" not enabled. Achieve the required milestone to unlock.`);
+    }
+  }
 }
 
 function navigate3D(currentPosition, direction, step, physicsEngine) {
@@ -1226,8 +1386,6 @@ function renderObject3D(object, camera, physicsEngine) {
   // ...pass projected to renderer
   return projected;
 }
-
-
 
 // Example: Gravity at a point in 3D
 function getGravityAtPoint(point, physicsEngine) {
@@ -1244,9 +1402,9 @@ function navigate(currentPosition, direction, step, physicsEngine) {
 }
 
 // Rendering with wave-based intensity
-function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}, T = [0,0,0]) {
-  // Project object's nD position to 3D for rendering using timeToSpace
-  let projected = timeToSpace(T);
+function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
+  // Project object's nD position to 3D for rendering
+  let projected = physicsEngine.projectToView(object.position, viewRank);
   // Apply wave function for intensity modulation
   if (waveParams.amplitude && waveParams.k && waveParams.omega && waveParams.t !== undefined) {
     const [real, imag] = waveFunction(
@@ -1256,7 +1414,7 @@ function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams 
       waveParams.omega,
       waveParams.t
     );
-    object.intensity = real;
+    object.intensity = real; // Use real part for intensity
   }
   // ...pass projected and intensity to renderer
   return projected;
@@ -1278,18 +1436,56 @@ function checkCollisionWithWave(obj1, obj2, physicsEngine, lambda) {
   return collision;
 }
 
+/**
+ * Remove an object from the scene/model and handle user-specific logic.
+ * If the object is a user, call deleteUser.
+ * @param {Object} obj - The object to cull (should have at least a type and userId if user).
+ */
 function cullObject(obj) {
-  // Remove object from scene/model
-  // ...existing culling logic...
+  // Remove object from scene/model (implementation depends on your scene graph or object list)
+  if (typeof globalScene !== 'undefined' && Array.isArray(globalScene.objects)) {
+    globalScene.objects = globalScene.objects.filter(o => o !== obj);
+  }
+  // If the object is a user, handle user deletion logic
   if (obj.type === 'user' && obj.userId) {
     deleteUser(obj.userId);
   }
+  // Optionally, log or trigger events for culling
+  if (typeof global !== 'undefined' && global.onObjectCulled) {
+    global.onObjectCulled(obj);
+  }
 }
 
+/**
+ * Remove a user from active sessions and database, or warn/add strike based on probability.
+ * Uses a probability distribution to determine if the user is removed or warned.
+ * @param {string} userId - The user ID to delete or warn.
+ */
 function deleteUser(userId) {
-  // Remove user from active sessions and either warn and add strike to user or remove from DB
-  // Use probability distribution to determine if user is removed or warned
-  // ...implement DB/user removal logic...
+  // Remove user from active sessions
+  if (typeof globalActiveUsers !== 'undefined') {
+    delete globalActiveUsers[userId];
+  }
+  // Probability-based removal or warning (inspired by pureMathPhysicsEngine.js)
+  const removalProbability = 0.8; // 80% chance to remove, 20% to warn (adjust as needed)
+  if (Math.random() < removalProbability) {
+    // Remove user from database (pseudo-code, replace with real DB logic)
+    if (typeof globalDB !== 'undefined' && typeof globalDB.removeUser === 'function') {
+      globalDB.removeUser(userId);
+    }
+    // Optionally, broadcast removal event
+    if (typeof global !== 'undefined' && global.onUserRemoved) {
+      global.onUserRemoved(userId);
+    }
+  } else {
+    // Warn user and add a strike (pseudo-code)
+    if (typeof globalUserWarnings !== 'undefined') {
+      globalUserWarnings[userId] = (globalUserWarnings[userId] || 0) + 1;
+    }
+    if (typeof global !== 'undefined' && global.onUserWarned) {
+      global.onUserWarned(userId);
+    }
+  }
 }
 
 const {
@@ -1309,11 +1505,10 @@ const {
   showAddItemInput,
   showInputBox,
   handleSelection
-} = require('./MistTrackerVulkan.js');
-
-const { MistPhysicsEngine, MetricTensor, MetricTensor3D } = require('./MistIllum.js');
+} = require('./MistCore.js');
 
 // --- Menu State ---
+
 class MistMenuControl {
   constructor(db, uiRenderer) {
     this.db = db;
@@ -1468,8 +1663,6 @@ function handleEnvironmentInput(input, envState) {
 }
 
 // --- Import MilestoneManager from MistTrackerVulkan.js ---
-const { MilestoneManager, milestoneManager } = require('./MistTrackerVulkan.js');
-
 // --- Milestone-Aware Mode Selection ---
 
 /**
@@ -1579,8 +1772,6 @@ module.exports = {
   tileSpan,
   LightSource,
   waveFunction,
-  quantumMassEvolution,
-  gravWaveDeltaV,
   interferencePattern,
   applyInterference,
   createVoxelObject,
@@ -1594,9 +1785,6 @@ module.exports = {
   worldWarp,
   wireFrames,
   rastRenderMap,
-  setObjectPositionFromTime,
-  moveObjectInTime,
-  generateLandscapeFromTime,
   audioQueue,
   volumeGlobal,
   volumeAmbient,
@@ -1622,6 +1810,8 @@ module.exports = {
   energyDistribution,
   deformObject,
   applyCurvature,
+  schwarzschildCurvature,
+  sphericalCurvature,
   MistPhysicsEngine,
   bellTheorem,
   pilotWave,
@@ -1636,7 +1826,7 @@ module.exports = {
   particleWaveDuality,
   MetricTensor,
   MetricTensor3D,
-  MetricTensor7D,
+  MetricTensorND,
   getGravityAtPoint,
   navigate,
   navigate3D,

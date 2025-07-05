@@ -20,40 +20,23 @@ class DefiniteItem {
 }
 
 class CharacterLocation {
-  constructor(name, timeVec, location) {
+  constructor(name, time, location) {
     this.name = name;
-    this.timeVec = timeVec; // [T0, T1, T2]
+    this.time = time;
     this.location = location; // Could be a string or a 3D vector
-  }
-}
-
-class DefiniteItem {
-  constructor(value, line, position, timeVec = [0,0,0]) {
-    this.value = value;
-    this.line = line;
-    this.position = position;
-    this.timeVec = timeVec; // [T0, T1, T2]
-    this.relatedItems = [];
   }
 }
 
 class SelectionModeState {
   constructor() {
     this.currentStep = 'time'; // 'time', 'category', 'item', etc.
-    this.selectedIndices = []; // [t0Index, t1Index, t2Index, categoryIndex, itemIndex, ...]
+    this.selectedIndices = []; // [timeIndex, categoryIndex, itemIndex, ...]
     this.inputBoxOpen = false;
-    this.inputBoxType = null;
+    this.inputBoxType = null; // 'time', 'category', 'item'
   }
 }
 
-class MapModeState {
-  constructor() {
-    this.cameraPosition = [0, 0, 10];
-    this.projectionType = 'perspective'; // or 'orthographic'
-    this.focusItem = null;
-    // Add more as needed for 3D navigation
-  }
-}
+
 
 // --- In-Memory Data Model ---
 const MistModel = {
@@ -63,6 +46,33 @@ const MistModel = {
   items: [],
   sessions: [],
 };
+
+function resetMistModel() {
+  MistModel.lines = [];
+  MistModel.users = [];
+  MistModel.categories = [];
+  MistModel.items = [];
+  MistModel.sessions = [];
+}
+
+/**
+ * Add a user to MistModel.
+ * @param {Object} user - User object with at least userName and accountId.
+ */
+function addUserToMistModel(user) {
+  if (!MistModel.users.find(u => u.accountId === user.accountId)) {
+    MistModel.users.push(user);
+  }
+}
+
+/**
+ * Find a user in MistModel by accountId.
+ * @param {string} accountId
+ * @returns {Object|null}
+ */
+function findUserInMistModel(accountId) {
+  return MistModel.users.find(u => u.accountId === accountId) || null;
+}
 
 // --- Database Schema/Table Names ---
 const MIST_SCHEMA = 'mist';
@@ -79,11 +89,6 @@ const TABLES = {
 };
 
 // --- Session and State Management ---
-
-const { createMistConnection } = require('./MistMySQL');
-const db = createMistConnection(config);
-await db.connectAsync();
-
 function startSession(user) {
   return {
     user,
@@ -91,8 +96,7 @@ function startSession(user) {
     opened: {},
     vectors: [],
     lastSelection: null,
-    timestamp: Date.now(),
-    timeVec: [0, 0, 0] // Add time vector to session
+    timestamp: Date.now()
   };
 }
 
@@ -140,88 +144,153 @@ function saveCurrentState(sessionId, state, db) {
 }
 
 // --- Data Model and CRUD Operations ---
-function createPrimaryLine(db) {
-  db.query(
+async function createPrimaryLine(db) {
+  await db.query(
     `CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.${TABLES.primaryLine} (id INT AUTO_INCREMENT PRIMARY KEY, value VARCHAR(255))`
   );
   return loadPrimaryLine(db);
 }
 
-function addCategoryLine(primaryLineId, category, db) {
-  db.query(
+async function addCategoryLine(primaryLineId, category, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
     [primaryLineId, category]
   );
 }
 
-function addItemLine(categoryLineId, itemValue, db) {
-  db.query(
+async function addItemLine(categoryLineId, itemValue, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
     [categoryLineId, itemValue]
   );
 }
 
-function loadPrimaryLine(db) {
-  return db.query(
+/**
+ * Loads the primary line from the database.
+ * If no primary line exists, generates a new one using context from storyWriter.
+ * @param {object} db - Database connection.
+ * @param {string} [storyText] - Optional RTF/text for context.
+ * @param {string} [sourceFile] - Optional source file for provenance.
+ * @returns {Promise<Array>} - Array of primary line values.
+ */
+async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
+  let rows = await db.query(
     `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
-  ).then(rows => rows.map(row => row.value));
+  );
+  let primaryLine = rows.map(row => row.value);
+
+  // If no primary line exists, generate one from story context
+  if (primaryLine.length === 0 && storyText) {
+    const context = storyWriter(storyText, sourceFile);
+    // Use explicitNames or impliedNames as time indices
+    const timeIndices = context.explicitNames.length > 0
+      ? context.explicitNames
+      : context.impliedNames.length > 0
+        ? context.impliedNames
+        : ['Time0'];
+    for (const value of timeIndices) {
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.primaryLine} (value) VALUES (?)`,
+        [value]
+      );
+    }
+    // Reload after insertion
+    rows = await db.query(
+      `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
+    );
+    primaryLine = rows.map(row => row.value);
+  }
+  return primaryLine;
 }
 
-function loadCategoriesForTime(primaryLineId, db) {
-  return db.query(
+/**
+ * Loads categories for a given time (primary line index).
+ * If no categories exist, generates new ones using context from storyWriter.
+ * @param {number} primaryLineId - The primary line index (1-based).
+ * @param {object} db - Database connection.
+ * @param {string} [storyText] - Optional RTF/text for context.
+ * @param {string} [sourceFile] - Optional source file for provenance.
+ * @returns {Promise<Array>} - Array of category names.
+ */
+async function loadCategoriesForTime(primaryLineId, db, storyText = null, sourceFile = null) {
+  let rows = await db.query(
     `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
     [primaryLineId]
-  ).then(rows => rows.map(row => row.category));
+  );
+  let categories = rows.map(row => row.category);
+
+  // If no categories exist, generate from story context
+  if (categories.length === 0 && storyText) {
+    const context = storyWriter(storyText, sourceFile);
+    // Use statements or fallback to generic categories
+    const categoryNames = context.statements.length > 0
+      ? context.statements.map(s => s.speaker || 'Unknown')
+      : ['Category0'];
+    for (const category of categoryNames) {
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
+        [primaryLineId, category]
+      );
+    }
+    // Reload after insertion
+    rows = await db.query(
+      `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
+      [primaryLineId]
+    );
+    categories = rows.map(row => row.category);
+  }
+  return categories;
 }
 
-function loadItemsForCategory(categoryLineId, db) {
-  return db.query(
+async function loadItemsForCategory(categoryLineId, db) {
+  let [rows] = await db.query(
     `SELECT itemValue FROM ${MIST_SCHEMA}.${TABLES.itemLine} WHERE categoryLineId = ? ORDER BY id`,
     [categoryLineId]
-  ).then(rows => rows.map(row => row.itemValue));
+  );
+  return rows.map(row => row.itemValue);
 }
 
-function addTimeIndex(value, db) {
-  db.query(
+async function addTimeIndex(value, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.primaryLine} (value) VALUES (?)`,
     [value]
   );
   return loadPrimaryLine(db);
 }
 
-function addCategory(primaryLineId, category, db) {
-  db.query(
+async function addCategory(primaryLineId, category, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
     [primaryLineId, category]
   );
   return loadCategoriesForTime(primaryLineId, db);
 }
 
-function addItem(categoryLineId, itemValue, db) {
-  db.query(
+async function addItem(categoryLineId, itemValue, db) {
+  await db.query(
     `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
     [categoryLineId, itemValue]
   );
   return loadItemsForCategory(categoryLineId, db);
 }
 
-async function addCharacterLocation(name, timeVec, location, db) {
-  await db.queryAsync(
-    `INSERT INTO CharacterLocations (name, t0, t1, t2, location) VALUES (?, ?, ?, ?, ?)`,
-    [name, timeVec[0], timeVec[1], timeVec[2], location]
+async function addCharacterLocation(name, time, location, db) {
+  await db.query(
+    `INSERT INTO CharacterLocations (name, time, location) VALUES (?, ?, ?)`,
+    [name, time, location]
   );
 }
 
-async function getCharacterLocationsByTime(timeVec, db) {
-  const rows = await db.queryAsync(
-    `SELECT name, location FROM CharacterLocations WHERE t0 = ? AND t1 = ? AND t2 = ?`,
-    [timeVec[0], timeVec[1], timeVec[2]]
+async function getCharacterLocationsByTime(time, db) {
+  const rows = await db.query(
+    `SELECT name, location FROM CharacterLocations WHERE time = ?`,
+    [time]
   );
-  return rows.map(row => new CharacterLocation(row.name, timeVec, row.location));
+  return rows.map(row => new CharacterLocation(row.name, time, row.location));
 }
 
 async function getCharacterLocation(name, time, db) {
-  const rows = await db.queryAsync(
+  const rows = await db.query(
     `SELECT location FROM CharacterLocations WHERE name = ? AND time = ?`,
     [name, time]
   );
@@ -241,6 +310,107 @@ function ensureMistDatabase(db) {
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.categories} (timeIndex VARCHAR(255), category VARCHAR(255))`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.users} (userName VARCHAR(255), accountId VARCHAR(255), dateCreated DATETIME, lastSession DATETIME, sessions TEXT)`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255), state TEXT, timestamp DATETIME)`);
+}
+
+// --- Data Integrity and Utilities ---
+
+/**
+ * Update Mist Data tables in the MySQL database using CSV files in the local filesystem.
+ * This replaces the previous Google Drive/Sheets logic.
+ * @param {object} db - MySQL connection.
+ * @param {string} [csvDir='./data'] - Directory containing CSV files.
+ */
+async function updateMistData(db, csvDir = './data') {
+  const fs = require('fs');
+  const path = require('path');
+  const csvParse = require('csv-parse/sync');
+
+  // List of table names to update (should match your schema)
+  const tables = [
+    'DataRelationships',
+    'WordDefinitions',
+    'Categories',
+    'Users'
+    // Add more as needed
+  ];
+
+  for (const table of tables) {
+    const csvPath = path.join(csvDir, `${table}.csv`);
+    if (!fs.existsSync(csvPath)) continue;
+    const content = fs.readFileSync(csvPath, 'utf8');
+    const rows = csvParse.parse(content, { columns: true, skip_empty_lines: true });
+    if (rows.length === 0) continue;
+
+    // Clear table before inserting new data
+    await db.query(`DELETE FROM ${MIST_SCHEMA}.${table}`);
+
+    // Insert each row
+    for (const row of rows) {
+      const columns = Object.keys(row);
+      const values = columns.map(col => row[col]);
+      const placeholders = columns.map(() => '?').join(',');
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${table} (${columns.join(',')}) VALUES (${placeholders})`,
+        values
+      );
+    }
+  }
+}
+
+/**
+ * Ensure a user exists in the Users table, or create if missing.
+ * @param {string} userEmail - User's email (used as accountId).
+ * @param {object} db - MySQL connection.
+ * @returns {Promise<Object>} - User record.
+ */
+async function loadMistUser(userEmail, db) {
+  const [rows] = await db.query(
+    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
+    [userEmail]
+  );
+  if (rows.length === 0) {
+    const userName = userEmail.split('@')[0];
+    await db.query(
+      `INSERT INTO ${MIST_SCHEMA}.${TABLES.users} (userName, accountId, dateCreated) VALUES (?, ?, NOW())`,
+      [userName, userEmail]
+    );
+    return { userName, accountId: userEmail };
+  }
+  return rows[0];
+}
+
+/**
+ * Get references to Mist Data tables (for "data" schema).
+ * @returns {Object} - Table name mapping for data schema.
+ */
+function getMistDataSheets() {
+  // If you use a separate schema for data, change 'mist_data' as needed
+  const DATA_SCHEMA = 'mist_data';
+  return {
+    dataRelationships: `${DATA_SCHEMA}.DataRelationships`,
+    wordDefinitions: `${DATA_SCHEMA}.WordDefinitions`,
+    categories: `${DATA_SCHEMA}.Categories`,
+    users: `${DATA_SCHEMA}.Users`
+    // Add more as needed
+  };
+}
+
+/**
+ * Get references to Mist main tables (for "mist" schema).
+ * @returns {Object} - Table name mapping for main schema.
+ */
+function getMistSheets() {
+  return {
+    persist: `${MIST_SCHEMA}.${TABLES.persist}`,
+    primaryLine: `${MIST_SCHEMA}.${TABLES.primaryLine}`,
+    categoryLine: `${MIST_SCHEMA}.${TABLES.categoryLine}`,
+    itemLine: `${MIST_SCHEMA}.${TABLES.itemLine}`,
+    dataRelationships: `${MIST_SCHEMA}.${TABLES.dataRelationships}`,
+    wordDefinitions: `${MIST_SCHEMA}.${TABLES.wordDefinitions}`,
+    categories: `${MIST_SCHEMA}.${TABLES.categories}`,
+    users: `${MIST_SCHEMA}.${TABLES.users}`
+    // Add more as needed
+  };
 }
 
 function ensureCharacterLocationsTable(db) {
@@ -284,72 +454,15 @@ function getMistTables() {
   };
 }
 
-function loadWordDefinition(word, db) {
-  return db.query(
+async function loadWordDefinition(word, db) {
+  let [rows] = await db.query(
     `SELECT * FROM ${MIST_SCHEMA}.${TABLES.wordDefinitions} WHERE word = ?`,
     [word]
-  ).then(rows => rows[0] || null);
+  );
+  return rows[0] || null;
 }
 
 // --- Viewport and UI Logic ---
-function advanceSelectionMode(selectionModeState, selection) {
-  // Update selectedIndices and currentStep based on selection
-  // Set inputBoxOpen and inputBoxType as needed
-  // Example logic:
-  if (selectionModeState.currentStep === 'time') {
-    selectionModeState.selectedIndices[0] = selection.index;
-    selectionModeState.currentStep = 'category';
-    selectionModeState.inputBoxOpen = true;
-    selectionModeState.inputBoxType = 'category';
-  } else if (selectionModeState.currentStep === 'category') {
-    selectionModeState.selectedIndices[1] = selection.index;
-    selectionModeState.currentStep = 'item';
-    selectionModeState.inputBoxOpen = true;
-    selectionModeState.inputBoxType = 'item';
-  } else if (selectionModeState.currentStep === 'item') {
-    selectionModeState.selectedIndices[2] = selection.index;
-    selectionModeState.inputBoxOpen = false;
-    selectionModeState.inputBoxType = null;
-  }
-}
-
-function getViewportCentering(selectionModeState) {
-  // Returns { timeLineOffsetX, categoryLineOffsetY }
-  return {
-    timeLineOffsetX: window.innerWidth / 6,
-    categoryLineOffsetY: window.innerHeight / 6
-  };
-}
-
-function isItemVisible(session, depth, index) {
-  return session.opened && session.opened[depth] && session.opened[depth].includes(index);
-}
-
-function handleSelectionBackend(session, selection, selectionModeState) {
-  // 1. Update the navigation path
-  if (!session.path) session.path = [];
-  session.path.push(selection);
-
-  // 2. Mark the selected item as opened in the session
-  if (!session.opened) session.opened = {};
-  const depth = selectionModeState.selectedIndices.length;
-  if (!session.opened[depth]) session.opened[depth] = [];
-  if (!session.opened[depth].includes(selection.index)) {
-    session.opened[depth].push(selection.index);
-  }
-
-  // 3. Advance the selection mode state
-  advanceSelectionMode(selectionModeState, selection);
-
-  // 4. Optionally update vectors or other in-memory session fields
-  // (e.g., recalculate vectors for nD navigation if needed)
-  // session.vectors = recalculateVectors(session.path);
-
-  // 5. Update lastSelection
-  session.lastSelection = selection;
-
-  // No database writes here; all changes are in-memory.
-}
 
 async function getMistViewportData(db) {
   const primaryLine = await loadPrimaryLine(db);
@@ -372,6 +485,7 @@ async function getMistViewportData(db) {
     items: itemsByCategory
   };
 }
+
 
 // --- Advanced Rendering and Navigation (Vulkan/OpenCL-ready) ---
 function gramSchmidt(vectors, n) {
@@ -414,16 +528,19 @@ function hourGlass(depth, vectorsSoFar = []) {
 }
 
 // Utility to convert time/location data to 3D coordinates for projection
-const { timeToSpace } = require('./MistIllum.js');
-
 function projectItemsTo3D(items, characterLocations, timeMap, locationMap) {
+  // items: array of DefiniteItem or similar
+  // characterLocations: array of CharacterLocation
+  // timeMap/locationMap: mapping from time/location to 3D coordinates
+  // Returns: array of {item, x, y, z}
   return items.map(item => {
     const loc = characterLocations.find(
-      cl => cl.name === item.value && timeMap[JSON.stringify(cl.timeVec)]
+      cl => cl.name === item.value && timeMap[cl.time]
     );
     if (!loc) return { item, x: 0, y: 0, z: 0 };
-    const tCoord = timeToSpace(cl.timeVec);
+    const tCoord = timeMap[loc.time] || [0, 0, 0];
     const lCoord = locationMap[loc.location] || [0, 0, 0];
+    // Combine time and location into a 3D point (customize as needed)
     return {
       item,
       x: tCoord[0] + lCoord[0],
@@ -436,7 +553,7 @@ function projectItemsTo3D(items, characterLocations, timeMap, locationMap) {
 async function getMapModeProjection(db, timeMap, locationMap) {
   // Load all items and character locations
   const items = MistModel.items; // or load from DB if needed
-  const rows = await db.queryAsync(`SELECT name, time, location FROM CharacterLocations`);
+  const rows = await db.query(`SELECT name, time, location FROM CharacterLocations`);
   const characterLocations = rows.map(row => new CharacterLocation(row.name, row.time, row.location));
   return projectItemsTo3D(items, characterLocations, timeMap, locationMap);
 }
@@ -522,11 +639,190 @@ function storyWriter(rtfText, sourceFile) {
     provenance: provenance
   };
 }
+const { createCanvas, loadImage } = require('canvas');
+
+async function loadPulsarMapImage(imagePath) {
+  const img = await loadImage(imagePath);
+  const canvas = createCanvas(img.width, img.height);
+  const ctx = canvas.getContext('2d');
+  ctx.drawImage(img, 0, 0);
+  return { canvas, ctx, width: img.width, height: img.height };
+}
+
+/**
+ * Detect the central point and radiating lines in a pulsar map image.
+ * Uses basic image processing; for production, consider Hough transform or OpenCV.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} width
+ * @param {number} height
+ * @returns {{center: {x, y}, lines: Array<{angle, points: Array<{x, y}>}>}}
+ */
+function detectCentralPointAndLines(ctx, width, height) {
+  // 1. Find the darkest pixel cluster (likely the center)
+  let minSum = 255 * 3, center = { x: width / 2, y: height / 2 };
+  for (let y = height * 0.3; y < height * 0.7; y++) {
+    for (let x = width * 0.3; x < width * 0.7; x++) {
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+      const sum = r + g + b;
+      if (sum < minSum) {
+        minSum = sum;
+        center = { x, y };
+      }
+    }
+  }
+  // 2. Radially sample lines from center, looking for dark pixels (lines)
+  const lines = [];
+  for (let angle = 0; angle < 2 * Math.PI; angle += Math.PI / 16) {
+    let points = [];
+    for (let r = 0; r < Math.min(width, height) / 2; r += 2) {
+      const x = Math.round(center.x + r * Math.cos(angle));
+      const y = Math.round(center.y + r * Math.sin(angle));
+      if (x < 0 || y < 0 || x >= width || y >= height) break;
+      const [red, green, blue] = ctx.getImageData(x, y, 1, 1).data;
+      if (red + green + blue < 100) points.push({ x, y });
+    }
+    if (points.length > 10) {
+      lines.push({ angle, points });
+    }
+  }
+  return { center, lines };
+}
+
+/**
+ * Parse binary tick marks along a pulsar line.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {Object} line - {angle, points}
+ * @returns {{binary: string, decimal: number}}
+ */
+function parseBinaryTicksAlongLine(ctx, line) {
+  // Sample along the line, detect tick marks (short/long dashes)
+  let binary = '';
+  let lastWasDash = false;
+  let dashLength = 0;
+  for (let i = 0; i < line.points.length; i++) {
+    const { x, y } = line.points[i];
+    const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+    const isDash = (r + g + b < 100);
+    if (isDash) {
+      dashLength++;
+      lastWasDash = true;
+    } else if (lastWasDash) {
+      // Classify dash as short (0) or long (1)
+      binary += dashLength > 6 ? '1' : '0';
+      dashLength = 0;
+      lastWasDash = false;
+    }
+  }
+  const decimal = parseInt(binary, 2);
+  return { binary, decimal };
+}
+
+/**
+ * Extract reference geometry (hydrogen molecule, human figures) from the image.
+ * @param {CanvasRenderingContext2D} ctx
+ * @param {number} width
+ * @param {number} height
+ * @returns {{hydrogen: Object, humans: Array<Object>}}
+ */
+function extractReferenceGeometry(ctx, width, height) {
+  // Detect two circles (hydrogen) near the top
+  // Detect two large bounding boxes (humans) on the right
+  // This is a simple heuristic; for production use shape detection libraries
+  let hydrogen = null, humans = [];
+  // Hydrogen: scan top 20% for circles
+  for (let y = 0; y < height * 0.2; y++) {
+    for (let x = 0; x < width; x++) {
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+      if (r + g + b < 100) {
+        // Found a dark pixel, check for circle by sampling neighbors
+        let count = 0;
+        for (let dx = -5; dx <= 5; dx++) {
+          for (let dy = -5; dy <= 5; dy++) {
+            if (dx * dx + dy * dy < 25) {
+              const [rr, gg, bb] = ctx.getImageData(x + dx, y + dy, 1, 1).data;
+              if (rr + gg + bb < 100) count++;
+            }
+          }
+        }
+        if (count > 30) {
+          hydrogen = hydrogen || [];
+          hydrogen.push({ x, y });
+        }
+      }
+    }
+  }
+  // Humans: scan right 40% for tall dark regions
+  for (let x = width * 0.6; x < width; x += 5) {
+    let yStart = null, yEnd = null;
+    for (let y = height * 0.3; y < height * 0.9; y += 2) {
+      const [r, g, b] = ctx.getImageData(x, y, 1, 1).data;
+      if (r + g + b < 100) {
+        if (yStart === null) yStart = y;
+        yEnd = y;
+      }
+    }
+    if (yStart !== null && yEnd - yStart > height * 0.2) {
+      humans.push({ x, y: yStart, height: yEnd - yStart });
+    }
+  }
+  return { hydrogen, humans };
+}
+
+/**
+ * Integrate parsed pulsar map data into MistModel and/or database.
+ * @param {Object} center
+ * @param {Array} pulsars - Array of {direction, period, position}
+ * @param {Object} referenceGeometry
+ * @param {Object} db
+ */
+function integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db) {
+  // Use MistModel and DefiniteItem from MistTrackerVulkan.js
+  pulsars.forEach((pulsar, idx) => {
+    const line = new Line('Pulsar', null);
+    MistModel.lines.push(line);
+    const item = new DefiniteItem(
+      `Pulsar-${idx}`,
+      line,
+      { x: pulsar.position.x, y: pulsar.position.y, angle: pulsar.direction }
+    );
+    item.period = pulsar.period;
+    MistModel.items.push(item);
+    // Optionally, persist to DB
+    if (db) {
+      db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.itemLine} (categoryLineId, itemValue) VALUES (?, ?)`,
+        [1, `Pulsar-${idx}: period=${pulsar.period.decimal}`]
+      );
+    }
+  });
+  // Store reference geometry for scaling/orientation if needed
+  MistModel.referenceGeometry = referenceGeometry;
+}
+
 function mapRead(){
   const fs = require('fs');
   const { createCanvas, loadImage } = require('canvas'); // or use a native image library
   const options = { createCanvas, loadImage }
   mapReader(imagePath, options);
+}
+
+async function parsePulsarMap(imagePath, db) {
+  const { canvas, ctx, width, height } = await loadPulsarMapImage(imagePath);
+  const { center, lines } = detectCentralPointAndLines(ctx, width, height);
+  const referenceGeometry = extractReferenceGeometry(ctx, width, height);
+
+  const pulsars = [];
+  for (const line of lines) {
+    const period = parseBinaryTicksAlongLine(ctx, line);
+    pulsars.push({
+      direction: line.angle,
+      period,
+      position: { x: line.points[1].x, y: line.points[1].y }
+    });
+  }
+
+  integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db);
+  return { center, pulsars, referenceGeometry };
 }
 
 async function mapReader(imagePath, options = {}) {
@@ -573,6 +869,32 @@ const defaultKeybinds = {
 let userKeybinds = { ...defaultKeybinds };
 
 /**
+ * Get the current keybind for an action.
+ * @param {string} action
+ * @returns {string|null}
+ */
+function getUserKeybind(action) {
+  return userKeybinds[action] || null;
+}
+
+/**
+ * Set a keybind for a specific action.
+ * @param {string} action
+ * @param {string} key
+ */
+function setUserKeybind(action, key) {
+  userKeybinds[action] = key;
+}
+
+/**
+ * Reset all user keybinds to default.
+ * @param {Object} [defaults]
+ */
+function resetUserKeybinds(defaults = null) {
+  userKeybinds = { ...(defaults || defaultKeybinds) };
+}
+
+/**
  * Allow user to change keybinds via input (X11 or fallback).
  * @param {function} promptFn - Function to prompt user for new key/mouse input.
  * @param {function} onUpdate - Callback when keybinds are updated.
@@ -610,6 +932,31 @@ const { v4: uuidv4 } = require('uuid');
 const AnomalousResults = new Map(); // eventId -> { event, provenance, confirms, fails, status }
 const BannedInteractions = new Set(); // Set of banned interaction types or event hashes
 const BannedUsers = new Set(); // Set of banned user IDs
+
+/**
+ * Get all anomalous results as an array.
+ * @returns {Array}
+ */
+function getAllAnomalousResults() {
+  return Array.from(AnomalousResults.values());
+}
+
+/**
+ * Remove an anomalous result by eventId.
+ * @param {string} eventId
+ */
+function removeAnomalousResult(eventId) {
+  AnomalousResults.delete(eventId);
+}
+
+/**
+ * Add or update an anomalous result.
+ * @param {string} eventId
+ * @param {Object} entry
+ */
+function setAnomalousResult(eventId, entry) {
+  AnomalousResults.set(eventId, entry);
+}
 
 // --- Provenance Helper ---
 function createProvenance(event, user) {
@@ -754,14 +1101,14 @@ onEvent('anomalyVote', async (data) => {
 
 // --- Helper: Add/Remove Event from Persistent Tables ---
 async function addEventToPersistentTables(event, provenance, db) {
-  await db.queryAsync(
+  await db.query(
     `INSERT INTO PersistentEvents (eventId, eventData, provenance, timestamp) VALUES (?, ?, ?, NOW())`,
     [provenance.eventId, JSON.stringify(event), JSON.stringify(provenance)]
   );
 }
 
 async function removeEventFromPersistentTables(event, provenance, db) {
-  await db.queryAsync(
+  await db.query(
     `DELETE FROM PersistentEvents WHERE eventId = ?`,
     [provenance.eventId]
   );
@@ -785,26 +1132,7 @@ function isInteractionBanned(event, user) {
 // --- Helper: Hash Interaction ---
 function hashInteraction(event) {
   // Simple hash: could use JSON.stringify + hash function for uniqueness
-  const crypto = {
-  randomBytes: (n) => Buffer.from(Array(n).fill(0)),
-  createHash: () => ({
-    update: () => ({
-      digest: () => 'stubhash'
-    })
-  }),
-  createSign: () => ({
-    update: () => {},
-    end: () => {},
-    sign: () => 'stubsig'
-  }),
-  createVerify: () => ({
-    update: () => {},
-    end: () => {},
-    verify: () => true
-  })
-};
-  return crypto.createHash('sha256')
-    .update(JSON.stringify(event));
+  return require('crypto').createHash('sha256').update(JSON.stringify(event)).digest('hex');
 }
 
 // --- Helper: Event Horizon User (Ban and Flush) ---
@@ -822,9 +1150,9 @@ async function eventHorizonUser(user, db) {
 // --- Helper: Flush User Data ---
 async function flushUserData(user, db) {
   // Remove user from Users table and all related Mist data
-  await db.queryAsync(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
-  await db.queryAsync(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
-  await db.queryAsync(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.users} WHERE accountId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.currentState} WHERE sessionId = ?`, [user]);
+  await db.query(`DELETE FROM ${TABLES.persist} WHERE sessionId = ?`, [user]);
   // Optionally, remove or anonymize user data in other tables
 }
 
@@ -892,6 +1220,8 @@ class MilestoneManager {
     return true;
   }
 
+  
+
   /**
    * Create a new tensor metric table for the given milestone order.
    */
@@ -941,6 +1271,44 @@ class MilestoneManager {
   }
 }
 
+/**
+ * Get the current milestone order.
+ * @returns {number}
+ */
+function getCurrentMilestoneOrder() {
+  const current = milestoneManager.getCurrentMilestone();
+  return current ? current.order : 0;
+}
+
+/**
+ * Enable a projection or render mode if milestone is achieved.
+ * @param {string} modeType - 'projection' or 'render'
+ * @param {string} modeName
+ * @returns {boolean} - True if enabled, false otherwise.
+ */
+function enableModeIfMilestone(modeType, modeName) {
+  if (milestoneManager.isModeEnabled(modeType, modeName)) {
+    return true;
+  }
+  return false;
+}
+
+/**
+ * List all enabled projection and render modes.
+ * @returns {Object} { projectionModes: Array, renderModes: Array }
+ */
+function listEnabledModes() {
+  const projectionModes = [];
+  const renderModes = [];
+  ['3D', '4D', 'nD'].forEach(mode => {
+    if (milestoneManager.isModeEnabled('projection', mode)) projectionModes.push(mode);
+  });
+  ['standard', 'wave-based', 'quantum'].forEach(mode => {
+    if (milestoneManager.isModeEnabled('render', mode)) renderModes.push(mode);
+  });
+  return { projectionModes, renderModes };
+}
+
 // --- Example Usage ---
 // Initialize milestone manager (singleton or per-session as needed)
 const milestoneManager = new MilestoneManager();
@@ -972,7 +1340,7 @@ function nominateSuccessorPGP(userId, pgpPublicKey, db) {
   );
 }
 
-const { milestoneManager } = require('./MistTrackerVulkan.js');
+//const { milestoneManager } = require('./MistTrackerVulkan.js');
 
 function canUsePGPNomination() {
   return milestoneManager.getCurrentMilestone() && milestoneManager.getCurrentMilestone().order >= 6;
@@ -985,6 +1353,24 @@ function nominateSuccessorFlexible(userId, value, db) {
     return nominateSuccessor(userId, value, db);
   }
 }
+
+const {
+  advanceSelectionMode,
+  getViewportCentering,
+  isItemVisible,
+  handleSelectionBackend,
+  MapModeState,
+  initViewport,
+  renderViewport,
+  selectTimeIndex,
+  selectCategory,
+  selectItem,
+  showAddTimeInput,
+  showAddCategoryInput,
+  showAddItemInput,
+  showInputBox,
+  handleSelection
+} = require('./MistCore.js');
 
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
@@ -1003,11 +1389,12 @@ module.exports = {
   Line,
   DefiniteItem,
   CharacterLocation,
-  DefiniteItem,
   SelectionModeState,
 
   // --- In-Memory Model ---
-  MistModel,
+  resetMistModel,
+  addUserToMistModel,
+  findUserInMistModel,
 
   // --- Session and State Management ---
   startSession,
@@ -1032,21 +1419,18 @@ module.exports = {
 
   // --- Data Integrity and Utilities ---
   ensureMistDatabase,
+  updateMistData,
+  loadMistUser,
+  getMistDataSheets,
+  getMistSheets,
   ensureCharacterLocationsTable,
   loadMistUser,
   getMistDataTables,
   getMistTables,
   loadWordDefinition,
-
-  // --- Viewport and UI Logic ---
   getMistViewportData,
-  advanceSelectionMode,
-  getViewportCentering,
-  isItemVisible,
-  handleSelectionBackend,
 
   // --- Advanced Rendering and Navigation ---
-  MapModeState,
   gramSchmidt,
   calculateLineOrientation,
   hourGlass,
@@ -1061,12 +1445,13 @@ module.exports = {
   // --- Keybinds Management ---
   mapKeybinds,
   handleInput,
-  userKeybinds,
+  getUserKeybind,
+  setUserKeybind,
+  resetUserKeybinds,
 
   // --- Swarm Health Maintainer ---
   checkAndSyncEvent,
   checkAndSyncEvent,
-  AnomalousResults,
   isInteractionBanned,
   eventHorizonUser,
   flushUserData,
@@ -1075,7 +1460,12 @@ module.exports = {
   // --- Milestone Modeling ---
   Milestone,
   MilestoneManager,
-  milestoneManager,
+  getAllAnomalousResults,
+  removeAnomalousResult,
+  setAnomalousResult,
+  getCurrentMilestoneOrder,
+  enableModeIfMilestone,
+  listEnabledModes,
 
   // --- User Profile Management ---
   nominateSuccessor,
