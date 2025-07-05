@@ -1663,8 +1663,6 @@ function handleEnvironmentInput(input, envState) {
 }
 
 // --- Import MilestoneManager from MistTrackerVulkan.js ---
-const { MilestoneManager, milestoneManager } = require('./MistTrackerVulkan.js');
-
 // --- Milestone-Aware Mode Selection ---
 
 /**

@@ -165,17 +165,81 @@ function addItemLine(categoryLineId, itemValue, db) {
   );
 }
 
-function loadPrimaryLine(db) {
-  return db.query(
+/**
+ * Loads the primary line from the database.
+ * If no primary line exists, generates a new one using context from storyWriter.
+ * @param {object} db - Database connection.
+ * @param {string} [storyText] - Optional RTF/text for context.
+ * @param {string} [sourceFile] - Optional source file for provenance.
+ * @returns {Promise<Array>} - Array of primary line values.
+ */
+async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
+  let rows = await db.query(
     `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
-  ).then(rows => rows.map(row => row.value));
+  );
+  let primaryLine = rows.map(row => row.value);
+
+  // If no primary line exists, generate one from story context
+  if (primaryLine.length === 0 && storyText) {
+    const context = storyWriter(storyText, sourceFile);
+    // Use explicitNames or impliedNames as time indices
+    const timeIndices = context.explicitNames.length > 0
+      ? context.explicitNames
+      : context.impliedNames.length > 0
+        ? context.impliedNames
+        : ['Time0'];
+    for (const value of timeIndices) {
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.primaryLine} (value) VALUES (?)`,
+        [value]
+      );
+    }
+    // Reload after insertion
+    rows = await db.query(
+      `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
+    );
+    primaryLine = rows.map(row => row.value);
+  }
+  return primaryLine;
 }
 
-function loadCategoriesForTime(primaryLineId, db) {
-  return db.query(
+/**
+ * Loads categories for a given time (primary line index).
+ * If no categories exist, generates new ones using context from storyWriter.
+ * @param {number} primaryLineId - The primary line index (1-based).
+ * @param {object} db - Database connection.
+ * @param {string} [storyText] - Optional RTF/text for context.
+ * @param {string} [sourceFile] - Optional source file for provenance.
+ * @returns {Promise<Array>} - Array of category names.
+ */
+async function loadCategoriesForTime(primaryLineId, db, storyText = null, sourceFile = null) {
+  let rows = await db.query(
     `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
     [primaryLineId]
-  ).then(rows => rows.map(row => row.category));
+  );
+  let categories = rows.map(row => row.category);
+
+  // If no categories exist, generate from story context
+  if (categories.length === 0 && storyText) {
+    const context = storyWriter(storyText, sourceFile);
+    // Use statements or fallback to generic categories
+    const categoryNames = context.statements.length > 0
+      ? context.statements.map(s => s.speaker || 'Unknown')
+      : ['Category0'];
+    for (const category of categoryNames) {
+      await db.query(
+        `INSERT INTO ${MIST_SCHEMA}.${TABLES.categoryLine} (primaryLineId, category) VALUES (?, ?)`,
+        [primaryLineId, category]
+      );
+    }
+    // Reload after insertion
+    rows = await db.query(
+      `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
+      [primaryLineId]
+    );
+    categories = rows.map(row => row.category);
+  }
+  return categories;
 }
 
 function loadItemsForCategory(categoryLineId, db) {

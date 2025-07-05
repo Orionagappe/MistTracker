@@ -4,6 +4,11 @@
  */
 
 // --- Viewport and Selection Utilities ---
+const {
+  loadPrimaryLine,
+  loadCategoriesForTime,
+  loadItemsForCategory
+} = require('./MistTrackerVulkan.js');
 
 async function getMistViewportData(db) {
   const primaryLine = await loadPrimaryLine(db);
