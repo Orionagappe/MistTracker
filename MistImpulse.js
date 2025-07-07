@@ -87,12 +87,55 @@ function renderMultiCursorUI(pointerStates, uiRenderer) {
 
 /**
  * Recognize and handle multi-finger gestures for navigation/manipulation.
- * @param {Array<Object>} pointerEvents
- * @param {Object} session
+ * Supports pinch (zoom), rotate, and swipe gestures for nD/3D navigation and object manipulation.
+ * Integrates with MistIllum.js and MistCore.js for camera and object control.
+ * @param {Array<Object>} pointerEvents - Array of current pointer/touch events.
+ * @param {Object} session - Mist session object.
  */
 function handleMultiGesture(pointerEvents, session) {
-  // Example: pinch, rotate, swipe detection logic
-  // Update camera, object transforms, or trigger haptic feedback as needed
+  if (!pointerEvents || pointerEvents.length < 2) return;
+
+  // Example: Pinch-to-zoom (distance between two pointers)
+  const [p1, p2] = pointerEvents;
+  const prevDistance = session.prevGestureDistance || null;
+  const currDistance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
+
+  // Pinch gesture: zoom camera or scale object
+  if (prevDistance !== null) {
+    const delta = currDistance - prevDistance;
+    if (Math.abs(delta) > 2) {
+      // Call MistIllum/MistCore camera zoom or object scale
+      if (typeof globalThis.zoomCamera === 'function') {
+        globalThis.zoomCamera(delta > 0 ? 1.05 : 0.95);
+      }
+    }
+  }
+  session.prevGestureDistance = currDistance;
+
+  // Example: Rotate gesture (angle between two pointers)
+  const prevAngle = session.prevGestureAngle || null;
+  const currAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+  if (prevAngle !== null) {
+    const angleDelta = currAngle - prevAngle;
+    if (Math.abs(angleDelta) > 0.05) {
+      // Call MistIllum/MistCore camera or object rotate
+      if (typeof globalThis.rotateCamera === 'function') {
+        globalThis.rotateCamera(angleDelta);
+      }
+    }
+  }
+  session.prevGestureAngle = currAngle;
+
+  // Example: Swipe gesture (move both pointers in same direction)
+  if (pointerEvents.every(e => e.type === 'touchmove')) {
+    const avgDx = (p1.dx + p2.dx) / 2;
+    const avgDy = (p1.dy + p2.dy) / 2;
+    if (Math.abs(avgDx) > 2 || Math.abs(avgDy) > 2) {
+      if (typeof globalThis.panCamera === 'function') {
+        globalThis.panCamera(avgDx, avgDy);
+      }
+    }
+  }
 }
 
 // --- 4. Multi-User/Collaboration Support ---
@@ -128,11 +171,30 @@ function handleARPointerInput(session, pointerEvents) {
 }
 
 /**
- * Utility: Transform 2D screen/touch coordinates to 3D world coordinates (stub).
+ * Map 2D screen/touch coordinates to 3D world coordinates using session's camera and projection.
+ * Uses MistIllum.js projectItemsTo3D and getMapModeProjection if available.
+ * @param {number} x - Screen/touch X coordinate.
+ * @param {number} y - Screen/touch Y coordinate.
+ * @param {Array<number>} headPosition - AR/VR headset position in world space.
+ * @param {Array|Object} headOrientation - AR/VR headset orientation (quaternion or Euler).
+ * @returns {Object} 3D world coordinate {x, y, z}
  */
 function transformToWorld(x, y, headPosition, headOrientation) {
-  // Implement AR spatial mapping here
-  return { x, y, z: 0 }; // Placeholder
+  // Example: Use MistIllum's projection logic if available
+  if (typeof globalThis.getMapModeProjection === 'function') {
+    // Map screen (x, y) to normalized device coordinates
+    const ndcX = (x / globalThis.viewportWidth) * 2 - 1;
+    const ndcY = 1 - (y / globalThis.viewportHeight) * 2;
+    // Use projection to get world coordinates
+    const world = globalThis.getMapModeProjection(ndcX, ndcY, headPosition, headOrientation);
+    return world;
+  }
+  // Fallback: simple mapping with head position as origin
+  return {
+    x: headPosition[0] + x * 0.01,
+    y: headPosition[1] + y * 0.01,
+    z: headPosition[2]
+  };
 }
 
 module.exports = {
