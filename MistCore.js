@@ -489,6 +489,5 @@ module.exports = {
   showAddTimeInput,
   showAddCategoryInput,
   showAddItemInput,
-  showInputBox,
-  handleSelection
-};
+  showInputBox
+}
