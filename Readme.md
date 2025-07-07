@@ -1,78 +1,103 @@
-**MistIllum** is the 3D/4D/nD visualization, rendering, and physics engine module of the Mist solution. It is designed to provide interactive, physically-based rendering and simulation for users in an X11 (Linux) session, supporting advanced features such as wave-based lighting, multi-dimensional navigation, and real-time audio/visual feedback. MistIllum integrates with MistTracker (for data/state management) and MistMulti (for multi-user, P2P, and moderation features).
+# Mist Solution
+
+**Mist Solution** is a modular, open-source framework for multi-user, multi-dimensional data tracking, visualization, simulation, and collaboration. It is designed for scientific, educational, and creative applications requiring advanced provenance, real-time interaction, and extensibility.
 
 ---
 
-## **How MistIllum Works**
+## **Modules**
 
-* **Rendering & Visualization:**  
-  MistIllum projects data (lines, categories, items, objects) into 3D or higher-dimensional space using metric tensors and physics-based transformations. It supports multiple display modes, including tiling and multi-monitor setups, and can render scenes using wave-based global illumination and wireframe/texture mapping.  
-* **Physics & Math Engine:**  
-  It uses a metric tensor-based physics engine (see MistPhysicsEngine, MetricTensor, MetricTensor3D) to handle navigation, gravity, collision, and object interactions. Wave functions and interference patterns are used for both lighting and sound.  
-* **Audio & Soundscape:**  
-  Audio is modulated by spatial and wave logic, with support for ambient, interaction, and dialogue volumes, all configurable by the user.  
-* **Settings & UI:**  
-  MistIllum provides a settings menu and overlay, accessible via keyboard (e.g., "esc"), allowing users to configure all session parameters, including display, audio, and physics options.  
-* **Multi-User & Moderation:**  
-  When used with MistMulti, MistIllum supports real-time collaboration, event moderation, and provenance tracking.
+- **MistIllum**: 3D/4D/nD visualization, rendering, and physics engine. Supports interactive, physically-based rendering and simulation, wave-based lighting, multi-dimensional navigation, and real-time audio/visual feedback. Integrates with MistTracker and MistMulti.
+- **MistTracker**: Data/state management, session and provenance tracking, and integration with MySQL for persistent storage.
+- **MistMulti**: Multi-user, P2P, and moderation features, including real-time collaboration, event broadcasting, and secure messaging.
+- **MistCore**: Core logic for viewport, selection, and UI integration.
 
 ---
 
-## **Areas to Revise for Integrating** pureMathPhysicsEngine.js **into** MistIllum.js
+## **How Mist Solution Works**
 
-1. **Physics Engine Integration**  
-   * Move all core physics/math classes and functions (e.g., MistPhysicsEngine, MetricTensor, waveFunction, interferencePattern, applyInterference) from pureMathPhysicsEngine.js into MistIllum.js.  
-   * Ensure all navigation, gravity, collision, and object interaction logic in MistIllum uses these unified classes/functions.  
-2. **Object Representation**  
-   * Standardize 3D/nD object creation and manipulation using voxel and angular momentum conventions (createVoxelObject, computeAngularMomentumMap, etc.).  
-   * Ensure all object deformation and energy distribution uses deformObject and distributeEnergy.  
-3. **Wave & Interference Logic**  
-   * Use the imported wave/interference functions for all lighting, sound, and interaction effects.  
-4. **Menu/UI Integration**  
-   * Update the settings menu and overlay to expose all relevant physics, rendering, and audio parameters to the user.  
-   * Ensure milestone-based mode enablement is enforced in the UI.  
-5. **Remove Worksheet Dependency**  
-   * All worksheet/experimental code from pureMathPhysicsEngine.js should be refactored, cleaned, and included directly in MistIllum.js (or, if appropriate, in MistTracker or MistMulti).  
-6. **Export/Import**  
-   * Export all new or revised functions from MistIllum.js for use by other Mist modules.
+- **Rendering & Visualization:**  
+  Projects data (lines, categories, items, objects) into 3D or higher-dimensional space using metric tensors and physics-based transformations. Supports multiple display modes, tiling, multi-monitor setups, and wave-based global illumination.
+
+- **Physics & Math Engine:**  
+  Uses a unified, nD-capable physics engine (see `MistPhysicsEngine`, `MetricTensor`, `MetricTensorND`) for navigation, gravity, collision, and object interactions. Supports wave functions, interference patterns, and advanced mathematical modeling.
+
+- **Audio & Soundscape:**  
+  Audio is modulated by spatial and wave logic, with support for ambient, interaction, and dialogue volumes, all configurable by the user.
+
+- **Settings & UI:**  
+  Provides a settings menu and overlay (keyboard-accessible, e.g., "esc") for configuring display, audio, physics, and milestone-based mode unlocks.
+
+- **Multi-User & Moderation:**  
+  Real-time collaboration, event moderation, and provenance tracking via MistMulti. Includes anomaly detection, event horizon logic, and secure P2P communication.
+
+- **Extensibility:**  
+  All modules are designed for extensibility, allowing plugins, scripting, and integration with external data (e.g., story files, scientific images, CSVs).
 
 ---
 
-## **Implementing MistIllum as a Complete End-User Solution**
+## **Integration with pureMathPhysicsEngine.js**
 
-* **Unified API:**  
-  Expose all rendering, physics, and audio features through a single, well-documented API.  
-* **User-Friendly UI:**  
-  Provide intuitive controls for navigation, object interaction, and mode switching. Include milestone-based unlocks and feedback for advanced features.  
-* **Scene & Object Management:**  
-  Allow users to create, import, and manipulate voxel-based objects. Support saving/loading scenes and objects.  
-* **Real-Time Physics & Rendering:**  
-  Ensure all interactions are reflected in real time, with accurate physics and lighting. Use GPU acceleration where possible.  
-* **Audio & Soundscape:**  
-  Integrate spatial audio, modulated by wave and geometric logic, for immersive feedback.  
-* **Multi-User & Collaboration:**  
-  Integrate with MistMulti for real-time collaboration, moderation, and provenance.  
-* **Documentation & Help:**  
-  Provide in-app help, tooltips, and documentation for all features and controls.  
-* **Extensibility:**  
-  Allow plugins or scripting for custom physics, rendering, or UI extensions.
+- All core physics and math logic (e.g., `MistPhysicsEngine`, `MetricTensor`, `waveFunction`, `interferencePattern`, `applyInterference`) are unified and accessible in MistIllum.
+- Object creation, deformation, and energy distribution are standardized for nD environments.
+- Wave and interference logic is used for both rendering and audio.
+- Worksheet/experimental code is refactored and integrated directly into MistIllum or other modules as appropriate.
+
+---
+
+## **End-User Features**
+
+- **Unified API:**  
+  All rendering, physics, and audio features are exposed through a single, well-documented API.
+
+- **User-Friendly UI:**  
+  Intuitive controls for navigation, object interaction, and mode switching, with milestone-based unlocks and feedback.
+
+- **Scene & Object Management:**  
+  Create, import, and manipulate voxel-based objects. Save/load scenes and objects.
+
+- **Real-Time Physics & Rendering:**  
+  All interactions are reflected in real time, with accurate physics and lighting. GPU acceleration is used where possible.
+
+- **Audio & Soundscape:**  
+  Spatial audio modulated by wave and geometric logic for immersive feedback.
+
+- **Multi-User & Collaboration:**  
+  Real-time collaboration, moderation, and provenance via MistMulti.
+
+- **Documentation & Help:**  
+  In-app help, tooltips, and documentation for all features and controls.
+
+- **Extensibility:**  
+  Support for plugins and scripting for custom physics, rendering, or UI extensions.
 
 ---
 
 ## **Summary Table**
 
-| Area | Revision/Integration Needed |
-| ----- | ----- |
-| Physics/Gravity | Use MistPhysicsEngine, MetricTensor, etc. from pureMathPhysicsEngine.js |
-| Wave/Interference | Use waveFunction, interferencePattern, applyInterference |
-| Object Representation | Use voxel/center/angularMomentumMap conventions |
-| Deformation/Energy | Use deformObject, distributeEnergy |
-| Rendering/Audio | Route through unified API, use physics-based modulation |
-| UI/Menu | Reflect physics/3D/nD/quantum options, milestone unlocks |
-| Multi-user/Provenance | Integrate with MistMulti.js as needed |
-| Documentation/Help | Provide user guidance and API docs |
+| Area                | Features/Integration                                      |
+|---------------------|----------------------------------------------------------|
+| Physics/Gravity     | Unified nD physics engine, metric tensors                |
+| Wave/Interference   | Wave functions, interference, and wave-based rendering   |
+| Object Representation | Voxel/center/angularMomentumMap conventions           |
+| Deformation/Energy  | Deform and distribute energy across nD objects           |
+| Rendering/Audio     | Unified API, physics-based modulation                    |
+| UI/Menu             | Physics/3D/nD/quantum options, milestone unlocks         |
+| Multi-user/Provenance | Real-time collaboration, moderation, provenance       |
+| Documentation/Help  | User guidance and API docs                               |
 
 ---
 
-**In summary:**  
-MistIllum is the core visualization and physics engine of Mist, supporting advanced, physically-based 3D/nD rendering and interaction. To make it a complete, end-user solution, fully integrate all physics and math logic from pureMathPhysicsEngine.js, standardize object and interaction handling, and provide a unified, user-friendly interface with real-time feedback and extensibility.
+## **Getting Started**
 
+1. **Install dependencies:**  
+   - Node.js (LTS recommended)
+   - MySQL (or compatible database)
+   - X11 (for Linux GUI support)
+   - Optional: Vulkan/OpenCL for GPU acceleration
+
+2. **Configure database:**  
+   - Edit `dbConfig` in `MistCausality.js` as needed.
+
+3. **Run the solution:**  
+   ```sh
+   node MistCausality.js
