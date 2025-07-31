@@ -134,7 +134,7 @@ class MistIllum {
 
   submitCommandBuffer(commandBuffer) {
     // Placeholder: Submit command buffer to queue
-  };
+  }
 
   present[imageIndex] {
     // Placeholder: Present rendered image
@@ -206,7 +206,6 @@ class MistIllum {
 
   createComputePipeline(shaderName) {
     // Placeholder: Create compute pipeline for shader
-    console.log();
     return {};
   }
 
@@ -224,144 +223,11 @@ class MistIllum {
   }
 
   // Existing functions (simplified for brevity)
-  function waveFunction(amplitude, k, x, omega, t) {
-    // psi = A * exp(i * (k * x - omega * t))
-    // Returns complex value as [real, imag]
-    const phase = k * x - omega * t;
-    return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
+  waveFunction(position, params) {
+    // Existing wave function logic
+    return 1.0; // Placeholder
   }
-
-  function interferencePattern(source, obj1, obj2, lambda) {
-    // Calculate the interference pattern of light waves from a single source
-    const D = (p1, p2) => Math.sqrt(
-      Math.pow(p2[0] - p1[0], 2) +
-      Math.pow(p2[1] - p1[1], 2) +
-      Math.pow(p2[2] - p1[2], 2)
-    );
-    const distance1 = D(source, obj1);
-    const distance2 = D(source, obj2);
-    const phaseDifference = (distance1 - distance2) * (2 * Math.PI / lambda);
-    return Math.cos(phaseDifference); // Interference pattern
-  }
-
-  function applyInterference(source, obj1, obj2, lambda) {
-    const pattern = interferencePattern(source, obj1.position, obj2.position, lambda);
-    obj1.intensity = (obj1.intensity || 1) * pattern;
-    obj2.intensity = (obj2.intensity || 1) * pattern;
-  }
-
-  function createVoxelObject(center, size, angularMomentumMap = {}) { /* ... */ }
-  function updateDistanceFromObserver(object, observer) { /* ... */ }
-  function computeAngularMomentumMap(object) { /* ... */ }
-  function isEdgeVoxel(v, object) { /* ... */ }
-  function interactObjects(objA, objB, tensor = metricTensor5D) { /* ... */ }
-  function spawnObjectNearPlayer(player, objectData) { /* ... */ }
-
-
-  function fastTransform(ray) {
-    // ray: array of sample values (e.g., intensity along a path)
-    // Returns: array of frequency components (magnitude, phase)
-    // Simple DFT for demonstration; replace with optimized FFT as needed
-    const N = ray.length;
-    let result = [];
-    for (let k = 0; k < N; k++) {
-      let real = 0, imag = 0;
-      for (let n = 0; n < N; n++) {
-        const angle = (2 * Math.PI * k * n) / N;
-        real += ray[n] * Math.cos(angle);
-        imag -= ray[n] * Math.sin(angle);
-      }
-      result.push({ magnitude: Math.sqrt(real * real + imag * imag), phase: Math.atan2(imag, real) });
-    }
-    return result;
-  }
-
-  function worldWarp(geometryType, params, metricTensor) {
-    // geometryType: 'plane', 'sphere', 'cube', 'torus', 'hypercube', etc.
-    // params: geometry-specific parameters (e.g., radius for sphere)
-    // metricTensor: for curved space
-    // Returns a transformation function
-    switch (geometryType) {
-      case 'sphere':
-        // Project (x, y, z) onto sphere of radius r
-        return (point) => {
-          const [x, y, z] = point;
-          const r = params.radius || 1;
-          const norm = Math.sqrt(x * x + y * y + z * z) || 1;
-          return [r * x / norm, r * y / norm, r * z / norm];
-        };
-      case 'torus':
-        // Project onto torus (R: major, r: minor)
-        return (point) => {
-          const [x, y, z] = point;
-          const R = params.R || 2, r = params.r || 1;
-          const theta = Math.atan2(y, x);
-          const phi = Math.atan2(z, Math.sqrt(x * x + y * y) - R);
-          return [
-            (R + r * Math.cos(phi)) * Math.cos(theta),
-            (R + r * Math.cos(phi)) * Math.sin(theta),
-            r * Math.sin(phi)
-          ];
-        };
-      // Add more geometries as needed
-      default:
-        // Identity (no warp)
-        return (point) => point;
-    }
-  }
-
-  function wireFrames(item, options = {}, metricTensor) {
-    // item: object with position, shape, etc.
-    // options: { levelOfDetail, color, ... }
-    // metricTensor: for nD geometry
-    // Returns: array of edges (pairs of points)
-    // Example: cube wireframe in 3D
-    if (item.shape === 'cube') {
-      const size = options.size || 1;
-      const vertices = [
-        [0, 0, 0], [size, 0, 0], [size, size, 0], [0, size, 0],
-        [0, 0, size], [size, 0, size], [size, size, size], [0, size, size]
-      ].map(v => metricTensor ? metricTensor.transform(v) : v);
-      const edges = [
-        [0,1],[1,2],[2,3],[3,0],
-        [4,5],[5,6],[6,7],[7,4],
-        [0,4],[1,5],[2,6],[3,7]
-      ];
-      return edges.map(([a, b]) => [vertices[a], vertices[b]]);
-    }
-    // Add more shapes as needed
-    return [];
-  }
-
-  function rastRenderMap(wireframe, textureMap, waveParams = {}) {
-    // wireframe: array of edges (pairs of points)
-    // textureMap: lookup table or image
-    // waveParams: for wave-based shading
-    // Returns: rasterized image or buffer
-    // Skeleton: For each edge, sample points and modulate intensity by wave function
-    let raster = [];
-    wireframe.forEach(([p1, p2]) => {
-      // Simple linear interpolation between p1 and p2
-      const steps = 20;
-      for (let i = 0; i <= steps; i++) {
-        const t = i / steps;
-        const point = p1.map((v, idx) => v + t * (p2[idx] - v));
-        // Use wave function for intensity
-        const [real, imag] = waveFunction(
-          waveParams.amplitude || 1,
-          waveParams.k || 1,
-          point[0], // x
-          waveParams.omega || 1,
-          waveParams.t || 0
-        );
-        // Sample texture (placeholder)
-        const texColor = textureMap ? textureMap(point) : [real, real, real];
-        raster.push({ point, color: texColor, intensity: real });
-      }
-    });
-    return raster;
-  }
-
+}
 
 
 // --- Tiling and Multi-Monitor Support ---
@@ -445,6 +311,146 @@ const metricTensor5D = new MetricTensor(
     [0, 0, 0, 0, 1]
   ]
 );
+
+
+// --- Wave Function Utilities ---
+function waveFunction(amplitude, k, x, omega, t) {
+  // psi = A * exp(i * (k * x - omega * t))
+  // Returns complex value as [real, imag]
+  const phase = k * x - omega * t;
+  return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
+}
+
+function interferencePattern(source, obj1, obj2, lambda) {
+  // Calculate the interference pattern of light waves from a single source
+  const D = (p1, p2) => Math.sqrt(
+    Math.pow(p2[0] - p1[0], 2) +
+    Math.pow(p2[1] - p1[1], 2) +
+    Math.pow(p2[2] - p1[2], 2)
+  );
+  const distance1 = D(source, obj1);
+  const distance2 = D(source, obj2);
+  const phaseDifference = (distance1 - distance2) * (2 * Math.PI / lambda);
+  return Math.cos(phaseDifference); // Interference pattern
+}
+
+function applyInterference(source, obj1, obj2, lambda) {
+  const pattern = interferencePattern(source, obj1.position, obj2.position, lambda);
+  obj1.intensity = (obj1.intensity || 1) * pattern;
+  obj2.intensity = (obj2.intensity || 1) * pattern;
+}
+
+function createVoxelObject(center, size, angularMomentumMap = {}) { /* ... */ }
+function updateDistanceFromObserver(object, observer) { /* ... */ }
+function computeAngularMomentumMap(object) { /* ... */ }
+function isEdgeVoxel(v, object) { /* ... */ }
+function interactObjects(objA, objB, tensor = metricTensor5D) { /* ... */ }
+function spawnObjectNearPlayer(player, objectData) { /* ... */ }
+
+
+function fastTransform(ray) {
+  // ray: array of sample values (e.g., intensity along a path)
+  // Returns: array of frequency components (magnitude, phase)
+  // Simple DFT for demonstration; replace with optimized FFT as needed
+  const N = ray.length;
+  let result = [];
+  for (let k = 0; k < N; k++) {
+    let real = 0, imag = 0;
+    for (let n = 0; n < N; n++) {
+      const angle = (2 * Math.PI * k * n) / N;
+      real += ray[n] * Math.cos(angle);
+      imag -= ray[n] * Math.sin(angle);
+    }
+    result.push({ magnitude: Math.sqrt(real * real + imag * imag), phase: Math.atan2(imag, real) });
+  }
+  return result;
+}
+
+function worldWarp(geometryType, params, metricTensor) {
+  // geometryType: 'plane', 'sphere', 'cube', 'torus', 'hypercube', etc.
+  // params: geometry-specific parameters (e.g., radius for sphere)
+  // metricTensor: for curved space
+  // Returns a transformation function
+  switch (geometryType) {
+    case 'sphere':
+      // Project (x, y, z) onto sphere of radius r
+      return (point) => {
+        const [x, y, z] = point;
+        const r = params.radius || 1;
+        const norm = Math.sqrt(x * x + y * y + z * z) || 1;
+        return [r * x / norm, r * y / norm, r * z / norm];
+      };
+    case 'torus':
+      // Project onto torus (R: major, r: minor)
+      return (point) => {
+        const [x, y, z] = point;
+        const R = params.R || 2, r = params.r || 1;
+        const theta = Math.atan2(y, x);
+        const phi = Math.atan2(z, Math.sqrt(x * x + y * y) - R);
+        return [
+          (R + r * Math.cos(phi)) * Math.cos(theta),
+          (R + r * Math.cos(phi)) * Math.sin(theta),
+          r * Math.sin(phi)
+        ];
+      };
+    // Add more geometries as needed
+    default:
+      // Identity (no warp)
+      return (point) => point;
+  }
+}
+
+function wireFrames(item, options = {}, metricTensor) {
+  // item: object with position, shape, etc.
+  // options: { levelOfDetail, color, ... }
+  // metricTensor: for nD geometry
+  // Returns: array of edges (pairs of points)
+  // Example: cube wireframe in 3D
+  if (item.shape === 'cube') {
+    const size = options.size || 1;
+    const vertices = [
+      [0, 0, 0], [size, 0, 0], [size, size, 0], [0, size, 0],
+      [0, 0, size], [size, 0, size], [size, size, size], [0, size, size]
+    ].map(v => metricTensor ? metricTensor.transform(v) : v);
+    const edges = [
+      [0,1],[1,2],[2,3],[3,0],
+      [4,5],[5,6],[6,7],[7,4],
+      [0,4],[1,5],[2,6],[3,7]
+    ];
+    return edges.map(([a, b]) => [vertices[a], vertices[b]]);
+  }
+  // Add more shapes as needed
+  return [];
+}
+
+function rastRenderMap(wireframe, textureMap, waveParams = {}) {
+  // wireframe: array of edges (pairs of points)
+  // textureMap: lookup table or image
+  // waveParams: for wave-based shading
+  // Returns: rasterized image or buffer
+  // Skeleton: For each edge, sample points and modulate intensity by wave function
+  let raster = [];
+  wireframe.forEach(([p1, p2]) => {
+    // Simple linear interpolation between p1 and p2
+    const steps = 20;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const point = p1.map((v, idx) => v + t * (p2[idx] - v));
+      // Use wave function for intensity
+      const [real, imag] = waveFunction(
+        waveParams.amplitude || 1,
+        waveParams.k || 1,
+        point[0], // x
+        waveParams.omega || 1,
+        waveParams.t || 0
+      );
+      // Sample texture (placeholder)
+      const texColor = textureMap ? textureMap(point) : [real, real, real];
+      raster.push({ point, color: texColor, intensity: real });
+    }
+  });
+  return raster;
+}
 
 // --- Audio and Soundscape ---
 /**
@@ -1955,11 +1961,83 @@ function getMenuOptionsWithMilestones() {
   });
   return options;
 }
-}
 
 
 // --- Export API ---
 
 module.exports = {
-  mistIllum
+  tileMode,
+  tileSpan,
+  LightSource,
+  waveFunction,
+  interferencePattern,
+  applyInterference,
+  createVoxelObject,
+  updateDistanceFromObserver,
+  computeAngularMomentumMap,
+  isEdgeVoxel,
+  interactObjects,
+  spawnObjectNearPlayer,
+  globalIllumination,
+  fastTransform,
+  worldWarp,
+  wireFrames,
+  rastRenderMap,
+  audioQueue,
+  volumeGlobal,
+  volumeAmbient,
+  volumeInteract,
+  volumeDialogue,
+  settingsMenu,
+  mistFirstStart,
+  mistSetup,
+  mistDepend,
+  mistWarn,
+  warnTypes,
+  mistMenu,
+  launchMistCore,
+  launchMistMulti,
+  shutdownMist,
+  dimensionalStack,
+  perspectiveTransform,
+  projectToLowerDimension,
+  decomposeHigherToLower,
+  extraDimensionMode,
+  setDimensionLimit,
+  distributeEnergy,
+  energyDistribution,
+  deformObject,
+  applyCurvature,
+  schwarzschildCurvature,
+  sphericalCurvature,
+  MistPhysicsEngine,
+  bellTheorem,
+  pilotWave,
+  locality,
+  lightWave,
+  relativeAcceleration,
+  eulerLagrange,
+  gaussLawMagnetism,
+  principleOfStationaryAction,
+  composeWaves,
+  intensityHardnessRelationship,
+  particleWaveDuality,
+  MetricTensor,
+  MetricTensor3D,
+  MetricTensorND,
+  getGravityAtPoint,
+  navigate,
+  navigate3D,
+  renderObject3D,
+  renderObjectND,
+  checkCollisionWithWave,
+  cullObject,
+  MistMenuControl,
+  handleUserInput,
+  handleMenuInput,
+  handleEnvironmentInput,
+  getAvailableModes,
+  showModeSelectionMenu,
+  trySwitchModes,
+  getMenuOptionsWithMilestones,
 };
