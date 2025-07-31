@@ -3,24 +3,95 @@
  * Haptic Multi-Cursor Input Device integration for the Mist Solution.
  * Enables multiple simultaneous pointer/touch inputs with digital haptic feedback.
  * Designed for collaborative or advanced single-user interaction in 3D/nD environments.
+ * Revised for X11Libre-based Linux distributions using XInput2 and evdev.
  */
+
+const X11 = require('node-x11'); // For X11/XInput2 integration
+const Evdev = require('node-evdev'); // For evdev-based haptic feedback
+const { EventEmitter } = require('events');
+const inputEmitter = new EventEmitter();
 
 // --- 1. Device & OS Integration ---
 
 /**
- * Receives and dispatches multi-pointer events from the OS/device layer.
- * Each event should include: pointerId, type, x, y, pressure, [hapticRequest].
- * Example event: { pointerId: 3, type: 'touchmove', x: 120, y: 340, pressure: 0.8, hapticRequest: { intensity: 0.5, duration: 100 } }
+ * Initialize XInput2 for multi-pointer support on X11Libre.
+ * Sets up event listeners for pointer devices.
+ * @param {Object} config - Configuration object with display settings
+ * @returns {Promise<void>}
+ */
+async function initializeX11Input(config = {}) {
+  return new Promise((resolve, reject) => {
+    const client = X11.createClient((err, display) => {
+      if (err) return reject(err);
+
+      // Select XInput2 events for multi-pointer devices
+      const xiOpcode = display.client.opcodes['XInputExtension'];
+      if (!xiOpcode) throw new Error('XInput2 extension not available');
+
+      // Enable XInput2 for all pointer devices
+      client.XISelectEvents(display.screen[0].root, [
+        {
+          deviceid: X11.XIAllDevices,
+          mask: [
+            X11.XI.RawMotion,
+            X11.XI.RawButtonPress,
+            X11.XI.RawButtonRelease,
+            X11.XI.RawTouchBegin,
+            X11.XI.RawTouchUpdate,
+            X11.XI.RawTouchEnd
+          ]
+        }
+      ]);
+
+      // Listen for XInput2 events
+      client.on('event', event => {
+        if (event.opcode === xiOpcode) {
+          const pointerEvent = {
+            pointerId: event.deviceid,
+            type: mapXIEventType(event.name),
+            x: event.x || 0,
+            y: event.y || 0,
+            pressure: event.valuators?.pressure || 0.5,
+            hapticRequest: event.haptic ? { intensity: event.haptic.intensity, duration: event.haptic.duration } : null
+          };
+          inputEmitter.emit('pointerEvent', pointerEvent);
+        }
+      });
+
+      resolve();
+    });
+  });
+}
+
+/**
+ * Map XInput2 event types to Mist-compatible types.
+ * @param {string} xiType - XInput2 event name
+ * @returns {string} Mist event type
+ */
+function mapXIEventType(xiType) {
+  const typeMap = {
+    'RawMotion': 'pointermove',
+    'RawButtonPress': 'pointerdown',
+    'RawButtonRelease': 'pointerup',
+    'RawTouchBegin': 'touchstart',
+    'RawTouchUpdate': 'touchmove',
+    'RawTouchEnd': 'touchend'
+  };
+  return typeMap[xiType] || 'unknown';
+}
+
+/**
+ * Receives and dispatches multi-pointer events from X11Libre.
+ * Each event includes: pointerId, type, x, y, pressure, [hapticRequest].
  * @param {Array<Object>} pointerEvents
  */
 function handleMultiPointerInput(pointerEvents) {
   pointerEvents.forEach(event => {
     // Process each pointer independently
-    // e.g., select, drag, manipulate, or trigger haptic feedback
     if (event.hapticRequest) {
       requestHapticFeedback(event.pointerId, event.hapticRequest.intensity, event.hapticRequest.duration);
     }
-    // Forward event to MistCore/MistIllum for further processing
+    // Forward to MistCore/MistIllum
     if (typeof globalThis.handleMistPointerEvent === 'function') {
       globalThis.handleMistPointerEvent(event);
     }
@@ -28,19 +99,34 @@ function handleMultiPointerInput(pointerEvents) {
 }
 
 /**
- * Sends a haptic feedback command to the device driver or OS for a specific pointer.
- * @param {number} pointerId
+ * Sends a haptic feedback command to the device via evdev.
+ * Falls back to visual feedback if haptic hardware is unavailable.
+ * @param {number} pointerId - Device ID
  * @param {number} intensity - 0.0 to 1.0
  * @param {number} duration - milliseconds
  */
-function requestHapticFeedback(pointerId, intensity, duration) {
-  // Implementation depends on hardware/OS:
-  // - Native addon (C++/Rust binding)
-  // - WebUSB/WebHID
-  // - Custom X11 extension or Windows Pointer API
-  // Here, we emit an event for the device layer to handle.
-  if (typeof globalThis.emitHapticFeedback === 'function') {
-    globalThis.emitHapticFeedback({ pointerId, intensity, duration });
+async function requestHapticFeedback(pointerId, intensity, duration) {
+  try {
+    const device = Evdev.findDeviceById(pointerId); // Find evdev device by ID
+    if (device && device.hasForceFeedback) {
+      await device.uploadEffect({
+        type: 'FF_RUMBLE',
+        strong_magnitude: Math.round(intensity * 0xFFFF),
+        duration_ms: duration
+      });
+      await device.playEffect();
+    } else {
+      // Fallback: Visual feedback (e.g., pulse cursor)
+      if (typeof globalThis.renderVisualFeedback === 'function') {
+        globalThis.renderVisualFeedback({ pointerId, intensity, duration });
+      }
+    }
+  } catch (err) {
+    console.error(`Haptic feedback failed for pointer ${pointerId}:`, err);
+    // Fallback to visual feedback
+    if (typeof globalThis.renderVisualFeedback === 'function') {
+      globalThis.renderVisualFeedback({ pointerId, intensity, duration });
+    }
   }
 }
 
@@ -48,18 +134,14 @@ function requestHapticFeedback(pointerId, intensity, duration) {
 
 /**
  * Integrate with MistCore/MistIllum for pointer abstraction.
- * Each pointer event is mapped to a user or tool for collaborative or advanced input.
  * @param {Object} session - Mist session object
  * @param {Array<Object>} pointerEvents
  */
 function handleMistPointerEvents(session, pointerEvents) {
   pointerEvents.forEach(event => {
-    // Map pointer to user/tool if needed
-    // Update session state, trigger selection, manipulation, etc.
     if (session && session.multiPointerMap) {
       session.multiPointerMap[event.pointerId] = event;
     }
-    // Example: trigger selection or manipulation in Mist environment
     if (typeof globalThis.handleSelection === 'function') {
       globalThis.handleSelection(session, event);
     }
@@ -70,7 +152,6 @@ function handleMistPointerEvents(session, pointerEvents) {
 
 /**
  * Render multiple cursors or touch indicators in the Mist UI.
- * Each pointer can have a unique color or label.
  * @param {Array<Object>} pointerStates
  * @param {Object} uiRenderer
  */
@@ -86,25 +167,20 @@ function renderMultiCursorUI(pointerStates, uiRenderer) {
 }
 
 /**
- * Recognize and handle multi-finger gestures for navigation/manipulation.
- * Supports pinch (zoom), rotate, and swipe gestures for nD/3D navigation and object manipulation.
- * Integrates with MistIllum.js and MistCore.js for camera and object control.
- * @param {Array<Object>} pointerEvents - Array of current pointer/touch events.
- * @param {Object} session - Mist session object.
+ * Recognize and handle multi-finger gestures.
+ * @param {Array<Object>} pointerEvents
+ * @param {Object} session
  */
 function handleMultiGesture(pointerEvents, session) {
   if (!pointerEvents || pointerEvents.length < 2) return;
 
-  // Example: Pinch-to-zoom (distance between two pointers)
   const [p1, p2] = pointerEvents;
   const prevDistance = session.prevGestureDistance || null;
   const currDistance = Math.hypot(p2.x - p1.x, p2.y - p1.y);
 
-  // Pinch gesture: zoom camera or scale object
   if (prevDistance !== null) {
     const delta = currDistance - prevDistance;
     if (Math.abs(delta) > 2) {
-      // Call MistIllum/MistCore camera zoom or object scale
       if (typeof globalThis.zoomCamera === 'function') {
         globalThis.zoomCamera(delta > 0 ? 1.05 : 0.95);
       }
@@ -112,13 +188,11 @@ function handleMultiGesture(pointerEvents, session) {
   }
   session.prevGestureDistance = currDistance;
 
-  // Example: Rotate gesture (angle between two pointers)
   const prevAngle = session.prevGestureAngle || null;
   const currAngle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
   if (prevAngle !== null) {
     const angleDelta = currAngle - prevAngle;
     if (Math.abs(angleDelta) > 0.05) {
-      // Call MistIllum/MistCore camera or object rotate
       if (typeof globalThis.rotateCamera === 'function') {
         globalThis.rotateCamera(angleDelta);
       }
@@ -126,7 +200,6 @@ function handleMultiGesture(pointerEvents, session) {
   }
   session.prevGestureAngle = currAngle;
 
-  // Example: Swipe gesture (move both pointers in same direction)
   if (pointerEvents.every(e => e.type === 'touchmove')) {
     const avgDx = (p1.dx + p2.dx) / 2;
     const avgDy = (p1.dy + p2.dy) / 2;
@@ -141,7 +214,7 @@ function handleMultiGesture(pointerEvents, session) {
 // --- 4. Multi-User/Collaboration Support ---
 
 /**
- * Broadcast pointer events to other users via MistMulti for collaborative interaction.
+ * Broadcast pointer events to other users via MistMulti.
  * @param {Array<Object>} pointerEvents
  * @param {Object} mistMulti
  */
@@ -154,13 +227,12 @@ function broadcastPointerEvents(pointerEvents, mistMulti) {
 // --- 5. AR/VR Integration ---
 
 /**
- * Handle AR pointer input, mapping device coordinates to world/model coordinates.
+ * Handle AR pointer input, mapping to world coordinates.
  * @param {Object} session
  * @param {Array<Object>} pointerEvents
  */
 function handleARPointerInput(session, pointerEvents) {
   pointerEvents.forEach(event => {
-    // Transform pointer position to AR world coordinates using head pose
     if (session.headPosition && session.headOrientation) {
       const worldPos = transformToWorld(event.x, event.y, session.headPosition, session.headOrientation);
       handleMultiPointerInput([{ ...event, worldPos }]);
@@ -171,25 +243,19 @@ function handleARPointerInput(session, pointerEvents) {
 }
 
 /**
- * Map 2D screen/touch coordinates to 3D world coordinates using session's camera and projection.
- * Uses MistIllum.js projectItemsTo3D and getMapModeProjection if available.
- * @param {number} x - Screen/touch X coordinate.
- * @param {number} y - Screen/touch Y coordinate.
- * @param {Array<number>} headPosition - AR/VR headset position in world space.
- * @param {Array|Object} headOrientation - AR/VR headset orientation (quaternion or Euler).
+ * Map 2D coordinates to 3D world coordinates.
+ * @param {number} x
+ * @param {number} y
+ * @param {Array<number>} headPosition
+ * @param {Array|Object} headOrientation
  * @returns {Object} 3D world coordinate {x, y, z}
  */
 function transformToWorld(x, y, headPosition, headOrientation) {
-  // Example: Use MistIllum's projection logic if available
   if (typeof globalThis.getMapModeProjection === 'function') {
-    // Map screen (x, y) to normalized device coordinates
     const ndcX = (x / globalThis.viewportWidth) * 2 - 1;
     const ndcY = 1 - (y / globalThis.viewportHeight) * 2;
-    // Use projection to get world coordinates
-    const world = globalThis.getMapModeProjection(ndcX, ndcY, headPosition, headOrientation);
-    return world;
+    return globalThis.getMapModeProjection(ndcX, ndcY, headPosition, headOrientation);
   }
-  // Fallback: simple mapping with head position as origin
   return {
     x: headPosition[0] + x * 0.01,
     y: headPosition[1] + y * 0.01,
@@ -197,7 +263,16 @@ function transformToWorld(x, y, headPosition, headOrientation) {
   };
 }
 
+// Start XInput2 event listener
+initializeX11Input().catch(err => console.error('Failed to initialize XInput2:', err));
+
+// Forward XInput2 events to Mist
+inputEmitter.on('pointerEvent', event => {
+  handleMultiPointerInput([event]);
+});
+
 module.exports = {
+  initializeX11Input,
   handleMultiPointerInput,
   requestHapticFeedback,
   handleMistPointerEvents,

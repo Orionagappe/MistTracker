@@ -1,3 +1,369 @@
+const nvk = require('nvk');
+const { MistPhysicsEngine, MetricTensor3D, MetricTensorND } = require('./MistPhysicsEngine');
+const { renderViewport, selectTimeIndex, selectCategory, selectItem } = require('./MistCore');
+const { SelectionModeState, MapModeState, startSession, loadMistUser } = require('./MistTrackerVulkan');
+
+// Placeholder for external dependencies
+const wmctrl = require('wmctrl'); // For window management
+const pactl = require('pactl'); // For audio control
+
+class MistIllum {
+  constructor(config) {
+    this.config = config;
+    this.display = config.display;
+    this.windowId = config.windowId;
+    this.db = config.db || null;
+    this.uiRenderer = config.uiRenderer || { showMenu: () => {}, promptSelect: () => {}, showMessage: () => {} };
+    this.session = null;
+    this.physicsEngine = new MistPhysicsEngine();
+    this.mode = '3D';
+    this.vulkanInitialized = false;
+
+    // Initialize Vulkan
+    this.initVulkan();
+  }
+
+  initVulkan() {
+    try {
+      // Create Vulkan instance
+      const appInfo = new nvk.VkApplicationInfo({
+        apiVersion: nvk.VK_API_VERSION_1_1,
+        applicationName: 'MistIllum',
+        applicationVersion: 1,
+        engineName: 'MistEngine',
+        engineVersion: 1,
+      });
+
+      const instanceInfo = new nvk.VkInstanceCreateInfo({
+        applicationInfo: appInfo,
+        enabledExtensionNames: ['VK_KHR_surface', 'VK_KHR_xlib_surface'],
+      });
+
+      this.instance = nvk.vkCreateInstance(instanceInfo);
+
+      // Create X11 surface
+      const surfaceInfo = new nvk.VkXlibSurfaceCreateInfoKHR({
+        dpy: this.display,
+        window: this.windowId,
+      });
+
+      this.surface = nvk.vkCreateXlibSurfaceKHR(this.instance, surfaceInfo);
+
+      // Select physical device
+      const physicalDevices = nvk.vkEnumeratePhysicalDevices(this.instance);
+      this.physicalDevice = physicalDevices[0]; // Select first GPU for simplicity
+
+      // Create logical device (simplified; actual implementation requires queue families, etc.)
+      const deviceInfo = new nvk.VkDeviceCreateInfo({
+        enabledExtensionNames: ['VK_KHR_swapchain'],
+      });
+      this.device = nvk.vkCreateDevice(this.physicalDevice, deviceInfo);
+
+      // Placeholder for swapchain, render pass, pipeline setup
+      this.setupVulkanPipeline();
+
+      this.vulkanInitialized = true;
+    } catch (err) {
+      console.error('Vulkan initialization failed:', err);
+      this.vulkanInitialized = false;
+    }
+  }
+
+  setupVulkanPipeline() {
+    // Placeholder for swapchain, render pass, graphics pipeline, and command buffers
+    // Implement based on Vulkan tutorials (e.g., https://vulkan-tutorial.com)
+    // Requires creating swapchain, render pass, shaders, pipeline, framebuffers, etc.
+    this.swapchain = null; // Initialize swapchain
+    this.renderPass = null; // Initialize render pass
+    this.pipeline = null; // Initialize graphics pipeline
+    this.commandBuffers = []; // Initialize command buffers
+  }
+
+  render() {
+    if (!this.vulkanInitialized) {
+      console.error('Vulkan not initialized; falling back to UI renderer');
+      renderViewport(this.session, this.uiRenderer);
+      return;
+    }
+
+    // Acquire next swapchain image
+    const imageIndex = this.acquireSwapchainImage();
+
+    // Record command buffer
+    const commandBuffer = this.beginCommandBuffer();
+    this.beginRenderPass(commandBuffer, imageIndex);
+
+    // Render scene (e.g., objects, UI)
+    this.drawScene(commandBuffer);
+
+    this.endRenderPass(commandBuffer);
+    this.endCommandBuffer(commandBuffer);
+
+    // Submit and present
+    this.submitCommandBuffer(commandBuffer);
+    this.present(imageIndex);
+  }
+
+  acquireSwapchainImage() {
+    // Placeholder: Implement swapchain image acquisition
+    return 0; // Return image index
+  }
+
+  beginCommandBuffer() {
+    // Placeholder: Begin recording command buffer
+    return {};
+  }
+
+  beginRenderPass(commandBuffer, imageIndex) {
+    // Placeholder: Begin render pass
+  }
+
+  drawScene(commandBuffer) {
+    // Render objects using Vulkan
+    const objects = this.session?.viewportData?.objects || [];
+    objects.forEach(obj => this.renderObject3D(obj, this.session.camera, this.physicsEngine));
+  }
+
+  endRenderPass(commandBuffer) {
+    // Placeholder: End render pass
+  }
+
+  endCommandBuffer(commandBuffer) {
+    // Placeholder: End command buffer
+  }
+
+  submitCommandBuffer(commandBuffer) {
+    // Placeholder: Submit command buffer to queue
+  };
+
+  present[imageIndex] {
+    // Placeholder: Present rendered image
+  }
+
+  async renderObject3D(object, camera, physicsEngine) {
+    // Project object to 3D
+    const projected = physicsEngine.projectToView(object.position, camera);
+
+    // Create Vulkan vertex buffer
+    const vertexBuffer = this.createVertexBuffer(projected);
+
+    // Record draw commands
+    const commandBuffer = this.beginCommandBuffer();
+    this.bindPipeline(commandBuffer);
+    this.bindVertexBuffer(commandBuffer, vertexBuffer);
+    this.draw(commandBuffer, vertexBuffer);
+    this.endCommandBuffer(commandBuffer);
+
+    // Submit and present
+    this.submitCommandBuffer(commandBuffer);
+  }
+
+  createVertexBuffer(projected) {
+    // Placeholder: Create Vulkan vertex buffer from projected coordinates
+    return {};
+  }
+
+  bindPipeline(commandBuffer) {
+    // Placeholder: Bind graphics pipeline
+  }
+
+  bindVertexBuffer(commandBuffer, vertexBuffer) {
+    // Placeholder: Bind vertex buffer
+  }
+
+  draw(commandBuffer, vertexBuffer) {
+    // Placeholder: Issue draw command
+  }
+
+  async renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
+    // Project object to specified view rank
+    const projected = physicsEngine.projectToView(object.position, camera, viewRank);
+
+    // Apply wave-based intensity modulation
+    const intensity = waveParams ? this.waveFunction(projected, waveParams) : 1.0;
+
+    // Create Vulkan vertex buffer with intensity
+    const vertexBuffer = this.createVertexBuffer({ ...projected, intensity });
+
+    // Record draw commands
+    const commandBuffer = this.beginCommandBuffer();
+    this.bindPipeline(commandBuffer);
+    this.bindVertexBuffer(commandBuffer, vertexBuffer);
+    this.draw(commandBuffer, vertexBuffer);
+    this.endCommandBuffer(commandBuffer);
+
+    // Submit and present
+    this.submitCommandBuffer(commandBuffer);
+  }
+
+  globalIllumination(objects, lightSources) {
+    // Use Vulkan compute shader for wave-based illumination
+    const computePipeline = this.createComputePipeline('waveIlluminationShader');
+    this.bindComputeBuffers(computePipeline, objects, lightSources);
+    this.dispatchCompute(computePipeline);
+    return this.readComputeResults();
+  }
+
+  createComputePipeline(shaderName) {
+    // Placeholder: Create compute pipeline for shader
+    console.log();
+    return {};
+  }
+
+  bindComputeBuffers(pipeline, objects, lightSources) {
+    // Placeholder: Bind buffers for compute shader
+  }
+
+  dispatchCompute(pipeline) {
+    // Placeholder: Dispatch compute shader
+  }
+
+  readComputeResults() {
+    // Placeholder: Read results from compute shader
+    return [];
+  }
+
+  // Existing functions (simplified for brevity)
+  function waveFunction(amplitude, k, x, omega, t) {
+    // psi = A * exp(i * (k * x - omega * t))
+    // Returns complex value as [real, imag]
+    const phase = k * x - omega * t;
+    return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
+  }
+
+  function interferencePattern(source, obj1, obj2, lambda) {
+    // Calculate the interference pattern of light waves from a single source
+    const D = (p1, p2) => Math.sqrt(
+      Math.pow(p2[0] - p1[0], 2) +
+      Math.pow(p2[1] - p1[1], 2) +
+      Math.pow(p2[2] - p1[2], 2)
+    );
+    const distance1 = D(source, obj1);
+    const distance2 = D(source, obj2);
+    const phaseDifference = (distance1 - distance2) * (2 * Math.PI / lambda);
+    return Math.cos(phaseDifference); // Interference pattern
+  }
+
+  function applyInterference(source, obj1, obj2, lambda) {
+    const pattern = interferencePattern(source, obj1.position, obj2.position, lambda);
+    obj1.intensity = (obj1.intensity || 1) * pattern;
+    obj2.intensity = (obj2.intensity || 1) * pattern;
+  }
+
+  function createVoxelObject(center, size, angularMomentumMap = {}) { /* ... */ }
+  function updateDistanceFromObserver(object, observer) { /* ... */ }
+  function computeAngularMomentumMap(object) { /* ... */ }
+  function isEdgeVoxel(v, object) { /* ... */ }
+  function interactObjects(objA, objB, tensor = metricTensor5D) { /* ... */ }
+  function spawnObjectNearPlayer(player, objectData) { /* ... */ }
+
+
+  function fastTransform(ray) {
+    // ray: array of sample values (e.g., intensity along a path)
+    // Returns: array of frequency components (magnitude, phase)
+    // Simple DFT for demonstration; replace with optimized FFT as needed
+    const N = ray.length;
+    let result = [];
+    for (let k = 0; k < N; k++) {
+      let real = 0, imag = 0;
+      for (let n = 0; n < N; n++) {
+        const angle = (2 * Math.PI * k * n) / N;
+        real += ray[n] * Math.cos(angle);
+        imag -= ray[n] * Math.sin(angle);
+      }
+      result.push({ magnitude: Math.sqrt(real * real + imag * imag), phase: Math.atan2(imag, real) });
+    }
+    return result;
+  }
+
+  function worldWarp(geometryType, params, metricTensor) {
+    // geometryType: 'plane', 'sphere', 'cube', 'torus', 'hypercube', etc.
+    // params: geometry-specific parameters (e.g., radius for sphere)
+    // metricTensor: for curved space
+    // Returns a transformation function
+    switch (geometryType) {
+      case 'sphere':
+        // Project (x, y, z) onto sphere of radius r
+        return (point) => {
+          const [x, y, z] = point;
+          const r = params.radius || 1;
+          const norm = Math.sqrt(x * x + y * y + z * z) || 1;
+          return [r * x / norm, r * y / norm, r * z / norm];
+        };
+      case 'torus':
+        // Project onto torus (R: major, r: minor)
+        return (point) => {
+          const [x, y, z] = point;
+          const R = params.R || 2, r = params.r || 1;
+          const theta = Math.atan2(y, x);
+          const phi = Math.atan2(z, Math.sqrt(x * x + y * y) - R);
+          return [
+            (R + r * Math.cos(phi)) * Math.cos(theta),
+            (R + r * Math.cos(phi)) * Math.sin(theta),
+            r * Math.sin(phi)
+          ];
+        };
+      // Add more geometries as needed
+      default:
+        // Identity (no warp)
+        return (point) => point;
+    }
+  }
+
+  function wireFrames(item, options = {}, metricTensor) {
+    // item: object with position, shape, etc.
+    // options: { levelOfDetail, color, ... }
+    // metricTensor: for nD geometry
+    // Returns: array of edges (pairs of points)
+    // Example: cube wireframe in 3D
+    if (item.shape === 'cube') {
+      const size = options.size || 1;
+      const vertices = [
+        [0, 0, 0], [size, 0, 0], [size, size, 0], [0, size, 0],
+        [0, 0, size], [size, 0, size], [size, size, size], [0, size, size]
+      ].map(v => metricTensor ? metricTensor.transform(v) : v);
+      const edges = [
+        [0,1],[1,2],[2,3],[3,0],
+        [4,5],[5,6],[6,7],[7,4],
+        [0,4],[1,5],[2,6],[3,7]
+      ];
+      return edges.map(([a, b]) => [vertices[a], vertices[b]]);
+    }
+    // Add more shapes as needed
+    return [];
+  }
+
+  function rastRenderMap(wireframe, textureMap, waveParams = {}) {
+    // wireframe: array of edges (pairs of points)
+    // textureMap: lookup table or image
+    // waveParams: for wave-based shading
+    // Returns: rasterized image or buffer
+    // Skeleton: For each edge, sample points and modulate intensity by wave function
+    let raster = [];
+    wireframe.forEach(([p1, p2]) => {
+      // Simple linear interpolation between p1 and p2
+      const steps = 20;
+      for (let i = 0; i <= steps; i++) {
+        const t = i / steps;
+        const point = p1.map((v, idx) => v + t * (p2[idx] - v));
+        // Use wave function for intensity
+        const [real, imag] = waveFunction(
+          waveParams.amplitude || 1,
+          waveParams.k || 1,
+          point[0], // x
+          waveParams.omega || 1,
+          waveParams.t || 0
+        );
+        // Sample texture (placeholder)
+        const texColor = textureMap ? textureMap(point) : [real, real, real];
+        raster.push({ point, color: texColor, intensity: real });
+      }
+    });
+    return raster;
+  }
+
+
+
 // --- Tiling and Multi-Monitor Support ---
 function tileMode(enable, config = {}) {
   // If not enabled, reset to single window (fullscreen or default)
@@ -79,175 +445,6 @@ const metricTensor5D = new MetricTensor(
     [0, 0, 0, 0, 1]
   ]
 );
-
-
-// --- Wave Function Utilities ---
-function waveFunction(amplitude, k, x, omega, t) {
-  // psi = A * exp(i * (k * x - omega * t))
-  // Returns complex value as [real, imag]
-  const phase = k * x - omega * t;
-  return [amplitude * Math.cos(phase), amplitude * Math.sin(phase)];
-}
-
-function interferencePattern(source, obj1, obj2, lambda) {
-  // Calculate the interference pattern of light waves from a single source
-  const D = (p1, p2) => Math.sqrt(
-    Math.pow(p2[0] - p1[0], 2) +
-    Math.pow(p2[1] - p1[1], 2) +
-    Math.pow(p2[2] - p1[2], 2)
-  );
-  const distance1 = D(source, obj1);
-  const distance2 = D(source, obj2);
-  const phaseDifference = (distance1 - distance2) * (2 * Math.PI / lambda);
-  return Math.cos(phaseDifference); // Interference pattern
-}
-
-function applyInterference(source, obj1, obj2, lambda) {
-  const pattern = interferencePattern(source, obj1.position, obj2.position, lambda);
-  obj1.intensity = (obj1.intensity || 1) * pattern;
-  obj2.intensity = (obj2.intensity || 1) * pattern;
-}
-
-function createVoxelObject(center, size, angularMomentumMap = {}) { /* ... */ }
-function updateDistanceFromObserver(object, observer) { /* ... */ }
-function computeAngularMomentumMap(object) { /* ... */ }
-function isEdgeVoxel(v, object) { /* ... */ }
-function interactObjects(objA, objB, tensor = metricTensor5D) { /* ... */ }
-function spawnObjectNearPlayer(player, objectData) { /* ... */ }
-
-// --- Global Illumination and Wave-Based Rendering ---
-function globalIllumination(lightSources, scene, waveParams = {}) {
-  // lightSources: array of LightSource
-  // scene: array of objects with position, intensity, etc.
-  // waveParams: { lambda, amplitude, omega, t }
-  scene.forEach(obj => {
-    let totalIntensity = 0;
-    lightSources.forEach(light => {
-      // Calculate distance and phase
-      const D = (p1, p2) => Math.sqrt(
-        Math.pow(p2[0] - p1[0], 2) +
-        Math.pow(p2[1] - p1[1], 2) +
-        Math.pow(p2[2] - p1[2], 2)
-      );
-      const distance = D(light.position, obj.position);
-      const k = 2 * Math.PI / (waveParams.lambda || 1);
-      const [real, imag] = waveFunction(
-        waveParams.amplitude || 1,
-        k,
-        distance,
-        waveParams.omega || 1,
-        waveParams.t || 0
-      );
-      // Interference with other lights (optional)
-      totalIntensity += real * (light.intensity || 1);
-    });
-    obj.intensity = totalIntensity;
-  });
-}
-
-function fastTransform(ray) {
-  // ray: array of sample values (e.g., intensity along a path)
-  // Returns: array of frequency components (magnitude, phase)
-  // Simple DFT for demonstration; replace with optimized FFT as needed
-  const N = ray.length;
-  let result = [];
-  for (let k = 0; k < N; k++) {
-    let real = 0, imag = 0;
-    for (let n = 0; n < N; n++) {
-      const angle = (2 * Math.PI * k * n) / N;
-      real += ray[n] * Math.cos(angle);
-      imag -= ray[n] * Math.sin(angle);
-    }
-    result.push({ magnitude: Math.sqrt(real * real + imag * imag), phase: Math.atan2(imag, real) });
-  }
-  return result;
-}
-
-function worldWarp(geometryType, params, metricTensor) {
-  // geometryType: 'plane', 'sphere', 'cube', 'torus', 'hypercube', etc.
-  // params: geometry-specific parameters (e.g., radius for sphere)
-  // metricTensor: for curved space
-  // Returns a transformation function
-  switch (geometryType) {
-    case 'sphere':
-      // Project (x, y, z) onto sphere of radius r
-      return (point) => {
-        const [x, y, z] = point;
-        const r = params.radius || 1;
-        const norm = Math.sqrt(x * x + y * y + z * z) || 1;
-        return [r * x / norm, r * y / norm, r * z / norm];
-      };
-    case 'torus':
-      // Project onto torus (R: major, r: minor)
-      return (point) => {
-        const [x, y, z] = point;
-        const R = params.R || 2, r = params.r || 1;
-        const theta = Math.atan2(y, x);
-        const phi = Math.atan2(z, Math.sqrt(x * x + y * y) - R);
-        return [
-          (R + r * Math.cos(phi)) * Math.cos(theta),
-          (R + r * Math.cos(phi)) * Math.sin(theta),
-          r * Math.sin(phi)
-        ];
-      };
-    // Add more geometries as needed
-    default:
-      // Identity (no warp)
-      return (point) => point;
-  }
-}
-
-function wireFrames(item, options = {}, metricTensor) {
-  // item: object with position, shape, etc.
-  // options: { levelOfDetail, color, ... }
-  // metricTensor: for nD geometry
-  // Returns: array of edges (pairs of points)
-  // Example: cube wireframe in 3D
-  if (item.shape === 'cube') {
-    const size = options.size || 1;
-    const vertices = [
-      [0, 0, 0], [size, 0, 0], [size, size, 0], [0, size, 0],
-      [0, 0, size], [size, 0, size], [size, size, size], [0, size, size]
-    ].map(v => metricTensor ? metricTensor.transform(v) : v);
-    const edges = [
-      [0,1],[1,2],[2,3],[3,0],
-      [4,5],[5,6],[6,7],[7,4],
-      [0,4],[1,5],[2,6],[3,7]
-    ];
-    return edges.map(([a, b]) => [vertices[a], vertices[b]]);
-  }
-  // Add more shapes as needed
-  return [];
-}
-
-function rastRenderMap(wireframe, textureMap, waveParams = {}) {
-  // wireframe: array of edges (pairs of points)
-  // textureMap: lookup table or image
-  // waveParams: for wave-based shading
-  // Returns: rasterized image or buffer
-  // Skeleton: For each edge, sample points and modulate intensity by wave function
-  let raster = [];
-  wireframe.forEach(([p1, p2]) => {
-    // Simple linear interpolation between p1 and p2
-    const steps = 20;
-    for (let i = 0; i <= steps; i++) {
-      const t = i / steps;
-      const point = p1.map((v, idx) => v + t * (p2[idx] - v));
-      // Use wave function for intensity
-      const [real, imag] = waveFunction(
-        waveParams.amplitude || 1,
-        waveParams.k || 1,
-        point[0], // x
-        waveParams.omega || 1,
-        waveParams.t || 0
-      );
-      // Sample texture (placeholder)
-      const texColor = textureMap ? textureMap(point) : [real, real, real];
-      raster.push({ point, color: texColor, intensity: real });
-    }
-  });
-  return raster;
-}
 
 // --- Audio and Soundscape ---
 /**
@@ -1380,13 +1577,6 @@ function navigate3D(currentPosition, direction, step, physicsEngine) {
   return newPos; // Already 3D
 }
 
-// Example: Rendering in 3D mode
-function renderObject3D(object, camera, physicsEngine) {
-  let projected = physicsEngine.projectToView(object.position, 3);
-  // ...pass projected to renderer
-  return projected;
-}
-
 // Example: Gravity at a point in 3D
 function getGravityAtPoint(point, physicsEngine) {
   return physicsEngine.gravityAt(point);
@@ -1399,25 +1589,6 @@ function navigate(currentPosition, direction, step, physicsEngine) {
   let newPos = currentPosition.map((v, i) => v + move[i]);
   // Optionally transform using metric
   return physicsEngine.transformVector(newPos);
-}
-
-// Rendering with wave-based intensity
-function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
-  // Project object's nD position to 3D for rendering
-  let projected = physicsEngine.projectToView(object.position, viewRank);
-  // Apply wave function for intensity modulation
-  if (waveParams.amplitude && waveParams.k && waveParams.omega && waveParams.t !== undefined) {
-    const [real, imag] = waveFunction(
-      waveParams.amplitude,
-      waveParams.k,
-      projected[0], // x
-      waveParams.omega,
-      waveParams.t
-    );
-    object.intensity = real; // Use real part for intensity
-  }
-  // ...pass projected and intensity to renderer
-  return projected;
 }
 
 // Collision with wave-based culling
@@ -1783,6 +1954,7 @@ function getMenuOptionsWithMilestones() {
     });
   });
   return options;
+}
 }
 
 
