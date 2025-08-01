@@ -136,7 +136,7 @@ class MistIllum {
     // Placeholder: Submit command buffer to queue
   }
 
-  present[imageIndex] {
+  present([imageIndex]) {
     // Placeholder: Present rendered image
   }
 
