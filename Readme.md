@@ -6,10 +6,40 @@
 
 ## **Modules**
 
-- **MistIllum**: 3D/4D/nD visualization, rendering, and physics engine. Supports interactive, physically-based rendering and simulation, wave-based lighting, multi-dimensional navigation, and real-time audio/visual feedback. Integrates with MistTracker and MistMulti.
-- **MistTracker**: Data/state management, session and provenance tracking, and integration with MySQL for persistent storage.
-- **MistMulti**: Multi-user, P2P, and moderation features, including real-time collaboration, event broadcasting, and secure messaging.
-- **MistCore**: Core logic for viewport, selection, and UI integration.
+- **MistIllum**: Vulkan-based 3D/4D/nD visualization engine featuring:
+  - Hardware-accelerated rendering with X11 integration
+  - Wave-based lighting and physics simulation
+  - Metric tensor-based nD navigation
+  - Real-time audio modulation with spatial awareness
+  - Multi-monitor tiling support
+  
+- **MistTrackerVulkan**: Enhanced data management system with:
+  - MySQL-based persistence layer
+  - Session and provenance tracking
+  - Milestone-based feature progression
+  - Anomaly detection and swarm validation
+  - Character location tracking
+  
+- **MistMulti**: Advanced P2P collaboration featuring:
+  - DHT-based host discovery
+  - Reed-Solomon FEC for reliable messaging
+  - ECC-based encryption
+  - Real-time event broadcasting
+  - Tensor input monitoring (grimReaper)
+  
+- **MistImpulse**: Multi-device input system supporting:
+  - XInput2 multi-pointer integration
+  - Haptic feedback via evdev
+  - AR/VR input mapping
+  - Gesture recognition
+  - Real-time pointer broadcasting
+
+- **MistCore**: Core logic layer providing:
+  - Viewport management and rendering
+  - Selection and navigation state
+  - UI integration with X11
+  - Data model operations
+  - Session persistence
 
 ---
 
@@ -44,60 +74,161 @@
 
 ---
 
-## **End-User Features**
+## **Key Features**
 
-- **Unified API:**  
-  All rendering, physics, and audio features are exposed through a single, well-documented API.
+### Hardware Integration
 
-- **User-Friendly UI:**  
-  Intuitive controls for navigation, object interaction, and mode switching, with milestone-based unlocks and feedback.
+- **Vulkan Rendering Pipeline:**
+  - Hardware-accelerated nD visualization
+  - Multi-monitor tiling support
+  - Wave-based global illumination
+  - Custom shader pipelines for tensor visualization
 
-- **Scene & Object Management:**  
-  Create, import, and manipulate voxel-based objects. Save/load scenes and objects.
+- **Input Device Support:**
+  - XInput2 multi-pointer integration
+  - Evdev haptic feedback
+  - AR/VR input mapping
+  - Gesture recognition
+  - Real-time pointer broadcasting
 
-- **Real-Time Physics & Rendering:**  
-  All interactions are reflected in real time, with accurate physics and lighting. GPU acceleration is used where possible.
+### Core Functionality
 
-- **Audio & Soundscape:**  
-  Spatial audio modulated by wave and geometric logic for immersive feedback.
+- **Physics and Mathematics:**
+  - nD-capable physics engine
+  - Metric tensor-based navigation
+  - Wave function interference patterns
+  - Energy distribution modeling
+  - Real-time collision detection
 
-- **Multi-User & Collaboration:**  
-  Real-time collaboration, moderation, and provenance via MistMulti.
+- **Data Management:**
+  - MySQL-based persistence
+  - CSV/RTF data import
+  - Character location tracking
+  - Session state management
+  - Provenance metadata
 
-- **Documentation & Help:**  
-  In-app help, tooltips, and documentation for all features and controls.
+### Advanced Features
 
-- **Extensibility:**  
-  Support for plugins and scripting for custom physics, rendering, or UI extensions.
+- **Milestone System:**
+  - Progressive feature unlocking
+  - Precision-based advancement
+  - Mode enablement tracking
+  - Tensor metric tables
+  - Interaction distributions
+
+- **Multi-User Collaboration:**
+  - DHT-based peer discovery
+  - Reed-Solomon message reliability
+  - ECC-based encryption
+  - Real-time state sync
+  - Swarm-based validation
+
+### Audio and Feedback
+
+- **Wave-Based Audio:**
+  - Spatial audio modulation
+  - Interference-based effects
+  - Distance-based attenuation
+  - Dialogue system
+  - Ambient soundscapes
+
+- **Haptic Integration:**
+  - Multi-device feedback
+  - Intensity modulation
+  - Event-based triggers
+  - Force feedback mapping
+
+### Security and Moderation
+
+- **Event Validation:**
+  - Anomaly detection
+  - Swarm consensus
+  - Event horizon system
+  - Rate limiting
+  - Interaction banning
+
+- **Data Protection:**
+  - ECC message encryption
+  - Forward error correction
+  - Secure peer discovery
+  - User data management
+  - Session token security
 
 ---
 
-## **Summary Table**
+## **Integration Status**
 
-| Area                | Features/Integration                                      |
-|---------------------|----------------------------------------------------------|
-| Physics/Gravity     | Unified nD physics engine, metric tensors                |
-| Wave/Interference   | Wave functions, interference, and wave-based rendering   |
-| Object Representation | Voxel/center/angularMomentumMap conventions           |
-| Deformation/Energy  | Deform and distribute energy across nD objects           |
-| Rendering/Audio     | Unified API, physics-based modulation                    |
-| UI/Menu             | Physics/3D/nD/quantum options, milestone unlocks         |
-| Multi-user/Provenance | Real-time collaboration, moderation, provenance       |
-| Documentation/Help  | User guidance and API docs                               |
+| Component          | Status | Features                                          |
+|-------------------|--------|---------------------------------------------------|
+| Vulkan Integration| ✓      | Hardware acceleration, custom shaders, multi-monitor |
+| X11/Input         | ✓      | XInput2, multi-pointer, gesture support          |
+| Physics Engine    | ✓      | nD metrics, wave functions, collision detection   |
+| Audio System      | ✓      | Spatial modulation, wave-based effects           |
+| Database          | ✓      | MySQL integration, CSV import, persistence        |
+| P2P Networking    | ✓      | DHT discovery, FEC, encryption                   |
+| Haptic Support    | ✓      | Evdev integration, force feedback                |
+| AR Integration    | ⚡      | Basic input mapping, coordinate transformation    |
+| Milestone System  | ✓      | Feature progression, precision tracking          |
+| Security          | ✓      | Event validation, anomaly detection              |
+
+Legend: ✓ = Complete, ⚡ = Partial/In Progress
+
+## **Upcoming Features**
+
+- Enhanced AR device support
+- Advanced nD visualization modes
+- Additional haptic device protocols
+- Extended wave-based physics models
+- Expanded milestone progression paths
 
 ---
 
 ## **Getting Started**
 
-1. **Install dependencies:**  
+1. **System Requirements:**
    - Node.js (LTS recommended)
-   - MySQL (or compatible database)
-   - X11 (for Linux GUI support)
-   - Optional: Vulkan/OpenCL for GPU acceleration
+   - MySQL 8.0+ or compatible database
+   - X11/XInput2 for display and input
+   - Vulkan 1.2+ for hardware acceleration
+   - Evdev for haptic feedback support
+   - OpenCL for physics computations (optional)
 
-2. **Configure database:**  
-   - Edit `dbConfig` in `MistCausality.js` as needed.
-
-3. **Run the solution:**  
+2. **Installation:**
    ```sh
+   # Install Node.js dependencies
+   npm install nvk node-x11 node-evdev elliptic reed-solomon mysql2
+
+   # Configure X11 and Vulkan
+   sudo usermod -a -G input $USER  # For evdev access
+   ```
+
+3. **Database Setup:**
+   ```sh
+   # Configure database connection
+   cp config.example.js config.js
+   nano config.js  # Edit database settings
+
+   # Initialize database
+   node MistCausality.js --init
+   ```
+
+4. **Running the Solution:**
+   ```sh
+   # Start in single-user mode
    node MistCausality.js
+
+   # Start in multi-user mode with P2P
+   node MistCausality.js --multi
+   
+   # Start with AR support
+   node MistCausality.js --ar
+   ```
+
+5. **Development Setup:**
+   ```sh
+   # Install development tools
+   npm install -D typescript @types/node
+
+   # Watch for changes
+   npm run dev
+   ```
