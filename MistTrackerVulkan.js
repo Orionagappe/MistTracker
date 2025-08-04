@@ -1340,8 +1340,6 @@ function nominateSuccessorPGP(userId, pgpPublicKey, db) {
   );
 }
 
-//const { milestoneManager } = require('./MistTrackerVulkan.js');
-
 function canUsePGPNomination() {
   return milestoneManager.getCurrentMilestone() && milestoneManager.getCurrentMilestone().order >= 6;
 }

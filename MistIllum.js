@@ -1,3 +1,190 @@
+const nvk = require('nvk');
+const { MistPhysicsEngine, MetricTensor3D, MetricTensorND } = require('./MistPhysicsEngine');
+const { renderViewport, selectTimeIndex, selectCategory, selectItem } = require('./MistCore');
+const { SelectionModeState, MapModeState, startSession, loadMistUser } = require('./MistTrackerVulkan');
+
+class MistIllum {
+    constructor(config = {}) {
+        // Vulkan instance and device setup
+        this.instance = new nvk.Instance({
+            appName: "Mist Solution",
+            engineName: "MistIllum",
+            vulkanVersion: nvk.VERSION_1_2,
+            enabledExtensions: [
+                "VK_KHR_surface",
+                "VK_KHR_xlib_surface" // For X11 integration
+            ]
+        });
+
+        // Physical device selection
+        this.physicalDevice = this.instance.getPhysicalDevices().find(device => {
+            const props = device.getProperties();
+            return props.deviceType === nvk.PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
+        });
+
+        // Logical device and queues
+        this.device = this.physicalDevice.createDevice({
+            queueCreateInfos: [{
+                queueFamilyIndex: 0,
+                queuePriorities: [1.0]
+            }],
+            enabledFeatures: {
+                geometryShader: true, // For nD geometry processing
+                tessellationShader: true // For advanced surface detail
+            }
+        });
+
+        // Command pool for graphics commands
+        this.commandPool = this.device.createCommandPool({
+            queueFamilyIndex: 0,
+            flags: nvk.COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT
+        });
+
+        // Setup physics engine and metric tensors
+        this.physicsEngine = new MistPhysicsEngine();
+        this.metricTensor3D = new MetricTensor3D();
+        this.metricTensorND = new MetricTensorND(config.dimensions || 4);
+
+        // Window and surface management
+        this.setupWindow();
+        this.setupSwapchain();
+        this.setupRenderPass();
+        this.setupPipelines();
+
+        // Session state
+        this.session = null;
+        this.viewportData = null;
+    }
+
+    setupWindow() {
+        // Create X11 window using node-x11
+        const x11 = require('node-x11');
+        this.display = x11.createClient((err, display) => {
+            this.X = display.client;
+            this.root = display.screen[0].root;
+            this.windowId = this.X.AllocID();
+
+            // Create main window
+            this.X.CreateWindow(
+                this.windowId,
+                this.root,
+                0, 0, 1280, 720, // Default size
+                0, 0, 0, 0,
+                {
+                    eventMask: x11.eventMask.Exposure |
+                              x11.eventMask.KeyPress |
+                              x11.eventMask.ButtonPress |
+                              x11.eventMask.PointerMotion
+                }
+            );
+            this.X.MapWindow(this.windowId);
+
+            // Create Vulkan surface for X11 window
+            this.surface = this.instance.createXlibSurface({
+                dpy: this.display,
+                window: this.windowId
+            });
+        });
+    }
+
+    setupSwapchain() {
+        // Create swapchain for rendering
+        const capabilities = this.physicalDevice.getSurfaceCapabilities(this.surface);
+        this.swapchain = this.device.createSwapchain({
+            surface: this.surface,
+            minImageCount: capabilities.minImageCount + 1,
+            imageFormat: nvk.FORMAT_B8G8R8A8_UNORM,
+            imageExtent: capabilities.currentExtent,
+            imageArrayLayers: 1,
+            imageUsage: nvk.IMAGE_USAGE_COLOR_ATTACHMENT_BIT,
+            preTransform: capabilities.currentTransform,
+            compositeAlpha: nvk.COMPOSITE_ALPHA_OPAQUE_BIT_KHR,
+            presentMode: nvk.PRESENT_MODE_MAILBOX_KHR,
+            clipped: true
+        });
+    }
+
+    setupRenderPass() {
+        // Create render pass for main drawing
+        this.renderPass = this.device.createRenderPass({
+            attachments: [{
+                format: nvk.FORMAT_B8G8R8A8_UNORM,
+                samples: nvk.SAMPLE_COUNT_1_BIT,
+                loadOp: nvk.ATTACHMENT_LOAD_OP_CLEAR,
+                storeOp: nvk.ATTACHMENT_STORE_OP_STORE,
+                initialLayout: nvk.IMAGE_LAYOUT_UNDEFINED,
+                finalLayout: nvk.IMAGE_LAYOUT_PRESENT_SRC_KHR
+            }],
+            subpasses: [{
+                colorAttachments: [{
+                    attachment: 0,
+                    layout: nvk.IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL
+                }]
+            }]
+        });
+    }
+
+    setupPipelines() {
+        // Create graphics pipelines for different rendering modes
+        this.pipelines = {
+            standard: this.createStandardPipeline(),
+            nD: this.createNDPipeline(),
+            wave: this.createWavePipeline()
+        };
+    }
+
+    async start(user) {
+        // Initialize session
+        if (!user) {
+            user = process.env.MIST_DEFAULT_USER || 'guest';
+        }
+        this.session = await startSession(user);
+        
+        // Start render loop
+        this.renderLoop();
+    }
+
+    renderLoop() {
+        const commandBuffer = this.commandPool.allocateCommandBuffers({
+            level: nvk.COMMAND_BUFFER_LEVEL_PRIMARY,
+            commandBufferCount: 1
+        })[0];
+
+        const renderFrame = () => {
+            // Update physics and state
+            this.physicsEngine.update();
+            this.updateViewport();
+
+            // Record and submit command buffer
+            commandBuffer.begin();
+            this.recordCommands(commandBuffer);
+            commandBuffer.end();
+
+            // Submit to queue and present
+            this.device.getQueue(0).submit({
+                commandBuffers: [commandBuffer]
+            });
+
+            // Request next frame
+            requestAnimationFrame(renderFrame);
+        };
+
+        renderFrame();
+    }
+
+    updateViewport() {
+        if (this.session && this.viewportData) {
+            renderViewport(this.session, {
+                drawPrimitive: this.drawPrimitive.bind(this),
+                drawText: this.drawText.bind(this)
+            });
+        }
+    }
+
+    // ... Additional methods for handling input, cleanup, etc.
+}
+
+
 // --- Tiling and Multi-Monitor Support ---
 function tileMode(enable, config = {}) {
   // If not enabled, reset to single window (fullscreen or default)
@@ -115,35 +302,6 @@ function isEdgeVoxel(v, object) { /* ... */ }
 function interactObjects(objA, objB, tensor = metricTensor5D) { /* ... */ }
 function spawnObjectNearPlayer(player, objectData) { /* ... */ }
 
-// --- Global Illumination and Wave-Based Rendering ---
-function globalIllumination(lightSources, scene, waveParams = {}) {
-  // lightSources: array of LightSource
-  // scene: array of objects with position, intensity, etc.
-  // waveParams: { lambda, amplitude, omega, t }
-  scene.forEach(obj => {
-    let totalIntensity = 0;
-    lightSources.forEach(light => {
-      // Calculate distance and phase
-      const D = (p1, p2) => Math.sqrt(
-        Math.pow(p2[0] - p1[0], 2) +
-        Math.pow(p2[1] - p1[1], 2) +
-        Math.pow(p2[2] - p1[2], 2)
-      );
-      const distance = D(light.position, obj.position);
-      const k = 2 * Math.PI / (waveParams.lambda || 1);
-      const [real, imag] = waveFunction(
-        waveParams.amplitude || 1,
-        k,
-        distance,
-        waveParams.omega || 1,
-        waveParams.t || 0
-      );
-      // Interference with other lights (optional)
-      totalIntensity += real * (light.intensity || 1);
-    });
-    obj.intensity = totalIntensity;
-  });
-}
 
 function fastTransform(ray) {
   // ray: array of sample values (e.g., intensity along a path)
@@ -1380,13 +1538,6 @@ function navigate3D(currentPosition, direction, step, physicsEngine) {
   return newPos; // Already 3D
 }
 
-// Example: Rendering in 3D mode
-function renderObject3D(object, camera, physicsEngine) {
-  let projected = physicsEngine.projectToView(object.position, 3);
-  // ...pass projected to renderer
-  return projected;
-}
-
 // Example: Gravity at a point in 3D
 function getGravityAtPoint(point, physicsEngine) {
   return physicsEngine.gravityAt(point);
@@ -1399,25 +1550,6 @@ function navigate(currentPosition, direction, step, physicsEngine) {
   let newPos = currentPosition.map((v, i) => v + move[i]);
   // Optionally transform using metric
   return physicsEngine.transformVector(newPos);
-}
-
-// Rendering with wave-based intensity
-function renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
-  // Project object's nD position to 3D for rendering
-  let projected = physicsEngine.projectToView(object.position, viewRank);
-  // Apply wave function for intensity modulation
-  if (waveParams.amplitude && waveParams.k && waveParams.omega && waveParams.t !== undefined) {
-    const [real, imag] = waveFunction(
-      waveParams.amplitude,
-      waveParams.k,
-      projected[0], // x
-      waveParams.omega,
-      waveParams.t
-    );
-    object.intensity = real; // Use real part for intensity
-  }
-  // ...pass projected and intensity to renderer
-  return projected;
 }
 
 // Collision with wave-based culling
