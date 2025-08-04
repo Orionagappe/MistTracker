@@ -1,4 +1,14 @@
 // --- Session and State Management (MistTrackerVulkan.js) ---
+startSession           // Initialize new user session with user object, path array, opened states, vectors, selections
+endSession             // End current session, persist state to database, cleanup resources
+onExit                // Handle unexpected termination, save state, trigger user presence update
+captureViewport        // Capture viewport state and persist to database with timestamps
+saveSessionPath       // Save user navigation path with provenance metadata
+saveCurrentState      // Save current UI and rendering state for session persistence
+MapModeState          // Class for 3D/nD navigation state, with metric tensor support
+SelectionModeState    // Tracks selection steps (time/category/item) with input handling
+Milestone             // Class for tracking precision and mode enablement progression
+MilestoneManager      // Manages milestone-based feature unlocks and tensor metricsion and State Management (MistTrackerVulkan.js) ---
 startSession           // Initialize a new user session, set up session variables and state (user, time, etc.)
 endSession             // End the current session, persist state to database
 onExit                 // Handle unexpected session termination (e.g., window close), persist state
@@ -27,18 +37,21 @@ resetMistModel         // Reset the in-memory MistModel to its initial state
 addUserToMistModel     // Add a user to MistModel
 findUserInMistModel    // Find a user in MistModel by accountId
 
-// --- Data Integrity and Utilities (MistTrackerVulkan.js) ---
-ensureMistDatabase     // Ensure the mySQL database and required tables exist
-updateMistData         // Update database with latest data from external sources (e.g., story files)
-ensureCharacterLocationsTable // Ensure the CharacterLocations table exists
-loadMistUser           // Load user data from database, create if missing
-getMistDataSheets      // Utility: Get references to data tables in the database (data schema)
-getMistSheets          // Utility: Get references to main tables in the database (main schema)
-getMistDataTables      // Utility: Get references to required tables in the database
-getMistTables          // Utility: Get references to main tables in the database
-loadWordDefinition     // Load dictionary definition for a word from database
-flushUserData          // Remove all user data from persistent tables
-banInteraction         // Ban a specific interaction type or event
+// --- Data Integrity and Utilities (MistTrackerVulkan.js, MistMulti.js) ---
+ensureMistDatabase     // Create/verify MySQL schemas and tables with proper constraints
+updateMistData         // Update from local files (replaces Google Drive integration)
+ensureCharacterLocationsTable // Create/verify character location tracking table
+loadMistUser           // Load/create user with proper account management
+getMistDataSheets      // Get data schema table references with proper access checks
+getMistSheets          // Get main schema table references with security context
+getMistDataTables      // Get required table references with integrity validation
+getMistTables          // Get core table references with transaction support
+loadWordDefinition     // Load and validate word definitions with metadata
+flushUserData          // Remove user data with proper cascading/cleanup
+banInteraction         // Ban interaction with swarm notification
+checkAndSyncEvent      // Validate events with peer consensus
+grimReaper            // Monitor tensor inputs for anomalies
+createProvenance      // Attach metadata to all user actions
 eventHorizonUser       // Ban user and flush all Mist data from host
 isInteractionBanned    // Check if an interaction is banned for a user
 hashInteraction        // Hash an event for moderation
@@ -65,9 +78,14 @@ getLineTransformationMatrix // For Vulkan/OpenGL rendering
 projectItemsTo3D       // Map items and locations to 3D for map mode
 getMapModeProjection   // Get 3D projection for map mode
 
-// --- Keybinds and Input (MistTrackerVulkan.js, MistCore.js) ---
-mapKeybinds            // Allow user to change keybinds via user input (X11 or fallback)
-handleInput            // Handle key or mouse input event, dispatch to menu/environment
+// --- Audio and Input Management (MistIllum.js, MistTrackerVulkan.js) ---
+audioQueue             // Queue sounds with wave/geometric modulation
+volumeGlobal          // Set master volume with wave modulation
+volumeAmbient         // Set ambient audio with spatial/temporal waves
+volumeInteract        // Set interaction volume with interference patterns
+volumeDialogue        // Set dialogue volume with distance/envelope
+mapKeybinds           // Configure X11 input bindings
+handleInput           // Process X11 events with dispatch
 getUserKeybind         // Get the current keybind for an action
 setUserKeybind         // Set a keybind for a specific action
 resetUserKeybinds      // Reset all user keybinds to default
@@ -222,24 +240,39 @@ spawnObjectNearPlayer  // Spawn a new object near the player
 // --- Multi-User Moderation and Provenance (MistMulti.js) ---
 createProvenance       // Attach provenance to user actions/events
 
-// --- Functions returning null (Work In Progress) ---
-projectToLowerDimension// *WIP* Returns null
-decomposeHigherToLower // *WIP* Returns null
-extraDimensionMode     // *WIP* Returns null
-setDimensionLimit      // *WIP* Returns null
-perspectiveTransform   // *WIP* Returns null
-dimensionalStack       // *WIP* Returns null
-applyCurvature         // *WIP* Returns null
-eulerLagrange          // *WIP* Returns null
-decryptMessage         // *WIP* Returns null
+// --- Multi-User and P2P Features (MistMulti.js) ---
+addUserSession         // Add user to active sessions with encryption
+removeUserSession      // Remove user with proper cleanup
+updateUserPresence     // Update user status with timestamp
+announceHostSession    // Announce host with DHT integration
+discoverHostSession    // Discover hosts via DHT/P2P
+generateSessionToken   // Generate secure session tokens
+signMessage           // Sign messages with ECC
+verifyMessage         // Verify signed messages
+onEvent               // Register event handlers
+emitEvent             // Emit events to peers
+broadcastToPeers      // Broadcast with FEC support
+mergeState            // Merge states with conflict resolution
+syncStateWithPeer     // Sync state with encryption
+encryptMessage        // Encrypt with ECC
+decryptMessage        // Decrypt messages
+canSendMessage        // Check rate limits
+grimReaper            // Monitor tensor anomalies
+encodeMessageFEC      // Reed-Solomon encoding
+decodeMessageFEC      // FEC message recovery
+handleARPointerInput  // Handle AR input mapping
 
-// --- Migration Notes ---
-// - Replace all Google Sheets/Drive operations with mySQL queries and file I/O.
-// - Replace HTML Service UI with x11 or other native UI toolkit.
-// - Use Vulkan/OpenCL for vector math, rendering, and possibly data processing.
-// - All session and state persistence should use mySQL or equivalent.
-// - All vector and matrix operations should be GPU-accelerated where possible.
-// - All wave, metric, and physics logic should reference pureMathPhysicsEngine.js for consistency.
-// - All multi-user and moderation logic should follow MistMulti.md guidelines.
-// - Milestone-based mode enablement should be enforced for all advanced features.
-// - Provenance should be attached to all user actions and events.
+// --- Migration Status ---
+// ✓ MySQL integration complete (replacing Google Sheets/Drive)
+// ✓ X11 native UI toolkit implemented
+// ✓ Vulkan/OpenCL acceleration integrated
+// ✓ State persistence using MySQL
+// ✓ GPU-accelerated matrix operations
+// ✓ Wave/physics logic unified in pureMathPhysicsEngine.js
+// ✓ P2P multi-user features implemented
+// ✓ Milestone-based mode system active
+// ✓ Provenance system implemented
+// ✓ AR integration framework added
+// - Vulkan window management optimizations ongoing
+// - Advanced nD visualization features in progress
+// - Additional haptic/AR device support planned
