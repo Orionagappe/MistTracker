@@ -3,230 +3,185 @@ const { MistPhysicsEngine, MetricTensor3D, MetricTensorND } = require('./MistPhy
 const { renderViewport, selectTimeIndex, selectCategory, selectItem } = require('./MistCore');
 const { SelectionModeState, MapModeState, startSession, loadMistUser } = require('./MistTrackerVulkan');
 
-// Placeholder for external dependencies
-const wmctrl = require('wmctrl'); // For window management
-const pactl = require('pactl'); // For audio control
-
 class MistIllum {
-  constructor(config) {
-    this.config = config;
-    this.display = config.display;
-    this.windowId = config.windowId;
-    this.db = config.db || null;
-    this.uiRenderer = config.uiRenderer || { showMenu: () => {}, promptSelect: () => {}, showMessage: () => {} };
-    this.session = null;
-    this.physicsEngine = new MistPhysicsEngine();
-    this.mode = '3D';
-    this.vulkanInitialized = false;
+    constructor(config = {}) {
+        // Vulkan instance and device setup
+        this.instance = new nvk.Instance({
+            appName: "Mist Solution",
+            engineName: "MistIllum",
+            vulkanVersion: nvk.VERSION_1_2,
+            enabledExtensions: [
+                "VK_KHR_surface",
+                "VK_KHR_xlib_surface" // For X11 integration
+            ]
+        });
 
-    // Initialize Vulkan
-    this.initVulkan();
-  }
+        // Physical device selection
+        this.physicalDevice = this.instance.getPhysicalDevices().find(device => {
+            const props = device.getProperties();
+            return props.deviceType === nvk.PHYSICAL_DEVICE_TYPE_DISCRETE_GPU;
+        });
 
-  initVulkan() {
-    try {
-      // Create Vulkan instance
-      const appInfo = new nvk.VkApplicationInfo({
-        apiVersion: nvk.VK_API_VERSION_1_1,
-        applicationName: 'MistIllum',
-        applicationVersion: 1,
-        engineName: 'MistEngine',
-        engineVersion: 1,
-      });
+        // Logical device and queues
+        this.device = this.physicalDevice.createDevice({
+            queueCreateInfos: [{
+                queueFamilyIndex: 0,
+                queuePriorities: [1.0]
+            }],
+            enabledFeatures: {
+                geometryShader: true, // For nD geometry processing
+                tessellationShader: true // For advanced surface detail
+            }
+        });
 
-      const instanceInfo = new nvk.VkInstanceCreateInfo({
-        applicationInfo: appInfo,
-        enabledExtensionNames: ['VK_KHR_surface', 'VK_KHR_xlib_surface'],
-      });
+        // Command pool for graphics commands
+        this.commandPool = this.device.createCommandPool({
+            queueFamilyIndex: 0,
+            flags: nvk.COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT
+        });
 
-      this.instance = nvk.vkCreateInstance(instanceInfo);
+        // Setup physics engine and metric tensors
+        this.physicsEngine = new MistPhysicsEngine();
+        this.metricTensor3D = new MetricTensor3D();
+        this.metricTensorND = new MetricTensorND(config.dimensions || 4);
 
-      // Create X11 surface
-      const surfaceInfo = new nvk.VkXlibSurfaceCreateInfoKHR({
-        dpy: this.display,
-        window: this.windowId,
-      });
+        // Window and surface management
+        this.setupWindow();
+        this.setupSwapchain();
+        this.setupRenderPass();
+        this.setupPipelines();
 
-      this.surface = nvk.vkCreateXlibSurfaceKHR(this.instance, surfaceInfo);
-
-      // Select physical device
-      const physicalDevices = nvk.vkEnumeratePhysicalDevices(this.instance);
-      this.physicalDevice = physicalDevices[0]; // Select first GPU for simplicity
-
-      // Create logical device (simplified; actual implementation requires queue families, etc.)
-      const deviceInfo = new nvk.VkDeviceCreateInfo({
-        enabledExtensionNames: ['VK_KHR_swapchain'],
-      });
-      this.device = nvk.vkCreateDevice(this.physicalDevice, deviceInfo);
-
-      // Placeholder for swapchain, render pass, pipeline setup
-      this.setupVulkanPipeline();
-
-      this.vulkanInitialized = true;
-    } catch (err) {
-      console.error('Vulkan initialization failed:', err);
-      this.vulkanInitialized = false;
-    }
-  }
-
-  setupVulkanPipeline() {
-    // Placeholder for swapchain, render pass, graphics pipeline, and command buffers
-    // Implement based on Vulkan tutorials (e.g., https://vulkan-tutorial.com)
-    // Requires creating swapchain, render pass, shaders, pipeline, framebuffers, etc.
-    this.swapchain = null; // Initialize swapchain
-    this.renderPass = null; // Initialize render pass
-    this.pipeline = null; // Initialize graphics pipeline
-    this.commandBuffers = []; // Initialize command buffers
-  }
-
-  render() {
-    if (!this.vulkanInitialized) {
-      console.error('Vulkan not initialized; falling back to UI renderer');
-      renderViewport(this.session, this.uiRenderer);
-      return;
+        // Session state
+        this.session = null;
+        this.viewportData = null;
     }
 
-    // Acquire next swapchain image
-    const imageIndex = this.acquireSwapchainImage();
+    setupWindow() {
+        // Create X11 window using node-x11
+        const x11 = require('node-x11');
+        this.display = x11.createClient((err, display) => {
+            this.X = display.client;
+            this.root = display.screen[0].root;
+            this.windowId = this.X.AllocID();
 
-    // Record command buffer
-    const commandBuffer = this.beginCommandBuffer();
-    this.beginRenderPass(commandBuffer, imageIndex);
+            // Create main window
+            this.X.CreateWindow(
+                this.windowId,
+                this.root,
+                0, 0, 1280, 720, // Default size
+                0, 0, 0, 0,
+                {
+                    eventMask: x11.eventMask.Exposure |
+                              x11.eventMask.KeyPress |
+                              x11.eventMask.ButtonPress |
+                              x11.eventMask.PointerMotion
+                }
+            );
+            this.X.MapWindow(this.windowId);
 
-    // Render scene (e.g., objects, UI)
-    this.drawScene(commandBuffer);
+            // Create Vulkan surface for X11 window
+            this.surface = this.instance.createXlibSurface({
+                dpy: this.display,
+                window: this.windowId
+            });
+        });
+    }
 
-    this.endRenderPass(commandBuffer);
-    this.endCommandBuffer(commandBuffer);
+    setupSwapchain() {
+        // Create swapchain for rendering
+        const capabilities = this.physicalDevice.getSurfaceCapabilities(this.surface);
+        this.swapchain = this.device.createSwapchain({
+            surface: this.surface,
+            minImageCount: capabilities.minImageCount + 1,
+            imageFormat: nvk.FORMAT_B8G8R8A8_UNORM,
+            imageExtent: capabilities.currentExtent,
+            imageArrayLayers: 1,
+            imageUsage: nvk.IMAGE_USAGE_COLOR_ATTACHMENT_BIT,
+            preTransform: capabilities.currentTransform,
+            compositeAlpha: nvk.COMPOSITE_ALPHA_OPAQUE_BIT_KHR,
+            presentMode: nvk.PRESENT_MODE_MAILBOX_KHR,
+            clipped: true
+        });
+    }
 
-    // Submit and present
-    this.submitCommandBuffer(commandBuffer);
-    this.present(imageIndex);
-  }
+    setupRenderPass() {
+        // Create render pass for main drawing
+        this.renderPass = this.device.createRenderPass({
+            attachments: [{
+                format: nvk.FORMAT_B8G8R8A8_UNORM,
+                samples: nvk.SAMPLE_COUNT_1_BIT,
+                loadOp: nvk.ATTACHMENT_LOAD_OP_CLEAR,
+                storeOp: nvk.ATTACHMENT_STORE_OP_STORE,
+                initialLayout: nvk.IMAGE_LAYOUT_UNDEFINED,
+                finalLayout: nvk.IMAGE_LAYOUT_PRESENT_SRC_KHR
+            }],
+            subpasses: [{
+                colorAttachments: [{
+                    attachment: 0,
+                    layout: nvk.IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL
+                }]
+            }]
+        });
+    }
 
-  acquireSwapchainImage() {
-    // Placeholder: Implement swapchain image acquisition
-    return 0; // Return image index
-  }
+    setupPipelines() {
+        // Create graphics pipelines for different rendering modes
+        this.pipelines = {
+            standard: this.createStandardPipeline(),
+            nD: this.createNDPipeline(),
+            wave: this.createWavePipeline()
+        };
+    }
 
-  beginCommandBuffer() {
-    // Placeholder: Begin recording command buffer
-    return {};
-  }
+    async start(user) {
+        // Initialize session
+        if (!user) {
+            user = process.env.MIST_DEFAULT_USER || 'guest';
+        }
+        this.session = await startSession(user);
+        
+        // Start render loop
+        this.renderLoop();
+    }
 
-  beginRenderPass(commandBuffer, imageIndex) {
-    // Placeholder: Begin render pass
-  }
+    renderLoop() {
+        const commandBuffer = this.commandPool.allocateCommandBuffers({
+            level: nvk.COMMAND_BUFFER_LEVEL_PRIMARY,
+            commandBufferCount: 1
+        })[0];
 
-  drawScene(commandBuffer) {
-    // Render objects using Vulkan
-    const objects = this.session?.viewportData?.objects || [];
-    objects.forEach(obj => this.renderObject3D(obj, this.session.camera, this.physicsEngine));
-  }
+        const renderFrame = () => {
+            // Update physics and state
+            this.physicsEngine.update();
+            this.updateViewport();
 
-  endRenderPass(commandBuffer) {
-    // Placeholder: End render pass
-  }
+            // Record and submit command buffer
+            commandBuffer.begin();
+            this.recordCommands(commandBuffer);
+            commandBuffer.end();
 
-  endCommandBuffer(commandBuffer) {
-    // Placeholder: End command buffer
-  }
+            // Submit to queue and present
+            this.device.getQueue(0).submit({
+                commandBuffers: [commandBuffer]
+            });
 
-  submitCommandBuffer(commandBuffer) {
-    // Placeholder: Submit command buffer to queue
-  }
+            // Request next frame
+            requestAnimationFrame(renderFrame);
+        };
 
-  present([imageIndex]) {
-    // Placeholder: Present rendered image
-  }
+        renderFrame();
+    }
 
-  async renderObject3D(object, camera, physicsEngine) {
-    // Project object to 3D
-    const projected = physicsEngine.projectToView(object.position, camera);
+    updateViewport() {
+        if (this.session && this.viewportData) {
+            renderViewport(this.session, {
+                drawPrimitive: this.drawPrimitive.bind(this),
+                drawText: this.drawText.bind(this)
+            });
+        }
+    }
 
-    // Create Vulkan vertex buffer
-    const vertexBuffer = this.createVertexBuffer(projected);
-
-    // Record draw commands
-    const commandBuffer = this.beginCommandBuffer();
-    this.bindPipeline(commandBuffer);
-    this.bindVertexBuffer(commandBuffer, vertexBuffer);
-    this.draw(commandBuffer, vertexBuffer);
-    this.endCommandBuffer(commandBuffer);
-
-    // Submit and present
-    this.submitCommandBuffer(commandBuffer);
-  }
-
-  createVertexBuffer(projected) {
-    // Placeholder: Create Vulkan vertex buffer from projected coordinates
-    return {};
-  }
-
-  bindPipeline(commandBuffer) {
-    // Placeholder: Bind graphics pipeline
-  }
-
-  bindVertexBuffer(commandBuffer, vertexBuffer) {
-    // Placeholder: Bind vertex buffer
-  }
-
-  draw(commandBuffer, vertexBuffer) {
-    // Placeholder: Issue draw command
-  }
-
-  async renderObjectND(object, camera, physicsEngine, viewRank = 3, waveParams = {}) {
-    // Project object to specified view rank
-    const projected = physicsEngine.projectToView(object.position, camera, viewRank);
-
-    // Apply wave-based intensity modulation
-    const intensity = waveParams ? this.waveFunction(projected, waveParams) : 1.0;
-
-    // Create Vulkan vertex buffer with intensity
-    const vertexBuffer = this.createVertexBuffer({ ...projected, intensity });
-
-    // Record draw commands
-    const commandBuffer = this.beginCommandBuffer();
-    this.bindPipeline(commandBuffer);
-    this.bindVertexBuffer(commandBuffer, vertexBuffer);
-    this.draw(commandBuffer, vertexBuffer);
-    this.endCommandBuffer(commandBuffer);
-
-    // Submit and present
-    this.submitCommandBuffer(commandBuffer);
-  }
-
-  globalIllumination(objects, lightSources) {
-    // Use Vulkan compute shader for wave-based illumination
-    const computePipeline = this.createComputePipeline('waveIlluminationShader');
-    this.bindComputeBuffers(computePipeline, objects, lightSources);
-    this.dispatchCompute(computePipeline);
-    return this.readComputeResults();
-  }
-
-  createComputePipeline(shaderName) {
-    // Placeholder: Create compute pipeline for shader
-    return {};
-  }
-
-  bindComputeBuffers(pipeline, objects, lightSources) {
-    // Placeholder: Bind buffers for compute shader
-  }
-
-  dispatchCompute(pipeline) {
-    // Placeholder: Dispatch compute shader
-  }
-
-  readComputeResults() {
-    // Placeholder: Read results from compute shader
-    return [];
-  }
-
-  // Existing functions (simplified for brevity)
-  waveFunction(position, params) {
-    // Existing wave function logic
-    return 1.0; // Placeholder
-  }
+    // ... Additional methods for handling input, cleanup, etc.
 }
 
 
