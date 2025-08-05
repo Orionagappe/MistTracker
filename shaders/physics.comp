@@ -1,0 +1,41 @@
+#version 450
+
+// Physics computation shader for quantum state evolution
+layout(local_size_x = 256) in;
+
+// Quantum state buffer
+layout(std430, binding = 0) buffer QuantumState {
+    vec2 states[];  // Complex amplitudes (real, imaginary)
+};
+
+// System parameters
+layout(push_constant) uniform Parameters {
+    float deltaT;      // Time step
+    float hBar;        // Reduced Planck constant
+    float mass;        // Particle mass
+    float potential;   // Potential energy
+    uint numStates;    // Total number of states
+} params;
+
+void main() {
+    uint idx = gl_GlobalInvocationID.x;
+    if (idx >= params.numStates) return;
+    
+    // Get current state
+    vec2 psi = states[idx];
+    
+    // Calculate energy
+    float E = params.potential + 
+              (hBar * hBar) / (2.0 * params.mass);  // Kinetic energy term
+              
+    // Time evolution: ψ(t + Δt) = ψ(t) * exp(-iEΔt/ħ)
+    float phase = -E * params.deltaT / params.hBar;
+    float cosPhase = cos(phase);
+    float sinPhase = sin(phase);
+    
+    // Complex multiplication
+    states[idx] = vec2(
+        psi.x * cosPhase - psi.y * sinPhase,
+        psi.x * sinPhase + psi.y * cosPhase
+    );
+}
