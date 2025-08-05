@@ -8,7 +8,7 @@ class MistIllum {
     constructor(config = {}) {
         // Initialize universe from MistSolution
         this.initializeUniverse(config);
-        
+
         // Vulkan instance and device setup
         this.instance = new nvk.Instance({
             appName: "Mist Solution",
@@ -180,6 +180,7 @@ class MistIllum {
         }
         this.session = await startSession(user);
         
+
         // Initialize quantum physics state
         await this.initializeQuantumState();
         
