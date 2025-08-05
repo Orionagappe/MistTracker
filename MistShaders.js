@@ -80,14 +80,44 @@ async function precompileShaders(db) {
  * @param {Object} db - Database connection
  */
 async function createPipelineConfigs(device, db) {
+  const VK = nvk.VK_STRUCTURE_TYPE;
+
   const configs = {
     standard: {
       vertexShader: 'standard.vert',
       fragmentShader: 'standard.frag',
       vertexInputState: {
-        // Standard 3D mesh vertex format
-        vertexBindingDescriptions: [...],
-        vertexAttributeDescriptions: [...]
+        vertexBindingDescriptions: [{
+          binding: 0,
+          stride: 56, // 3 * float32 (pos) + 3 * float32 (normal) + 2 * float32 (uv) + 4 * float32 (color)
+          inputRate: nvk.VK_VERTEX_INPUT_RATE_VERTEX
+        }],
+        vertexAttributeDescriptions: [
+          {
+            location: 0,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32_SFLOAT,
+            offset: 0 // position
+          },
+          {
+            location: 1,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32_SFLOAT,
+            offset: 12 // normal
+          },
+          {
+            location: 2,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32_SFLOAT,
+            offset: 24 // uv
+          },
+          {
+            location: 3,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32A32_SFLOAT,
+            offset: 32 // color
+          }
+        ]
       }
     },
     
@@ -95,9 +125,37 @@ async function createPipelineConfigs(device, db) {
       vertexShader: 'tensor.vert',
       fragmentShader: 'tensor.frag',
       vertexInputState: {
-        // nD tensor data format
-        vertexBindingDescriptions: [...],
-        vertexAttributeDescriptions: [...]
+        vertexBindingDescriptions: [{
+          binding: 0,
+          stride: 128, // Variable size based on tensor rank
+          inputRate: nvk.VK_VERTEX_INPUT_RATE_VERTEX
+        }],
+        vertexAttributeDescriptions: [
+          {
+            location: 0,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32_SFLOAT,
+            offset: 0 // 3D projection position
+          },
+          {
+            location: 1,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32A32_SFLOAT,
+            offset: 12 // First 4 tensor components
+          },
+          {
+            location: 2,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32A32_SFLOAT,
+            offset: 28 // Next 4 tensor components
+          },
+          {
+            location: 3,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32A32_SFLOAT,
+            offset: 44 // Tensor metadata
+          }
+        ]
       }
     },
     
@@ -105,9 +163,37 @@ async function createPipelineConfigs(device, db) {
       vertexShader: 'wave.vert',
       fragmentShader: 'wave.frag',
       vertexInputState: {
-        // Wave function visualization format
-        vertexBindingDescriptions: [...],
-        vertexAttributeDescriptions: [...]
+        vertexBindingDescriptions: [{
+          binding: 0,
+          stride: 64, // 3 * float32 (pos) + 2 * float32 (complex) + 4 * float32 (quantum) + 4 * float32 (metadata)
+          inputRate: nvk.VK_VERTEX_INPUT_RATE_VERTEX
+        }],
+        vertexAttributeDescriptions: [
+          {
+            location: 0,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32_SFLOAT,
+            offset: 0 // position
+          },
+          {
+            location: 1,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32_SFLOAT,
+            offset: 12 // complex amplitude
+          },
+          {
+            location: 2,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32A32_SFLOAT,
+            offset: 20 // quantum numbers
+          },
+          {
+            location: 3,
+            binding: 0,
+            format: nvk.VK_FORMAT_R32G32B32A32_SFLOAT,
+            offset: 36 // metadata
+          }
+        ]
       }
     }
   };
