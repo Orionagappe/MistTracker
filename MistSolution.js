@@ -1,3 +1,14 @@
+const {
+  MistPhysicsEngineND,
+  MetricTensorND,
+  createVoxelObject,
+  updateDistanceFromObserver,
+  computeAngularMomentumMap,
+  extraDimensionMode,
+  projectToLowerDimension,
+  dimensionalStack
+} = require('./MistIllum.js');
+
 /**
  * mistSolution - Generate an nD universe environment from logical axioms, physics, and data headers.
  * @param {Object} db - Database connection (optional, for persistence).
@@ -38,16 +49,20 @@ async function mistSolution(db, options = {}) {
   // 5. End of universe (e = 1/0)
   universe.boundary = "outside";
 
-  // 6. Physics Engine (from pureMathPhysicsEngine.js)
-  const {
-    generateLandscapeND,
-    createVoxelObjectND,
-    updateDistanceFromObserverND,
-    computeAngularMomentumMapND
-  } = require('./pureMathPhysicsEngine.js');
+  // 6. Physics Engine (from MistIllum.js)
+  const { MistPhysicsEngineND } = require('./MistIllum.js');
+  
+  // Initialize physics engine with nD configuration
+  const physicsEngine = new MistPhysicsEngineND({
+    mode: `${n}D`,
+    metric: new MetricTensorND(n)
+  });
 
-  // Generate nD landscape
-  let landscape = generateLandscapeND(n, size);
+  // Generate nD landscape using dimensional stacking
+  let landscape = dimensionalStack(Array(size).fill().map(() => ({
+    position: Array(n).fill(0),
+    size: Array(n).fill(1)
+  })), n);
 
   // 7. Categories and Dictionary (from mistUpdateHeaders.csv)
   let categories = ["category", "dictionary", "word", "definition", "item", "documentId", "time", "itemPage"];
@@ -58,17 +73,23 @@ async function mistSolution(db, options = {}) {
   for (let i = 0; i < items.length; i++) {
     // Random nD position
     let pos = Array.from({ length: n }, () => Math.floor(Math.random() * size));
-    let obj = createVoxelObjectND(pos, Array(n).fill(1));
+    // Create object using MistIllum's createVoxelObject
+    let obj = createVoxelObject(pos, Array(n).fill(1));
     obj.id = items[i].id;
     obj.projection = items[i].projection;
+    // Apply extra dimension handling
+    obj = extraDimensionMode(obj, true);
     objects.push(obj);
   }
 
   // 9. Observer and physics updates
   const observer = { position: Array(n).fill(Math.floor(size / 2)) };
   objects.forEach(obj => {
-    updateDistanceFromObserverND(obj, observer);
-    computeAngularMomentumMapND(obj);
+    // Use MistIllum's distance and momentum calculations
+    updateDistanceFromObserver(obj, observer);
+    computeAngularMomentumMap(obj);
+    // Handle higher dimensional aspects
+    obj = projectToLowerDimension(obj, n, 3);
   });
 
   // 10. Optionally persist to DB

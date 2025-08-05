@@ -66,12 +66,25 @@
 
 ---
 
-## **Integration with pureMathPhysicsEngine.js**
+## **Physics and Mathematics Architecture**
 
-- All core physics and math logic (e.g., `MistPhysicsEngine`, `MetricTensor`, `waveFunction`, `interferencePattern`, `applyInterference`) are unified and accessible in MistIllum.
-- Object creation, deformation, and energy distribution are standardized for nD environments.
-- Wave and interference logic is used for both rendering and audio.
-- Worksheet/experimental code is refactored and integrated directly into MistIllum or other modules as appropriate.
+- All core physics and math logic is now centralized in MistIllum.js through the `MistPhysicsEngineND` class
+- Advanced features include:
+  - Unified nD tensor mathematics with `MetricTensorND` class
+  - Wave function and quantum state management
+  - Multi-dimensional energy distribution
+  - Three time dimensions (quantum, interaction, cosmological)
+  - Bell's theorem culling logic
+  - Pilot wave theory integration
+  - Euler-Lagrange equations for wave functions
+  - Gauss's law for magnetism
+  - Principle of stationary action
+- Standardized interfaces for:
+  - Object creation and deformation
+  - Wave-based interference patterns
+  - Energy distribution across dimensions
+  - Particle-wave duality modeling
+  - Intensity-hardness relationships
 
 ---
 
@@ -95,11 +108,13 @@
 ### Core Functionality
 
 - **Physics and Mathematics:**
-  - nD-capable physics engine
-  - Metric tensor-based navigation
-  - Wave function interference patterns
-  - Energy distribution modeling
-  - Real-time collision detection
+  - Unified nD physics engine with quantum mechanics support
+  - Three-time-dimension framework (quantum/interaction/cosmological)
+  - Advanced wave function modeling and interference patterns
+  - Multi-dimensional energy distribution and tensor operations
+  - Quantum-classical hybrid state management
+  - Particle-wave duality modeling
+  - Real-time collision detection with Bell's theorem validation
 
 - **Data Management:**
   - MySQL-based persistence
@@ -164,7 +179,7 @@
 |-------------------|--------|---------------------------------------------------|
 | Vulkan Integration| ✓      | Hardware acceleration, custom shaders, multi-monitor |
 | X11/Input         | ✓      | XInput2, multi-pointer, gesture support          |
-| Physics Engine    | ✓      | nD metrics, wave functions, collision detection   |
+| Physics Engine    | ✓      | Unified quantum-classical nD system, three time dimensions |
 | Audio System      | ✓      | Spatial modulation, wave-based effects           |
 | Database          | ✓      | MySQL integration, CSV import, persistence        |
 | P2P Networking    | ✓      | DHT discovery, FEC, encryption                   |
