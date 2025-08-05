@@ -12,6 +12,13 @@
   - Metric tensor-based nD navigation
   - Real-time audio modulation with spatial awareness
   - Multi-monitor tiling support
+
+- **MistImport**: Asset management and shader compilation system:
+  - 2D/3D asset import from Blender and other tools
+  - GLSL to SPIR-V shader compilation
+  - Asset versioning and tracking
+  - Vulkan pipeline integration
+  - Waterfall directory management
   
 - **MistTrackerVulkan**: Enhanced data management system with:
   - MySQL-based persistence layer

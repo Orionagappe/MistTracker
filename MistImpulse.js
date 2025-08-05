@@ -251,16 +251,24 @@ function handleARPointerInput(session, pointerEvents) {
  * @returns {Object} 3D world coordinate {x, y, z}
  */
 function transformToWorld(x, y, headPosition, headOrientation) {
+  if (!headPosition || !headOrientation) {
+    console.warn("Head position or orientation not available for AR mapping");
+    return null;
+  }
   if (typeof globalThis.getMapModeProjection === 'function') {
     const ndcX = (x / globalThis.viewportWidth) * 2 - 1;
     const ndcY = 1 - (y / globalThis.viewportHeight) * 2;
     return globalThis.getMapModeProjection(ndcX, ndcY, headPosition, headOrientation);
+  } else {
+    // Fallback: simple linear mapping centered on viewport
+    const dx = (x - globalThis.viewportWidth / 2) * 0.01;
+    const dy = (y - globalThis.viewportHeight / 2) * 0.01;
+    return {
+      x: headPosition[0] + dx,
+      y: headPosition[1] + dy,
+      z: headPosition[2]
+    };
   }
-  return {
-    x: headPosition[0] + x * 0.01,
-    y: headPosition[1] + y * 0.01,
-    z: headPosition[2]
-  };
 }
 
 // Start XInput2 event listener

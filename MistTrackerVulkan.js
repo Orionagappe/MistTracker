@@ -85,7 +85,8 @@ const TABLES = {
   wordDefinitions: 'WordDefinitions',
   categories: 'Categories',
   users: 'Users',
-  currentState: 'CurrentState'
+  currentState: 'CurrentState',
+  assets: 'MistAssets'  // New table for asset management
 };
 
 // --- Session and State Management ---
