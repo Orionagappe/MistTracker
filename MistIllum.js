@@ -864,14 +864,101 @@ class warnTypes {
 
 // --- Overlay and Menu ---
 // --- Integration with Core and Multi-User Modules ---
+const { Button, Slider, Checkbox, InputBox, ColorPicker, Dropdown } = require('./MistInterface');
+
 /**
- * Display a menu overlay for the Mist solution.
+ * Display a menu overlay for the Mist solution using MistInterface components.
  * The menu is shown as a dialog box and can be opened/closed with the "esc" key.
  * Allows the user to alter any MistIllum setting (globalVolume, precision, mode selection, etc).
  * @param {Object} overlayConfig - Optional menu structure, callbacks, etc.
  */
 
 function mistMenu(overlayConfig = {}) {
+    // Create main menu container
+    const menuContainer = document.createElement('div');
+    menuContainer.classList.add('mist-menu-overlay');
+
+    // Volume Controls
+    const volumeSection = document.createElement('div');
+    volumeSection.classList.add('mist-menu-section');
+    
+    const globalVolumeSlider = new Slider('globalVolume', volumeSection, 0, 100, 1)
+        .setTooltip('Adjust global volume')
+        .setValue(overlayConfig.globalVolume || 100)
+        .onChange(value => volumeGlobal(value / 100));
+
+    const ambientVolumeSlider = new Slider('ambientVolume', volumeSection, 0, 100, 1)
+        .setTooltip('Adjust ambient sound volume')
+        .setValue(overlayConfig.ambientVolume || 70)
+        .onChange(value => volumeAmbient(value / 100));
+
+    const dialogueVolumeSlider = new Slider('dialogueVolume', volumeSection, 0, 100, 1)
+        .setTooltip('Adjust dialogue volume')
+        .setValue(overlayConfig.dialogueVolume || 85)
+        .onChange(value => volumeDialogue(value / 100));
+
+    // Mode Selection
+    const modeSection = document.createElement('div');
+    modeSection.classList.add('mist-menu-section');
+
+    const modeDropdown = new Dropdown('viewMode', modeSection, getAvailableModes())
+        .setTooltip('Select view mode')
+        .onChange(mode => trySwitchMode(mode));
+
+    // Wave Parameters
+    const waveSection = document.createElement('div');
+    waveSection.classList.add('mist-menu-section');
+
+    const waveFreqSlider = new Slider('waveFrequency', waveSection, 0.1, 10, 0.1)
+        .setTooltip('Adjust wave frequency')
+        .setValue(overlayConfig.waveFrequency || 1)
+        .onChange(value => updateWaveParams({ frequency: value }));
+
+    const waveAmpSlider = new Slider('waveAmplitude', waveSection, 0, 2, 0.1)
+        .setTooltip('Adjust wave amplitude')
+        .setValue(overlayConfig.waveAmplitude || 1)
+        .onChange(value => updateWaveParams({ amplitude: value }));
+
+    // Display Settings
+    const displaySection = document.createElement('div');
+    displaySection.classList.add('mist-menu-section');
+
+    const showWireframeCheck = new Checkbox('showWireframe', displaySection, 'Show Wireframes')
+        .setTooltip('Toggle wireframe display')
+        .setChecked(overlayConfig.showWireframe || false)
+        .onChange(checked => wireFrames({ enabled: checked }));
+
+    const colorPicker = new ColorPicker('ambientColor', displaySection)
+        .setTooltip('Set ambient light color')
+        .onSelect(color => updateAmbientLight(color));
+
+    // Control Buttons
+    const buttonSection = document.createElement('div');
+    buttonSection.classList.add('mist-menu-section');
+
+    const resetButton = new Button('resetSettings', buttonSection, 'Reset Settings')
+        .setTooltip('Reset all settings to default')
+        .onClick(() => resetSettings());
+
+    const applyButton = new Button('applySettings', buttonSection, 'Apply')
+        .setTooltip('Apply current settings')
+        .onClick(() => applySettings());
+
+    // Add sections to container
+    menuContainer.appendChild(volumeSection);
+    menuContainer.appendChild(modeSection);
+    menuContainer.appendChild(waveSection);
+    menuContainer.appendChild(displaySection);
+    menuContainer.appendChild(buttonSection);
+
+    // Setup keyboard controls
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            menuContainer.classList.toggle('visible');
+        }
+    });
+
+    return menuContainer;
   // Use global.uiRenderer if available, otherwise fallback to CLI
   const ui = global.uiRenderer;
   let menuOpen = true;

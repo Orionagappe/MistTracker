@@ -169,14 +169,28 @@ volumeAmbient          // Set ambient sound volume, modulated by spatial/tempora
 volumeInteract         // Set volume for object interaction sounds, modulated by proximity/interference
 volumeDialogue         // Set volume for character dialogue, modulated by distance and wave envelope
 
+// --- Interface Components (MistInterface.js) ---
+UIComponent           // Base class for all UI components with common functionality
+Button               // Interactive button component with text and click handling
+Slider               // Range input component with min/max/step configuration
+Checkbox             // Toggle component with label and state management
+InputBox             // Text input component with placeholder support
+ColorPicker          // Canvas-based color selection component with gradient
+Dropdown             // Selection menu component with options management
+
 // --- Settings and UI (MistIllum.js) ---
-settingsMenu           // Display and manage the settings menu, including audio/wave/geometric parameters
-mistFirstStart         // Display title, credits, and disclaimers for Mist modules
-mistSetup              // Setup/check dependencies for MistTracker, MistMulti, and MistIllum
-mistDepend             // Check user system for software/hardware dependencies
-mistWarn               // Display a warning message to the user
-warnTypes              // Enum/class for warning types
-mistMenu               // Display a menu overlay for the Mist solution
+settingsMenu          // Display and manage the settings menu, including audio/wave/geometric parameters
+mistFirstStart        // Display title, credits, and disclaimers for Mist modules
+mistSetup             // Setup/check dependencies for MistTracker, MistMulti, and MistIllum
+mistDepend            // Check user system for software/hardware dependencies
+mistWarn              // Display a warning message to the user
+warnTypes             // Enum/class for warning types
+mistMenu              // Display an interactive menu overlay using MistInterface components
+                     // - Global/ambient/dialogue volume controls
+                     // - View mode selection with milestone checks
+                     // - Wave parameter adjustment (frequency/amplitude)
+                     // - Display settings (wireframes, colors)
+                     // - Settings management (reset/apply)
 
 // --- Menu and Environment Interaction (MistIllum.js) ---
 MistMenuControl        // Menu control logic using viewport functions and 3D/nD mode switching
