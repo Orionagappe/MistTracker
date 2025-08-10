@@ -1,10 +1,49 @@
 # Mist Solution
 
-**Mist Solution** is a modular, open-source framework for multi-user, multi-dimensional data tracking, visualization, simulation, and collaboration. It is designed for scientific, educational, and creative applications requiring advanced provenance, real-time interaction, and extensibility.
+**Mist Solution** is a modular, open-source framework for multi-user, multi-dimensional data tracking, visualization, simulation, and collaboration. 
+
+**Core Functionality**
+
+- **Interface System:**
+  - Modern component-based UI architecture
+  - Multi-page menu management
+  - State persistence across sessions
+  - Configuration system with settings.config
+  - Customizable theme support
+  - X11 native integration
+  - Component inheritance hierarchy
+  - Event-driven architecture
+
+- **Physics and Mathematics:**
+  - Unified nD physics engine with quantum mechanics support
+  - Three-time-dimension framework (quantum/interaction/cosmological)
+  - Advanced wave function modeling and interference patterns
+  - Multi-dimensional energy distribution and tensor operations
+  - Quantum-classical hybrid state management
+  - Particle-wave duality modeling
+  - Real-time collision detection with Bell's theorem validation
+
+- **Data Management:**
+  - MySQL-based persistence
+  - CSV/RTF data import
+  - Character location tracking
+  - Session state management
+  - Provenance metadata
+  - Menu state persistence
+  - Component configuration storage
+  - User preferences trackinge applications requiring advanced provenance, real-time interaction, and extensibility.
 
 ---
 
 ## **Modules**
+
+- **MistInterface**: Modern component-based UI system featuring:
+  - Reusable UI components with state management
+  - Multi-page menu system with navigation
+  - Configuration persistence
+  - Event-driven architecture
+  - Theme customization support
+  - X11 native integration
 
 - **MistIllum**: Vulkan-based 3D/4D/nD visualization engine featuring:
   - Hardware-accelerated rendering with X11 integration
@@ -12,6 +51,7 @@
   - Metric tensor-based nD navigation
   - Real-time audio modulation with spatial awareness
   - Multi-monitor tiling support
+  - Component-based menu integration
 
 - **MistImport**: Asset management and shader compilation system:
   - 2D/3D asset import from Blender and other tools
@@ -360,6 +400,12 @@ Legend: ✓ = Complete, ⚡ = Partial/In Progress
    
    # Start with AR support
    node MistCausality.js --ar
+
+   # Start with custom config path
+   node MistCausality.js --config /path/to/settings.config
+   
+   # Start in development mode with hot reload
+   node MistCausality.js --dev
    ```
 
 5. **Development Setup:**
@@ -367,6 +413,30 @@ Legend: ✓ = Complete, ⚡ = Partial/In Progress
    # Install development tools
    npm install -D typescript @types/node
 
+   # Install UI development dependencies
+   npm install -D @types/node-x11 @types/elliptic
+
    # Watch for changes
    npm run dev
+
+   # Run UI tests
+   npm run test:ui
+
+   # Generate UI documentation
+   npm run docs:ui
+   ```
+
+6. **Interface Development:**
+   ```sh
+   # Create new UI component
+   npm run create:component MyComponent
+
+   # Generate component documentation
+   npm run docs:component MyComponent
+
+   # Run component tests
+   npm run test:component MyComponent
+
+   # Build custom theme
+   npm run build:theme mytheme.css
    ```
