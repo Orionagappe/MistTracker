@@ -1091,8 +1091,8 @@ function launchMistCore(config = {}) {
             // Additional render logic
         });
     }
-  const db = config.db || null;
-  const menuControl = new MistMenuControl(db, uiRenderer);
+
+    const menuControl = new MistMenuControl(db, uiRenderer);
   menuControl.start(config.userName || 'guest');
   // Start main render loop (single-user)
   function mainLoop() {
