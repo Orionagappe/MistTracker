@@ -1053,11 +1053,44 @@ function mistMenu(overlayConfig = {}) {
 
 /**
  * Launch the core MistIllum environment (single-user mode).
- * Initializes the physics engine, menu, and rendering loop.
- * @param {Object} config - Optional configuration object.
- * @param {Object} uiRenderer - UI rendering interface.
+ * Initializes the physics engine, menu system, and rendering loop.
+ * @param {Object} config - Configuration object containing:
+ * @param {Object} config.db - Database connection
+ * @param {string} config.userName - User's name
+ * @param {MenuManager} config.menuManager - Instance of MenuManager for UI control
+ * @param {Object} config.display - X11 display information (optional)
+ * @param {number} config.windowId - X11 window ID (optional)
  */
-function launchMistCore(config = {}, uiRenderer = global.uiRenderer) {
+function launchMistCore(config = {}) {
+    const { db, userName, menuManager, display, windowId } = config;
+
+    // Initialize core components
+    const physicsEngine = new MistPhysicsEngine();
+    const renderSystem = display ? new X11RenderSystem(display, windowId) : null;
+
+    // Setup menu event handlers
+    if (menuManager) {
+        menuManager.getState().then(state => {
+            // Apply loaded configuration
+            physicsEngine.setParameters(state.physics || {});
+            if (renderSystem) {
+                renderSystem.setParameters(state.display || {});
+            }
+        });
+
+        // Watch for configuration changes
+        menuManager.on('stateChange', async () => {
+            await menuManager.saveConfig();
+        });
+    }
+
+    // Initialize rendering loop if X11 display is available
+    if (renderSystem) {
+        renderSystem.startRenderLoop(() => {
+            physicsEngine.update();
+            // Additional render logic
+        });
+    }
   const db = config.db || null;
   const menuControl = new MistMenuControl(db, uiRenderer);
   menuControl.start(config.userName || 'guest');

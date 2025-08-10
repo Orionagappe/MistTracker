@@ -177,6 +177,14 @@ Checkbox             // Toggle component with label and state management
 InputBox             // Text input component with placeholder support
 ColorPicker          // Canvas-based color selection component with gradient
 Dropdown             // Selection menu component with options management
+MenuPage             // Container for organizing UI components into pages
+                    // - Component management (add/remove/get)
+                    // - State management (get/set component values)
+MenuManager          // Multi-page menu system with navigation and config
+                    // - Page management (add/remove/show)
+                    // - Navigation history with back functionality
+                    // - Configuration save/load from settings.config
+                    // - State persistence across sessions
 
 // --- Settings and UI (MistIllum.js) ---
 settingsMenu          // Display and manage the settings menu, including audio/wave/geometric parameters
@@ -193,15 +201,44 @@ mistMenu              // Display an interactive menu overlay using MistInterface
                      // - Settings management (reset/apply)
 
 // --- Menu and Environment Interaction (MistIllum.js) ---
-MistMenuControl        // Menu control logic using viewport functions and 3D/nD mode switching
+launchMistCore         // Launch MistIllum core with menu system integration
+                      // - Accepts menuManager for UI control
+                      // - Integrates with X11 display system
+                      // - Manages menu state persistence
+                      // - Handles viewport/menu transitions
+
 handleUserInput        // Route input to menu or environment logic
-handleMenuInput        // Handle input for menu objects
+                      // - X11 event processing
+                      // - Menu navigation handling
+                      // - Environment interaction routing
+
 handleEnvironmentInput // Handle input for environment (scene/world) objects
-getAvailableModes      // Returns available projection/render modes based on milestones
-showModeSelectionMenu  // UI for selecting modes, only if milestones are met
-trySwitchMode          // Attempt to switch mode, only if milestone is achieved
-trySwitchModes         // Alternate signature for mode switching
-getMenuOptionsWithMilestones // Get menu options for all milestone-enabled modes
+                      // - 3D/4D object manipulation
+                      // - Physics interaction processing
+                      // - Viewport navigation
+
+getAvailableModes     // Returns available projection/render modes
+                      // - Based on milestone achievements
+                      // - Considers hardware capabilities
+                      // - Validates mode transitions
+
+showModeSelectionMenu // UI for selecting validated modes
+                     // - Integrates with MenuManager
+                     // - Updates viewport rendering
+                     // - Persists mode selections
+
+// --- Session Management (MistCausality.js) ---
+initializeSession     // Setup new Mist platform session
+                     // - Creates menu hierarchy
+                     // - Loads saved configurations
+                     // - Initializes X11 display
+                     // - Sets up event handling
+
+configureMenuSystem   // Configure MenuManager instance
+                     // - Creates page hierarchy
+                     // - Sets up navigation
+                     // - Binds event handlers
+                     // - Loads saved state
 
 // --- Multi-User, P2P, and Real-Time Collaboration (MistMulti.js) ---
 addUserSession         // Add or update a user session in memory

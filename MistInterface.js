@@ -308,6 +308,155 @@ class Dropdown extends UIComponent {
     }
 }
 
+class MenuPage extends UIComponent {
+    constructor(id, parentElement) {
+        super(id, parentElement);
+        this.element.classList.add('mist-menu-page');
+        this.components = new Map();
+    }
+
+    addComponent(component) {
+        this.components.set(component.id, component);
+        this.element.appendChild(component.element);
+        return this;
+    }
+
+    removeComponent(componentId) {
+        const component = this.components.get(componentId);
+        if (component) {
+            this.element.removeChild(component.element);
+            this.components.delete(componentId);
+        }
+        return this;
+    }
+
+    getComponent(componentId) {
+        return this.components.get(componentId);
+    }
+
+    getState() {
+        const state = {};
+        this.components.forEach((component, id) => {
+            if (component.getValue) {
+                state[id] = component.getValue();
+            }
+        });
+        return state;
+    }
+
+    setState(state) {
+        Object.entries(state).forEach(([id, value]) => {
+            const component = this.components.get(id);
+            if (component && component.setValue) {
+                component.setValue(value);
+            }
+        });
+        return this;
+    }
+}
+
+class MenuManager extends UIComponent {
+    constructor(id, parentElement) {
+        super(id, parentElement);
+        this.element.classList.add('mist-menu-manager');
+        this.pages = new Map();
+        this.currentPage = null;
+        this.history = [];
+        this.configPath = './settings.config';
+    }
+
+    addPage(page) {
+        this.pages.set(page.id, page);
+        page.hide();
+        this.element.appendChild(page.element);
+        return this;
+    }
+
+    removePage(pageId) {
+        const page = this.pages.get(pageId);
+        if (page) {
+            this.element.removeChild(page.element);
+            this.pages.delete(pageId);
+        }
+        return this;
+    }
+
+    showPage(pageId) {
+        const page = this.pages.get(pageId);
+        if (page) {
+            if (this.currentPage) {
+                this.currentPage.hide();
+                this.history.push(this.currentPage.id);
+            }
+            this.currentPage = page;
+            page.show();
+        }
+        return this;
+    }
+
+    back() {
+        if (this.history.length > 0) {
+            const previousPageId = this.history.pop();
+            if (this.currentPage) {
+                this.currentPage.hide();
+            }
+            this.currentPage = this.pages.get(previousPageId);
+            if (this.currentPage) {
+                this.currentPage.show();
+            }
+        }
+        return this;
+    }
+
+    getState() {
+        const state = {};
+        this.pages.forEach((page, id) => {
+            state[id] = page.getState();
+        });
+        return state;
+    }
+
+    setState(state) {
+        Object.entries(state).forEach(([pageId, pageState]) => {
+            const page = this.pages.get(pageId);
+            if (page) {
+                page.setState(pageState);
+            }
+        });
+        return this;
+    }
+
+    async saveConfig() {
+        const state = this.getState();
+        try {
+            const fs = require('fs').promises;
+            await fs.writeFile(this.configPath, JSON.stringify(state, null, 2));
+            return true;
+        } catch (error) {
+            console.error('Failed to save config:', error);
+            return false;
+        }
+    }
+
+    async loadConfig() {
+        try {
+            const fs = require('fs').promises;
+            const data = await fs.readFile(this.configPath, 'utf8');
+            const state = JSON.parse(data);
+            this.setState(state);
+            return true;
+        } catch (error) {
+            console.error('Failed to load config:', error);
+            return false;
+        }
+    }
+
+    setConfigPath(path) {
+        this.configPath = path;
+        return this;
+    }
+}
+
 // Export the classes
 export {
     UIComponent,
@@ -316,5 +465,7 @@ export {
     Checkbox,
     InputBox,
     ColorPicker,
-    Dropdown
+    Dropdown,
+    MenuPage,
+    MenuManager
 };

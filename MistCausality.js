@@ -75,31 +75,71 @@ async function main() {
     user = { userName, accountId: userEmail };
   }
 
-  // 8. Launch MistIllum 3D environment
-  // Prepare a minimal uiRenderer for CLI/X11 demo
-  const uiRenderer = {
-    showSettingsMenu: (options, config) => {
-      console.log('Settings Menu:', options.map(o => o.label));
-    },
-    promptSelect: (title, options, cb) => {
-      console.log(title, options.map(o => o.label || o));
-      cb(0); // Always select first for demo
-    },
-    showMenu: (options) => {
-      console.log('Menu:', options.map(o => o.label));
-    },
-    showMessage: (msg) => {
-      console.log('Message:', msg);
-    },
-    closeDialog: () => {},
-    promptTilingConfig: (cb) => cb({ rows: 1, cols: 1 }),
-    promptKeybinds: (cb) => cb({}),
-    saveSessionConfig: (cfg) => {},
-    loadSessionConfig: (cb) => cb({})
-  };
+  // 8. Setup Interface and Menu System
+  const { MenuManager, MenuPage, Button, Slider, Dropdown } = require('./MistInterface');
+  
+  // Create menu manager
+  const menuManager = new MenuManager('mainMenu', document.body);
+  menuManager.setConfigPath('./settings.config');
 
-  // Launch MistIllum core (single-user mode for demo)
-  launchMistCore({ db, userName: user.userName }, uiRenderer);
+  // Create main menu pages
+  const mainPage = new MenuPage('main');
+  const settingsPage = new MenuPage('settings');
+  const audioPage = new MenuPage('audio');
+  const displayPage = new MenuPage('display');
+
+  // Setup main menu
+  mainPage.addComponent(
+    new Button('startSession', null, 'Start Session')
+      .onClick(() => launchMistCore({ db, userName: user.userName, menuManager }))
+  ).addComponent(
+    new Button('settings', null, 'Settings')
+      .onClick(() => menuManager.showPage('settings'))
+  );
+
+  // Setup settings menu
+  settingsPage.addComponent(
+    new Button('audio', null, 'Audio Settings')
+      .onClick(() => menuManager.showPage('audio'))
+  ).addComponent(
+    new Button('display', null, 'Display Settings')
+      .onClick(() => menuManager.showPage('display'))
+  ).addComponent(
+    new Button('back', null, 'Back')
+      .onClick(() => menuManager.back())
+  );
+
+  // Setup audio settings
+  audioPage.addComponent(
+    new Slider('masterVolume', null, 0, 100)
+      .setValue(80)
+      .onChange(value => MistIllum.volumeGlobal(value / 100))
+  ).addComponent(
+    new Button('back', null, 'Back')
+      .onClick(() => menuManager.back())
+  );
+
+  // Setup display settings
+  displayPage.addComponent(
+    new Dropdown('displayMode', null, ['2D', '3D', '4D'])
+      .onChange(mode => MistIllum.worldWarp(mode))
+  ).addComponent(
+    new Button('back', null, 'Back')
+      .onClick(() => menuManager.back())
+  );
+
+  // Add pages to manager
+  menuManager
+    .addPage(mainPage)
+    .addPage(settingsPage)
+    .addPage(audioPage)
+    .addPage(displayPage);
+
+  // Load previous configuration if exists
+  await menuManager.loadConfig();
+
+  // Launch MistIllum core with menu system
+  menuManager.showPage('main');
 
   console.log('Mist Causality 3D environment launched for user:', user.userName);
 }
