@@ -1,3 +1,192 @@
+const { MenuManager, MenuPage, Button, Slider, Dropdown, InputBox } = require('./MistInterface');
+
+class ViewportManager extends MenuManager {
+  constructor(id, parentElement) {
+    super(id, parentElement);
+    this.timeLineOffsetX = 0;
+    this.categoryLineOffsetY = 0;
+    this.selectionState = {
+      selectedTimeIndex: 0,
+      selectedCategory: null,
+      selectedItem: null
+    };
+    this.viewportData = {
+      primaryLine: [],
+      categories: {},
+      items: {}
+    };
+    this.setupPages();
+  }
+
+  setupPages() {
+    // Main viewport page
+    const mainPage = new MenuPage('viewport-main');
+    
+    // Time selection
+    const timeSelect = new Dropdown('time-select')
+      .setLabel('Time Index')
+      .onChange(index => {
+        this.selectionState.selectedTimeIndex = parseInt(index);
+        this.updateCategoryList();
+        this.emit('timeSelect', index);
+      });
+
+    // Category selection
+    const categorySelect = new Dropdown('category-select')
+      .setLabel('Category')
+      .onChange(category => {
+        this.selectionState.selectedCategory = category;
+        this.updateItemList();
+        this.emit('categorySelect', category);
+      });
+
+    // Item selection
+    const itemSelect = new Dropdown('item-select')
+      .setLabel('Item')
+      .onChange(item => {
+        this.selectionState.selectedItem = item;
+        this.emit('itemSelect', item);
+      });
+
+    // Add components
+    mainPage
+      .addComponent(timeSelect)
+      .addComponent(categorySelect)
+      .addComponent(itemSelect)
+      .addComponent(new Button('add-time')
+        .setLabel('Add Time Index')
+        .onClick(() => this.showAddTimeDialog()))
+      .addComponent(new Button('add-category')
+        .setLabel('Add Category')
+        .onClick(() => this.showAddCategoryDialog()))
+      .addComponent(new Button('add-item')
+        .setLabel('Add Item')
+        .onClick(() => this.showAddItemDialog()));
+
+    this.addPage(mainPage);
+    this.showPage('viewport-main');
+  }
+
+  updateTimeList() {
+    const timeSelect = this.pages.get('viewport-main').getComponent('time-select');
+    timeSelect.setOptions(this.viewportData.primaryLine.map((value, index) => ({
+      value: index,
+      label: value
+    })));
+  }
+
+  updateCategoryList() {
+    const categorySelect = this.pages.get('viewport-main').getComponent('category-select');
+    const timeValue = this.viewportData.primaryLine[this.selectionState.selectedTimeIndex];
+    const categories = this.viewportData.categories[timeValue] || [];
+    categorySelect.setOptions(categories);
+  }
+
+  updateItemList() {
+    const itemSelect = this.pages.get('viewport-main').getComponent('item-select');
+    const items = this.viewportData.items[this.selectionState.selectedCategory] || [];
+    itemSelect.setOptions(items);
+  }
+
+  showAddTimeDialog() {
+    const dialog = new MenuPage('add-time-dialog');
+    const input = new InputBox('time-input')
+      .setLabel('Enter new time index:');
+    
+    dialog
+      .addComponent(input)
+      .addComponent(new Button('submit')
+        .setLabel('Add')
+        .onClick(() => {
+          const value = input.getValue();
+          if (value) {
+            this.emit('addTime', value);
+          }
+          this.back();
+        }));
+
+    this.addPage(dialog);
+    this.showPage('add-time-dialog');
+  }
+
+  showAddCategoryDialog() {
+    if (!this.viewportData.primaryLine[this.selectionState.selectedTimeIndex]) {
+      this.showMessage('Select a time index first');
+      return;
+    }
+
+    const dialog = new MenuPage('add-category-dialog');
+    const input = new InputBox('category-input')
+      .setLabel('Enter new category:');
+    
+    dialog
+      .addComponent(input)
+      .addComponent(new Button('submit')
+        .setLabel('Add')
+        .onClick(() => {
+          const value = input.getValue();
+          if (value) {
+            this.emit('addCategory', {
+              timeIndex: this.selectionState.selectedTimeIndex,
+              category: value
+            });
+          }
+          this.back();
+        }));
+
+    this.addPage(dialog);
+    this.showPage('add-category-dialog');
+  }
+
+  showAddItemDialog() {
+    if (!this.selectionState.selectedCategory) {
+      this.showMessage('Select a category first');
+      return;
+    }
+
+    const dialog = new MenuPage('add-item-dialog');
+    const input = new InputBox('item-input')
+      .setLabel('Enter new item:');
+    
+    dialog
+      .addComponent(input)
+      .addComponent(new Button('submit')
+        .setLabel('Add')
+        .onClick(() => {
+          const value = input.getValue();
+          if (value) {
+            this.emit('addItem', {
+              category: this.selectionState.selectedCategory,
+              item: value
+            });
+          }
+          this.back();
+        }));
+
+    this.addPage(dialog);
+    this.showPage('add-item-dialog');
+  }
+
+  setViewportData(data) {
+    this.viewportData = data;
+    this.updateTimeList();
+    this.updateCategoryList();
+    this.updateItemList();
+  }
+
+  getViewportCentering() {
+    return {
+      timeLineOffsetX: this.timeLineOffsetX,
+      categoryLineOffsetY: this.categoryLineOffsetY
+    };
+  }
+
+  setViewportCentering(offsetX, offsetY) {
+    this.timeLineOffsetX = offsetX;
+    this.categoryLineOffsetY = offsetY;
+  }
+}
+
 const MIST_SCHEMA = 'mist';
 const TABLES = {
   persist: 'MistPersist',
@@ -260,19 +449,73 @@ async function initViewport(session, db) {
  * @param {Object} session - The current session object.
  * @param {Object} uiRenderer - The UI rendering interface.
  */
-function renderViewport(session, uiRenderer) {
-  // Example: Render current selection and available options
-  const { primaryLine, categories, items } = session.viewportData || {};
-  const timeIdx = session.selectedTimeIndex || 0;
-  const timeValue = primaryLine ? primaryLine[timeIdx] : null;
-  const categoryList = categories && timeValue ? categories[timeValue] : [];
-  const category = session.selectedCategory || categoryList[0];
-  const itemList = items && category ? items[category] : [];
-  const item = session.selectedItem || itemList[0];
+function renderViewport(session) {
+  if (!session.viewportManager) {
+    session.viewportManager = new ViewportManager('mist-viewport');
+  }
 
-  uiRenderer.showMessage(
-    `Time: ${timeValue || '-'}\nCategory: ${category || '-'}\nItem: ${item || '-'}`
-  );
+  // Set up event handlers if not already set
+  if (!session.handlersInitialized) {
+    session.viewportManager.on('timeSelect', (index) => {
+      selectTimeIndex(session, index);
+    });
+
+    session.viewportManager.on('categorySelect', (category) => {
+      const timeValue = session.viewportData.primaryLine[session.selectedTimeIndex];
+      const categories = session.viewportData.categories[timeValue] || [];
+      const index = categories.indexOf(category);
+      if (index !== -1) {
+        selectCategory(session, index);
+      }
+    });
+
+    session.viewportManager.on('itemSelect', (item) => {
+      const items = session.viewportData.items[session.selectedCategory] || [];
+      const index = items.indexOf(item);
+      if (index !== -1) {
+        selectItem(session, index);
+      }
+    });
+
+    session.viewportManager.on('addTime', async (value) => {
+      if (session.db) {
+        await addTimeIndex(value, session.db);
+        session.viewportData = await getMistViewportData(session.db);
+        session.viewportManager.setViewportData(session.viewportData);
+      }
+    });
+
+    session.viewportManager.on('addCategory', async ({ timeIndex, category }) => {
+      if (session.db) {
+        await addCategory(timeIndex + 1, category, session.db);
+        session.viewportData = await getMistViewportData(session.db);
+        session.viewportManager.setViewportData(session.viewportData);
+      }
+    });
+
+    session.viewportManager.on('addItem', async ({ category, item }) => {
+      if (session.db) {
+        const categoryLineId = session.viewportData.categoryLineIds[category];
+        if (categoryLineId) {
+          await addItem(categoryLineId, item, session.db);
+          session.viewportData = await getMistViewportData(session.db);
+          session.viewportManager.setViewportData(session.viewportData);
+        }
+      }
+    });
+
+    session.handlersInitialized = true;
+  }
+
+  // Update viewport data and selection state
+  session.viewportManager.setViewportData(session.viewportData);
+  session.viewportManager.selectionState = {
+    selectedTimeIndex: session.selectedTimeIndex || 0,
+    selectedCategory: session.selectedCategory,
+    selectedItem: session.selectedItem
+  };
+
+  return session.viewportManager;
 }
 
 /**
@@ -282,14 +525,25 @@ function renderViewport(session, uiRenderer) {
  * @param {number} index - Index of the selected time.
  */
 function selectTimeIndex(session, index) {
-  session.selectedTimeIndex = index;
-  const timeValue = session.viewportData.primaryLine[index];
-  const categories = session.viewportData.categories[timeValue] || [];
-  session.selectedCategory = categories[0] || null;
-  session.selectedItem = session.selectedCategory
-    ? (session.viewportData.items[session.selectedCategory] || [])[0]
-    : null;
-  session.selectionModeState.currentStep = 'category';
+  const { primaryLine } = session.viewportData || {};
+  if (primaryLine && index >= 0 && index < primaryLine.length) {
+    session.selectedTimeIndex = index;
+    const timeValue = primaryLine[index];
+    const categories = session.viewportData.categories[timeValue] || [];
+    session.selectedCategory = categories[0] || null;
+    session.selectedItem = session.selectedCategory
+      ? (session.viewportData.items[session.selectedCategory] || [])[0]
+      : null;
+    session.selectionModeState.currentStep = 'category';
+    
+    if (session.viewportManager) {
+      session.viewportManager.selectionState = {
+        selectedTimeIndex: index,
+        selectedCategory: session.selectedCategory,
+        selectedItem: session.selectedItem
+      };
+    }
+  }
 }
 
 /**
@@ -301,11 +555,21 @@ function selectTimeIndex(session, index) {
 function selectCategory(session, index) {
   const timeValue = session.viewportData.primaryLine[session.selectedTimeIndex];
   const categories = session.viewportData.categories[timeValue] || [];
-  session.selectedCategory = categories[index];
-  session.selectedItem = session.selectedCategory
-    ? (session.viewportData.items[session.selectedCategory] || [])[0]
-    : null;
-  session.selectionModeState.currentStep = 'item';
+  if (categories && index >= 0 && index < categories.length) {
+    session.selectedCategory = categories[index];
+    session.selectedItem = session.selectedCategory
+      ? (session.viewportData.items[session.selectedCategory] || [])[0]
+      : null;
+    session.selectionModeState.currentStep = 'item';
+    
+    if (session.viewportManager) {
+      session.viewportManager.selectionState = {
+        selectedTimeIndex: session.selectedTimeIndex,
+        selectedCategory: session.selectedCategory,
+        selectedItem: session.selectedItem
+      };
+    }
+  }
 }
 
 /**
@@ -316,8 +580,18 @@ function selectCategory(session, index) {
  */
 function selectItem(session, index) {
   const items = session.viewportData.items[session.selectedCategory] || [];
-  session.selectedItem = items[index];
-  session.selectionModeState.currentStep = null; // End of selection path
+  if (items && index >= 0 && index < items.length) {
+    session.selectedItem = items[index];
+    session.selectionModeState.currentStep = null; // End of selection path
+    
+    if (session.viewportManager) {
+      session.viewportManager.selectionState = {
+        selectedTimeIndex: session.selectedTimeIndex,
+        selectedCategory: session.selectedCategory,
+        selectedItem: session.selectedItem
+      };
+    }
+  }
 }
 
 // --- UI Input Functions ---

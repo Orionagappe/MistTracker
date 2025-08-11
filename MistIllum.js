@@ -1,7 +1,7 @@
 const nvk = require('nvk');
-const { MistPhysicsEngine, MetricTensor3D, MetricTensorND } = require('./MistPhysicsEngine');
 const { renderViewport, selectTimeIndex, selectCategory, selectItem } = require('./MistCore');
-const { SelectionModeState, MapModeState, startSession, loadMistUser } = require('./MistTrackerVulkan');
+const { SelectionModeState, MetricTensorND } = require('./MistCommon');
+const { startSession, loadMistUser, milestoneManager } = require('./MistTrackerVulkan');
 const { mistSolution } = require('./mistSolution');
 
 class MistIllum {
@@ -626,123 +626,189 @@ function volumeDialogue(level, speakerPosition, listenerPosition, options = {}) 
  * @param {Object} currentConfig - Current session config (optional).
  * @param {Function} onUpdate - Callback when settings are updated.
  */
-function settingsMenu(uiRenderer, currentConfig = {}, onUpdate) {
-  // Build settings options
-  const options = [
-    {
-      label: 'Global Volume',
-      type: 'slider',
-      min: 0, max: 1, step: 0.01,
-      value: currentConfig.globalVolume || 1,
-      onChange: (val) => {
-        volumeGlobal(val);
-        if (onUpdate) onUpdate({ ...currentConfig, globalVolume: val });
-      }
-    },
-    {
-      label: 'Ambient Volume',
-      type: 'slider',
-      min: 0, max: 1, step: 0.01,
-      value: currentConfig.ambientVolume || 0.5,
-      onChange: (val) => {
-        volumeAmbient(val);
-        if (onUpdate) onUpdate({ ...currentConfig, ambientVolume: val });
-      }
-    },
-    {
-      label: 'Interaction Volume',
-      type: 'slider',
-      min: 0, max: 1, step: 0.01,
-      value: currentConfig.interactionVolume || 0.7,
-      onChange: (val) => {
-        volumeInteract(val);
-        if (onUpdate) onUpdate({ ...currentConfig, interactionVolume: val });
-      }
-    },
-    {
-      label: 'Dialogue Volume',
-      type: 'slider',
-      min: 0, max: 1, step: 0.01,
-      value: currentConfig.dialogueVolume || 0.8,
-      onChange: (val) => {
-        volumeDialogue(val);
-        if (onUpdate) onUpdate({ ...currentConfig, dialogueVolume: val });
-      }
-    },
-    {
-      label: 'Wave Frequency',
-      type: 'number',
-      min: 0.01, max: 10000, step: 0.01,
-      value: currentConfig.waveFrequency || 440,
-      onChange: (val) => {
-        if (onUpdate) onUpdate({ ...currentConfig, waveFrequency: val });
-      }
-    },
-    {
-      label: 'Wave Amplitude',
-      type: 'number',
-      min: 0, max: 10, step: 0.01,
-      value: currentConfig.waveAmplitude || 1,
-      onChange: (val) => {
-        if (onUpdate) onUpdate({ ...currentConfig, waveAmplitude: val });
-      }
-    },
-    {
-      label: 'Wave Phase',
-      type: 'number',
-      min: 0, max: 2 * Math.PI, step: 0.01,
-      value: currentConfig.wavePhase || 0,
-      onChange: (val) => {
-        if (onUpdate) onUpdate({ ...currentConfig, wavePhase: val });
-      }
-    },
-    {
-      label: 'Listener Position',
-      type: 'vector3',
-      value: currentConfig.listenerPosition || [0, 0, 0],
-      onChange: (val) => {
-        if (onUpdate) onUpdate({ ...currentConfig, listenerPosition: val });
-      }
-    },
-    {
-      label: 'Tiling/Display Mode',
-      type: 'button',
-      onClick: () => {
-        uiRenderer.promptTilingConfig((tileConfig) => {
-          tileMode(true, tileConfig);
-          if (onUpdate) onUpdate({ ...currentConfig, tileConfig });
-        });
-      }
-    },
-    {
-      label: 'Keybinds',
-      type: 'button',
-      onClick: () => {
-        uiRenderer.promptKeybinds((newKeybinds) => {
-          if (onUpdate) onUpdate({ ...currentConfig, keybinds: newKeybinds });
-        });
-      }
-    },
-    {
-      label: 'Save Session Config',
-      type: 'button',
-      onClick: () => {
-        uiRenderer.saveSessionConfig(currentConfig);
-      }
-    },
-    {
-      label: 'Load Session Config',
-      type: 'button',
-      onClick: () => {
-        uiRenderer.loadSessionConfig((loadedConfig) => {
-          if (onUpdate) onUpdate(loadedConfig);
-        });
-      }
-    }
-  ];
+// Helper functions for settings menu
+function showTilingConfig(onUpdate) {
+  const menuManager = new MenuManager('tiling-config');
+  const configPage = new MenuPage('tiling');
+  
+  configPage
+    .addComponent(new Dropdown('layout')
+      .setLabel('Monitor Layout')
+      .setOptions(['Single', 'Dual Horizontal', 'Dual Vertical', 'Grid'])
+      .setValue('Single')
+      .onChange(val => {
+        const config = { layout: val };
+        tileMode(true, config);
+        if (onUpdate) onUpdate({ tileConfig: config });
+      }));
 
-  // Render the settings menu using the provided UI renderer
-  uiRenderer.showSettingsMenu(options, currentConfig);
+  menuManager
+    .addPage(configPage)
+    .showPage('tiling');
+
+  return menuManager;
+}
+
+function showKeybindConfig(onUpdate) {
+  const menuManager = new MenuManager('keybind-config');
+  const configPage = new MenuPage('keybinds');
+  
+  const defaultBinds = {
+    'menu': 'Escape',
+    'select': 'Enter',
+    'back': 'Backspace',
+    'up': 'ArrowUp',
+    'down': 'ArrowDown'
+  };
+
+  Object.entries(defaultBinds).forEach(([action, key]) => {
+    configPage.addComponent(new Button(`bind-${action}`)
+      .setLabel(`${action}: ${key}`)
+      .onClick(() => {
+        // Show dialog to capture new key
+        menuManager.showDialog({
+          title: `Press any key to bind to ${action}`,
+          onKeyPress: (newKey) => {
+            defaultBinds[action] = newKey;
+            if (onUpdate) onUpdate({ keybinds: { ...defaultBinds } });
+          }
+        });
+      }));
+  });
+
+  menuManager
+    .addPage(configPage)
+    .showPage('keybinds');
+
+  return menuManager;
+}
+
+function settingsMenu(onUpdate) {
+  // Create settings menu using MistInterface components
+  const menuManager = new MenuManager('settings-menu');
+  const settingsPage = new MenuPage('settings');
+
+  // Audio settings
+  const audioSection = new MenuPage('audio-settings');
+  audioSection
+    .addComponent(new Slider('global-volume')
+      .setLabel('Global Volume')
+      .setRange(0, 1, 0.01)
+      .setValue(1)
+      .onChange(val => {
+        volumeGlobal(val);
+        if (onUpdate) onUpdate({ globalVolume: val });
+      }))
+    .addComponent(new Slider('ambient-volume')
+      .setLabel('Ambient Volume')
+      .setRange(0, 1, 0.01)
+      .setValue(0.5)
+      .onChange(val => {
+        volumeAmbient(val);
+        if (onUpdate) onUpdate({ ambientVolume: val });
+      }))
+    .addComponent(new Slider('interaction-volume')
+      .setLabel('Interaction Volume')
+      .setRange(0, 1, 0.01)
+      .setValue(0.7)
+      .onChange(val => {
+        volumeInteract(val);
+        if (onUpdate) onUpdate({ interactionVolume: val });
+      }))
+    .addComponent(new Slider('dialogue-volume')
+      .setLabel('Dialogue Volume')
+      .setRange(0, 1, 0.01)
+      .setValue(0.8)
+      .onChange(val => {
+        volumeDialogue(val);
+        if (onUpdate) onUpdate({ dialogueVolume: val });
+      }))
+    .addComponent(new Button('back')
+      .setLabel('Back')
+      .onClick(() => menuManager.showPage('settings')));
+
+  // Wave parameters
+  const waveSection = new MenuPage('wave-settings');
+  waveSection
+    .addComponent(new Slider('wave-frequency')
+      .setLabel('Wave Frequency')
+      .setRange(0.01, 10000, 0.01)
+      .setValue(440)
+      .onChange(val => {
+        if (onUpdate) onUpdate({ waveFrequency: val });
+      }))
+    .addComponent(new Slider('wave-amplitude')
+      .setLabel('Wave Amplitude')
+      .setRange(0, 10, 0.01)
+      .setValue(1)
+      .onChange(val => {
+        if (onUpdate) onUpdate({ waveAmplitude: val });
+      }))
+    .addComponent(new Slider('wave-phase')
+      .setLabel('Wave Phase')
+      .setRange(0, 2 * Math.PI, 0.01)
+      .setValue(0)
+      .onChange(val => {
+        if (onUpdate) onUpdate({ wavePhase: val });
+      }))
+    .addComponent(new Button('back')
+      .setLabel('Back')
+      .onClick(() => menuManager.showPage('settings')));
+
+  // Display settings
+  const displaySection = new MenuPage('display-settings');
+  displaySection
+    .addComponent(new Dropdown('display-mode')
+      .setLabel('Display Mode')
+      .setOptions(['3D', 'nD'])
+      .setValue('3D')
+      .onChange(val => {
+        if (onUpdate) onUpdate({ displayMode: val });
+      }))
+    .addComponent(new Button('tiling')
+      .setLabel('Configure Tiling')
+      .onClick(() => showTilingConfig(onUpdate)))
+    .addComponent(new Button('back')
+      .setLabel('Back')
+      .onClick(() => menuManager.showPage('settings')));
+
+  // Controls settings
+  const controlsSection = new MenuPage('controls-settings');
+  controlsSection
+    .addComponent(new Button('configure-keybinds')
+      .setLabel('Configure Keybinds')
+      .onClick(() => showKeybindConfig(onUpdate)))
+    .addComponent(new Button('back')
+      .setLabel('Back')
+      .onClick(() => menuManager.showPage('settings')));
+
+  // Add sections to main settings page
+  settingsPage
+    .addComponent(new Button('audio')
+      .setLabel('Audio Settings')
+      .onClick(() => menuManager.showPage('audio-settings')))
+    .addComponent(new Button('wave')
+      .setLabel('Wave Parameters')
+      .onClick(() => menuManager.showPage('wave-settings')))
+    .addComponent(new Button('display')
+      .setLabel('Display Settings')
+      .onClick(() => menuManager.showPage('display-settings')))
+    .addComponent(new Button('controls')
+      .setLabel('Controls')
+      .onClick(() => menuManager.showPage('controls-settings')));
+
+  // Add all pages to menu manager
+  menuManager
+    .addPage(settingsPage)
+    .addPage(audioSection)
+    .addPage(waveSection)
+    .addPage(displaySection)
+    .addPage(controlsSection);
+
+  // Show main settings page
+  menuManager.showPage('settings');
+
+  return menuManager;
 }
 
 function mistFirstStart() {
@@ -1158,23 +1224,6 @@ function shutdownMist(menuControl, onShutdown) {
   console.log('MistIllum session shutdown complete.');
 }
 
-// --- Dimensional Stacking ---
-/**
- * Stack objects or spaces in higher dimensions.
- * Each object is placed along the specified dimension, spaced equally.
- * @param {Array} objects - Array of objects or spaces to stack.
- * @param {number} dimension - The dimension to stack along (e.g., 3 for W in 4D).
- * @returns {Array} - Stacked representation (array of objects with updated positions).
- */
-function dimensionalStack(objects, dimension) {
-  // Place each object at a unique coordinate along the stacking dimension
-  return objects.map((obj, idx) => {
-    let pos = Array.isArray(obj.position) ? [...obj.position] : [0, 0, 0, 0];
-    pos[dimension] = idx; // Stack along the specified dimension
-    return { ...obj, position: pos };
-  });
-}
-
 /**
  * Calculate apparent distance and size of an object from a given dimensional perspective.
  * If observerDimension < objectDimension, projects object down and scales size.
@@ -1195,27 +1244,6 @@ function perspectiveTransform(object, observerDimension, objectDimension) {
 }
 
 /**
- * Project a higher-dimensional object into a lower dimension over time or motion.
- * @param {Object} object - The higher-dimensional object (with position).
- * @param {number} fromDimension - The original dimension.
- * @param {number} toDimension - The target (lower) dimension.
- * @param {number} time - Time parameter for the projection (optional).
- * @returns {Object} - Lower-dimensional projection at given time.
- */
-function projectToLowerDimension(object, fromDimension, toDimension, time = 0) {
-  // Simple orthogonal projection: drop extra dimensions
-  const pos = object.position || [];
-  const projected = pos.slice(0, toDimension);
-  // Optionally, animate projection over time (e.g., interpolate extra dims to zero)
-  if (fromDimension > toDimension && time > 0) {
-    for (let i = toDimension; i < fromDimension; i++) {
-      projected[toDimension - 1] += (pos[i] || 0) * Math.exp(-time); // Fade out extra dims
-    }
-  }
-  return { ...object, position: projected };
-}
-
-/**
  * Decompose a higher-dimensional object into its lower-dimensional "shadows" or slices.
  * @param {Object} object - The higher-dimensional object (with position).
  * @param {number} lowerDimension - The dimension to decompose into.
@@ -1233,24 +1261,6 @@ function decomposeHigherToLower(object, lowerDimension) {
     slices.push({ ...object, position: slicePos, sliceIndex: i });
   }
   return slices;
-}
-
-/**
- * Treat extra dimensions as either spatial axes or as object properties.
- * @param {Object} object - The object to analyze (with position).
- * @param {boolean} asObject - If true, treat extra dimensions as object properties.
- * @returns {Object} - Modified object or space.
- */
-function extraDimensionMode(object, asObject) {
-  const pos = object.position || [];
-  if (asObject) {
-    // Move extra dimensions into object properties
-    const extra = pos.slice(3); // Assume 3D is spatial, rest are "object"
-    return { ...object, extraDimensions: extra, position: pos.slice(0, 3) };
-  } else {
-    // Treat all as spatial
-    return { ...object, position: pos };
-  }
 }
 
 /**
@@ -1412,290 +1422,6 @@ class MetricTensor3D {
   }
 }
 
-// --- Metric Tensor for nD Physics ---
-class MetricTensorND {
-  /**
-   * @param {number} rank - The rank (dimensions) of the tensor.
-   * @param {Array<Array<number>>} data - The metric tensor matrix.
-   */
-  constructor(rank, data) {
-    this.rank = rank;
-    this.data = data; // e.g., 4x4 or 5x5 array
-  }
-
-  /**
-   * Calculate the squared interval (distance) between two points in this metric.
-   * @param {Array<number>} p1 - First point (array of coordinates).
-   * @param {Array<number>} p2 - Second point.
-   * @returns {number} - The squared interval.
-   */
-  intervalSquared(p1, p2) {
-    let delta = p1.map((v, i) => v - p2[i]);
-    let sum = 0;
-    for (let i = 0; i < this.rank; i++) {
-      for (let j = 0; j < this.rank; j++) {
-        sum += this.data[i][j] * delta[i] * delta[j];
-      }
-    }
-    return sum;
-  }
-  
-
-  /**
-   * Project a vector from higher to lower dimension using the metric.
-   * @param {Array<number>} vec - The vector to project.
-   * @param {number} targetRank - The target dimension.
-   * @returns {Array<number>} - Projected vector.
-   */
-  project(vec, targetRank) {
-    return vec.slice(0, targetRank);
-  }
-
-  /**
-   * Apply the metric to transform a vector (for orientation/navigation).
-   * @param {Array<number>} vec
-   * @returns {Array<number>}
-   */
-  transform(vec) {
-    let result = Array(this.rank).fill(0);
-    for (let i = 0; i < this.rank; i++) {
-      for (let j = 0; j < this.rank; j++) {
-        result[i] += this.data[i][j] * vec[j];
-      }
-    }
-    return result;
-  }
-}
-
-class MistPhysicsEngineND {
-  constructor(config = {}) {
-    // Default to 4D Minkowski metric, but allow 3D mode
-    this.metric3D = new MetricTensor3D();
-    this.metric4D = config.metric || new MetricTensorND(4, [
-      [-1, 0, 0, 0],
-      [0, 1, 0, 0],
-      [0, 0, 1, 0],
-      [0, 0, 0, 1]
-    ]);
-    this.mode = config.mode || '4D'; // '3D' or '4D'
-    this.G = config.G || 6.67430e-11; // Gravitational constant
-    this.M = config.M || 1.0; // Mass for gravity calculations
-  }
-
-  setMode(mode) {
-    this.mode = mode;
-  }
-
-  // Use the appropriate metric for distance
-  distance(p1, p2) {
-    if (this.mode === '3D') {
-      return Math.sqrt(this.metric3D.intervalSquared(p1, p2));
-    } else {
-      return Math.sqrt(this.metric4D.intervalSquared(p1, p2));
-    }
-  }
-
-  // Gravity as a function of distance in 3D at a given time
-  gravityAt(p, mass = this.M) {
-    // p: [x, y, z]
-    const r = Math.sqrt(p[0] * p[0] + p[1] * p[1] + p[2] * p[2]);
-    if (r === 0) return 0;
-    // Newtonian gravity: g = G * M / r^2
-    return this.G * mass / (r * r);
-  }
-
-  // For compatibility: project to 3D view
-  projectToView(vec, viewRank = 3) {
-    if (this.mode === '3D') {
-      return this.metric3D.project ? this.metric3D.project(vec, viewRank) : vec.slice(0, 3);
-    } else {
-      return this.metric4D.project(vec, viewRank);
-    }
-  }
-
-  // For compatibility: collision detection in 3D
-  checkCollision3D(p1, p2, threshold = 1e-6) {
-    return Math.abs(this.metric3D.intervalSquared(p1, p2)) < threshold;
-  }
-
-/**
-   * Bell's theorem culling logic.
-   * Returns true if Bell's inequality is satisfied for the given variables.
-   * @param {number} a
-   * @param {number} b
-   * @param {number} c
-   * @param {number} d
-   * @returns {boolean}
-   */
-  bellTheorem(a, b, c, d) {
-    return Math.abs(a * b + c * d) <= 2;
-  }
-
-  // --- Pilot Wave Theory ---
-  /**
-   * Pilot wave theory for defined objects.
-   * Calculates the pilot wave based on the wave function and potential.
-   * @param {number} psi - The wave function value.
-   * @param {number} potential - The potential at the object's location.
-   * @returns {number}
-   */
-  pilotWave(psi, potential) {
-    return psi * potential;
-  }
-
-  // --- Locality ---
-  /**
-   * Check if two points are local to each other (distance < 1 unit).
-   * @param {Array<number>} p1 - First point [x, y, z].
-   * @param {Array<number>} p2 - Second point [x, y, z].
-   * @returns {boolean}
-   */
-  locality(p1, p2) {
-    const distance = Math.sqrt(
-      Math.pow(p2[0] - p1[0], 2) +
-      Math.pow(p2[1] - p1[1], 2) +
-      Math.pow(p2[2] - p1[2], 2)
-    );
-    return distance < 1;
-  }
-
-  // --- Light Wave Propagation ---
-  /**
-   * Relationship between light wave emitted by a single source object and the wave arriving at two objects.
-   * Returns the time taken for light to reach each object.
-   * @param {Array<number>} source - Source position [x, y, z].
-   * @param {Array<number>} obj1 - First object position [x, y, z].
-   * @param {Array<number>} obj2 - Second object position [x, y, z].
-   * @returns {{time1: number, time2: number}}
-   */
-  lightWave(source, obj1, obj2) {
-    const D = (p1, p2) => Math.sqrt(
-      Math.pow(p2[0] - p1[0], 2) +
-      Math.pow(p2[1] - p1[1], 2) +
-      Math.pow(p2[2] - p1[2], 2)
-    );
-    const distance1 = D(source, obj1);
-    const distance2 = D(source, obj2);
-    return {
-      time1: distance1 / this.C,
-      time2: distance2 / this.C
-    };
-  }
-
-  // --- Relative Acceleration ---
-  /**
-   * Relative acceleration between two velocities over time.
-   * @param {number} v1 - Initial velocity.
-   * @param {number} v2 - Final velocity.
-   * @param {number} t - Time interval.
-   * @returns {number}
-   */
-  relativeAcceleration(v1, v2, t) {
-    return (v2 - v1) / t;
-  }
-
-eulerLagrange(L, q, qDot, t = 0, dt = 1e-5) {
-    const n = q.length;
-    const result = [];
-    for (let i = 0; i < n; i++) {
-      // ∂L/∂q_i
-      const dq = [...q];
-      dq[i] += dt;
-      const dL_dq = (L(dq, qDot, t) - L(q, qDot, t)) / dt;
-
-      // ∂L/∂qDot_i
-      const dqDot = [...qDot];
-      dqDot[i] += dt;
-      const dL_dqDot = (L(q, dqDot, t) - L(q, qDot, t)) / dt;
-
-      // d/dt(∂L/∂qDot_i) ≈ (∂L/∂qDot_i at t+dt - ∂L/∂qDot_i at t) / dt
-      const dqDotNext = [...qDot];
-      dqDotNext[i] += dt;
-      const dL_dqDot_next = (L(q, dqDotNext, t + dt) - L(q, qDot, t + dt)) / dt;
-      const d_dt_dL_dqDot = (dL_dqDot_next - dL_dqDot) / dt;
-
-      // Euler-Lagrange: d/dt(∂L/∂qDot_i) - ∂L/∂q_i
-      result.push(d_dt_dL_dqDot - dL_dq);
-    }
-    return result;
-  }
-
-  /**
-   * Gauss's law for magnetism: net magnetic flux through any closed surface is zero.
-   * @param {number|Array<number>} B - Magnetic field or array of flux values.
-   * @param {number} [tolerance=1e-10]
-   * @returns {boolean}
-   */
-  gaussLawMagnetism(B, tolerance = 1e-10) {
-    let totalFlux = Array.isArray(B) ? B.reduce((sum, val) => sum + val, 0) : B;
-    return Math.abs(totalFlux) < tolerance;
-  }
-
-  /**
-   * Principle of stationary action: action is stationary (variation ≈ 0).
-   * @param {number|Array<number>} actionVariation
-   * @param {number} [tolerance=1e-10]
-   * @returns {boolean}
-   */
-  principleOfStationaryAction(actionVariation, tolerance = 1e-10) {
-    let variation = Array.isArray(actionVariation)
-      ? Math.max(...actionVariation.map(Math.abs))
-      : Math.abs(actionVariation);
-    return variation < tolerance;
-  }
-
-  /**
-   * Compose multiple wave objects by summing intensities and averaging properties.
-   * @param {Array<Object>} waves
-   * @returns {Object}
-   */
-  composeWaves(waves) {
-    if (!Array.isArray(waves) || waves.length === 0) return { intensity: 0 };
-    let totalIntensity = 0;
-    let totalFrequency = 0;
-    let totalWavelength = 0;
-    let count = 0;
-    waves.forEach(wave => {
-      totalIntensity += wave.intensity || 0;
-      if (wave.frequency) totalFrequency += wave.frequency;
-      if (wave.wavelength) totalWavelength += wave.wavelength;
-      count++;
-    });
-    return {
-      intensity: totalIntensity,
-      frequency: count ? totalFrequency / count : undefined,
-      wavelength: count ? totalWavelength / count : undefined
-    };
-  }
-
-  /**
-   * Relationship between intensity and object hardness.
-   * @param {number} intensity
-   * @param {number} hardness
-   * @returns {number}
-   */
-  intensityHardnessRelationship(intensity, hardness) {
-    return intensity * hardness;
-  }
-
-  /**
-   * Particle-wave duality model.
-   * @param {Object} particle - { position, mass }
-   * @param {Object} wave - { wavelength, frequency }
-   * @returns {Object}
-   */
-  particleWaveDuality(particle, wave) {
-    return {
-      position: particle.position,
-      mass: particle.mass,
-      wavelength: wave.wavelength,
-      frequency: wave.frequency,
-      duality: true
-    };
-  };
-
-}
-
 function eulerLagrange(L, q, qDot, t = 0, dt = 1e-5) {
   return (new MistPhysicsEngineND()).eulerLagrange(L, q, qDot, t, dt);
 }
@@ -1836,119 +1562,191 @@ function deleteUser(userId) {
   }
 }
 
-const {
-  getMistViewportData,
-  advanceSelectionMode,
-  getViewportCentering,
-  isItemVisible,
-  handleSelectionBackend,
-  MapModeState,
-  initViewport,
-  renderViewport,
-  selectTimeIndex,
-  selectCategory,
-  selectItem,
-  showAddTimeInput,
-  showAddCategoryInput,
-  showAddItemInput,
-  showInputBox,
-  handleSelection
-} = require('./MistCore.js');
-
 // --- Menu State ---
 
 class MistMenuControl {
-  constructor(db, uiRenderer) {
-    this.db = db;
-    this.uiRenderer = uiRenderer;
-    this.session = null;
-    this.selectionModeState = new (require('./MistTrackerVulkan.js').SelectionModeState)();
-    this.mapModeState = new MapModeState();
+  constructor() {
+    this.menuManager = new MenuManager('mist-menu');
     this.physicsEngine = new MistPhysicsEngine();
-    this.mode = '3D'; // or 'nD'
+    this.mode = '3D';
+    this.session = { 
+      selectedTimeIndex: 0,
+      selectedCategory: null,
+      selectedItem: null,
+      settings: {
+        volumes: {
+          global: 1,
+          ambient: 0.5,
+          interaction: 0.7,
+          dialogue: 0.8
+        },
+        wave: {
+          frequency: 440,
+          amplitude: 1,
+          phase: 0
+        },
+        display: {
+          mode: '3D',
+          tiling: false
+        }
+      }
+    };
+    this.setupMenuPages();
   }
 
-  async start(user) {
-    // If user is undefined, use default user from MistCausality (process.env.MIST_DEFAULT_USER)
-    if (!user) {
-      user = process.env.MIST_DEFAULT_USER || 'guest';
+  setupMenuPages() {
+    // Main menu page
+    const mainPage = new MenuPage('main');
+    mainPage
+      .addComponent(new Button('time')
+        .setLabel('Select Time Index')
+        .onClick(() => this.showTimeSelect()))
+      .addComponent(new Button('category')
+        .setLabel('Select Category')
+        .onClick(() => this.showCategorySelect()))
+      .addComponent(new Button('settings')
+        .setLabel('Settings')
+        .onClick(() => this.menuManager.showPage('settings')));
+
+    // Settings page
+    const settingsPage = new MenuPage('settings');
+    settingsPage
+      .addComponent(new Button('audio')
+        .setLabel('Audio Settings')
+        .onClick(() => this.menuManager.showPage('audio')))
+      .addComponent(new Button('display')
+        .setLabel('Display Settings')
+        .onClick(() => this.menuManager.showPage('display')))
+      .addComponent(new Button('wave')
+        .setLabel('Wave Parameters')
+        .onClick(() => this.menuManager.showPage('wave')))
+      .addComponent(new Button('back')
+        .setLabel('Back')
+        .onClick(() => this.menuManager.showPage('main')));
+
+    // Audio settings page
+    const audioPage = new MenuPage('audio');
+    audioPage
+      .addComponent(new Slider('global-volume')
+        .setLabel('Global Volume')
+        .setRange(0, 1, 0.01)
+        .setValue(this.session.settings.volumes.global)
+        .onChange(val => {
+          this.session.settings.volumes.global = val;
+          volumeGlobal(val);
+        }))
+      .addComponent(new Slider('ambient-volume')
+        .setLabel('Ambient Volume')
+        .setRange(0, 1, 0.01)
+        .setValue(this.session.settings.volumes.ambient)
+        .onChange(val => {
+          this.session.settings.volumes.ambient = val;
+          volumeAmbient(val);
+        }))
+      .addComponent(new Button('back')
+        .setLabel('Back')
+        .onClick(() => this.menuManager.showPage('settings')));
+
+    // Display settings page
+    const displayPage = new MenuPage('display');
+    displayPage
+      .addComponent(new Dropdown('mode')
+        .setLabel('Display Mode')
+        .setOptions(['3D', 'nD'])
+        .setValue(this.mode)
+        .onChange(val => this.setMode(val)))
+      .addComponent(new Button('tiling')
+        .setLabel('Configure Tiling')
+        .onClick(() => this.showTilingConfig()))
+      .addComponent(new Button('back')
+        .setLabel('Back')
+        .onClick(() => this.menuManager.showPage('settings')));
+
+    // Wave parameters page
+    const wavePage = new MenuPage('wave');
+    wavePage
+      .addComponent(new Slider('frequency')
+        .setLabel('Wave Frequency')
+        .setRange(0.01, 10000, 0.01)
+        .setValue(this.session.settings.wave.frequency)
+        .onChange(val => this.session.settings.wave.frequency = val))
+      .addComponent(new Slider('amplitude')
+        .setLabel('Wave Amplitude')
+        .setRange(0, 10, 0.01)
+        .setValue(this.session.settings.wave.amplitude)
+        .onChange(val => this.session.settings.wave.amplitude = val))
+      .addComponent(new Button('back')
+        .setLabel('Back')
+        .onClick(() => this.menuManager.showPage('settings')));
+
+    // Add pages to menu manager
+    this.menuManager
+      .addPage(mainPage)
+      .addPage(settingsPage)
+      .addPage(audioPage)
+      .addPage(displayPage)
+      .addPage(wavePage);
+
+    // Show main page by default
+    this.menuManager.showPage('main');
+  }
+
+  start() {
+    this.menuManager.show();
+    this.renderViewport();
+  }
+
+  renderViewport() {
+    renderViewport(this.session, this.menuManager);
+  }
+
+  showTimeSelect() {
+    this.menuManager.showDialog({
+      title: 'Select Time Index',
+      content: new Dropdown('time-select')
+        .setOptions(this.getTimeIndices())
+        .setValue(this.session.selectedTimeIndex)
+        .onChange(idx => {
+          this.session.selectedTimeIndex = idx;
+          this.renderViewport();
+        })
+    });
+  }
+
+  showCategorySelect() {
+    const categories = this.getCategories();
+    if (categories.length === 0) {
+      this.menuManager.showMessage('No categories available for this time index');
+      return;
     }
 
-    // Save user information in database using MistTrackerVulkan functions
-    const MistTracker = require('./MistTrackerVulkan.js');
-    const db = this.db;
-    let userObj;
-    if (typeof user === 'string') {
-      // If user is a string, treat as userName and construct email
-      const userEmail = `${user}@example.com`;
-      userObj = await MistTracker.loadMistUser(userEmail, db);
-    } else if (user && user.accountId) {
-      // If user is already an object with accountId, use as is
-      userObj = user;
-    } else {
-      // Fallback: treat as guest
-      userObj = await MistTracker.loadMistUser('guest@example.com', db);
-    }
-
-    // Initialize session and viewport
-    this.session = require('./MistTrackerVulkan.js').startSession(userObj);
-    await initViewport(this.session, this.db);
-    this.viewportData = await getMistViewportData(this.db);
-    this.renderMenu();
-  }
-
-  renderMenu() {
-    // Render the menu and viewport
-    renderViewport(this.session, this.uiRenderer);
-    this.uiRenderer.showMenu(this.getMenuOptions());
-  }
-
-  getMenuOptions() {
-    // Build menu options based on current state
-    const options = [
-      { label: 'Select Time Index', action: () => this.promptTimeIndex() },
-      { label: 'Select Category', action: () => this.promptCategory() },
-      { label: 'Select Item', action: () => this.promptItem() },
-      { label: 'Add Time Index', action: () => showAddTimeInput(this.uiRenderer) },
-      { label: 'Add Category', action: () => showAddCategoryInput(this.uiRenderer) },
-      { label: 'Add Item', action: () => showAddItemInput(this.uiRenderer) },
-      { label: `Switch to ${this.mode === '3D' ? 'nD' : '3D'} Mode`, action: () => this.toggleMode() }
-    ];
-    return options;
-  }
-
-  promptTimeIndex() {
-    // Show input for selecting time index
-    const timeIndices = this.viewportData.primaryLine;
-    this.uiRenderer.promptSelect('Select Time Index', timeIndices, (idx) => {
-      selectTimeIndex(this.session, idx);
-      this.renderMenu();
+    this.menuManager.showDialog({
+      title: 'Select Category',
+      content: new Dropdown('category-select')
+        .setOptions(categories)
+        .setValue(this.session.selectedCategory)
+        .onChange(category => {
+          this.session.selectedCategory = category;
+          this.renderViewport();
+        })
     });
   }
 
-  promptCategory() {
-    // Show input for selecting category
-    const categories = this.viewportData.categories[this.session.selectedTimeIndex] || [];
-    this.uiRenderer.promptSelect('Select Category', categories, (idx) => {
-      selectCategory(this.session, idx);
-      this.renderMenu();
-    });
+  getTimeIndices() {
+    // Return available time indices
+    return ['Time 1', 'Time 2', 'Time 3']; // Example data
   }
 
-  promptItem() {
-    // Show input for selecting item
-    const items = this.viewportData.items[this.session.selectedCategory] || [];
-    this.uiRenderer.promptSelect('Select Item', items, (idx) => {
-      selectItem(this.session, idx);
-      this.renderMenu();
-    });
+  getCategories() {
+    // Return categories for current time index
+    return ['Category 1', 'Category 2']; // Example data
   }
 
-  toggleMode() {
-    // Switch between 3D and nD modes
-    if (this.mode === '3D') {
-      this.mode = 'nD';
-      this.physicsEngine.setMode('nD');
+  setMode(mode) {
+    this.mode = mode;
+    this.session.settings.display.mode = mode;
+    this.physicsEngine.setMode(mode);
+    if (mode === 'nD') {
       this.physicsEngine.metric = new MetricTensor(4, [
         [-1, 0, 0, 0],
         [0, 1, 0, 0],
@@ -1956,11 +1754,21 @@ class MistMenuControl {
         [0, 0, 0, 1]
       ]);
     } else {
-      this.mode = '3D';
-      this.physicsEngine.setMode('3D');
       this.physicsEngine.metric = new MetricTensor3D();
     }
-    this.renderMenu();
+    this.renderViewport();
+  }
+
+  showTilingConfig() {
+    this.menuManager.showDialog({
+      title: 'Tiling Configuration',
+      content: new Button('toggle-tiling')
+        .setLabel(this.session.settings.display.tiling ? 'Disable Tiling' : 'Enable Tiling')
+        .onClick(() => {
+          this.session.settings.display.tiling = !this.session.settings.display.tiling;
+          tileMode(this.session.settings.display.tiling);
+        })
+    });
   }
 }
 
@@ -2031,7 +1839,7 @@ function handleEnvironmentInput(input, envState) {
   }
 }
 
-// --- Import MilestoneManager from MistTrackerVulkan.js ---
+const { milestoneManager } = require('./MistTrackerVulkan');
 // --- Milestone-Aware Mode Selection ---
 
 /**
@@ -2143,13 +1951,9 @@ module.exports = {
   waveFunction,
   interferencePattern,
   applyInterference,
-  createVoxelObject,
-  updateDistanceFromObserver,
-  computeAngularMomentumMap,
   isEdgeVoxel,
   interactObjects,
   spawnObjectNearPlayer,
-  globalIllumination,
   fastTransform,
   worldWarp,
   wireFrames,
@@ -2169,11 +1973,8 @@ module.exports = {
   launchMistCore,
   launchMistMulti,
   shutdownMist,
-  dimensionalStack,
   perspectiveTransform,
-  projectToLowerDimension,
   decomposeHigherToLower,
-  extraDimensionMode,
   setDimensionLimit,
   distributeEnergy,
   energyDistribution,
@@ -2199,8 +2000,6 @@ module.exports = {
   getGravityAtPoint,
   navigate,
   navigate3D,
-  renderObject3D,
-  renderObjectND,
   checkCollisionWithWave,
   cullObject,
   MistMenuControl,
@@ -2209,6 +2008,8 @@ module.exports = {
   handleEnvironmentInput,
   getAvailableModes,
   showModeSelectionMenu,
-  trySwitchModes,
+  showTilingConfig,
+  showKeybindConfig,
+  trySwitchMode,
   getMenuOptionsWithMilestones,
 };

@@ -7,7 +7,7 @@ const {
   extraDimensionMode,
   projectToLowerDimension,
   dimensionalStack
-} = require('./MistIllum.js');
+} = require('./MistCommon.js');
 
 /**
  * mistSolution - Generate an nD universe environment from logical axioms, physics, and data headers.
