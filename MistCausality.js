@@ -1,12 +1,20 @@
 // --- Mist Causality: Multi-User 4D Definite Item Tracker & 3D Physics Simulator Entry Point ---
 
 const mysql = require('mysql2/promise');
+const nvk = require('nvk');
 const MistTracker = require('./MistTrackerVulkan.js');
 const MistMulti = require('./MistMulti.js');
 const MistIllum = require('./MistIllum.js');
 const { storyWriter } = require('./MistTrackerVulkan.js');
 const { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } = require('./MistTrackerVulkan.js');
 const { MistMenuControl, launchMistCore } = require('./MistIllum.js');
+
+// Setup Vulkan rendering context
+const instance = new nvk.Instance();
+const physicalDevice = instance.physicalDevices[0];
+const device = new nvk.Device(physicalDevice);
+const graphicsQueue = device.getQueue(0, 0);
+const renderContext = { instance, physicalDevice, device, graphicsQueue };
 
 // --- DB Configuration ---
 const dbConfig = {
@@ -79,7 +87,7 @@ async function main() {
   const { MenuManager, MenuPage, Button, Slider, Dropdown } = require('./MistInterface');
   
   // Create menu manager
-  const menuManager = new MenuManager('mainMenu', document.body);
+  const menuManager = new MenuManager('mainMenu');
   menuManager.setConfigPath('./settings.config');
 
   // Create main menu pages

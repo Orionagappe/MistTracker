@@ -27,16 +27,15 @@ class CharacterLocation {
   }
 }
 
+// --- Selection and User Management ---
 class SelectionModeState {
   constructor() {
-    this.currentStep = 'time'; // 'time', 'category', 'item', etc.
-    this.selectedIndices = []; // [timeIndex, categoryIndex, itemIndex, ...]
+    this.currentStep = null;
+    this.selectedIndices = [];
     this.inputBoxOpen = false;
-    this.inputBoxType = null; // 'time', 'category', 'item'
+    this.inputBoxType = null;
   }
 }
-
-
 
 // --- In-Memory Data Model ---
 const MistModel = {
@@ -802,8 +801,15 @@ function integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db)
 
 function mapRead(){
   const fs = require('fs');
-  const { createCanvas, loadImage } = require('canvas'); // or use a native image library
-  const options = { createCanvas, loadImage }
+  const sharp = require('sharp'); // Using sharp for image processing
+  const options = { 
+    processImage: async (imagePath) => {
+      const image = await sharp(imagePath);
+      const metadata = await image.metadata();
+      const buffer = await image.raw().toBuffer();
+      return { buffer, metadata };
+    }
+  };
   mapReader(imagePath, options);
 }
 
@@ -1353,23 +1359,6 @@ function nominateSuccessorFlexible(userId, value, db) {
   }
 }
 
-const {
-  advanceSelectionMode,
-  getViewportCentering,
-  isItemVisible,
-  handleSelectionBackend,
-  MapModeState,
-  initViewport,
-  renderViewport,
-  selectTimeIndex,
-  selectCategory,
-  selectItem,
-  showAddTimeInput,
-  showAddCategoryInput,
-  showAddItemInput,
-  showInputBox,
-  handleSelection
-} = require('./MistCore.js');
 
 // --- Export for integration with native UI and GPU logic ---
 module.exports = {
