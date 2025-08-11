@@ -7,7 +7,7 @@ Each function is annotated with its source module and primary purpose. Functions
 ---
 
 ## MistIllum.js (Visualization a### Metric Tensors
-```typescript
+```
 class MetricTensorND {
     constructor(rank: number, data: number[][])
     intervalSquared(p1: vec[], p2: vec[]): number  // Calculate squared interval
@@ -16,14 +16,14 @@ class MetricTensorND {
 }
 
 ### Asset Management
-```typescript
+```
 createShaderModule(device: VkDevice, assetId: string, db: Connection): Promise<VkShaderModule>
 loadAsset(assetId: string, db: Connection): Promise<Asset>
 ensureAssetsTables(db: Connection): Promise<void>
 generateAssetId(): string
 
 ### Security and Moderation
-```typescript
+```
 cullObject(obj: Object): void               // Remove object from scene/model
 deleteUser(userId: string): void            // Remove user and cleanup
 rateLimitWarn(userId: string): void         // Rate limit warningPhysics Core)
