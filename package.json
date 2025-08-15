@@ -1,4 +1,6 @@
 {
+  "name": "mist-platform",
+  "type": "module",
   "dependencies": {
     "canvas": "^3.1.2",
     "csv-parse": "^5.6.0",

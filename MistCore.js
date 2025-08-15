@@ -1,4 +1,4 @@
-const { MenuManager, MenuPage, Button, Slider, Dropdown, InputBox } = require('./MistInterface');
+import { MenuManager, MenuPage, Button, Slider, Dropdown, InputBox } from './MistInterface.js';
 
 class ViewportManager extends MenuManager {
   constructor(id, parentElement) {
@@ -743,7 +743,7 @@ async function handleSelection(session, selection, db) {
 }
 
 // --- Export all shared modules ---
-module.exports = {
+export {
   getMistViewportData,
   advanceSelectionMode,
   getViewportCentering,
@@ -759,9 +759,5 @@ module.exports = {
   showAddCategoryInput,
   showAddItemInput,
   showInputBox,
-  handleSelection,
-  showAddTimeInput,
-  showAddCategoryInput,
-  showAddItemInput,
-  showInputBox
-}
+  handleSelection
+};

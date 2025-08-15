@@ -2,7 +2,8 @@
  * MistInterface.js - UI Component System for Mist Platform using Vulkan
  */
 
-const nvk = require('nvk');
+
+import nvk from 'nvk';
 
 // Basic UI rendering utilities
 const renderUtils = {
@@ -1148,7 +1149,7 @@ class MenuManager extends UIComponent {
     }
 }
 
-// Export the classes
+
 export {
     UIComponent,
     Button,

@@ -1,13 +1,15 @@
 // --- Mist Causality: Multi-User 4D Definite Item Tracker & 3D Physics Simulator Entry Point ---
 
-const mysql = require('mysql2/promise');
-const nvk = require('nvk');
-const MistTracker = require('./MistTrackerVulkan.js');
-const MistMulti = require('./MistMulti.js');
-const MistIllum = require('./MistIllum.js');
-const { storyWriter } = require('./MistTrackerVulkan.js');
-const { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } = require('./MistTrackerVulkan.js');
-const { MistMenuControl, launchMistCore } = require('./MistIllum.js');
+import mysql from 'mysql2/promise';
+import nvk from 'nvk';
+import * as MistTracker from './MistTrackerVulkan.js';
+import * as MistMulti from './MistMulti.js';
+import * as MistIllum from './MistIllum.js';
+import { storyWriter } from './MistTrackerVulkan.js';
+import { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } from './MistTrackerVulkan.js';
+import { MistMenuControl, launchMistCore } from './MistIllum.js';
+import fs from 'node:fs';
+import { MenuManager, MenuPage, Button, Slider, Dropdown } from './MistInterface.js';
 
 // Setup Vulkan rendering context
 const instance = new nvk.Instance();
@@ -40,7 +42,7 @@ async function main() {
 
   // 4. Import story using storyWriter utility
   // (For demo, load a story file or use a sample string)
-  const fs = require('fs');
+
   const storyPath = './sample_story.rtf';
   let storyText = '';
   try {
@@ -84,7 +86,7 @@ async function main() {
   }
 
   // 8. Setup Interface and Menu System
-  const { MenuManager, MenuPage, Button, Slider, Dropdown } = require('./MistInterface');
+
   
   // Create menu manager
   const menuManager = new MenuManager('mainMenu');

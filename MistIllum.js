@@ -1,8 +1,8 @@
-const nvk = require('nvk');
-const { renderViewport, selectTimeIndex, selectCategory, selectItem } = require('./MistCore');
-const { SelectionModeState, MetricTensorND } = require('./MistCommon');
-const { startSession, loadMistUser, milestoneManager } = require('./MistTrackerVulkan');
-const { mistSolution } = require('./mistSolution');
+import nvk from 'nvk';
+import { renderViewport, selectTimeIndex, selectCategory, selectItem } from './MistCore.js';
+import { SelectionModeState, MetricTensorND } from './MistCommon.js';
+import { startSession, loadMistUser, milestoneManager } from './MistTrackerVulkan.js';
+import { mistSolution } from './mistSolution.js';
 
 class MistIllum {
     constructor(config = {}) {
@@ -930,7 +930,7 @@ class warnTypes {
 
 // --- Overlay and Menu ---
 // --- Integration with Core and Multi-User Modules ---
-const { Button, Slider, Checkbox, InputBox, ColorPicker, Dropdown } = require('./MistInterface');
+import { Button, Slider, Checkbox, InputBox, ColorPicker, Dropdown } from './MistInterface.js';
 
 /**
  * Display a menu overlay for the Mist solution using MistInterface components.
@@ -1464,7 +1464,6 @@ function relativeAcceleration(v1, v2, t) {
  * @param {Function} onFail - Callback if not allowed.
  */
 function trySwitchModes(modeType, modeName, onSuccess, onFail) {
-  const { milestoneManager } = require('./MistTrackerVulkan.js');
   if (milestoneManager && milestoneManager.isModeEnabled(modeType, modeName)) {
     if (typeof onSuccess === 'function') onSuccess();
   } else {
@@ -1839,7 +1838,6 @@ function handleEnvironmentInput(input, envState) {
   }
 }
 
-const { milestoneManager } = require('./MistTrackerVulkan');
 // --- Milestone-Aware Mode Selection ---
 
 /**
