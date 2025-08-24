@@ -1,7 +1,7 @@
-const nvk = require('nvk');
-const fs = require('fs');
-const path = require('path');
-const { ensureMistDatabase, TABLES } = require('./MistTrackerVulkan');
+import nvk from 'nvk';
+import fs from 'node:fs';
+import path from 'node:path';
+import { ensureMistDatabase, TABLES } from './MistTrackerVulkan.js';
 
 /**
  * Asset metadata stored in MySQL
@@ -457,7 +457,7 @@ async function createGraphicsPipeline(device, config, db) {
   return pipeline;
 }
 
-module.exports = {
+export {
   import3DModel,
   import2DTexture,
   compileShader,

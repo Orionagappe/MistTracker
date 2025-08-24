@@ -2,7 +2,6 @@
   "name": "mist-platform",
   "type": "module",
   "dependencies": {
-    "canvas": "^3.1.2",
     "csv-parse": "^5.6.0",
     "elliptic": "^6.6.1",
     "mysql": "^2.18.1",

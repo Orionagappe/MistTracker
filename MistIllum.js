@@ -1,8 +1,12 @@
 import nvk from 'nvk';
+import x11 from 'node-x11';
+import { exec } from 'node:child_process';
+import clipboardy from 'clipboardy';
 import { renderViewport, selectTimeIndex, selectCategory, selectItem } from './MistCore.js';
 import { SelectionModeState, MetricTensorND } from './MistCommon.js';
-import { startSession, loadMistUser, milestoneManager } from './MistTrackerVulkan.js';
+import { startSession, loadMistUser, milestoneManager, handleSelectionBackend } from './MistTrackerVulkan.js';
 import { mistSolution } from './mistSolution.js';
+import * as MistMulti from './MistMulti.js';
 
 class MistIllum {
     constructor(config = {}) {
@@ -76,8 +80,7 @@ class MistIllum {
 
     setupWindow() {
         // Create X11 window using node-x11
-        const x11 = require('node-x11');
-        this.display = x11.createClient((err, display) => {
+            this.display = x11.createClient((err, display) => {
             this.X = display.client;
             this.root = display.screen[0].root;
             this.windowId = this.X.AllocID();

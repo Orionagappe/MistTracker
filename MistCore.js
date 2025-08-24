@@ -1,4 +1,5 @@
 import { MenuManager, MenuPage, Button, Slider, Dropdown, InputBox } from './MistInterface.js';
+import { startSession, saveSessionPath, saveCurrentState } from './MistTrackerVulkan.js';
 
 class ViewportManager extends MenuManager {
   constructor(id, parentElement) {
@@ -426,9 +427,8 @@ class MapModeState {
 async function initViewport(session, db) {
   // Start a new session from DB user info if available
   if (db && session && session.user) {
-    const { startSession } = require('./MistTrackerVulkan.js');
     // Replace session object with a fresh session for this user
-    Object.assign(session, startSession(session.user));
+    Object.assign(session, session.user);
   }
 
   // Load initial data for viewport
@@ -656,7 +656,6 @@ async function handleSelection(session, selection, db) {
   }
   // Optionally persist session state or path
   if (session && session.user && session.path) {
-    const { saveSessionPath, saveCurrentState } = require('./MistTrackerVulkan.js');
     await saveSessionPath(session.user.accountId, session.path, db);
     await saveCurrentState(session.user.accountId, session, db);
   }
@@ -718,28 +717,6 @@ function showAddItemInput(uiRenderer, categoryLineId, onAdd, db) {
 function showInputBox(prompt, defaultValue, onSubmit) {
   // This function is UI-agnostic; actual implementation is provided by uiRenderer
   // Example usage: uiRenderer.showInputBox(prompt, defaultValue, onSubmit)
-}
-
-/**
- * Handle user selection, update session state, and persist as needed.
- * @param {Object} session - The current session object.
- * @param {Object} selection - { type: 'time'|'category'|'item', index: number }
- * @param {Object} db - Database connection.
- */
-async function handleSelection(session, selection, db) {
-  if (selection.type === 'time') {
-    selectTimeIndex(session, selection.index);
-  } else if (selection.type === 'category') {
-    selectCategory(session, selection.index);
-  } else if (selection.type === 'item') {
-    selectItem(session, selection.index);
-  }
-  // Optionally persist session state or path
-  if (session && session.user && session.path) {
-    const { saveSessionPath, saveCurrentState } = require('./MistTrackerVulkan.js');
-    await saveSessionPath(session.user.accountId, session.path, db);
-    await saveCurrentState(session.user.accountId, session, db);
-  }
 }
 
 // --- Export all shared modules ---

@@ -10,6 +10,8 @@ import { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } f
 import { MistMenuControl, launchMistCore } from './MistIllum.js';
 import fs from 'node:fs';
 import { MenuManager, MenuPage, Button, Slider, Dropdown } from './MistInterface.js';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
 
 // Setup Vulkan rendering context
 const instance = new nvk.Instance();

@@ -1,7 +1,7 @@
-const x11 = require('node-x11');
-const MistIllum = require('./MistIllum');
-const MistCore = require('./MistCore');
-const MistTracker = require('./MistTrackerVulkan');
+import x11 from 'node-x11';
+import { MistIllum } from './MistIllum.js';
+import * as MistCore from './MistCore.js';
+import * as MistTracker from './MistTrackerVulkan.js';
 
 const Exposure = x11.eventMask.Exposure;
 const KeyPress = x11.eventMask.KeyPress;

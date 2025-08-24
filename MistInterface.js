@@ -4,6 +4,7 @@
 
 
 import nvk from 'nvk';
+import fs from 'node:fs';
 
 // Basic UI rendering utilities
 const renderUtils = {
@@ -1121,7 +1122,7 @@ class MenuManager extends UIComponent {
     async saveConfig() {
         const state = this.getState();
         try {
-            const fs = require('fs').promises;
+            const fs = await import('node:fs/promises');
             await fs.writeFile(this.configPath, JSON.stringify(state, null, 2));
             return true;
         } catch (error) {
@@ -1132,7 +1133,7 @@ class MenuManager extends UIComponent {
 
     async loadConfig() {
         try {
-            const fs = require('fs').promises;
+            const fs = await import('node:fs/promises');
             const data = await fs.readFile(this.configPath, 'utf8');
             const state = JSON.parse(data);
             this.setState(state);

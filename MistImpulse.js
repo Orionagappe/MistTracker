@@ -6,9 +6,9 @@
  * Revised for X11Libre-based Linux distributions using XInput2 and evdev.
  */
 
-const X11 = require('node-x11'); // For X11/XInput2 integration
-const Evdev = require('node-evdev'); // For evdev-based haptic feedback
-const { EventEmitter } = require('events');
+import X11 from 'node-x11'; // For X11/XInput2 integration
+import Evdev from 'node-evdev'; // For evdev-based haptic feedback
+import { EventEmitter } from 'node:events';
 const inputEmitter = new EventEmitter();
 
 // --- 1. Device & OS Integration ---
@@ -279,7 +279,7 @@ inputEmitter.on('pointerEvent', event => {
   handleMultiPointerInput([event]);
 });
 
-module.exports = {
+export {
   initializeX11Input,
   handleMultiPointerInput,
   requestHapticFeedback,

@@ -1,4 +1,9 @@
 // 4D Definite Item Tracker Skeleton Code (MySQL/X11/Vulkan-ready)
+import crypto from 'node:crypto';
+import { broadcastToPeers, onEvent } from './MistMulti.js';
+import { probabilityOfEvent } from './MistIllum.js'; // Should return a probability (0..1)
+import { v4 as uuidv4 } from 'uuid';
+
 
 // --- Data Structures ---
 class Line {
@@ -321,10 +326,6 @@ function ensureMistDatabase(db) {
  * @param {string} [csvDir='./data'] - Directory containing CSV files.
  */
 async function updateMistData(db, csvDir = './data') {
-  const fs = require('fs');
-  const path = require('path');
-  const csvParse = require('csv-parse/sync');
-
   // List of table names to update (should match your schema)
   const tables = [
     'DataRelationships',
@@ -800,8 +801,7 @@ function integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db)
 }
 
 function mapRead(){
-  const fs = require('fs');
-  const sharp = require('sharp'); // Using sharp for image processing
+  // Using sharp for image processing
   const options = { 
     processImage: async (imagePath) => {
       const image = await sharp(imagePath);
@@ -930,10 +930,6 @@ function handleInput(input, context) {
     context.handleAction(action);
   }
 }
-
-const { broadcastToPeers, onEvent } = require('./MistMulti.js');
-const { probabilityOfEvent } = require('./MistIllum.js'); // Should return a probability (0..1)
-const { v4: uuidv4 } = require('uuid');
 
 // --- Anomalous Result Table (in-memory, should be persisted in DB in production) ---
 const AnomalousResults = new Map(); // eventId -> { event, provenance, confirms, fails, status }
@@ -1139,7 +1135,7 @@ function isInteractionBanned(event, user) {
 // --- Helper: Hash Interaction ---
 function hashInteraction(event) {
   // Simple hash: could use JSON.stringify + hash function for uniqueness
-  return require('crypto').createHash('sha256').update(JSON.stringify(event)).digest('hex');
+  return crypto.createHash('sha256').update(JSON.stringify(event)).digest('hex');
 }
 
 // --- Helper: Event Horizon User (Ban and Flush) ---

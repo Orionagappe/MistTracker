@@ -31,7 +31,7 @@
   - Provenance metadata
   - Menu state persistence
   - Component configuration storage
-  - User preferences trackinge applications requiring advanced provenance, real-time interaction, and extensibility.
+  - User preferences tracking applications requiring advanced provenance, real-time interaction, and extensibility.
 
 ---
 
