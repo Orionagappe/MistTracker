@@ -3,7 +3,7 @@
 import mysql from 'mysql2/promise';
 import nvk from 'nvk';
 import * as MistTracker from './MistTrackerVulkan.js';
-import * as MistMulti from './MistMulti.js';
+import * as MistMulti from './MistMulti.cjs';
 import * as MistIllum from './MistIllum.js';
 import { storyWriter } from './MistTrackerVulkan.js';
 import { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } from './MistTrackerVulkan.js';

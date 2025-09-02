@@ -628,18 +628,6 @@ function showAddCategoryInput(uiRenderer, primaryLineId, onAdd, db) {
 }
 
 /**
- * Show a generic input box for user input.
- * @param {string} prompt - The prompt to display.
- * @param {string} defaultValue - The default value for the input.
- * @param {Function} onSubmit - Callback when input is submitted.
- */
-function showInputBox(prompt, defaultValue, onSubmit) {
-  // This function is UI-agnostic; actual implementation is provided by uiRenderer
-  // Example usage: uiRenderer.showInputBox(prompt, defaultValue, onSubmit)
-  // This is a stub for integration.
-}
-
-/**
  * Handle user selection, update session state, and persist as needed.
  * @param {Object} session - The current session object.
  * @param {Object} selection - { type: 'time'|'category'|'item', index: number }
@@ -662,37 +650,6 @@ async function handleSelection(session, selection, db) {
 }
 
 /**
- * Show input for adding a new time index.
- * @param {Object} uiRenderer - The UI rendering interface.
- * @param {Function} onAdd - Callback when a new time index is added.
- * @param {Object} db - Database connection.
- */
-function showAddTimeInput(uiRenderer, onAdd, db) {
-  uiRenderer.showInputBox('Enter new time index:', '', async (value) => {
-    if (value && value.trim()) {
-      await addTimeIndex(value.trim(), db);
-      if (typeof onAdd === 'function') onAdd(value.trim());
-    }
-  });
-}
-
-/**
- * Show input for adding a new category.
- * @param {Object} uiRenderer - The UI rendering interface.
- * @param {number} primaryLineId - The selected primary line index (1-based).
- * @param {Function} onAdd - Callback when a new category is added.
- * @param {Object} db - Database connection.
- */
-function showAddCategoryInput(uiRenderer, primaryLineId, onAdd, db) {
-  uiRenderer.showInputBox('Enter new category:', '', async (value) => {
-    if (value && value.trim()) {
-      await addCategory(primaryLineId, value.trim(), db);
-      if (typeof onAdd === 'function') onAdd(value.trim());
-    }
-  });
-}
-
-/**
  * Show input for adding a new item.
  * @param {Object} uiRenderer - The UI rendering interface.
  * @param {number} categoryLineId - The selected category line index (1-based).
@@ -709,14 +666,39 @@ function showAddItemInput(uiRenderer, categoryLineId, onAdd, db) {
 }
 
 /**
- * Show a generic input box for user input.
+ * Show a generic input box for user input using MistInterface components.
  * @param {string} prompt - The prompt to display.
  * @param {string} defaultValue - The default value for the input.
  * @param {Function} onSubmit - Callback when input is submitted.
  */
 function showInputBox(prompt, defaultValue, onSubmit) {
-  // This function is UI-agnostic; actual implementation is provided by uiRenderer
-  // Example usage: uiRenderer.showInputBox(prompt, defaultValue, onSubmit)
+  if (!this.viewportManager) {
+    console.warn('No viewport manager available for input box');
+    return;
+  }
+
+  const inputDialog = new MenuPage('input-dialog');
+  const input = new InputBox('value-input')
+    .setLabel(prompt)
+    .setValue(defaultValue || '');
+  
+  inputDialog
+    .addComponent(input)
+    .addComponent(new Button('submit')
+      .setLabel('Submit')
+      .onClick(() => {
+        const value = input.getValue();
+        if (typeof onSubmit === 'function') {
+          onSubmit(value);
+        }
+        this.viewportManager.back();
+      }))
+    .addComponent(new Button('cancel')
+      .setLabel('Cancel')
+      .onClick(() => this.viewportManager.back()));
+
+  this.viewportManager.addPage(inputDialog);
+  this.viewportManager.showPage('input-dialog');
 }
 
 // --- Export all shared modules ---

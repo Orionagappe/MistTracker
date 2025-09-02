@@ -1,6 +1,6 @@
 // 4D Definite Item Tracker Skeleton Code (MySQL/X11/Vulkan-ready)
 import crypto from 'node:crypto';
-import { broadcastToPeers, onEvent } from './MistMulti.js';
+import { broadcastToPeers, onEvent } from './MistMulti.cjs';
 import { probabilityOfEvent } from './MistIllum.js'; // Should return a probability (0..1)
 import { v4 as uuidv4 } from 'uuid';
 
@@ -964,7 +964,7 @@ async function checkAndSyncEvent(event, user, db) {
     return { error: 'Interaction banned. User event-horizoned.' };
   }
 
-  // 2. Calculate event probability using MistIllum.js
+  // 2. Calculate event probability
   const prob = probabilityOfEvent(event); // Should return a probability (0..1)
   const sigma = probToSigma(prob);
 
@@ -1295,20 +1295,145 @@ function listEnabledModes() {
   return { projectionModes, renderModes };
 }
 
-// --- Example Usage ---
-// Initialize milestone manager (singleton or per-session as needed)
-const milestoneManager = new MilestoneManager();
-// Add milestones up to int256 (practically, you may want to limit this)
-for (let i = 1; i <= 18; i++) { // 10^18 is already very large; int256 is 10^77+
-  milestoneManager.addMilestone(i, `Order ${i} milestone`);
+/**
+ * High-level milestone management interface that provides methods for tracking, 
+ * progressing, and managing milestones in the Mist system. Handles persistence,
+ * achievement validation, and milestone-dependent feature unlocking.
+ * 
+ * @param {Object} config - Configuration object
+ * @param {Object} config.db - Database connection for persistence
+ * @param {string} config.userId - User ID for tracking individual progress
+ * @param {number} config.startOrder - Initial milestone order (default: 1)
+ * @param {number} config.maxOrder - Maximum milestone order (default: 18)
+ * @param {Object} config.requirements - Custom requirements for each milestone
+ * @returns {Object} - Milestone management interface
+ */
+function milestoneManager(config = {}) {
+    const {
+        db,
+        userId,
+        startOrder = 1,
+        maxOrder = 18,
+        requirements = {}
+    } = config;
+
+    // Initialize MilestoneManager instance
+    const manager = new MilestoneManager();
+
+    // Add milestones up to maxOrder
+    for (let i = startOrder; i <= maxOrder; i++) {
+        manager.addMilestone(i, `Order ${i} milestone`);
+    }
+
+    // Load existing progress from database if available
+    async function loadProgress() {
+        if (db && userId) {
+            try {
+                const [rows] = await db.query(
+                    `SELECT milestone_data FROM ${MIST_SCHEMA}.user_milestones WHERE user_id = ?`,
+                    [userId]
+                );
+                if (rows.length > 0) {
+                    const data = JSON.parse(rows[0].milestone_data);
+                    data.achieved.forEach(order => manager.achieveMilestone(order));
+                }
+            } catch (err) {
+                console.error('Failed to load milestone progress:', err);
+            }
+        }
+    }
+
+    // Save progress to database
+    async function saveProgress() {
+        if (db && userId) {
+            const data = {
+                achieved: manager.milestones
+                    .filter(m => m.enabled)
+                    .map(m => m.order)
+            };
+            try {
+                await db.query(
+                    `INSERT INTO ${MIST_SCHEMA}.user_milestones (user_id, milestone_data) 
+                     VALUES (?, ?) 
+                     ON DUPLICATE KEY UPDATE milestone_data = ?`,
+                    [userId, JSON.stringify(data), JSON.stringify(data)]
+                );
+            } catch (err) {
+                console.error('Failed to save milestone progress:', err);
+            }
+        }
+    }
+
+    // Check if requirements are met for a milestone
+    function checkRequirements(order) {
+        const requirement = requirements[order];
+        if (!requirement) return true;
+        return requirement.check();
+    }
+
+    // Try to achieve next milestone
+    async function progressToNext() {
+        const current = manager.getCurrentMilestone();
+        const nextOrder = current ? current.order + 1 : startOrder;
+        
+        if (nextOrder > maxOrder) return false;
+        
+        if (checkRequirements(nextOrder)) {
+            manager.achieveMilestone(nextOrder);
+            await saveProgress();
+            return true;
+        }
+        return false;
+    }
+
+    // Get available features for current milestone
+    function getAvailableFeatures() {
+        const current = manager.getCurrentMilestone();
+        if (!current) return [];
+
+        return {
+            projectionModes: Array.from(manager.enabledProjectionModes),
+            renderModes: Array.from(manager.enabledRenderModes),
+            precisionLevel: current.order,
+            tensorTables: Object.keys(manager.tensorMetricTables),
+            distributions: Object.keys(manager.interactionDistributions)
+        };
+    }
+
+    // Initialize by loading existing progress
+    loadProgress();
+
+    return {
+        manager,          // Access to underlying MilestoneManager instance
+        progressToNext,   // Try to achieve next milestone
+        getAvailableFeatures,  // Get currently available features
+        getCurrentOrder: () => manager.getCurrentMilestone()?.order || 0,
+        isEnabled: (type, mode) => manager.isModeEnabled(type, mode),
+        save: saveProgress,
+        reset: async () => {
+            manager.milestones.forEach(m => m.enabled = false);
+            await saveProgress();
+        }
+    };
 }
 
-// Achieve a milestone (e.g., after a computation or user action)
-milestoneManager.achieveMilestone(3); // Enables 4D projection mode, increases precision
+// --- Example Usage ---
+const exampleMilestoneConfig = {
+    db: globalDB,  // Your database connection
+    userId: 'user123',
+    maxOrder: 18,
+    requirements: {
+        2: { check: () => /* check if requirements for order 2 are met */ true },
+        3: { check: () => /* check if requirements for order 3 are met */ true },
+        // Add more requirements as needed
+    }
+};
 
-// Check if a mode is enabled
-if (milestoneManager.isModeEnabled('projection', '4D')) {
-  // Enable 4D projection logic in the UI/rendering pipeline
+const milestones = milestoneManager(exampleMilestoneConfig);
+
+// Use the milestone manager
+if (milestones.isEnabled('projection', '4D')) {
+    // Enable 4D projection logic in the UI/rendering pipeline
 }
 
 // --- User Profile Management ---
@@ -1338,20 +1463,8 @@ function nominateSuccessorFlexible(userId, value, db) {
   }
 }
 
-
 // --- Export for integration with native UI and GPU logic ---
-module.exports = {
-  // ...existing exports,
-  checkAndSyncEvent,
-  AnomalousResults,
-  isInteractionBanned,
-  eventHorizonUser,
-  flushUserData,
-  banInteraction
-};
-
-// --- Export for integration with native UI and GPU logic ---
-module.exports = {
+export {
   // --- Data Structures ---
   Line,
   DefiniteItem,
@@ -1417,7 +1530,7 @@ module.exports = {
 
   // --- Swarm Health Maintainer ---
   checkAndSyncEvent,
-  checkAndSyncEvent,
+  AnomalousResults,
   isInteractionBanned,
   eventHorizonUser,
   flushUserData,
@@ -1432,6 +1545,7 @@ module.exports = {
   getCurrentMilestoneOrder,
   enableModeIfMilestone,
   listEnabledModes,
+  milestoneManager,
 
   // --- User Profile Management ---
   nominateSuccessor,

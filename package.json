@@ -2,17 +2,17 @@
   "name": "mist-platform",
   "type": "module",
   "dependencies": {
+    "clipboardy": "^4.0.0",
     "csv-parse": "^5.6.0",
     "elliptic": "^6.6.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.1",
     "mysql2-async": "^2.0.1",
-    "mysql2-promise": "^0.1.4",
     "nvk": "^0.8.0",
     "pactl": "^1.0.0",
     "sharp": "^0.34.3",
     "uuid": "^11.1.0",
     "wmctrl": "^0.0.3",
-    "node-x11": "^1.0.4"
+    "x11": "^2.3.0"
   }
 }

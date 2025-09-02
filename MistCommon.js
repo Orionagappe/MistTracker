@@ -374,7 +374,7 @@ function projectToLowerDimension(object, fromDimension, toDimension, time = 0) {
   return { ...object, position: projected };
 }
 
-module.exports = {
+export {
   // Classes
   MistPhysicsEngineND,
   MetricTensorND,
