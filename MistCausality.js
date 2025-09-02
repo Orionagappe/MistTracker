@@ -125,19 +125,23 @@ class MistHostManager {
 
 async function main() {
     // Initialize Vulkan context
-    const instance = new nvk.Instance({
+    const vulkan = await nvk.initialize({
         appName: "Mist Host",
         engineName: "MistCausality",
-        vulkanVersion: nvk.VERSION_1_2,
-        enabledExtensions: [
+        version: "1.2.0", // Vulkan version
+        extensions: [
             "VK_KHR_surface",
             "VK_KHR_xlib_surface"
         ]
     });
 
+    const instance = vulkan.createInstance();
+    const physicalDevice = instance.enumeratePhysicalDevices()[0];
+
     const renderContext = {
+        vulkan,
         instance,
-        physicalDevice: instance.getPhysicalDevices()[0],
+        physicalDevice,
         display: null,
         windowId: null
     };
@@ -149,6 +153,13 @@ async function main() {
         password: 'password',
         port: 3306
     });
+
+    // Initialize milestone manager with database connection
+    const milestoneConfig = {
+        ...exampleMilestoneConfig,
+        db: db  // Pass the database connection
+    };
+    const milestones = milestoneManager(milestoneConfig);
 
     // Initialize X11 window
     const x11Client = await new Promise((resolve, reject) => {

@@ -5,7 +5,7 @@ import clipboardy from 'clipboardy';
 import { renderViewport, selectTimeIndex, selectCategory, selectItem } from './MistCore.js';
 import { SelectionModeState, MetricTensorND } from './MistCommon.js';
 import { startSession, loadMistUser, MilestoneManager } from './MistTrackerVulkan.js';
-import { mistSolution } from './mistSolution.js';
+import { mistSolution } from './MistSolution.js';
 import * as MistMulti from './MistMulti.cjs';
 
 /**

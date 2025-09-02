@@ -3,6 +3,7 @@ import crypto from 'node:crypto';
 import { broadcastToPeers, onEvent } from './MistMulti.cjs';
 import { probabilityOfEvent } from './MistIllum.js'; // Should return a probability (0..1)
 import { v4 as uuidv4 } from 'uuid';
+import { createCanvas, loadImage } from 'canvas';
 
 
 // --- Data Structures ---
@@ -623,7 +624,6 @@ function storyWriter(rtfText, sourceFile) {
     provenance: provenance
   };
 }
-const { createCanvas, loadImage } = require('canvas');
 
 async function loadPulsarMapImage(imagePath) {
   const img = await loadImage(imagePath);
@@ -1418,20 +1418,43 @@ function milestoneManager(config = {}) {
 }
 
 // --- Example Usage ---
+// Note: This is just an example configuration. The actual db connection should be passed from MistCausality.js
 const exampleMilestoneConfig = {
-    db: globalDB,  // Your database connection
-    userId: 'user123',
+    db: null,  // Will be initialized when used
+    userId: process.env.MIST_USER_ID || 'default-host',
     maxOrder: 18,
     requirements: {
-        2: { check: () => /* check if requirements for order 2 are met */ true },
-        3: { check: () => /* check if requirements for order 3 are met */ true },
-        // Add more requirements as needed
+        2: { 
+            check: function() {
+                // Check if basic visualization features are working
+                return this?.renderContext?.instance !== undefined;
+            }
+        },
+        3: { 
+            check: async function() {
+                // Check if database is properly initialized
+                try {
+                    if (!this.db) return false;
+                    await this.db.query('SELECT 1');
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            }
+        },
+        4: {
+            check: function() {
+                // Check if Vulkan extensions are available
+                return this?.renderContext?.instance?.enabledExtensions?.includes('VK_KHR_surface');
+            }
+        }
     }
 };
 
+// Initialize milestone manager with proper configuration
 const milestones = milestoneManager(exampleMilestoneConfig);
 
-// Use the milestone manager
+// Use the milestone manager to enable features based on milestone progress
 if (milestones.isEnabled('projection', '4D')) {
     // Enable 4D projection logic in the UI/rendering pipeline
 }

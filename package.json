@@ -2,6 +2,7 @@
   "name": "mist-platform",
   "type": "module",
   "dependencies": {
+    "canvas": "^3.2.0",
     "clipboardy": "^4.0.0",
     "csv-parse": "^5.6.0",
     "elliptic": "^6.6.1",

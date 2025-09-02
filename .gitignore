@@ -47,3 +47,4 @@ MySQL*.*
 /Waterfall
 Mist Solution Abstract*.md
 pureMathPhysicsEngine.js
+scripts/build-vulkan.js
