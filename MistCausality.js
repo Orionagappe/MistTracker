@@ -8,154 +8,172 @@ import * as MistIllum from './MistIllum.js';
 import { storyWriter } from './MistTrackerVulkan.js';
 import { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } from './MistTrackerVulkan.js';
 import { MistMenuControl, launchMistCore } from './MistIllum.js';
-import fs from 'node:fs';
-import { MenuManager, MenuPage, Button, Slider, Dropdown } from './MistInterface.js';
-import { createRequire } from 'module';
-const require = createRequire(import.meta.url);
+import { MenuManager, MenuPage, Button, Slider, Dropdown, ColorPicker } from './MistInterface.js';
 
-// Setup Vulkan rendering context
-const instance = new nvk.Instance();
-const physicalDevice = instance.physicalDevices[0];
-const device = new nvk.Device(physicalDevice);
-const graphicsQueue = device.getQueue(0, 0);
-const renderContext = { instance, physicalDevice, device, graphicsQueue };
 
-// --- DB Configuration ---
-const dbConfig = {
-  host: 'localhost',
-  user: 'root',
-  password: 'password',
-  port: 3306,
-  // socketPath: '\\\\.\\pipe\\jeffersonbrain', // Uncomment if using named pipe
-};
-
-async function main() {
-  // 1. Connect to MySQL WITHOUT database first
-  const dbConfigNoDB = { ...dbConfig };
-  delete dbConfigNoDB.database;
-  const db = await mysql.createConnection(dbConfigNoDB);
-
-  // 2. Ensure Mist DB schema/tables exist
-  await ensureMistDatabase(db);
-
-  // 3. Generate dictionary table and English language syntax reference for storyWriter
-  // (Assume updateMistData will create/populate dictionary and syntax tables as needed)
-  await updateMistData(db);
-
-  // 4. Import story using storyWriter utility
-  // (For demo, load a story file or use a sample string)
-
-  const storyPath = './sample_story.rtf';
-  let storyText = '';
-  try {
-    storyText = fs.readFileSync(storyPath, 'utf8');
-  } catch (e) {
-    storyText = 'Once upon a time, Alice met Bob. "Hello, Bob," said Alice. "Hi, Alice," replied Bob.';
-  }
-  const storyContext = storyWriter(storyText, storyPath);
-
-  // 5. Setup table dependencies for MistMulti and MistIllum (handled by ensureMistDatabase and updateMistData)
-  // If MistMulti or MistIllum require additional tables, ensure they are created here
-
-  // 6. Generate relationships for MistIllum menus and save to appropriate db table
-  // (For demo, create category/item relationships based on story context)
-  const { addCategoryLine, addItemLine, loadPrimaryLine, loadCategoriesForTime } = MistTracker;
-  // Ensure at least one primary line exists
-  let primaryLine = await loadPrimaryLine(db, storyText, storyPath);
-  if (primaryLine.length === 0) {
-    await addCategoryLine(1, 'DefaultCategory', db);
-  }
-  // For each category, add items from statements
-  const categories = await loadCategoriesForTime(1, db, storyText, storyPath);
-  if (categories.length > 0 && storyContext.statements.length > 0) {
-    for (const category of categories) {
-      for (const stmt of storyContext.statements) {
-        await addItemLine(1, stmt.statement, db); // Simplified: all items to first category
-      }
+class MistHostManager {
+    constructor(renderContext, db) {
+        this.renderContext = renderContext;
+        this.db = db;
+        this.menuManager = new MenuManager('hostMenu');
+        this.activeSimulations = new Map();
+        this.setupMenuSystem();
     }
-  }
 
-    // 7. Setup current user in db
-  let userName = process.argv[2] || process.env.USER || process.env.USERNAME || 'alice';
-  let userEmail = `${userName}@example.com`;
+    async setupMenuSystem() {
+        // Main host menu
+        const mainPage = new MenuPage('main')
+            .addComponent(new Button('newVisualization')
+                .setLabel('New nD Visualization')
+                .onClick(() => this.menuManager.showPage('vizSetup')))
+            .addComponent(new Button('newSimulation')
+                .setLabel('New Physics Simulation')
+                .onClick(() => this.menuManager.showPage('simSetup')))
+            .addComponent(new Button('settings')
+                .setLabel('Host Settings')
+                .onClick(() => this.menuManager.showPage('settings')));
 
-  // Check if user exists in database, add if not
-  let user = await loadMistUser(userEmail, db);
-  if (!user || !user.accountId) {
-    // Use MistTrackerVulkan function to add user
-    await MistTracker.addUserToMistModel({ userName, accountId: userEmail });
-    user = { userName, accountId: userEmail };
-  }
+        // Visualization setup page
+        const vizSetupPage = new MenuPage('vizSetup')
+            .addComponent(new Dropdown('dimensions')
+                .setLabel('Number of Dimensions')
+                .setOptions(['3D', '4D', '5D', '6D', '7D'])
+                .setValue('3D'))
+            .addComponent(new Dropdown('renderMode')
+                .setLabel('Render Mode')
+                .setOptions(['Standard', 'Wave-Based', 'Quantum'])
+                .setValue('Standard'))
+            .addComponent(new Button('startViz')
+                .setLabel('Start Visualization')
+                .onClick(() => this.launchVisualization()));
 
-  // 8. Setup Interface and Menu System
+        // Simulation setup page
+        const simSetupPage = new MenuPage('simSetup')
+            .addComponent(new Dropdown('physicsMode')
+                .setLabel('Physics Mode')
+                .setOptions(['Classical', 'Quantum', 'Hybrid'])
+                .setValue('Classical'))
+            .addComponent(new Slider('timeComponents')
+                .setLabel('Time Dimensions')
+                .setRange(1, 3)
+                .setValue(1))
+            .addComponent(new ColorPicker('energyColor')
+                .setLabel('Energy Visualization Color'))
+            .addComponent(new Button('startSim')
+                .setLabel('Start Simulation')
+                .onClick(() => this.launchSimulation()));
 
-  
-  // Create menu manager
-  const menuManager = new MenuManager('mainMenu');
-  menuManager.setConfigPath('./settings.config');
+        // Settings page
+        const settingsPage = new MenuPage('settings')
+            .addComponent(new Slider('precision')
+                .setLabel('Calculation Precision')
+                .setRange(1, 18)
+                .setValue(3))
+            .addComponent(new Checkbox('multiUser')
+                .setLabel('Enable Multi-User')
+                .setValue(true))
+            .addComponent(new Button('back')
+                .setLabel('Back')
+                .onClick(() => this.menuManager.showPage('main')));
 
-  // Create main menu pages
-  const mainPage = new MenuPage('main');
-  const settingsPage = new MenuPage('settings');
-  const audioPage = new MenuPage('audio');
-  const displayPage = new MenuPage('display');
+        this.menuManager
+            .addPage(mainPage)
+            .addPage(vizSetupPage)
+            .addPage(simSetupPage)
+            .addPage(settingsPage);
+    }
 
-  // Setup main menu
-  mainPage.addComponent(
-    new Button('startSession', null, 'Start Session')
-      .onClick(() => launchMistCore({ db, userName: user.userName, menuManager }))
-  ).addComponent(
-    new Button('settings', null, 'Settings')
-      .onClick(() => menuManager.showPage('settings'))
-  );
+    async launchVisualization() {
+        const config = {
+            dimensions: this.menuManager.getComponent('dimensions').getValue(),
+            renderMode: this.menuManager.getComponent('renderMode').getValue(),
+            precision: this.menuManager.getComponent('precision').getValue()
+        };
 
-  // Setup settings menu
-  settingsPage.addComponent(
-    new Button('audio', null, 'Audio Settings')
-      .onClick(() => menuManager.showPage('audio'))
-  ).addComponent(
-    new Button('display', null, 'Display Settings')
-      .onClick(() => menuManager.showPage('display'))
-  ).addComponent(
-    new Button('back', null, 'Back')
-      .onClick(() => menuManager.back())
-  );
+        // Create new MistClient instance for visualization
+        const client = new MistClient({
+            display: this.renderContext.display,
+            windowId: this.renderContext.windowId,
+            config: config
+        });
 
-  // Setup audio settings
-  audioPage.addComponent(
-    new Slider('masterVolume', null, 0, 100)
-      .setValue(80)
-      .onChange(value => MistIllum.volumeGlobal(value / 100))
-  ).addComponent(
-    new Button('back', null, 'Back')
-      .onClick(() => menuManager.back())
-  );
+        // Initialize visualization environment
+        await client.initializeVisualization(config);
+        this.activeSimulations.set(client.id, client);
+    }
 
-  // Setup display settings
-  displayPage.addComponent(
-    new Dropdown('displayMode', null, ['2D', '3D', '4D'])
-      .onChange(mode => MistIllum.worldWarp(mode))
-  ).addComponent(
-    new Button('back', null, 'Back')
-      .onClick(() => menuManager.back())
-  );
+    async launchSimulation() {
+        const config = {
+            physicsMode: this.menuManager.getComponent('physicsMode').getValue(),
+            timeComponents: this.menuManager.getComponent('timeComponents').getValue(),
+            energyColor: this.menuManager.getComponent('energyColor').getValue(),
+            precision: this.menuManager.getComponent('precision').getValue()
+        };
 
-  // Add pages to manager
-  menuManager
-    .addPage(mainPage)
-    .addPage(settingsPage)
-    .addPage(audioPage)
-    .addPage(displayPage);
+        // Create new MistClient instance for simulation
+        const client = new MistClient({
+            display: this.renderContext.display,
+            windowId: this.renderContext.windowId,
+            config: config
+        });
 
-  // Load previous configuration if exists
-  await menuManager.loadConfig();
-
-  // Launch MistIllum core with menu system
-  menuManager.showPage('main');
-
-  console.log('Mist Causality 3D environment launched for user:', user.userName);
+        // Initialize simulation environment
+        await client.initializeSimulation(config);
+        this.activeSimulations.set(client.id, client);
+    }
 }
 
-main().catch(err => {
-  console.error('Error in MistCausality:', err);
-});
+async function main() {
+    // Initialize Vulkan context
+    const instance = new nvk.Instance({
+        appName: "Mist Host",
+        engineName: "MistCausality",
+        vulkanVersion: nvk.VERSION_1_2,
+        enabledExtensions: [
+            "VK_KHR_surface",
+            "VK_KHR_xlib_surface"
+        ]
+    });
+
+    const renderContext = {
+        instance,
+        physicalDevice: instance.getPhysicalDevices()[0],
+        display: null,
+        windowId: null
+    };
+
+    // Initialize database connection
+    const db = await mysql.createConnection({
+        host: 'localhost',
+        user: 'root',
+        password: 'password',
+        port: 3306
+    });
+
+    // Initialize X11 window
+    const x11Client = await new Promise((resolve, reject) => {
+        x11.createClient((err, display) => {
+            if (err) reject(err);
+            resolve(display);
+        });
+    });
+
+    renderContext.display = x11Client;
+    renderContext.windowId = x11Client.client.AllocID();
+
+    // Create and initialize host manager
+    const hostManager = new MistHostManager(renderContext, db);
+    await hostManager.menuManager.showPage('main');
+
+    // Setup cleanup
+    process.on('SIGINT', async () => {
+        for (const [id, client] of hostManager.activeSimulations) {
+            await client.cleanup();
+        }
+        x11Client.client.DestroyWindow(renderContext.windowId);
+        x11Client.client.close();
+        process.exit(0);
+    });
+}
+
+main().catch(console.error);

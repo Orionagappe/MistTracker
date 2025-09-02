@@ -425,23 +425,6 @@ function ensureCharacterLocationsTable(db) {
   `);
 }
 
-function loadMistUser(userEmail, db) {
-  return db.query(
-    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
-    [userEmail]
-  ).then(rows => {
-    if (rows.length === 0) {
-      const userName = userEmail.split('@')[0];
-      db.query(
-        `INSERT INTO ${MIST_SCHEMA}.${TABLES.users} (userName, accountId, dateCreated) VALUES (?, ?, NOW())`,
-        [userName, userEmail]
-      );
-      return { userName, accountId: userEmail };
-    }
-    return rows[0];
-  });
-}
-
 function getMistDataTables() {
   return TABLES;
 }
@@ -1408,7 +1391,6 @@ module.exports = {
   getMistDataSheets,
   getMistSheets,
   ensureCharacterLocationsTable,
-  loadMistUser,
   getMistDataTables,
   getMistTables,
   loadWordDefinition,
