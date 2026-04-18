@@ -1,0 +1,229 @@
+/**
+ * MarqueeSelection.css
+ * Phase 9.3: Marquee selection box styling
+ */
+
+.marquee-selection-box {
+  position: absolute;
+  border: 2px dashed #44dd88;
+  background-color: rgba(68, 221, 136, 0.1);
+  pointer-events: none;
+  z-index: 999;
+  box-shadow: inset 0 0 8px rgba(68, 221, 136, 0.3);
+  animation: marqueeFlash 0.5s ease-in-out infinite;
+}
+
+@keyframes marqueeFlash {
+  0%, 100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Selection highlight on atoms/emitters */
+.atom-selected,
+.emitter-selected {
+  outline: 3px solid #44dd88 !important;
+  filter: brightness(1.2);
+}
+
+.atom-selected::after,
+.emitter-selected::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px solid #44dd88;
+  border-radius: 50%;
+  animation: selectionPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes selectionPulse {
+  0% {
+    box-shadow: 0 0 8px rgba(68, 221, 136, 0.6);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(68, 221, 136, 0.8);
+    transform: scale(1.05);
+  }
+  100% {
+    box-shadow: 0 0 8px rgba(68, 221, 136, 0.6);
+    transform: scale(1);
+  }
+}
+
+/* Multi-select indicator in UI */
+.selection-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background-color: rgba(68, 221, 136, 0.1);
+  border: 1px solid #44dd88;
+  border-radius: 4px;
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 12px;
+}
+
+.selection-info.active {
+  background-color: rgba(68, 221, 136, 0.15);
+  color: #ddd;
+}
+
+.selection-count {
+  font-weight: 600;
+  color: #44dd88;
+}
+
+.selection-badge {
+  display: inline-block;
+  background-color: #44dd88;
+  color: #0f1419;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+/* Bulk operation buttons */
+.bulk-selection-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+  padding: 12px;
+  background-color: rgba(68, 221, 136, 0.05);
+  border: 1px solid #444;
+  border-radius: 6px;
+  margin: 12px 0;
+}
+
+.bulk-action-btn {
+  padding: 8px 12px;
+  border: 1px solid #44dd88;
+  background-color: transparent;
+  color: #44dd88;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 150ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.bulk-action-btn:hover {
+  background-color: rgba(68, 221, 136, 0.1);
+  box-shadow: 0 2px 8px rgba(68, 221, 136, 0.3);
+}
+
+.bulk-action-btn:active {
+  transform: scale(0.98);
+}
+
+.bulk-action-btn.danger {
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+.bulk-action-btn.danger:hover {
+  background-color: rgba(255, 107, 107, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+}
+
+/* Selection keyboard hints */
+.selection-hints {
+  font-size: 11px;
+  color: #666;
+  padding: 8px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+
+.selection-hints code {
+  background-color: rgba(68, 221, 136, 0.1);
+  color: #44dd88;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+}
+
+/* Range selection highlight during shift+click */
+.selection-range-preview {
+  position: absolute;
+  background-color: rgba(68, 221, 136, 0.2);
+  border: 1px solid rgba(68, 221, 136, 0.5);
+  pointer-events: none;
+  opacity: 0.8;
+  z-index: 500;
+}
+
+/* 3D selection highlight (in Three.js scene) */
+.three-selection-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 0 3px #44dd88,
+              inset 0 0 0 2px rgba(68, 221, 136, 0.5);
+  background: radial-gradient(circle, rgba(68, 221, 136, 0.2) 0%, rgba(68, 221, 136, 0) 70%);
+}
+
+/* Selection count badge in builder UI */
+.builder-selection-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: #44dd88;
+  color: #0f1419;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 100;
+}
+
+.builder-selection-badge::before {
+  content: '✓';
+  font-weight: bold;
+}
+
+/* Disabled state for selection-dependent actions */
+.bulk-action-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: #444;
+  color: #666;
+}
+
+.bulk-action-btn:disabled:hover {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 600px) {
+  .marquee-selection-box {
+    border-width: 1px;
+  }
+
+  .bulk-selection-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .selection-info {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .selection-hints {
+    font-size: 10px;
+  }
+}

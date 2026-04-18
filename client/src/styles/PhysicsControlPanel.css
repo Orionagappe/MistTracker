@@ -1,0 +1,575 @@
+.physics-control-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(100, 150, 255, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+  background: rgba(10, 10, 20, 0.5);
+}
+
+.panel-header h3 {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  color: #999;
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-close:hover {
+  color: #fff;
+}
+
+.panel-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(100, 150, 255, 0.2);
+  background: rgba(10, 10, 20, 0.3);
+  padding: 0 10px;
+  overflow-x: auto;
+}
+
+.tab-button {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 12px 14px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.tab-button:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(100, 150, 255, 0.1);
+}
+
+.tab-button.active {
+  color: #64c8ff;
+  border-bottom-color: #64c8ff;
+}
+
+.panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tab-content h4 {
+  margin: 0 0 10px 0;
+  color: #64c8ff;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-input {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(100, 150, 255, 0.3);
+  color: #fff;
+  padding: 8px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.form-input:hover {
+  border-color: rgba(100, 150, 255, 0.5);
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #64c8ff;
+  background: rgba(100, 200, 255, 0.15);
+}
+
+.form-input.range {
+  cursor: pointer;
+}
+
+.form-group small {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+}
+
+.checkbox-label input {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+}
+
+.emitter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(100, 150, 255, 0.1);
+  border: 1px solid rgba(100, 150, 255, 0.2);
+  border-radius: 6px;
+}
+
+.emitters-list {
+  margin-top: 10px;
+}
+
+.emitters-list h4 {
+  color: #64c8ff;
+  margin: 0 0 8px 0;
+  font-size: 12px;
+}
+
+.list-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.emitter-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  border-left: 3px solid;
+  font-size: 12px;
+}
+
+.emitter-item.emitter-light {
+  border-left-color: #ffff00;
+}
+
+.emitter-item.emitter-gravity {
+  border-left-color: #ff0000;
+}
+
+.emitter-item.emitter-quantum {
+  border-left-color: #0000ff;
+}
+
+.emitter-id {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emitter-type {
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.emitter-freq {
+  color: #64c8ff;
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+}
+
+.empty-message {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 12px;
+  margin: 8px 0 0 0;
+}
+
+.config-info,
+.coupling-info,
+.export-info {
+  background: rgba(100, 200, 255, 0.15);
+  border: 1px solid rgba(100, 200, 255, 0.2);
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.config-info h5,
+.coupling-info h5,
+.export-info h5 {
+  margin: 0 0 8px 0;
+  color: #64c8ff;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.config-info ul,
+.coupling-info ul,
+.export-info ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.config-info li,
+.coupling-info li,
+.export-info li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 11px;
+  padding-left: 16px;
+  position: relative;
+}
+
+.config-info li:before,
+.coupling-info li:before,
+.export-info li:before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: #64c8ff;
+}
+
+.export-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px;
+  background: rgba(100, 150, 255, 0.1);
+  border-radius: 6px;
+}
+
+.btn-primary,
+.btn-secondary {
+  background: rgba(100, 150, 255, 0.3);
+  border: 1px solid rgba(100, 150, 255, 0.5);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: center;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  background: rgba(100, 150, 255, 0.5);
+  border-color: #64c8ff;
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  background: rgba(100, 200, 255, 0.2);
+  border-color: rgba(100, 200, 255, 0.4);
+}
+
+.btn-secondary:hover {
+  background: rgba(100, 200, 255, 0.3);
+  border-color: #64c8ff;
+}
+
+.btn-danger {
+  background: rgba(255, 100, 100, 0.2);
+  border-color: rgba(255, 100, 100, 0.4);
+}
+
+.btn-danger:hover {
+  background: rgba(255, 100, 100, 0.4);
+  border-color: #ff9999;
+}
+
+/* Scrollbar styling */
+.panel-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-content::-webkit-scrollbar-track {
+  background: rgba(100, 150, 255, 0.1);
+  border-radius: 3px;
+}
+
+.panel-content::-webkit-scrollbar-thumb {
+  background: rgba(100, 150, 255, 0.4);
+  border-radius: 3px;
+}
+
+.panel-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 150, 255, 0.6);
+}
+
+/* Placement Mode Styles */
+.placement-mode {
+  background: rgba(100, 150, 255, 0.1);
+  border: 1px solid rgba(100, 150, 255, 0.3);
+  border-radius: 6px;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.placement-mode input[type="checkbox"] {
+  cursor: pointer;
+  margin-right: 6px;
+  width: 16px;
+  height: 16px;
+}
+
+.placement-mode label {
+  display: flex;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.placement-settings {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(100, 150, 255, 0.2);
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.placement-hint {
+  color: #64c8ff;
+  font-size: 11px;
+  margin: 10px 0 0 0;
+  padding: 8px;
+  background: rgba(100, 200, 255, 0.15);
+  border-radius: 4px;
+  border-left: 2px solid #64c8ff;
+}
+
+/* Emitter Card Styles */
+.emitters-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.emitter-card {
+  background: rgba(50, 100, 150, 0.2);
+  border: 1px solid rgba(100, 150, 255, 0.3);
+  border-radius: 6px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.emitter-card:hover {
+  background: rgba(50, 100, 150, 0.3);
+  border-color: rgba(100, 150, 255, 0.5);
+}
+
+.emitter-card.emitter-light {
+  border-left: 3px solid #FFFF00;
+}
+
+.emitter-card.emitter-gravity {
+  border-left: 3px solid #FF6B6B;
+}
+
+.emitter-card.emitter-quantum {
+  border-left: 3px solid #6B6BFF;
+}
+
+.emitter-view,
+.emitter-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emitter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.emitter-id {
+  flex: 1;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Courier New', monospace;
+  font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.emitter-type {
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 10px;
+  padding: 2px 6px;
+  background: rgba(100, 150, 255, 0.2);
+  border-radius: 3px;
+}
+
+.emitter-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.info-row .label {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 10px;
+}
+
+.info-row .value {
+  color: #64c8ff;
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+}
+
+.emitter-props {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.prop-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.prop-group label {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.prop-group input[type="range"] {
+  height: 4px;
+  border-radius: 2px;
+}
+
+.emitter-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-small {
+  flex: 1;
+  background: rgba(100, 150, 255, 0.2);
+  border: 1px solid rgba(100, 150, 255, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 6px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 500;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.btn-small:hover {
+  background: rgba(100, 150, 255, 0.4);
+  border-color: #64c8ff;
+}
+
+.btn-edit {
+  background: rgba(100, 150, 255, 0.2);
+  border-color: rgba(100, 150, 255, 0.4);
+}
+
+.btn-edit:hover {
+  background: rgba(100, 150, 255, 0.4);
+}
+
+.btn-delete {
+  background: rgba(255, 100, 100, 0.15);
+  border-color: rgba(255, 100, 100, 0.3);
+  color: rgba(255, 150, 150, 0.8);
+}
+
+.btn-delete:hover {
+  background: rgba(255, 100, 100, 0.3);
+  border-color: #ff9999;
+}
+
+.btn-save {
+  background: rgba(100, 200, 100, 0.2);
+  border-color: rgba(100, 200, 100, 0.4);
+  color: rgba(150, 255, 150, 0.9);
+}
+
+.btn-save:hover {
+  background: rgba(100, 200, 100, 0.4);
+  border-color: #99ff99;
+}
+
+.btn-cancel {
+  background: rgba(150, 150, 150, 0.2);
+  border-color: rgba(150, 150, 150, 0.4);
+  color: rgba(200, 200, 200, 0.8);
+}
+
+.btn-cancel:hover {
+  background: rgba(150, 150, 150, 0.4);
+  border-color: #999999;
+}

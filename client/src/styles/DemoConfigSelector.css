@@ -1,0 +1,478 @@
+/**
+ * DemoConfigSelector.css - Demo Configuration UI Styling
+ * Phase 11: Physics model demonstration interface
+ */
+
+.demo-config-selector {
+  position: relative;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  border-radius: 8px;
+  padding: 0;
+  font-family: 'Monaco', 'Menlo', monospace;
+  color: #e0e0e0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+}
+
+/* Header */
+.demo-header {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  gap: 8px;
+}
+
+.demo-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 12px 16px;
+  background: linear-gradient(90deg, rgba(0, 150, 255, 0.1) 0%, rgba(0, 100, 200, 0.1) 100%);
+  border: 1px solid rgba(0, 150, 255, 0.2);
+  border-radius: 6px;
+  color: #00d4ff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.demo-toggle:hover {
+  background: linear-gradient(90deg, rgba(0, 150, 255, 0.2) 0%, rgba(0, 100, 200, 0.2) 100%);
+  border-color: rgba(0, 150, 255, 0.4);
+  box-shadow: 0 0 10px rgba(0, 150, 255, 0.2);
+}
+
+.demo-toggle:active {
+  transform: scale(0.98);
+}
+
+.demo-icon {
+  font-size: 18px;
+}
+
+.demo-label {
+  flex: 1;
+  text-align: left;
+}
+
+.demo-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  background: rgba(0, 200, 255, 0.3);
+  border: 1px solid rgba(0, 200, 255, 0.5);
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.demo-count.expanded {
+  background: rgba(0, 200, 255, 0.5);
+  box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+}
+
+/* Loading & Error States */
+.demo-config-selector.loading {
+  padding: 12px 16px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.demo-config-selector.error {
+  padding: 0;
+}
+
+.error-message {
+  padding: 12px 16px;
+  background: rgba(255, 50, 50, 0.1);
+  border: 1px solid rgba(255, 50, 50, 0.3);
+  border-radius: 6px;
+  color: #ff6b6b;
+  font-size: 12px;
+}
+
+/* Configs Panel */
+.demo-configs-panel {
+  margin-top: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 150, 255, 0.2);
+  border-radius: 0 0 6px 6px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.configs-header {
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 150, 255, 0.2);
+}
+
+.configs-title {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  color: #00d4ff;
+}
+
+.configs-subtitle {
+  margin: 4px 0 0 0;
+  font-size: 11px;
+  color: #888;
+  font-style: italic;
+}
+
+/* Config List */
+.configs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.config-item {
+  padding: 8px;
+  background: rgba(0, 50, 100, 0.2);
+  border: 1px solid rgba(0, 100, 200, 0.3);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.config-item:hover {
+  background: rgba(0, 50, 100, 0.4);
+  border-color: rgba(0, 150, 255, 0.5);
+}
+
+.config-item.selected {
+  background: rgba(0, 100, 200, 0.3);
+  border-color: rgba(0, 200, 255, 0.6);
+  box-shadow: 0 0 8px rgba(0, 150, 255, 0.2);
+}
+
+.config-item-main {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.config-name-btn {
+  flex: 1;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 6px 8px;
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #00d4ff;
+  font-size: 12px;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.config-name-btn:hover {
+  background: rgba(0, 150, 255, 0.1);
+}
+
+.config-title {
+  font-weight: 600;
+  flex: 1;
+}
+
+.config-atoms,
+.config-emitters {
+  font-size: 11px;
+  background: rgba(0, 150, 255, 0.15);
+  padding: 2px 4px;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+
+.config-info-btn {
+  padding: 4px 8px;
+  background: rgba(0, 150, 255, 0.1);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  border-radius: 3px;
+  color: #00d4ff;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.config-info-btn:hover {
+  background: rgba(0, 150, 255, 0.2);
+  box-shadow: 0 0 6px rgba(0, 150, 255, 0.2);
+}
+
+.config-description {
+  margin: 4px 0 0 0;
+  padding: 0 8px;
+  font-size: 11px;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Config Details */
+.config-details {
+  margin-top: 8px;
+  padding: 8px;
+  background: rgba(0, 20, 50, 0.4);
+  border: 1px solid rgba(0, 150, 255, 0.2);
+  border-radius: 4px;
+  font-size: 11px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(0, 150, 255, 0.2);
+}
+
+.details-header h4 {
+  margin: 0;
+  font-size: 12px;
+  color: #00d4ff;
+  font-weight: 600;
+}
+
+.close-btn {
+  padding: 2px 6px;
+  background: transparent;
+  border: 1px solid rgba(255, 100, 100, 0.3);
+  border-radius: 2px;
+  color: #ff8888;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 100, 100, 0.1);
+  border-color: rgba(255, 100, 100, 0.5);
+}
+
+/* Details Sections */
+.details-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.details-section {
+  padding: 6px;
+  background: rgba(0, 50, 100, 0.15);
+  border: 1px solid rgba(0, 100, 200, 0.2);
+  border-radius: 3px;
+}
+
+.details-section h5 {
+  margin: 0 0 4px 0;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.details-section p {
+  margin: 0;
+  font-size: 11px;
+  color: #bbb;
+  line-height: 1.4;
+}
+
+/* Atoms & Emitters Lists */
+.atoms-list,
+.emitters-list,
+.params-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.atom-detail,
+.emitter-detail,
+.param-item {
+  padding: 4px;
+  background: rgba(0, 0, 0, 0.2);
+  border-left: 2px solid rgba(0, 200, 255, 0.4);
+  border-radius: 2px;
+  font-size: 10px;
+  color: #ccc;
+}
+
+.atom-name {
+  font-weight: 600;
+  color: #00d4ff;
+  margin-right: 4px;
+}
+
+.atom-type {
+  color: #888;
+  font-size: 9px;
+}
+
+.atom-props {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+  font-size: 9px;
+  color: #999;
+}
+
+.atom-prop {
+  background: rgba(0, 100, 200, 0.1);
+  padding: 1px 3px;
+  border-radius: 1px;
+}
+
+.emitter-id {
+  font-weight: 600;
+  color: #ffb84d;
+  display: block;
+}
+
+.emitter-props {
+  display: flex;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.emitter-prop {
+  background: rgba(255, 180, 80, 0.1);
+  padding: 1px 3px;
+  border-radius: 1px;
+}
+
+.param-key {
+  font-weight: 600;
+  color: #888;
+}
+
+.param-value {
+  color: #00d4ff;
+}
+
+/* Tests List */
+.tests-list {
+  margin: 0;
+  padding-left: 16px;
+  color: #aaa;
+  font-size: 10px;
+}
+
+.tests-list li {
+  margin: 2px 0;
+  line-height: 1.3;
+}
+
+.tests-list li::marker {
+  color: #00d4ff;
+}
+
+/* Selected Config Info */
+.selected-config-info {
+  margin-top: 12px;
+  padding: 8px;
+  background: rgba(0, 150, 255, 0.1);
+  border: 1px solid rgba(0, 150, 255, 0.3);
+  border-radius: 4px;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.info-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #00d4ff;
+}
+
+.info-export {
+  padding: 4px 8px;
+  background: rgba(0, 200, 255, 0.2);
+  border: 1px solid rgba(0, 200, 255, 0.4);
+  border-radius: 3px;
+  color: #00d4ff;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.info-export:hover {
+  background: rgba(0, 200, 255, 0.3);
+  box-shadow: 0 0 6px rgba(0, 200, 255, 0.3);
+}
+
+.info-name {
+  margin: 0;
+  padding: 4px 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: #00d4ff;
+  font-family: 'Monaco', monospace;
+}
+
+/* Scrollbar Styling */
+.demo-configs-panel::-webkit-scrollbar,
+.config-details::-webkit-scrollbar {
+  width: 6px;
+}
+
+.demo-configs-panel::-webkit-scrollbar-track,
+.config-details::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
+}
+
+.demo-configs-panel::-webkit-scrollbar-thumb,
+.config-details::-webkit-scrollbar-thumb {
+  background: rgba(0, 150, 255, 0.3);
+  border-radius: 3px;
+}
+
+.demo-configs-panel::-webkit-scrollbar-thumb:hover,
+.config-details::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 150, 255, 0.5);
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .demo-config-selector {
+    padding: 0;
+  }
+
+  .demo-configs-panel {
+    max-height: 400px;
+  }
+
+  .config-details {
+    max-height: 300px;
+  }
+
+  .config-atoms,
+  .config-emitters {
+    display: none;
+  }
+
+  .config-name-btn {
+    flex-wrap: wrap;
+  }
+}

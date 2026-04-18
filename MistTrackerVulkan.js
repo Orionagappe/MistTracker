@@ -1,4 +1,10 @@
 // 4D Definite Item Tracker Skeleton Code (MySQL/X11/Vulkan-ready)
+import crypto from 'node:crypto';
+import { broadcastToPeers, onEvent } from './MistMulti.cjs';
+import { probabilityOfEvent } from './MistIllum.js'; // Should return a probability (0..1)
+import { v4 as uuidv4 } from 'uuid';
+import { createCanvas, loadImage } from 'canvas';
+
 
 // --- Data Structures ---
 class Line {
@@ -174,7 +180,7 @@ async function addItemLine(categoryLineId, itemValue, db) {
  * @returns {Promise<Array>} - Array of primary line values.
  */
 async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
-  let rows = await db.query(
+  let [rows] = await db.query(
     `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
   );
   let primaryLine = rows.map(row => row.value);
@@ -213,7 +219,7 @@ async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
  * @returns {Promise<Array>} - Array of category names.
  */
 async function loadCategoriesForTime(primaryLineId, db, storyText = null, sourceFile = null) {
-  let rows = await db.query(
+  let [rows] = await db.query(
     `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
     [primaryLineId]
   );
@@ -308,8 +314,9 @@ function ensureMistDatabase(db) {
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.dataRelationships} (category VARCHAR(255), item VARCHAR(255), sheetId VARCHAR(255))`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.wordDefinitions} (word VARCHAR(255), partOfSpeech VARCHAR(255), definition TEXT)`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.categories} (timeIndex VARCHAR(255), category VARCHAR(255))`);
-  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.users} (userName VARCHAR(255), accountId VARCHAR(255), dateCreated DATETIME, lastSession DATETIME, sessions TEXT)`);
-  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255), state TEXT, timestamp DATETIME)`);
+  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.users} (id INT AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(255), accountId VARCHAR(255) UNIQUE, password_hash VARCHAR(255), dateCreated DATETIME, lastSession DATETIME, sessions TEXT)`);
+  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255) PRIMARY KEY, state TEXT, timestamp DATETIME)`);
+  db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.user_milestones (user_id VARCHAR(255) PRIMARY KEY, milestone_data TEXT, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)`);
 }
 
 // --- Data Integrity and Utilities ---
@@ -321,10 +328,6 @@ function ensureMistDatabase(db) {
  * @param {string} [csvDir='./data'] - Directory containing CSV files.
  */
 async function updateMistData(db, csvDir = './data') {
-  const fs = require('fs');
-  const path = require('path');
-  const csvParse = require('csv-parse/sync');
-
   // List of table names to update (should match your schema)
   const tables = [
     'DataRelationships',
@@ -379,6 +382,198 @@ async function loadMistUser(userEmail, db) {
   return rows[0];
 }
 
+// --- Sprint 2: Enhanced User & Session Management ---
+
+/**
+ * Create a new user with email and simple password hash.
+ * @param {string} userName - Display name
+ * @param {string} accountId - Email or unique identifier
+ * @param {string} password - Plain text password (will be hashed)
+ * @param {object} db - Database connection
+ * @returns {Promise<Object>} - Created user record
+ */
+async function createUser(userName, accountId, password, db) {
+  try {
+    // Simple hash: base64 encode (NOT production-ready)
+    const passwordHash = Buffer.from(password).toString('base64');
+    
+    const [result] = await db.query(
+      `INSERT INTO ${MIST_SCHEMA}.${TABLES.users} (userName, accountId, dateCreated, password_hash) VALUES (?, ?, NOW(), ?)`,
+      [userName, accountId, passwordHash]
+    );
+    
+    return {
+      id: result.insertId,
+      userName,
+      accountId,
+      dateCreated: new Date().toISOString()
+    };
+  } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') {
+      throw new Error(`User ${accountId} already exists`);
+    }
+    throw err;
+  }
+}
+
+/**
+ * Authenticate a user by email and password.
+ * @param {string} accountId - Email or unique identifier
+ * @param {string} password - Plain text password
+ * @param {object} db - Database connection
+ * @returns {Promise<Object|null>} - User record if authenticated, null if invalid
+ */
+async function authenticateUser(accountId, password, db) {
+  const [rows] = await db.query(
+    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
+    [accountId]
+  );
+  
+  if (rows.length === 0) {
+    return null;
+  }
+  
+  const user = rows[0];
+  const passwordHash = Buffer.from(password).toString('base64');
+  
+  if (user.password_hash === passwordHash) {
+    return {
+      id: user.id,
+      userName: user.userName,
+      accountId: user.accountId,
+      dateCreated: user.dateCreated
+    };
+  }
+  
+  return null;
+}
+
+/**
+ * Save a session to the database for persistence.
+ * @param {Object} session - Session object
+ * @param {object} db - Database connection
+ * @returns {Promise<string>} - Session ID
+ */
+async function persistSession(session, db) {
+  const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  
+  await db.query(
+    `INSERT INTO ${MIST_SCHEMA}.${TABLES.currentState} (sessionId, state, timestamp) VALUES (?, ?, NOW())`,
+    [sessionId, JSON.stringify(session)]
+  );
+  
+  // Update user's last session
+  if (session.user && session.user.accountId) {
+    await db.query(
+      `UPDATE ${MIST_SCHEMA}.${TABLES.users} SET lastSession = NOW() WHERE accountId = ?`,
+      [session.user.accountId]
+    );
+  }
+  
+  return sessionId;
+}
+
+/**
+ * Load a session from the database by session ID.
+ * @param {string} sessionId - Session identifier
+ * @param {object} db - Database connection
+ * @returns {Promise<Object|null>} - Session object or null
+ */
+async function loadSession(sessionId, db) {
+  const [rows] = await db.query(
+    `SELECT state FROM ${MIST_SCHEMA}.${TABLES.currentState} WHERE sessionId = ?`,
+    [sessionId]
+  );
+  
+  if (rows.length === 0) {
+    return null;
+  }
+  
+  try {
+    return JSON.parse(rows[0].state);
+  } catch (err) {
+    console.error('Failed to parse session state:', err);
+    return null;
+  }
+}
+
+/**
+ * Get all sessions for a specific user.
+ * @param {string} accountId - User's email/identifier
+ * @param {object} db - Database connection
+ * @returns {Promise<Array>} - Array of recent sessions
+ */
+async function getUserSessions(accountId, db) {
+  const [rows] = await db.query(
+    `SELECT sessionId, state, timestamp FROM ${MIST_SCHEMA}.${TABLES.currentState} 
+     WHERE JSON_EXTRACT(state, '$.user.accountId') = ? 
+     ORDER BY timestamp DESC LIMIT 10`,
+    [accountId]
+  );
+  
+  return rows.map(row => {
+    try {
+      return {
+        sessionId: row.sessionId,
+        state: JSON.parse(row.state),
+        timestamp: row.timestamp
+      };
+    } catch (err) {
+      return null;
+    }
+  }).filter(s => s !== null);
+}
+
+/**
+ * Get all users registered in the system.
+ * @param {object} db - Database connection
+ * @returns {Promise<Array>} - Array of user records
+ */
+async function getAllUsers(db) {
+  const [rows] = await db.query(
+    `SELECT id, userName, accountId, dateCreated, lastSession FROM ${MIST_SCHEMA}.${TABLES.users} ORDER BY dateCreated DESC`
+  );
+  
+  return rows;
+}
+
+/**
+ * Get user statistics - session count, last activity, etc.
+ * @param {string} accountId - User's email/identifier
+ * @param {object} db - Database connection
+ * @returns {Promise<Object>} - User statistics
+ */
+async function getUserStats(accountId, db) {
+  const [userRows] = await db.query(
+    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
+    [accountId]
+  );
+  
+  if (userRows.length === 0) {
+    return null;
+  }
+  
+  const user = userRows[0];
+  
+  const [sessionRows] = await db.query(
+    `SELECT COUNT(*) as count FROM ${MIST_SCHEMA}.${TABLES.currentState} WHERE JSON_EXTRACT(state, '$.user.accountId') = ?`,
+    [accountId]
+  );
+  
+  const [itemRows] = await db.query(
+    `SELECT COUNT(*) as count FROM ${MIST_SCHEMA}.${TABLES.itemLine}`
+  );
+  
+  return {
+    user: user.userName,
+    accountId: user.accountId,
+    dateCreated: user.dateCreated,
+    lastSession: user.lastSession,
+    sessionCount: sessionRows[0].count,
+    totalItems: itemRows[0].count
+  };
+}
+
 /**
  * Get references to Mist Data tables (for "data" schema).
  * @returns {Object} - Table name mapping for data schema.
@@ -422,23 +617,6 @@ function ensureCharacterLocationsTable(db) {
       location VARCHAR(255)
     )
   `);
-}
-
-function loadMistUser(userEmail, db) {
-  return db.query(
-    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
-    [userEmail]
-  ).then(rows => {
-    if (rows.length === 0) {
-      const userName = userEmail.split('@')[0];
-      db.query(
-        `INSERT INTO ${MIST_SCHEMA}.${TABLES.users} (userName, accountId, dateCreated) VALUES (?, ?, NOW())`,
-        [userName, userEmail]
-      );
-      return { userName, accountId: userEmail };
-    }
-    return rows[0];
-  });
 }
 
 function getMistDataTables() {
@@ -639,7 +817,6 @@ function storyWriter(rtfText, sourceFile) {
     provenance: provenance
   };
 }
-const { createCanvas, loadImage } = require('canvas');
 
 async function loadPulsarMapImage(imagePath) {
   const img = await loadImage(imagePath);
@@ -800,8 +977,7 @@ function integratePulsarMapWithMistModel(center, pulsars, referenceGeometry, db)
 }
 
 function mapRead(){
-  const fs = require('fs');
-  const sharp = require('sharp'); // Using sharp for image processing
+  // Using sharp for image processing
   const options = { 
     processImage: async (imagePath) => {
       const image = await sharp(imagePath);
@@ -931,10 +1107,6 @@ function handleInput(input, context) {
   }
 }
 
-const { broadcastToPeers, onEvent } = require('./MistMulti.js');
-const { probabilityOfEvent } = require('./MistIllum.js'); // Should return a probability (0..1)
-const { v4: uuidv4 } = require('uuid');
-
 // --- Anomalous Result Table (in-memory, should be persisted in DB in production) ---
 const AnomalousResults = new Map(); // eventId -> { event, provenance, confirms, fails, status }
 const BannedInteractions = new Set(); // Set of banned interaction types or event hashes
@@ -985,7 +1157,7 @@ async function checkAndSyncEvent(event, user, db) {
     return { error: 'Interaction banned. User event-horizoned.' };
   }
 
-  // 2. Calculate event probability using MistIllum.js
+  // 2. Calculate event probability
   const prob = probabilityOfEvent(event); // Should return a probability (0..1)
   const sigma = probToSigma(prob);
 
@@ -1139,7 +1311,7 @@ function isInteractionBanned(event, user) {
 // --- Helper: Hash Interaction ---
 function hashInteraction(event) {
   // Simple hash: could use JSON.stringify + hash function for uniqueness
-  return require('crypto').createHash('sha256').update(JSON.stringify(event)).digest('hex');
+  return crypto.createHash('sha256').update(JSON.stringify(event)).digest('hex');
 }
 
 // --- Helper: Event Horizon User (Ban and Flush) ---
@@ -1316,20 +1488,168 @@ function listEnabledModes() {
   return { projectionModes, renderModes };
 }
 
-// --- Example Usage ---
-// Initialize milestone manager (singleton or per-session as needed)
-const milestoneManager = new MilestoneManager();
-// Add milestones up to int256 (practically, you may want to limit this)
-for (let i = 1; i <= 18; i++) { // 10^18 is already very large; int256 is 10^77+
-  milestoneManager.addMilestone(i, `Order ${i} milestone`);
+/**
+ * High-level milestone management interface that provides methods for tracking, 
+ * progressing, and managing milestones in the Mist system. Handles persistence,
+ * achievement validation, and milestone-dependent feature unlocking.
+ * 
+ * @param {Object} config - Configuration object
+ * @param {Object} config.db - Database connection for persistence
+ * @param {string} config.userId - User ID for tracking individual progress
+ * @param {number} config.startOrder - Initial milestone order (default: 1)
+ * @param {number} config.maxOrder - Maximum milestone order (default: 18)
+ * @param {Object} config.requirements - Custom requirements for each milestone
+ * @returns {Object} - Milestone management interface
+ */
+function milestoneManager(config = {}) {
+    const {
+        db,
+        userId,
+        startOrder = 1,
+        maxOrder = 18,
+        requirements = {}
+    } = config;
+
+    // Initialize MilestoneManager instance
+    const manager = new MilestoneManager();
+
+    // Add milestones up to maxOrder
+    for (let i = startOrder; i <= maxOrder; i++) {
+        manager.addMilestone(i, `Order ${i} milestone`);
+    }
+
+    // Load existing progress from database if available
+    async function loadProgress() {
+        if (db && userId) {
+            try {
+                const [rows] = await db.query(
+                    `SELECT milestone_data FROM ${MIST_SCHEMA}.user_milestones WHERE user_id = ?`,
+                    [userId]
+                );
+                if (rows.length > 0) {
+                    const data = JSON.parse(rows[0].milestone_data);
+                    data.achieved.forEach(order => manager.achieveMilestone(order));
+                }
+            } catch (err) {
+                console.error('Failed to load milestone progress:', err);
+            }
+        }
+    }
+
+    // Save progress to database
+    async function saveProgress() {
+        if (db && userId) {
+            const data = {
+                achieved: manager.milestones
+                    .filter(m => m.enabled)
+                    .map(m => m.order)
+            };
+            try {
+                await db.query(
+                    `INSERT INTO ${MIST_SCHEMA}.user_milestones (user_id, milestone_data) 
+                     VALUES (?, ?) 
+                     ON DUPLICATE KEY UPDATE milestone_data = ?`,
+                    [userId, JSON.stringify(data), JSON.stringify(data)]
+                );
+            } catch (err) {
+                console.error('Failed to save milestone progress:', err);
+            }
+        }
+    }
+
+    // Check if requirements are met for a milestone
+    function checkRequirements(order) {
+        const requirement = requirements[order];
+        if (!requirement) return true;
+        return requirement.check();
+    }
+
+    // Try to achieve next milestone
+    async function progressToNext() {
+        const current = manager.getCurrentMilestone();
+        const nextOrder = current ? current.order + 1 : startOrder;
+        
+        if (nextOrder > maxOrder) return false;
+        
+        if (checkRequirements(nextOrder)) {
+            manager.achieveMilestone(nextOrder);
+            await saveProgress();
+            return true;
+        }
+        return false;
+    }
+
+    // Get available features for current milestone
+    function getAvailableFeatures() {
+        const current = manager.getCurrentMilestone();
+        if (!current) return [];
+
+        return {
+            projectionModes: Array.from(manager.enabledProjectionModes),
+            renderModes: Array.from(manager.enabledRenderModes),
+            precisionLevel: current.order,
+            tensorTables: Object.keys(manager.tensorMetricTables),
+            distributions: Object.keys(manager.interactionDistributions)
+        };
+    }
+
+    // Initialize by loading existing progress
+    loadProgress();
+
+    return {
+        manager,          // Access to underlying MilestoneManager instance
+        progressToNext,   // Try to achieve next milestone
+        getAvailableFeatures,  // Get currently available features
+        getCurrentOrder: () => manager.getCurrentMilestone()?.order || 0,
+        isEnabled: (type, mode) => manager.isModeEnabled(type, mode),
+        save: saveProgress,
+        reset: async () => {
+            manager.milestones.forEach(m => m.enabled = false);
+            await saveProgress();
+        }
+    };
 }
 
-// Achieve a milestone (e.g., after a computation or user action)
-milestoneManager.achieveMilestone(3); // Enables 4D projection mode, increases precision
+// --- Example Usage ---
+// Note: This is just an example configuration. The actual db connection should be passed from MistCausality.js
+const exampleMilestoneConfig = {
+    db: null,  // Will be initialized when used
+    userId: process.env.MIST_USER_ID || 'default-host',
+    maxOrder: 18,
+    requirements: {
+        2: { 
+            check: function() {
+                // Check if basic visualization features are working
+                return this?.renderContext?.instance !== undefined;
+            }
+        },
+        3: { 
+            check: async function() {
+                // Check if database is properly initialized
+                try {
+                    if (!this.db) return false;
+                    await this.db.query('SELECT 1');
+                    return true;
+                } catch (err) {
+                    return false;
+                }
+            }
+        },
+        4: {
+            check: function() {
+                // Check if Vulkan extensions are available
+                return this?.renderContext?.instance?.enabledExtensions?.includes('VK_KHR_surface');
+            }
+        }
+    }
+};
 
-// Check if a mode is enabled
-if (milestoneManager.isModeEnabled('projection', '4D')) {
-  // Enable 4D projection logic in the UI/rendering pipeline
+// Initialize milestone manager with proper configuration
+const milestones = milestoneManager(exampleMilestoneConfig);
+
+// Use the milestone manager to enable features based on milestone progress
+if (milestones.isEnabled('projection', '4D')) {
+    // Enable 4D projection logic in the UI/rendering pipeline
 }
 
 // --- User Profile Management ---
@@ -1359,20 +1679,8 @@ function nominateSuccessorFlexible(userId, value, db) {
   }
 }
 
-
 // --- Export for integration with native UI and GPU logic ---
-module.exports = {
-  // ...existing exports,
-  checkAndSyncEvent,
-  AnomalousResults,
-  isInteractionBanned,
-  eventHorizonUser,
-  flushUserData,
-  banInteraction
-};
-
-// --- Export for integration with native UI and GPU logic ---
-module.exports = {
+export {
   // --- Data Structures ---
   Line,
   DefiniteItem,
@@ -1409,10 +1717,19 @@ module.exports = {
   ensureMistDatabase,
   updateMistData,
   loadMistUser,
+
+  // --- Sprint 2: User & Session Management ---
+  createUser,
+  authenticateUser,
+  persistSession,
+  loadSession,
+  getUserSessions,
+  getAllUsers,
+  getUserStats,
+
   getMistDataSheets,
   getMistSheets,
   ensureCharacterLocationsTable,
-  loadMistUser,
   getMistDataTables,
   getMistTables,
   loadWordDefinition,
@@ -1439,7 +1756,7 @@ module.exports = {
 
   // --- Swarm Health Maintainer ---
   checkAndSyncEvent,
-  checkAndSyncEvent,
+  AnomalousResults,
   isInteractionBanned,
   eventHorizonUser,
   flushUserData,
@@ -1454,6 +1771,7 @@ module.exports = {
   getCurrentMilestoneOrder,
   enableModeIfMilestone,
   listEnabledModes,
+  milestoneManager,
 
   // --- User Profile Management ---
   nominateSuccessor,

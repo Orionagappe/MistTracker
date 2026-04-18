@@ -1,49 +1,308 @@
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Mist Data.pdf
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Mist Data.xlsx
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Mist Solution Documentation.docx
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/mist.xlsx
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/MistTracker.json
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/A.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/B.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/C.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/D.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/E.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/F.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/G.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/H.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/I.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/J.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/K.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/L.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/M.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/N.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/O.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/P.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/Q.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/R.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/S.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/T.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/U.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/V.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/W.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/X.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/Y.csv
-Mist Event Tracker-20250614T215646Z-1-001/Mist Event Tracker/Waterfall/Z.csv
-Mist Event Tracker-20250614T215646Z-1-001.zip
-GPG/Orion Agappe_0x38505E37_public.asc
+# ============================================================================
+# GIT IGNORE CONFIGURATION - MistTracker
+# Last Updated: April 18, 2026
+# Policy: Production code & strategic docs → Git | Dev docs & logs → Offline
+# ============================================================================
+
+# SECTION 1: DEPENDENCIES & ARTIFACTS
+# ============================================================================
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+.npm
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment & Secrets
+.env
+.env.local
+.env.*.local
+.env.production.local
+*.pem
+*.key
+*.pub
+GPG/
+
+# SECTION 2: RUNTIME LOGS & OUTPUTS
+# ============================================================================
+
+# Standard output/error redirects
+*.log
+err.txt
+out.txt
+server-err.txt
+server-out.txt
+debug.log
+
+# Process manager logs
+.pm2/
+pm2-logs/
+
+# Database session files (personal, not source)
+*.session.sql
+MySQL.session.sql
+MySQL Connection Backup/
+
+# SECTION 3: DEVELOPMENT & TEMPORARY FILES
+# ============================================================================
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# OS-specific
+.devcontainer/
+.dockerignore
+
+# Temporary/working files
+*.tmp
+*.bak
+temp/
+temp-*
+*.partial
+
+# SECTION 4: DEVELOPMENT DOCUMENTATION (PHASE/SESSION NOTES)
+# ============================================================================
+# These are development work artifacts that clutter git history
+# Use for: tracking progress DURING development, not as source of truth
+
+# Phase completion reports (internal progress tracking)
+PHASE-*-COMPLETION*.md
+PHASE-*-COMPLETION*.txt
+
+# Phase quick references & summaries (development notes)
+PHASE-*-QUICK*.md
+PHASE-*-QUICK*.txt
+PHASE-*-SUMMARY.md
+
+# Phase analysis & diagnostics (developer documentation)
+PHASE-*-DIAGNOSTIC*.md
+PHASE-*-ANALYSIS*.md
+PHASE-*-REPORT*.md
+PHASE-*-VERIFICATION*.md
+PHASE-*-FIX*.md
+PHASE-*-ROOT-CAUSE*.md
+PHASE-*-MANUAL*.md
+
+# Session summaries (internal tracking)
+SESSION-SUMMARY-*.md
+
+# Sprint tracking (development iterations)
+SPRINT*-COMPLETION*.md
+SPRINT*-SUMMARY*.md
+SPRINT*-PHASE*.md
+SPRINT*-CORE*.md
+SPRINT*-TESTING*.md
+
+# Development-focused readmes (older versions)
+README-SPRINT*.md
+README-MVP.md
+PROGRESS.md
+
+# Consolidation and handoff notes (internal only)
+CONSOLIDATION-SUMMARY.md
+DELIVERABLES-*.md
+*-HANDOFF.md
+
+# State analysis & conflict reports (development only)
+STATE-MANAGEMENT-ANALYSIS.md
+PHASE-*-CONNECTIVITY*.md
+PHASE-*-CONFLICT*.md
+PHASE-*-METADATA*.md
+PHASE-*-FEATURE*.md
+PHASE-*-CLEANUP*.md
+PHASE-*-AUDIT*.md
+
+# Deployment and migration notes (internal reference)
+DEPLOYMENT-*.md
+MIGRATION-*.md
+
+# Code security & parsing notes (internal documentation)
+codeParseSecurity.md
+
+# SECTION 5: DEVELOPMENT TEST FILES
+# ============================================================================
+
+# Test files (kept locally for debugging)
+test-*.js
+test/
+*-test.js
+verify-*.js
+*-tests.js
+
+# Phase-specific test files
+PHASE-*-BROWSER-TESTS.js
+run-physics-tests.js
+regression-test-runner.js
+
+# SECTION 6: TEMPORARY DATA & ARCHIVES
+# ============================================================================
+
+# Backup files
+*.backup
+*.bak
+*.7z
+*.zip
+*-backup/
+
+# Event/Database dumps
+Mist Event Tracker-*/
+MySQL.session.sql
+
+# Archives (keep compressed versions for archival, not in git)
+*.7z
+*.7z.sha256
+
+# SECTION 7: VISUALIZATION & RENDERING (DEVELOPMENT ARTIFACTS)
+# ============================================================================
+
+# Visualization testing notes (internal)
+PHYSICS-VISUALIZATION-COMPLETE.md
+PHYSICS-UI-INTEGRATION.md
+PHASE4-4D-VISUALIZATION.md
+PHASE4-FILE-REFERENCE.md
+test-4d-visualization.js
+test-geometry-visualization.js
+
+# SECTION 8: REFERENCE & ARCHIVED DOCUMENTATION
+# ============================================================================
+
+# Archive folders (previous versions, not needed in current repo)
+Reference/
+Documentation Archive/
+Phase-14-Console-Logs/
+Waterfall/
+Waterfall.7z
+Waterfall.7z.sha256
+
+# Old readme files (keep latest README.md only)
+story.rtf
+theGame.md
+
+# SECTION 9: GENERATED/PROCESSED DATA
+# ============================================================================
+
+# Database exports & dumps (keep locally only)
+*.sql
+!database-schema.sql
+
+# CSV data exports
+*.csv
+!mistUpdateHeaders.csv
+
+# Metadata dumps
+metadata-dump.json
+
+# PDFs (local only unless part of release)
+*.pdf
+!A-Persuit-of-Understanding-Manuscript-Complete.pdf
+
+# SECTION 10: UTILITY & BUILD SCRIPTS
+# ============================================================================
+
+# Keep build utilities, ignore generated outputs
+setup-db.cjs
+create-user.js
+reset-db.js
+
+# SECTION 11: MISCELLANEOUS
+# ============================================================================
+
+# Planck images (development only)
+Planck_*.png
+
+# User workspace settings
+settings.json
 mistStartChecks.txt
 How-to-play-notes-from-words-under-the-influence-of-starlight-Worksheet.csv
-A-Persuit-of-Understanding-Manuscript-Complete.pdf
-theGame.md
-settings.json
-readme.md
-*.pdf
-Planck_*.png
-MySQL*.*
+
+# XML exports (development only)
 *.xml
-/test
-/node_modules
-/Documentation Archive
-/Waterfall
-Mist Solution Abstract*.md
+
+# Pure math engine (development variant)
 pureMathPhysicsEngine.js
+
+# SECTION 12: ALLOWED (EXCEPTIONS TO ABOVE)
+# ============================================================================
+# These files are KEPT IN GIT despite patterns above
+
+!.github/
+!.gitignore
+!package.json
+!database-schema.sql
+!LICENSE
+!README.md
+!Readme.md
+
+# Mist core implementations (ALWAYS KEEP)
+!Mist*.js
+!Mist*.markdown
+!physics-engine.js
+!Physics*.js
+!Phase10*.js
+
+# Strategic/Architecture documentation (ALWAYS KEEP)
+!COMPLETE-STRATEGIC-VISION.md
+!ARCHITECTURE-TIMELINE-VISUALIZATION.md
+!ATOMIC-PHYSICS-DOMAIN-ALIGNMENT.md
+!DOMAIN-PROGRESSION-ROADMAP.md
+!MULTI-DOMAIN-RESEARCH-ARCHITECTURE.md
+!INFRASTRUCTURE-QUICKSTART-ORCHESTRATION.md
+!PHASE-17-*.md
+
+# User manuals & guides (ALWAYS KEEP)
+!SOLUTION-MANUAL.md
+!PHYSICS-USER-GUIDE.md
+!PHYSICS-API-REFERENCE.md
+!PHYSICS-TROUBLESHOOTING.md
+!USER-CREATION.md
+!INTEGRATION_GUIDE.md
+!GEOMETRY-QUICK-START.md
+!QUICKSTART-SPRINT5.md
+
+# ============================================================================
+# COMMENTED RATIONALE
+# ============================================================================
+
+# DEVELOPMENT DOCS EXCLUDED BECAUSE:
+# - They accumulate large git history
+# - They're internal working notes (not user-facing)
+# - They change frequently during development
+# - They're not needed in production deployments
+# - They can confuse git bisect/blame with noise
+# - They're better tracked in workspace locally
+
+# PRODUCTION CODE INCLUDED BECAUSE:
+# - Mist*.js files are the actual implementation
+# - Strategic docs communicate vision to team
+# - User manuals are needed for adoption
+# - API references are needed for integration
+# - Schema is needed for database setup
+# - Client/Server code is the actual product
+
+# ============================================================================
+# USAGE NOTES
+# ============================================================================
+#
+# To add a file that's normally ignored:
+#   $ git add -f <filename>
+#
+# To see what would be committed:
+#   $ git status
+#
+# To verify before pushing:
+#   $ git diff --cached
+#   $ git status
+#

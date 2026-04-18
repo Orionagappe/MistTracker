@@ -1,0 +1,131 @@
+{
+  "id": "timeline-demo-default",
+  "name": "Demo: Quantum Physics Showcase",
+  "description": "Pre-configured timeline demonstrating atom-wave interactions, particle generation, and multi-electron systems",
+  "createdAt": 1712846400000,
+  "lastModified": 1712846400000,
+  "sceneSize": {
+    "width": 200,
+    "height": 200,
+    "depth": 200
+  },
+  "items": [
+    {
+      "id": "atom-H-1",
+      "type": "atom",
+      "value": "H Atom 1",
+      "category": "H",
+      "metadata": {
+        "atomicNumber": 1,
+        "elementName": "Hydrogen",
+        "electronConfiguration": "1s¹",
+        "position": [-30, 0, 0],
+        "initialState": "ground"
+      },
+      "timestamp": 1712846400100
+    },
+    {
+      "id": "atom-H-2",
+      "type": "atom",
+      "value": "H Atom 2",
+      "category": "H",
+      "metadata": {
+        "atomicNumber": 1,
+        "elementName": "Hydrogen",
+        "electronConfiguration": "1s¹",
+        "position": [30, 0, 0],
+        "initialState": "ground"
+      },
+      "timestamp": 1712846400200
+    },
+    {
+      "id": "atom-H-3",
+      "type": "atom",
+      "value": "H Atom 3",
+      "category": "H",
+      "metadata": {
+        "atomicNumber": 1,
+        "elementName": "Hydrogen",
+        "electronConfiguration": "1s¹",
+        "position": [0, -30, 0],
+        "initialState": "ground"
+      },
+      "timestamp": 1712846400300
+    },
+    {
+      "id": "atom-He-4",
+      "type": "atom",
+      "value": "He Atom 4",
+      "category": "He",
+      "metadata": {
+        "atomicNumber": 2,
+        "elementName": "Helium",
+        "electronConfiguration": "1s²",
+        "position": [0, 30, 0],
+        "initialState": "ground"
+      },
+      "timestamp": 1712846400400
+    },
+    {
+      "id": "atom-C-5",
+      "type": "atom",
+      "value": "C Atom 5",
+      "category": "C",
+      "metadata": {
+        "atomicNumber": 6,
+        "elementName": "Carbon",
+        "electronConfiguration": "1s²2s²2p²",
+        "position": [0, 0, 40],
+        "initialState": "ground"
+      },
+      "timestamp": 1712846400500
+    },
+    {
+      "id": "emitter-light-1",
+      "type": "emitter",
+      "value": "Light Emitter",
+      "category": "emitter",
+      "metadata": {
+        "emitterType": "light",
+        "frequency": 6000,
+        "amplitude": 1.2,
+        "intensity": 0.96,
+        "position": [-15, 15, 0],
+        "active": true
+      },
+      "timestamp": 1712846400600
+    },
+    {
+      "id": "emitter-quantum-2",
+      "type": "emitter",
+      "value": "Quantum Emitter",
+      "category": "emitter",
+      "metadata": {
+        "emitterType": "quantum",
+        "frequency": 8000,
+        "amplitude": 1.0,
+        "intensity": 0.8,
+        "position": [15, -15, 0],
+        "active": true
+      },
+      "timestamp": 1712846400700
+    }
+  ],
+  "physics": {
+    "gravity": 0,
+    "damping": 0.95,
+    "coupling": true,
+    "timeStep": 0.016,
+    "tensorIntensity": 0.8
+  },
+  "metadata": {
+    "purpose": "demonstration",
+    "expectedBehavior": "Particles should spawn at high-coupling sites, orbital clouds should deform with wave presence",
+    "validationPoints": [
+      "H1 and H2 emit resonant waves (~6-8 kHz)",
+      "Wave reaches H3 and He atoms after ~500ms",
+      "C atom shows multi-electron response",
+      "Particles visible as glowing spheres at resonance sites"
+    ]
+  }
+}

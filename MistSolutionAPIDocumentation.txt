@@ -4,45 +4,7 @@
 
 Each function is annotated with its source module and primary purpose. Functions are grouped by module and functionality.
 
----
 
-## MistIllum.js (Visualization a### Metric Tensors
-```
-class MetricTensorND {
-    constructor(rank: number, data: number[][])
-    intervalSquared(p1: vec[], p2: vec[]): number  // Calculate squared interval
-    project(vec: vec[], targetRank: number): vec[] // Project to lower dimension
-    transform(vec: vec[]): vec[]                   // Apply metric transformation
-}
-
-### Asset Management
-```
-createShaderModule(device: VkDevice, assetId: string, db: Connection): Promise<VkShaderModule>
-loadAsset(assetId: string, db: Connection): Promise<Asset>
-ensureAssetsTables(db: Connection): Promise<void>
-generateAssetId(): string
-
-### Security and Moderation
-```
-cullObject(obj: Object): void               // Remove object from scene/model
-deleteUser(userId: string): void            // Remove user and cleanup
-rateLimitWarn(userId: string): void         // Rate limit warningPhysics Core)
-
-### Physics Engine
-```typescript
-class MistPhysicsEngineND {
-    // Core nD physics engine with quantum mechanics support
-    constructor(config: { mode: string, metric: MetricTensorND })
-    setMode(mode: string): void              // Set physics engine mode (3D/4D/nD)
-    distance(p1: vec[], p2: vec[]): number   // Calculate distance using appropriate metric
-    gravityAt(p: vec[], mass?: number): number // Calculate gravity at point
-    bellTheorem(a,b,c,d: number): boolean    // Bell's theorem validation
-    pilotWave(psi: number, potential: number): number // Pilot wave calculations
-    locality(p1: vec[], p2: vec[]): boolean  // Check spatial locality
-    lightWave(source: vec[], obj1: vec[], obj2: vec[]): {time1: number, time2: number}
-    eulerLagrange(L: Function, q: vec[], qDot: vec[]): vec[] // Euler-Lagrange equations
-    particleWaveDuality(particle: Object, wave: Object): Object // Particle-wave modeling
-}
 endSession             // End current session, persist state to database, cleanup resources
 onExit                // Handle unexpected termination, save state, trigger user presence update
 captureViewport        // Capture viewport state and persist to database with timestamps
@@ -53,15 +15,10 @@ SelectionModeState    // Tracks selection steps (time/category/item) with input 
 Milestone             // Class for tracking precision and mode enablement progression
 MilestoneManager      // Manages milestone-based feature unlocks and tensor metricsion and State Management (MistTrackerVulkan.js) ---
 startSession           // Initialize a new user session, set up session variables and state (user, time, etc.)
-endSession             // End the current session, persist state to database
-onExit                 // Handle unexpected session termination (e.g., window close), persist state
 priorState             // Load previous state from persistent storage (e.g., mySQL)
 nextState              // Load next state from persistent storage (e.g., mySQL)
-captureViewport        // Capture current viewport state and persist to database
 persistUpdate          // Save current rendered items (not full user path) to persistent storage
 userPath               // Save user navigation path for session tracking
-MapModeState           // Class for 3D navigation state
-SelectionModeState     // Tracks selection step and indices for time/category/item
 
 // --- Data Model and CRUD Operations (MistTrackerVulkan.js) ---
 createPrimaryLine      // Initialize the primary (time) line in the database
@@ -91,12 +48,6 @@ getMistDataTables      // Get required table references with integrity validatio
 getMistTables          // Get core table references with transaction support
 loadWordDefinition     // Load and validate word definitions with metadata
 flushUserData          // Remove user data with proper cascading/cleanup
-banInteraction         // Ban interaction with swarm notification
-checkAndSyncEvent      // Validate events with peer consensus
-grimReaper            // Monitor tensor inputs for anomalies
-createProvenance      // Attach metadata to all user actions
-eventHorizonUser       // Ban user and flush all Mist data from host
-isInteractionBanned    // Check if an interaction is banned for a user
 hashInteraction        // Hash an event for moderation
 createProvenance       // Attach provenance to user actions/events
 
@@ -118,8 +69,6 @@ showInputBox           // Show generic input box for user input
 handleSelection        // Handle user selection, update session state, and persist as needed
 calculateLineOrientation // Compute orientation of lines for nD arrangement
 getLineTransformationMatrix // For Vulkan/OpenGL rendering
-projectItemsTo3D       // Map items and locations to 3D for map mode
-getMapModeProjection   // Get 3D projection for map mode
 
 // --- Audio and Input Management (MistIllum.js, MistTrackerVulkan.js) ---
 audioQueue             // Queue sounds with wave/geometric modulation
@@ -160,14 +109,6 @@ updateDistanceFromObserver // Update object's distance from observer
 computeAngularMomentumMap // Compute angular momentum map for object
 isEdgeVoxel            // Determine if a voxel is on the edge of an object
 interactObjects        // Cause interaction between objects using tensors
-spawnObjectNearPlayer  // Spawn a new object near the player
-
-// --- Audio and Soundscape (MistIllum.js) ---
-audioQueue             // Queue a sound file for playback, modulated by wave/geometric logic
-volumeGlobal           // Set global volume, optionally modulated by wave envelope
-volumeAmbient          // Set ambient sound volume, modulated by spatial/temporal wave logic
-volumeInteract         // Set volume for object interaction sounds, modulated by proximity/interference
-volumeDialogue         // Set volume for character dialogue, modulated by distance and wave envelope
 
 // --- Interface Components (MistInterface.js) ---
 UIComponent           // Base Vulkan UI component with hardware-accelerated rendering
@@ -340,7 +281,6 @@ checkAndSyncEvent      // Check event probability, sync to swarm, require confir
 AnomalousResults       // Table of anomalous results for error checking and moderation
 isInteractionBanned    // Check if an interaction is banned for a user
 eventHorizonUser       // Ban user and flush all Mist data from host
-flushUserData          // Remove all user data from persistent tables
 banInteraction         // Ban a specific interaction type or event
 
 // --- Milestone Modeling (MistTrackerVulkan.js, MistIllum.js) ---
@@ -364,30 +304,6 @@ isEdgeVoxel            // Determine if a voxel is on the edge of an object
 interactObjects        // Cause interaction between objects using tensors
 spawnObjectNearPlayer  // Spawn a new object near the player
 
-// --- Multi-User Moderation and Provenance (MistMulti.js) ---
-createProvenance       // Attach provenance to user actions/events
-
-// --- Multi-User and P2P Features (MistMulti.js) ---
-addUserSession         // Add user to active sessions with encryption
-removeUserSession      // Remove user with proper cleanup
-updateUserPresence     // Update user status with timestamp
-announceHostSession    // Announce host with DHT integration
-discoverHostSession    // Discover hosts via DHT/P2P
-generateSessionToken   // Generate secure session tokens
-signMessage           // Sign messages with ECC
-verifyMessage         // Verify signed messages
-onEvent               // Register event handlers
-emitEvent             // Emit events to peers
-broadcastToPeers      // Broadcast with FEC support
-mergeState            // Merge states with conflict resolution
-syncStateWithPeer     // Sync state with encryption
-encryptMessage        // Encrypt with ECC
-decryptMessage        // Decrypt messages
-canSendMessage        // Check rate limits
-grimReaper            // Monitor tensor anomalies
-encodeMessageFEC      // Reed-Solomon encoding
-decodeMessageFEC      // FEC message recovery
-handleARPointerInput  // Handle AR input mapping
 
 // --- Migration Status ---
 // ✓ MySQL integration complete (replacing Google Sheets/Drive)

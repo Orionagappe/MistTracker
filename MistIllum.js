@@ -1,8 +1,106 @@
-const nvk = require('nvk');
-const { renderViewport, selectTimeIndex, selectCategory, selectItem } = require('./MistCore');
-const { SelectionModeState, MetricTensorND } = require('./MistCommon');
-const { startSession, loadMistUser, milestoneManager } = require('./MistTrackerVulkan');
-const { mistSolution } = require('./mistSolution');
+import nvk from 'nvk';
+import x11 from 'x11';
+import { exec } from 'node:child_process';
+import clipboardy from 'clipboardy';
+import { renderViewport, selectTimeIndex, selectCategory, selectItem } from './MistCore.js';
+import { SelectionModeState, MetricTensorND, MetricTensor3D } from './MistCommon.js';
+import { startSession, loadMistUser, MilestoneManager } from './MistTrackerVulkan.js';
+import { mistSolution } from './MistSolution.js';
+import * as MistMulti from './MistMulti.cjs';
+
+/**
+ * Calculate the probability of an event occurring based on quantum mechanical principles
+ * and wave function interference patterns.
+ * 
+ * This implementation considers:
+ * 1. Quantum state of involved objects
+ * 2. Wave function interference
+ * 3. Energy distribution across dimensions
+ * 4. Temporal causality
+ * 5. Object locality and entanglement
+ * 
+ * @param {Object} event - The event to evaluate
+ * @param {Object} event.objects - Array of objects involved in the event
+ * @param {Array} event.timeVector - [quantum time, interaction time, cosmological time]
+ * @param {Object} event.energy - Energy distribution for the event
+ * @param {Array} event.position - Position vector in nD space
+ * @returns {number} Probability between 0 and 1
+ */
+export function probabilityOfEvent(event) {
+    if (!event || !event.objects || !event.timeVector) {
+        return 0; // Invalid event
+    }
+
+    // 1. Calculate wave function contributions
+    const waveFunctions = event.objects.map(obj => {
+        return obj.waveFunction || waveFunction(1, 1, 0, 1, event.timeVector);
+    });
+
+    // 2. Calculate interference patterns between objects
+    let interference = 1;
+    for (let i = 0; i < event.objects.length; i++) {
+        for (let j = i + 1; j < event.objects.length; j++) {
+            interference *= interferencePattern(
+                event.objects[i].position || [0, 0, 0],
+                event.objects[i].position || [0, 0, 0],
+                event.objects[j].position || [0, 0, 0],
+                event.energy?.wavelength || 1
+            );
+        }
+    }
+
+    // 3. Energy distribution factor
+    const energyDistribution = event.energy ? distributeEnergy(
+        event.energy.total || 1,
+        ['quantum', 'interaction', 'cosmological', 'spatial']
+    ) : { quantum: 0.25, interaction: 0.25, cosmological: 0.25, spatial: 0.25 };
+
+    // 4. Locality check
+    const localityFactor = event.objects.reduce((factor, obj1, i) => {
+        return factor * event.objects.slice(i + 1).reduce((f, obj2) => {
+            return f * locality(
+                obj1.position || [0, 0, 0],
+                obj2.position || [0, 0, 0]
+            );
+        }, 1);
+    }, 1);
+
+    // 5. Bell's theorem test for quantum correlations
+    const bellFactor = bellTheorem(
+        event.objects[0]?.quantumState?.[0] || 0,
+        event.objects[0]?.quantumState?.[1] || 0,
+        event.objects[1]?.quantumState?.[0] || 0,
+        event.objects[1]?.quantumState?.[1] || 0
+    );
+
+    // 6. Pilot wave contribution
+    const pilotWaveFactor = event.objects.reduce((factor, obj) => {
+        const pwave = pilotWave(
+            obj.waveFunction || waveFunction(1, 1, 0, 1, event.timeVector),
+            { energy: energyDistribution }
+        );
+        return factor * (typeof pwave === 'number' ? pwave : 1);
+    }, 1);
+
+    // 7. Temporal causality check
+    const [quantumTime, interactionTime, cosmologicalTime] = event.timeVector;
+    const temporalFactor = Math.exp(
+        -(Math.abs(quantumTime) + Math.abs(interactionTime) + Math.abs(cosmologicalTime))
+    );
+
+    // Combine all factors
+    const rawProbability = (
+        Math.abs(interference) *
+        energyDistribution.quantum *
+        localityFactor *
+        Math.abs(bellFactor) *
+        pilotWaveFactor *
+        temporalFactor
+    );
+
+    // Ensure return value is between 0 and 1
+    return Math.max(0, Math.min(1, rawProbability));
+}
 
 class MistIllum {
     constructor(config = {}) {
@@ -76,8 +174,7 @@ class MistIllum {
 
     setupWindow() {
         // Create X11 window using node-x11
-        const x11 = require('node-x11');
-        this.display = x11.createClient((err, display) => {
+            this.display = x11.createClient((err, display) => {
             this.X = display.client;
             this.root = display.screen[0].root;
             this.windowId = this.X.AllocID();
@@ -930,7 +1027,7 @@ class warnTypes {
 
 // --- Overlay and Menu ---
 // --- Integration with Core and Multi-User Modules ---
-const { Button, Slider, Checkbox, InputBox, ColorPicker, Dropdown } = require('./MistInterface');
+import { Button, Slider, Checkbox, InputBox, ColorPicker, Dropdown } from './MistInterface.js';
 
 /**
  * Display a menu overlay for the Mist solution using MistInterface components.
@@ -1176,7 +1273,7 @@ function launchMistCore(config = {}) {
  * @param {Object} uiRenderer - UI rendering interface.
  */
 function launchMistMulti(config = {}, uiRenderer = global.uiRenderer) {
-  const MistMulti = require('./MistMulti.js');
+  const MistMulti = require('./MistMulti.cjs');
   const db = config.db || null;
   const menuControl = new MistMenuControl(db, uiRenderer);
   menuControl.start(config.userName || 'guest');
@@ -1397,30 +1494,7 @@ class MistPhysicsEngine {
   }
 }
 
-// --- Metric Tensor for 3D Mode ---
-class MetricTensor3D {
-  constructor() {
-    // Only spatial dimensions: X, Y, Z
-    this.rank = 3;
-    this.data = [
-      [1, 0, 0],
-      [0, 1, 0],
-      [0, 0, 1]
-    ];
-  }
-
-  intervalSquared(p1, p2) {
-    // p1, p2: [x, y, z]
-    let delta = p1.map((v, i) => v - p2[i]);
-    let sum = 0;
-    for (let i = 0; i < 3; i++) {
-      for (let j = 0; j < 3; j++) {
-        sum += this.data[i][j] * delta[i] * delta[j];
-      }
-    }
-    return sum;
-  }
-}
+// --- MetricTensor3D is now imported from MistCommon.js (Phase 12 consolidation) ---
 
 function eulerLagrange(L, q, qDot, t = 0, dt = 1e-5) {
   return (new MistPhysicsEngineND()).eulerLagrange(L, q, qDot, t, dt);
@@ -1464,7 +1538,6 @@ function relativeAcceleration(v1, v2, t) {
  * @param {Function} onFail - Callback if not allowed.
  */
 function trySwitchModes(modeType, modeName, onSuccess, onFail) {
-  const { milestoneManager } = require('./MistTrackerVulkan.js');
   if (milestoneManager && milestoneManager.isModeEnabled(modeType, modeName)) {
     if (typeof onSuccess === 'function') onSuccess();
   } else {
@@ -1839,7 +1912,6 @@ function handleEnvironmentInput(input, envState) {
   }
 }
 
-const { milestoneManager } = require('./MistTrackerVulkan');
 // --- Milestone-Aware Mode Selection ---
 
 /**
@@ -1944,7 +2016,7 @@ function getMenuOptionsWithMilestones() {
 
 // --- Export API ---
 
-module.exports = {
+export {
   tileMode,
   tileSpan,
   LightSource,

@@ -1,6 +1,6 @@
-const fs = require('fs').promises;
-const path = require('path');
-const { compileShader, storeCompiledShader } = require('./MistImport');
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import { compileShader, storeCompiledShader } from './MistImport.js';
 
 const SHADER_DIR = './shaders';
 const DEFAULT_SHADERS = {
@@ -201,7 +201,7 @@ async function createPipelineConfigs(device, db) {
   return configs;
 }
 
-module.exports = {
+export {
   precompileShaders,
   createPipelineConfigs,
   SHADER_DIR,

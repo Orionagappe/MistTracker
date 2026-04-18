@@ -1,4 +1,4 @@
-const {
+import {
   MistPhysicsEngineND,
   MetricTensorND,
   createVoxelObject,
@@ -7,7 +7,7 @@ const {
   extraDimensionMode,
   projectToLowerDimension,
   dimensionalStack
-} = require('./MistCommon.js');
+} from './MistCommon.js';
 
 /**
  * mistSolution - Generate an nD universe environment from logical axioms, physics, and data headers.
@@ -50,7 +50,6 @@ async function mistSolution(db, options = {}) {
   universe.boundary = "outside";
 
   // 6. Physics Engine (from MistIllum.js)
-  const { MistPhysicsEngineND } = require('./MistIllum.js');
   
   // Initialize physics engine with nD configuration
   const physicsEngine = new MistPhysicsEngineND({
@@ -108,4 +107,4 @@ async function mistSolution(db, options = {}) {
   };
 }
 
-module.exports = { mistSolution };
+export { mistSolution };

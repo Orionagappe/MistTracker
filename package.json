@@ -1,16 +1,48 @@
 {
+  "name": "mist-platform",
+  "version": "1.8.0",
+  "description": "MistTracker - Multi-User 4D Definite Item Tracker",
+  "type": "module",
+  "main": "MistCausality.js",
+  "scripts": {
+    "start": "node MistCausality.js",
+    "cli": "node cli.js",
+    "test:db": "node test-db.js",
+    "test:sprint2": "node test-sprint2.js",
+    "test:sprint3": "node test-sprint3.js",
+    "test:sprint5": "node test-sprint5.js",
+    "test:sprint5:ws": "node test-sprint5-ws.js",
+    "test:sprint5:phase2": "node test-sprint5-phase2.js",
+    "test:sprint5:phase3": "node test-sprint5-phase3.js",
+    "test:physics": "node run-physics-tests.js",
+    "test:physics:server": "node test-server.js",
+    "test:phase7": "node test-atom-builder.js",
+    "test:phase14": "node test-phase-14.js",
+    "test:all": "npm run test:db && npm run test:sprint2 && npm run test:sprint3 && npm run test:sprint5 && npm run test:physics && npm run test:phase7 && npm run test:phase14",
+    "server": "node server.js",
+    "init": "node MistCausality.js",
+    "create-user": "node create-user.js"
+  },
   "dependencies": {
-    "canvas": "^3.1.2",
+    "axios": "^1.15.0",
+    "canvas": "^3.2.0",
+    "clipboardy": "^4.0.0",
+    "cors": "^2.8.6",
     "csv-parse": "^5.6.0",
+    "dotenv": "^17.4.1",
     "elliptic": "^6.6.1",
-    "mysql": "^2.18.1",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "mysql2": "^3.14.1",
-    "mysql2-async": "^2.0.1",
-    "mysql2-promise": "^0.1.4",
-    "nvk": "^0.8.0",
-    "pactl": "^1.0.0",
+    "react": "^19.2.5",
+    "reed-solomon": "^4.0.0",
     "sharp": "^0.34.3",
+    "three": "^0.183.2",
     "uuid": "^11.1.0",
-    "wmctrl": "^0.0.3"
+    "ws": "^8.20.0"
+  },
+  "optionalDependencies": {
+    "nvk": "^0.8.0",
+    "x11": "^2.3.0"
   }
 }
