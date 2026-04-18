@@ -1,190 +1,62 @@
-// --- Mist Causality: Multi-User 4D Definite Item Tracker & 3D Physics Simulator Entry Point ---
+// --- Mist Causality: Multi-User 4D Definite Item Tracker Entry Point (MVP - Database + CLI) ---
 
 import mysql from 'mysql2/promise';
-import nvk from 'nvk';
 import * as MistTracker from './MistTrackerVulkan.js';
-import * as MistMulti from './MistMulti.cjs';
-import * as MistIllum from './MistIllum.js';
-import { storyWriter } from './MistTrackerVulkan.js';
-import { ensureMistDatabase, updateMistData, loadMistUser, getMistDataTables } from './MistTrackerVulkan.js';
-import { MistMenuControl, launchMistCore } from './MistIllum.js';
-import { MenuManager, MenuPage, Button, Slider, Dropdown, ColorPicker } from './MistInterface.js';
+import { ensureMistDatabase, addTimeIndex, addCategory, addItem, loadPrimaryLine, loadCategoriesForTime, loadItemsForCategory } from './MistTrackerVulkan.js';
 
-
-class MistHostManager {
-    constructor(renderContext, db) {
-        this.renderContext = renderContext;
-        this.db = db;
-        this.menuManager = new MenuManager('hostMenu');
-        this.activeSimulations = new Map();
-        this.setupMenuSystem();
-    }
-
-    async setupMenuSystem() {
-        // Main host menu
-        const mainPage = new MenuPage('main')
-            .addComponent(new Button('newVisualization')
-                .setLabel('New nD Visualization')
-                .onClick(() => this.menuManager.showPage('vizSetup')))
-            .addComponent(new Button('newSimulation')
-                .setLabel('New Physics Simulation')
-                .onClick(() => this.menuManager.showPage('simSetup')))
-            .addComponent(new Button('settings')
-                .setLabel('Host Settings')
-                .onClick(() => this.menuManager.showPage('settings')));
-
-        // Visualization setup page
-        const vizSetupPage = new MenuPage('vizSetup')
-            .addComponent(new Dropdown('dimensions')
-                .setLabel('Number of Dimensions')
-                .setOptions(['3D', '4D', '5D', '6D', '7D'])
-                .setValue('3D'))
-            .addComponent(new Dropdown('renderMode')
-                .setLabel('Render Mode')
-                .setOptions(['Standard', 'Wave-Based', 'Quantum'])
-                .setValue('Standard'))
-            .addComponent(new Button('startViz')
-                .setLabel('Start Visualization')
-                .onClick(() => this.launchVisualization()));
-
-        // Simulation setup page
-        const simSetupPage = new MenuPage('simSetup')
-            .addComponent(new Dropdown('physicsMode')
-                .setLabel('Physics Mode')
-                .setOptions(['Classical', 'Quantum', 'Hybrid'])
-                .setValue('Classical'))
-            .addComponent(new Slider('timeComponents')
-                .setLabel('Time Dimensions')
-                .setRange(1, 3)
-                .setValue(1))
-            .addComponent(new ColorPicker('energyColor')
-                .setLabel('Energy Visualization Color'))
-            .addComponent(new Button('startSim')
-                .setLabel('Start Simulation')
-                .onClick(() => this.launchSimulation()));
-
-        // Settings page
-        const settingsPage = new MenuPage('settings')
-            .addComponent(new Slider('precision')
-                .setLabel('Calculation Precision')
-                .setRange(1, 18)
-                .setValue(3))
-            .addComponent(new Checkbox('multiUser')
-                .setLabel('Enable Multi-User')
-                .setValue(true))
-            .addComponent(new Button('back')
-                .setLabel('Back')
-                .onClick(() => this.menuManager.showPage('main')));
-
-        this.menuManager
-            .addPage(mainPage)
-            .addPage(vizSetupPage)
-            .addPage(simSetupPage)
-            .addPage(settingsPage);
-    }
-
-    async launchVisualization() {
-        const config = {
-            dimensions: this.menuManager.getComponent('dimensions').getValue(),
-            renderMode: this.menuManager.getComponent('renderMode').getValue(),
-            precision: this.menuManager.getComponent('precision').getValue()
-        };
-
-        // Create new MistClient instance for visualization
-        const client = new MistClient({
-            display: this.renderContext.display,
-            windowId: this.renderContext.windowId,
-            config: config
+/**
+ * Initialize database and verify connection
+ * @returns {Promise<Object>} Database connection
+ */
+async function initializeDatabase() {
+    try {
+        const db = await mysql.createConnection({
+            host: process.env.DB_HOST || 'localhost',
+            user: process.env.DB_USER || 'root',
+            password: 's3cur3_9a`55w04d',
+            port: parseInt(process.env.DB_PORT) || 3306
         });
 
-        // Initialize visualization environment
-        await client.initializeVisualization(config);
-        this.activeSimulations.set(client.id, client);
-    }
-
-    async launchSimulation() {
-        const config = {
-            physicsMode: this.menuManager.getComponent('physicsMode').getValue(),
-            timeComponents: this.menuManager.getComponent('timeComponents').getValue(),
-            energyColor: this.menuManager.getComponent('energyColor').getValue(),
-            precision: this.menuManager.getComponent('precision').getValue()
-        };
-
-        // Create new MistClient instance for simulation
-        const client = new MistClient({
-            display: this.renderContext.display,
-            windowId: this.renderContext.windowId,
-            config: config
-        });
-
-        // Initialize simulation environment
-        await client.initializeSimulation(config);
-        this.activeSimulations.set(client.id, client);
+        console.log('✓ Database connection established');
+        
+        // Ensure database and schema exist
+        await ensureMistDatabase(db);
+        console.log('✓ Mist database schema initialized');
+        
+        return db;
+    } catch (err) {
+        console.error('✗ Failed to initialize database:', err.message);
+        throw err;
     }
 }
 
+/**
+ * Main MVP entry point - Database initialization and basic operations
+ */
 async function main() {
-    // Initialize Vulkan context
-    const vulkan = await nvk.initialize({
-        appName: "Mist Host",
-        engineName: "MistCausality",
-        version: "1.2.0", // Vulkan version
-        extensions: [
-            "VK_KHR_surface",
-            "VK_KHR_xlib_surface"
-        ]
-    });
+    console.log('=== MistTracker MVP - Database Initialization ===\n');
 
-    const instance = vulkan.createInstance();
-    const physicalDevice = instance.enumeratePhysicalDevices()[0];
+    try {
+        // Initialize database connection
+        const db = await initializeDatabase();
 
-    const renderContext = {
-        vulkan,
-        instance,
-        physicalDevice,
-        display: null,
-        windowId: null
-    };
+        console.log('\n✓ MistTracker is ready for testing');
+        console.log('\nAvailable operations:');
+        console.log('  - use cli.js for command-line interface');
+        console.log('  - use test-db.js for database validation\n');
 
-    // Initialize database connection
-    const db = await mysql.createConnection({
-        host: 'localhost',
-        user: 'root',
-        password: 'password',
-        port: 3306
-    });
-
-    // Initialize milestone manager with database connection
-    const milestoneConfig = {
-        ...exampleMilestoneConfig,
-        db: db  // Pass the database connection
-    };
-    const milestones = milestoneManager(milestoneConfig);
-
-    // Initialize X11 window
-    const x11Client = await new Promise((resolve, reject) => {
-        x11.createClient((err, display) => {
-            if (err) reject(err);
-            resolve(display);
-        });
-    });
-
-    renderContext.display = x11Client;
-    renderContext.windowId = x11Client.client.AllocID();
-
-    // Create and initialize host manager
-    const hostManager = new MistHostManager(renderContext, db);
-    await hostManager.menuManager.showPage('main');
-
-    // Setup cleanup
-    process.on('SIGINT', async () => {
-        for (const [id, client] of hostManager.activeSimulations) {
-            await client.cleanup();
-        }
-        x11Client.client.DestroyWindow(renderContext.windowId);
-        x11Client.client.close();
-        process.exit(0);
-    });
+        // Keep connection open or close if not needed
+        // await db.end();
+        return db;
+    } catch (error) {
+        console.error('\n✗ Initialization failed:', error);
+        process.exit(1);
+    }
 }
 
-main().catch(console.error);
+// Run if executed directly
+if (import.meta.url === `file://${process.argv[1]}`) {
+    main().catch(console.error);
+}
+
+export { initializeDatabase };

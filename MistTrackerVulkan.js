@@ -180,7 +180,7 @@ async function addItemLine(categoryLineId, itemValue, db) {
  * @returns {Promise<Array>} - Array of primary line values.
  */
 async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
-  let rows = await db.query(
+  let [rows] = await db.query(
     `SELECT value FROM ${MIST_SCHEMA}.${TABLES.primaryLine} ORDER BY id`
   );
   let primaryLine = rows.map(row => row.value);
@@ -219,7 +219,7 @@ async function loadPrimaryLine(db, storyText = null, sourceFile = null) {
  * @returns {Promise<Array>} - Array of category names.
  */
 async function loadCategoriesForTime(primaryLineId, db, storyText = null, sourceFile = null) {
-  let rows = await db.query(
+  let [rows] = await db.query(
     `SELECT category FROM ${MIST_SCHEMA}.${TABLES.categoryLine} WHERE primaryLineId = ? ORDER BY id`,
     [primaryLineId]
   );
@@ -314,8 +314,9 @@ function ensureMistDatabase(db) {
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.dataRelationships} (category VARCHAR(255), item VARCHAR(255), sheetId VARCHAR(255))`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.wordDefinitions} (word VARCHAR(255), partOfSpeech VARCHAR(255), definition TEXT)`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.categories} (timeIndex VARCHAR(255), category VARCHAR(255))`);
-  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.users} (userName VARCHAR(255), accountId VARCHAR(255), dateCreated DATETIME, lastSession DATETIME, sessions TEXT)`);
-  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255), state TEXT, timestamp DATETIME)`);
+  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.users} (id INT AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(255), accountId VARCHAR(255) UNIQUE, password_hash VARCHAR(255), dateCreated DATETIME, lastSession DATETIME, sessions TEXT)`);
+  db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255) PRIMARY KEY, state TEXT, timestamp DATETIME)`);
+  db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.user_milestones (user_id VARCHAR(255) PRIMARY KEY, milestone_data TEXT, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)`);
 }
 
 // --- Data Integrity and Utilities ---
@@ -379,6 +380,198 @@ async function loadMistUser(userEmail, db) {
     return { userName, accountId: userEmail };
   }
   return rows[0];
+}
+
+// --- Sprint 2: Enhanced User & Session Management ---
+
+/**
+ * Create a new user with email and simple password hash.
+ * @param {string} userName - Display name
+ * @param {string} accountId - Email or unique identifier
+ * @param {string} password - Plain text password (will be hashed)
+ * @param {object} db - Database connection
+ * @returns {Promise<Object>} - Created user record
+ */
+async function createUser(userName, accountId, password, db) {
+  try {
+    // Simple hash: base64 encode (NOT production-ready)
+    const passwordHash = Buffer.from(password).toString('base64');
+    
+    const [result] = await db.query(
+      `INSERT INTO ${MIST_SCHEMA}.${TABLES.users} (userName, accountId, dateCreated, password_hash) VALUES (?, ?, NOW(), ?)`,
+      [userName, accountId, passwordHash]
+    );
+    
+    return {
+      id: result.insertId,
+      userName,
+      accountId,
+      dateCreated: new Date().toISOString()
+    };
+  } catch (err) {
+    if (err.code === 'ER_DUP_ENTRY') {
+      throw new Error(`User ${accountId} already exists`);
+    }
+    throw err;
+  }
+}
+
+/**
+ * Authenticate a user by email and password.
+ * @param {string} accountId - Email or unique identifier
+ * @param {string} password - Plain text password
+ * @param {object} db - Database connection
+ * @returns {Promise<Object|null>} - User record if authenticated, null if invalid
+ */
+async function authenticateUser(accountId, password, db) {
+  const [rows] = await db.query(
+    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
+    [accountId]
+  );
+  
+  if (rows.length === 0) {
+    return null;
+  }
+  
+  const user = rows[0];
+  const passwordHash = Buffer.from(password).toString('base64');
+  
+  if (user.password_hash === passwordHash) {
+    return {
+      id: user.id,
+      userName: user.userName,
+      accountId: user.accountId,
+      dateCreated: user.dateCreated
+    };
+  }
+  
+  return null;
+}
+
+/**
+ * Save a session to the database for persistence.
+ * @param {Object} session - Session object
+ * @param {object} db - Database connection
+ * @returns {Promise<string>} - Session ID
+ */
+async function persistSession(session, db) {
+  const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  
+  await db.query(
+    `INSERT INTO ${MIST_SCHEMA}.${TABLES.currentState} (sessionId, state, timestamp) VALUES (?, ?, NOW())`,
+    [sessionId, JSON.stringify(session)]
+  );
+  
+  // Update user's last session
+  if (session.user && session.user.accountId) {
+    await db.query(
+      `UPDATE ${MIST_SCHEMA}.${TABLES.users} SET lastSession = NOW() WHERE accountId = ?`,
+      [session.user.accountId]
+    );
+  }
+  
+  return sessionId;
+}
+
+/**
+ * Load a session from the database by session ID.
+ * @param {string} sessionId - Session identifier
+ * @param {object} db - Database connection
+ * @returns {Promise<Object|null>} - Session object or null
+ */
+async function loadSession(sessionId, db) {
+  const [rows] = await db.query(
+    `SELECT state FROM ${MIST_SCHEMA}.${TABLES.currentState} WHERE sessionId = ?`,
+    [sessionId]
+  );
+  
+  if (rows.length === 0) {
+    return null;
+  }
+  
+  try {
+    return JSON.parse(rows[0].state);
+  } catch (err) {
+    console.error('Failed to parse session state:', err);
+    return null;
+  }
+}
+
+/**
+ * Get all sessions for a specific user.
+ * @param {string} accountId - User's email/identifier
+ * @param {object} db - Database connection
+ * @returns {Promise<Array>} - Array of recent sessions
+ */
+async function getUserSessions(accountId, db) {
+  const [rows] = await db.query(
+    `SELECT sessionId, state, timestamp FROM ${MIST_SCHEMA}.${TABLES.currentState} 
+     WHERE JSON_EXTRACT(state, '$.user.accountId') = ? 
+     ORDER BY timestamp DESC LIMIT 10`,
+    [accountId]
+  );
+  
+  return rows.map(row => {
+    try {
+      return {
+        sessionId: row.sessionId,
+        state: JSON.parse(row.state),
+        timestamp: row.timestamp
+      };
+    } catch (err) {
+      return null;
+    }
+  }).filter(s => s !== null);
+}
+
+/**
+ * Get all users registered in the system.
+ * @param {object} db - Database connection
+ * @returns {Promise<Array>} - Array of user records
+ */
+async function getAllUsers(db) {
+  const [rows] = await db.query(
+    `SELECT id, userName, accountId, dateCreated, lastSession FROM ${MIST_SCHEMA}.${TABLES.users} ORDER BY dateCreated DESC`
+  );
+  
+  return rows;
+}
+
+/**
+ * Get user statistics - session count, last activity, etc.
+ * @param {string} accountId - User's email/identifier
+ * @param {object} db - Database connection
+ * @returns {Promise<Object>} - User statistics
+ */
+async function getUserStats(accountId, db) {
+  const [userRows] = await db.query(
+    `SELECT * FROM ${MIST_SCHEMA}.${TABLES.users} WHERE accountId = ?`,
+    [accountId]
+  );
+  
+  if (userRows.length === 0) {
+    return null;
+  }
+  
+  const user = userRows[0];
+  
+  const [sessionRows] = await db.query(
+    `SELECT COUNT(*) as count FROM ${MIST_SCHEMA}.${TABLES.currentState} WHERE JSON_EXTRACT(state, '$.user.accountId') = ?`,
+    [accountId]
+  );
+  
+  const [itemRows] = await db.query(
+    `SELECT COUNT(*) as count FROM ${MIST_SCHEMA}.${TABLES.itemLine}`
+  );
+  
+  return {
+    user: user.userName,
+    accountId: user.accountId,
+    dateCreated: user.dateCreated,
+    lastSession: user.lastSession,
+    sessionCount: sessionRows[0].count,
+    totalItems: itemRows[0].count
+  };
 }
 
 /**
@@ -1524,6 +1717,16 @@ export {
   ensureMistDatabase,
   updateMistData,
   loadMistUser,
+
+  // --- Sprint 2: User & Session Management ---
+  createUser,
+  authenticateUser,
+  persistSession,
+  loadSession,
+  getUserSessions,
+  getAllUsers,
+  getUserStats,
+
   getMistDataSheets,
   getMistSheets,
   ensureCharacterLocationsTable,

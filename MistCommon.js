@@ -283,6 +283,31 @@ class MetricTensorND {
   }
 }
 
+// --- Metric Tensor for 3D Mode ---
+class MetricTensor3D {
+  constructor() {
+    // Only spatial dimensions: X, Y, Z
+    this.rank = 3;
+    this.data = [
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1]
+    ];
+  }
+
+  intervalSquared(p1, p2) {
+    // p1, p2: [x, y, z]
+    let delta = p1.map((v, i) => v - p2[i]);
+    let sum = 0;
+    for (let i = 0; i < 3; i++) {
+      for (let j = 0; j < 3; j++) {
+        sum += this.data[i][j] * delta[i] * delta[j];
+      }
+    }
+    return sum;
+  }
+}
+
 // --- Selection and User Management ---
 class SelectionModeState {
   constructor() {
@@ -378,6 +403,7 @@ export {
   // Classes
   MistPhysicsEngineND,
   MetricTensorND,
+  MetricTensor3D,
   SelectionModeState,
   
   // Functions

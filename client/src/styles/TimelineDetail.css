@@ -1,0 +1,306 @@
+.timeline-detail {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: var(--shadow);
+}
+
+.timeline-detail-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  justify-content: space-between;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+}
+
+.btn-back {
+  background: none;
+  color: var(--primary-color);
+  font-weight: 600;
+  padding: 0;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.btn-back:hover {
+  color: var(--primary-dark);
+}
+
+.btn-physics {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+}
+
+.btn-physics:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.timeline-detail-header h2 {
+  margin: 0;
+}
+
+.anomalies-alert {
+  background-color: #fef3c7;
+  color: #92400e;
+  padding: 1rem;
+  margin: 1.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid #fcd34d;
+}
+
+.create-category-section {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.create-category-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1rem;
+}
+
+.create-category-section .form-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0;
+}
+
+.create-category-section input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+}
+
+.categories-section {
+  padding: 1.5rem;
+}
+
+.categories-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.125rem;
+}
+
+.categories-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.category-section {
+  border: 1px solid var(--border-color);
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.category-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.category-header:hover {
+  background-color: #f1f5f9;
+}
+
+.category-toggle {
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.category-name {
+  flex: 1;
+}
+
+.item-count {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+.category-content {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  border-top: 1px solid var(--border-color);
+}
+
+.category-content .form-group {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.category-content input {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+}
+
+.category-content .btn-secondary {
+  padding: 0.5rem;
+  width: 40px;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.empty-items {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin: 0;
+  padding: 1rem;
+  text-align: center;
+  background-color: white;
+  border-radius: 0.375rem;
+}
+
+.item {
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border-color);
+}
+
+.item-content {
+  color: var(--text-primary);
+  word-break: break-word;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+/* Phase 5.3: Atom registration button */
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-shrink: 0;
+}
+
+.btn-atom-physics {
+  background: none;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-atom-physics:hover {
+  background-color: #f3f4f6;
+  border-color: #667eea;
+  transform: scale(1.1);
+}
+
+.btn-atom-physics:active {
+  background-color: #e5e7eb;
+}
+
+.btn-atom-physics:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Phase 6.3: Registration status indicators */
+.reg-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.875rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.reg-status.pending {
+  background-color: #dbeafe;
+  color: #0284c7;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.reg-status.success {
+  background-color: #dbeafe;
+  color: #16a34a;
+}
+
+.reg-status.failed {
+  background-color: #fee2e2;
+  color: #dc2626;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Phase 14: Session Picker Styles */
+.timeline-detail.session-picker {
+  background: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.session-picker-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid #ddd;
+  background: white;
+}
+
+.session-picker-header h2 {
+  margin: 0;
+  flex: 1;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.session-picker .session-manager {
+  margin: 20px auto;
+  max-width: 800px;
+  width: calc(100% - 40px);
+}

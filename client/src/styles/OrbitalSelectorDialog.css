@@ -1,0 +1,334 @@
+/**
+ * OrbitalSelectorDialog.css
+ * Phase 9.2: Orbital selector modal styling
+ */
+
+.orbital-selector-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 200ms ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.orbital-selector-dialog {
+  background-color: #0f1419;
+  border: 2px solid #44dd88;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 700px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 40px rgba(68, 221, 136, 0.3),
+              0 0 60px rgba(0, 0, 0, 0.8);
+  animation: slideUp 300ms ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.orbital-selector-header {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.orbital-selector-header h2 {
+  color: #44dd88;
+  font-size: 24px;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.orbital-selector-hint {
+  color: #888;
+  font-size: 12px;
+  margin: 0;
+  font-style: italic;
+}
+
+.orbital-selector-position {
+  background-color: rgba(68, 221, 136, 0.05);
+  border-left: 3px solid #44dd88;
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.position-coords {
+  font-family: 'Courier New', monospace;
+  color: #44dd88;
+  font-weight: 600;
+  margin-left: 8px;
+}
+
+.orbital-selector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.orbital-option {
+  background-color: rgba(68, 221, 136, 0.03);
+  border: 2px solid #333;
+  border-radius: 8px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 200ms ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+}
+
+.orbital-option:hover {
+  background-color: rgba(68, 221, 136, 0.08);
+  border-color: #555;
+  transform: translateY(-2px);
+}
+
+.orbital-option.selected {
+  background-color: rgba(68, 221, 136, 0.15);
+  border-color: #44dd88;
+  box-shadow: 0 0 15px rgba(68, 221, 136, 0.4);
+}
+
+.orbital-visual {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  font-weight: bold;
+  transition: all 200ms ease;
+  color: white;
+}
+
+.orbital-option.selected .orbital-visual {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px currentColor;
+}
+
+.orbital-label {
+  text-align: center;
+}
+
+.orbital-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.orbital-quantum {
+  font-size: 12px;
+  color: #888;
+  font-family: 'Courier New', monospace;
+}
+
+.orbital-energy {
+  font-size: 11px;
+  color: #666;
+  border-top: 1px solid #333;
+  padding-top: 4px;
+  width: 100%;
+  text-align: center;
+}
+
+.orbital-checkmark {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  background-color: #44dd88;
+  color: #0f1419;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.orbital-selector-preview {
+  background-color: rgba(68, 221, 136, 0.08);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.preview-section {
+  color: #ddd;
+  font-size: 14px;
+}
+
+.preview-description {
+  color: #888;
+  font-style: italic;
+  margin: 8px 0;
+  font-size: 13px;
+}
+
+.preview-properties {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+  font-family: 'Courier New', monospace;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.preview-properties div {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 6px;
+  border-radius: 4px;
+  border-left: 2px solid #44dd88;
+  padding-left: 8px;
+}
+
+.orbital-selector-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.orbital-btn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.orbital-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.orbital-btn:active {
+  transform: translateY(0);
+}
+
+.apply-btn {
+  background-color: #44dd88;
+  color: #0f1419;
+  flex: 1;
+  max-width: 180px;
+}
+
+.apply-btn:hover {
+  background-color: #5ee899;
+  box-shadow: 0 0 20px rgba(68, 221, 136, 0.5);
+}
+
+.apply-btn:disabled {
+  background-color: #444;
+  color: #666;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.cancel-btn {
+  background-color: #444;
+  color: #ccc;
+  flex: 1;
+  max-width: 180px;
+}
+
+.cancel-btn:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.orbital-selector-footer {
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+  border-top: 1px solid #333;
+  padding-top: 12px;
+}
+
+/* Scrollbar styling */
+.orbital-selector-dialog::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orbital-selector-dialog::-webkit-scrollbar-track {
+  background: rgba(68, 221, 136, 0.05);
+  border-radius: 4px;
+}
+
+.orbital-selector-dialog::-webkit-scrollbar-thumb {
+  background: #44dd88;
+  border-radius: 4px;
+}
+
+.orbital-selector-dialog::-webkit-scrollbar-thumb:hover {
+  background: #5ee899;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 600px) {
+  .orbital-selector-dialog {
+    margin: 20px;
+    max-width: calc(100vw - 40px);
+    padding: 16px;
+  }
+
+  .orbital-selector-grid {
+    grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+    gap: 10px;
+  }
+
+  .orbital-selector-header h2 {
+    font-size: 20px;
+  }
+
+  .preview-properties {
+    grid-template-columns: 1fr;
+  }
+
+  .orbital-selector-actions {
+    flex-direction: column;
+  }
+
+  .orbital-btn {
+    width: 100%;
+    max-width: none;
+  }
+}

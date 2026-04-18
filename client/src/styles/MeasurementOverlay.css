@@ -1,0 +1,437 @@
+/**
+ * MeasurementOverlay.css
+ * Phase 9.4: Styling for 3D measurement overlay
+ */
+
+.measurement-overlay-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+/* SVG Overlay */
+.measurement-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: auto;
+  z-index: 50;
+}
+
+/* Grid Lines */
+.grid-line {
+  stroke: rgba(100, 200, 255, 0.1);
+  stroke-width: 1;
+  strokeDasharray: 5, 5;
+}
+
+/* Measurement Lines */
+.measurement-line {
+  stroke: #00d4ff;
+  stroke-linecap: round;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 2px rgba(0, 212, 255, 0.5));
+}
+
+.measurement-line:hover {
+  stroke-width: 3;
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.8));
+}
+
+/* Distance Labels */
+.measurement-label {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 11px;
+  font-weight: bold;
+  fill: #00d4ff;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(2px);
+}
+
+.measurement-unit {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 9px;
+  fill: #00d4ff;
+  opacity: 0.7;
+}
+
+/* Measurement Points */
+.measurement-point-group {
+  cursor: pointer;
+}
+
+.measurement-point {
+  fill: #00ff00;
+  stroke: #00d4ff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 3px rgba(0, 255, 0, 0.5));
+  transition: all 0.2s ease;
+}
+
+.measurement-point-group:hover .measurement-point {
+  r: 8;
+  filter: drop-shadow(0 0 6px rgba(0, 255, 0, 0.8));
+}
+
+/* Point Labels */
+.point-label {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  fill: #00ff00;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  pointer-events: none;
+}
+
+.point-coordinates {
+  font-family: 'Monaco', 'Menlo', monospace;
+  fill: #00d4ff;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Remove Point Button */
+.point-remove-btn {
+  fill: #ff3333;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.measurement-point-group:hover .point-remove-btn {
+  opacity: 0.8;
+}
+
+.point-remove-icon {
+  fill: white;
+  font-weight: bold;
+  font-size: 12px;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+
+.measurement-point-group:hover .point-remove-icon {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Angle Annotations */
+.angle-arc {
+  stroke: #ffaa00;
+  opacity: 0.6;
+}
+
+.angle-label {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-weight: bold;
+  fill: #ffaa00;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.7);
+}
+
+/* Measurement Info Panel */
+.measurement-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 300px;
+  max-height: 500px;
+  background: rgba(15, 23, 42, 0.95);
+  border: 2px solid #00d4ff;
+  border-radius: 8px;
+  padding: 16px;
+  z-index: 100;
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 12px;
+  color: #e0e0e0;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #00d4ff transparent;
+}
+
+.measurement-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.measurement-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.measurement-panel::-webkit-scrollbar-thumb {
+  background: #00d4ff;
+  border-radius: 3px;
+}
+
+.measurement-panel::-webkit-scrollbar-thumb:hover {
+  background: #00ffff;
+}
+
+/* Panel Header */
+.measurement-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(0, 212, 255, 0.3);
+}
+
+.measurement-header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: #00d4ff;
+}
+
+.measurement-close-btn {
+  background: none;
+  border: none;
+  color: #ff3333;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.measurement-close-btn:hover {
+  background: rgba(255, 51, 51, 0.2);
+  color: #ff6666;
+}
+
+/* Sections */
+.measurement-section {
+  margin-bottom: 12px;
+}
+
+.measurement-section strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #00ffff;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Points List */
+.points-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.point-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.point-item:hover {
+  background: rgba(0, 212, 255, 0.1);
+  border-color: rgba(0, 212, 255, 0.4);
+}
+
+.point-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #00ff00, #00d4ff);
+  color: #000;
+  font-weight: bold;
+  font-size: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.point-info {
+  flex: 1;
+  color: #00d4ff;
+  font-size: 11px;
+}
+
+.point-delete {
+  background: none;
+  border: none;
+  color: #ff3333;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+
+.point-delete:hover {
+  opacity: 1;
+}
+
+/* Measurements List */
+.measurements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.measurement-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  background: rgba(0, 212, 255, 0.05);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 4px;
+}
+
+.measurement-icon {
+  color: #00d4ff;
+  font-weight: bold;
+  font-size: 12px;
+  width: 20px;
+  flex-shrink: 0;
+}
+
+.measurement-value {
+  color: #e0e0e0;
+  font-size: 11px;
+}
+
+/* Stats Grid */
+.stats {
+  background: rgba(0, 212, 255, 0.08) !important;
+  padding: 8px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 4px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.stats-grid > div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stats-grid span:first-child {
+  color: #00d4ff;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.stat-value {
+  color: #00ff00;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Hints and Instructions */
+.measurement-hints {
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  text-align: center;
+}
+
+.measurement-hints small {
+  color: #00d4ff;
+  font-size: 10px;
+  opacity: 0.8;
+}
+
+.measurement-hints code {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 2px 4px;
+  border-radius: 2px;
+  color: #00ffff;
+  font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .measurement-panel {
+    top: 10px;
+    right: 10px;
+    width: 250px;
+    max-height: 400px;
+    font-size: 11px;
+  }
+
+  .measurement-header h3 {
+    font-size: 13px;
+  }
+
+  .point-label,
+  .measurement-label {
+    font-size: 10px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .measurement-panel {
+    background: rgba(5, 13, 32, 0.98);
+    border-color: #00d4ff;
+  }
+
+  .point-item,
+  .measurement-item {
+    background: rgba(0, 212, 255, 0.04);
+  }
+}
+
+/* Animations */
+@keyframes pulse-glow {
+  0% {
+    filter: drop-shadow(0 0 2px rgba(0, 255, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 6px rgba(0, 255, 0, 0.8));
+  }
+  100% {
+    filter: drop-shadow(0 0 2px rgba(0, 255, 0, 0.5));
+  }
+}
+
+.measurement-point.active {
+  animation: pulse-glow 1.5s ease-in-out infinite;
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.measurement-panel {
+  animation: slide-in 0.3s ease-out;
+}
