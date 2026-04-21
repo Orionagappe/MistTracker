@@ -1,0 +1,1511 @@
+{
+  "objects": [
+    {
+      "id": "ANOMALY-0-Kaon System (K???-K?????)",
+      "type": "Kaon System (K???-K?????)",
+      "emergence": "51.5",
+      "patternCount": 12,
+      "energy_GeV": "5.00e-1",
+      "coupling": "0.1100",
+      "mixing_angle_deg": "13.00",
+      "CP_violation": "2.34e-2",
+      "oscillation_freq": "8.22e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 61.68615342284096,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 71.11694034583783,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 72.6715976220186,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 77.0075472097775,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "Kaon System (K???-K?????)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-1-B Meson System (B???-B?????)",
+      "type": "B Meson System (B???-B?????)",
+      "emergence": "52.8",
+      "patternCount": 12,
+      "energy_GeV": "5.30e+0",
+      "coupling": "0.1500",
+      "mixing_angle_deg": "68.00",
+      "CP_violation": "1.31e-1",
+      "oscillation_freq": "3.37e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 69.18391742085659,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 74.52801545397483,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 75.99897309184203,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 78.22786190882704,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "B Meson System (B???-B?????)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-2-D Meson System (D???-D?????)",
+      "type": "D Meson System (D???-D?????)",
+      "emergence": "50.9",
+      "patternCount": 12,
+      "energy_GeV": "1.90e+0",
+      "coupling": "0.0800",
+      "mixing_angle_deg": "5.00",
+      "CP_violation": "6.58e-3",
+      "oscillation_freq": "8.41e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 56.185206241438905,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 69.43818339262131,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 70.99322875031667,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 78.18635498939933,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "D Meson System (D???-D?????)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-3-CP Violation Direct (K ??? ????)",
+      "type": "CP Violation Direct (K ??? ????)",
+      "emergence": "52.3",
+      "patternCount": 12,
+      "energy_GeV": "4.00e-1",
+      "coupling": "0.1200",
+      "mixing_angle_deg": "45.00",
+      "CP_violation": "8.01e-2",
+      "oscillation_freq": "6.01e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 67.03800870983699,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 73.1313198648751,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 74.67708328211702,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 76.53524932245062,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "CP Violation Direct (K ??? ????)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-4-Axion Dark Matter",
+      "type": "Axion Dark Matter",
+      "emergence": "43.9",
+      "patternCount": 12,
+      "energy_GeV": "1.00e-5",
+      "coupling": "0.0100",
+      "mixing_angle_deg": "0.00",
+      "CP_violation": "1.65e-7",
+      "oscillation_freq": "8.44e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": false,
+          "confidence": 10.172754048587691,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": false,
+          "confidence": 55.629095285056124,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": false,
+          "confidence": 57.18379936849192,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 67.63215933532639,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "Axion Dark Matter",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-5-Electron g-2 Precision",
+      "type": "Electron g-2 Precision",
+      "emergence": "46.7",
+      "patternCount": 12,
+      "energy_GeV": "5.11e-4",
+      "coupling": "0.0073",
+      "mixing_angle_deg": "0.10",
+      "CP_violation": "1.20e-5",
+      "oscillation_freq": "8.44e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": false,
+          "confidence": 28.803382389548105,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": false,
+          "confidence": 61.21869710593711,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": false,
+          "confidence": 62.773769271447065,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 71.04899981279078,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "Electron g-2 Precision",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-6-Muon g-2 Anomaly",
+      "type": "Muon g-2 Anomaly",
+      "emergence": "47.0",
+      "patternCount": 12,
+      "energy_GeV": "1.06e-1",
+      "coupling": "0.0073",
+      "mixing_angle_deg": "0.10",
+      "CP_violation": "1.20e-5",
+      "oscillation_freq": "8.44e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": false,
+          "confidence": 28.803382389548105,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": false,
+          "confidence": 61.21869710593711,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": false,
+          "confidence": 62.773769271447065,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 75.68030798713622,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "Muon g-2 Anomaly",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-7-Neutron EDM (??-angle)",
+      "type": "Neutron EDM (??-angle)",
+      "emergence": "49.6",
+      "patternCount": 12,
+      "energy_GeV": "1.00e+0",
+      "coupling": "0.0500",
+      "mixing_angle_deg": "1.00",
+      "CP_violation": "8.24e-4",
+      "oscillation_freq": "8.44e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 47.15959997686625,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 66.72576398428123,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 68.28084069203243,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 77.63202703507714,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "Neutron EDM (??-angle)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-8-B ??? K* ?? Penguin",
+      "type": "B ??? K* ?? Penguin",
+      "emergence": "52.3",
+      "patternCount": 12,
+      "energy_GeV": "5.00e+0",
+      "coupling": "0.1300",
+      "mixing_angle_deg": "30.00",
+      "CP_violation": "6.14e-2",
+      "oscillation_freq": "7.33e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 65.88047979576456,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 72.52557867224556,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 74.07699645951256,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 78.90516060752242,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "B ??? K* ?? Penguin",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ANOMALY-9-Electroweak Penguin",
+      "type": "Electroweak Penguin",
+      "emergence": "52.4",
+      "patternCount": 12,
+      "energy_GeV": "8.00e+1",
+      "coupling": "0.1400",
+      "mixing_angle_deg": "25.00",
+      "CP_violation": "5.59e-2",
+      "oscillation_freq": "7.66e+26",
+      "g_minus_2_deviation": "Large",
+      "axion_mass_eV": "1.25e-3",
+      "patterns": [
+        {
+          "name": "CP Violation in Weak Decay",
+          "detected": true,
+          "confidence": 65.47210918084734,
+          "physics": "CKM matrix phase, kaon and B physics"
+        },
+        {
+          "name": "Neutral Meson Oscillations",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Box diagram, mass eigenstate mixing"
+        },
+        {
+          "name": "Chiral Anomaly",
+          "detected": false,
+          "confidence": -119.3104798830324,
+          "physics": "ABJ anomaly, triangle diagrams"
+        },
+        {
+          "name": "Axion-Photon Coupling",
+          "detected": false,
+          "confidence": -13.331361776746235,
+          "physics": "Strong CP problem solution"
+        },
+        {
+          "name": "Axion Dark Matter",
+          "detected": false,
+          "confidence": 61.95137134515329,
+          "physics": "Cosmological axion production"
+        },
+        {
+          "name": "Electron Magnetic Moment",
+          "detected": false,
+          "confidence": 84,
+          "physics": "QED precision test"
+        },
+        {
+          "name": "Muon g-2 Anomaly",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Hadronic vacuum polarization"
+        },
+        {
+          "name": "Matter-Antimatter Asymmetry",
+          "detected": true,
+          "confidence": 72.34472127216031,
+          "physics": "Sakharov conditions, baryogenesis"
+        },
+        {
+          "name": "Kaon CP Violation Parameter",
+          "detected": true,
+          "confidence": 73.89702808313892,
+          "physics": "Indirect CP violation"
+        },
+        {
+          "name": "Electroweak Scale Phenomena",
+          "detected": true,
+          "confidence": 81.35289073241536,
+          "physics": "W/Z boson processes"
+        },
+        {
+          "name": "Strong CP Problem Resolution",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Peccei-Quinn symmetry"
+        },
+        {
+          "name": "g-2 Universal Scaling",
+          "detected": true,
+          "confidence": 76.68221119225797,
+          "physics": "Lepton universality in QED"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Quantum Anomaly",
+          "description": "Electroweak Penguin",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "Electroweak + Strong",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "CP Violation",
+          "description": "CKM phase in weak decay",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Chiral Symmetry",
+          "description": "Anomaly in axial current",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Box Diagrams",
+          "description": "Second-order weak interaction",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Meson Mixing",
+          "description": "Mass eigenstate oscillation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Axion Dynamics",
+          "description": "Strong CP problem solution",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Precision Coupling",
+          "description": "Loop corrections to g-2",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Physics",
+          "description": "Low energy effective theory",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "Standard Model + anomalies",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalObjects": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "49.9"
+  }
+}

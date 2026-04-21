@@ -1,0 +1,216 @@
+{
+  "timestamp": "2026-04-19T15:53:12.235Z",
+  "phase": 50,
+  "subphase": "C",
+  "config": {
+    "audio_format": {
+      "primary": "WAV (44.1kHz, 16-bit, stereo)",
+      "streaming": "MP3 (192 kbps)",
+      "container": "WebM VP9 + Opus for streaming"
+    },
+    "narration_tiers": {
+      "executive": {
+        "description": "Quick overview (30-45 seconds per finding)",
+        "tone": "Professional, brisk",
+        "audience": "Quick learners, busy professionals",
+        "audio_files_count": 16,
+        "total_duration": "8-10 minutes"
+      },
+      "technical": {
+        "description": "Detailed explanation (60-90 seconds per finding)",
+        "tone": "Expert, thorough",
+        "audience": "Students, researchers",
+        "audio_files_count": 16,
+        "total_duration": "15-20 minutes"
+      },
+      "deep": {
+        "description": "Advanced discussion (120-180 seconds per finding)",
+        "tone": "Scholarly, contextual",
+        "audience": "Specialists, deep learners",
+        "audio_files_count": 16,
+        "total_duration": "30-45 minutes"
+      }
+    },
+    "slide_audio_mapping": {
+      "title_slide": {
+        "audio_file": "intro.wav",
+        "duration_seconds": 5,
+        "cue_points": [
+          {
+            "time": 0,
+            "element": "title_fade_in"
+          }
+        ],
+        "captions": true,
+        "transcript": "Welcome to MistTracker..."
+      },
+      "domain_intro": {
+        "audio_duration_range": [
+          10,
+          20
+        ],
+        "pattern": "{domain}_intro.wav",
+        "cue_points": [
+          {
+            "time": 0,
+            "element": "fade_in"
+          },
+          {
+            "time": "mid",
+            "element": "findings_appear"
+          }
+        ],
+        "captions": true
+      },
+      "finding_executive": {
+        "audio_duration_range": [
+          30,
+          45
+        ],
+        "pattern": "{finding_id}_executive.wav",
+        "cue_points": [
+          {
+            "time": 0,
+            "element": "diagram_fade_in"
+          },
+          {
+            "time": "33%",
+            "element": "key_point_1_highlight"
+          },
+          {
+            "time": "66%",
+            "element": "key_point_2_highlight"
+          },
+          {
+            "time": "end",
+            "element": "summary_fade"
+          }
+        ],
+        "captions": true,
+        "emphasis_markers": [
+          {
+            "concept": "emergence ceiling",
+            "time": "25%"
+          },
+          {
+            "concept": "fundamental limit",
+            "time": "75%"
+          }
+        ]
+      },
+      "finding_technical": {
+        "audio_duration_range": [
+          60,
+          90
+        ],
+        "pattern": "{finding_id}_technical.wav",
+        "cue_points": [
+          {
+            "time": 0,
+            "element": "diagram_complex_in"
+          },
+          {
+            "time": "25%",
+            "element": "mechanism_explain"
+          },
+          {
+            "time": "50%",
+            "element": "formula_display"
+          },
+          {
+            "time": "75%",
+            "element": "consequence_highlight"
+          }
+        ],
+        "captions": true,
+        "technical_annotations": true
+      },
+      "connection_slide": {
+        "audio_file": "connections.wav",
+        "duration_seconds": 45,
+        "cue_points": [
+          {
+            "time": 0,
+            "element": "map_fade_in"
+          },
+          {
+            "time": "20%",
+            "element": "draw_physics_link"
+          },
+          {
+            "time": "40%",
+            "element": "draw_linguistics_link"
+          },
+          {
+            "time": "60%",
+            "element": "draw_semantics_link"
+          },
+          {
+            "time": "80%",
+            "element": "draw_integration_link"
+          }
+        ],
+        "captions": true
+      },
+      "summary_slide": {
+        "audio_file": "summary.wav",
+        "duration_seconds": 20,
+        "cue_points": [
+          {
+            "time": 0,
+            "element": "takeaways_fade_in"
+          },
+          {
+            "time": "20%",
+            "element": "takeaway_1_highlight"
+          },
+          {
+            "time": "40%",
+            "element": "takeaway_2_highlight"
+          },
+          {
+            "time": "60%",
+            "element": "takeaway_3_highlight"
+          },
+          {
+            "time": "80%",
+            "element": "takeaway_4_highlight"
+          }
+        ],
+        "captions": true
+      }
+    }
+  },
+  "sync_summary": {
+    "slides_with_narration": 6,
+    "slides_with_cues": 6,
+    "total_cue_points": 21,
+    "slides_with_captions": 6
+  },
+  "status": "AUDIO INTEGRATION SPECIFICATION COMPLETE",
+  "playback_features": {
+    "supported_controls": [
+      "Play/Pause",
+      "Seek (scrub through timeline)",
+      "Speed control (0.75x, 1.0x, 1.25x, 1.5x)",
+      "Captions toggle",
+      "Transcript view",
+      "Full-screen presentation",
+      "Picture-in-picture"
+    ],
+    "accessibility_features": [
+      "Closed captions (WebVTT, ±200ms accuracy)",
+      "Audio descriptions (for visual elements)",
+      "Keyboard shortcuts (Space=play, arrow keys=navigate)",
+      "Screen reader support (ARIA labels)",
+      "High contrast captions",
+      "Adjustable caption size"
+    ],
+    "delivery_options": [
+      "Streaming (MP3/WebM)",
+      "Progressive download",
+      "HLS (HTTP Live Streaming)",
+      "Offline mode (local WAV files)"
+    ]
+  }
+}

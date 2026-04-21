@@ -1,0 +1,564 @@
+{
+  "phase": 20,
+  "domain": "Materials",
+  "timestamp": "2026-04-19T02:58:22.580Z",
+  "crystals": [
+    {
+      "name": "NaCl",
+      "commonName": "Sodium Chloride (Table Salt)",
+      "type": "Ionic",
+      "emergenceIndices": {
+        "latticeEmergence": 0.9157580651864362,
+        "symmetryEmergence": 0.975404725222134,
+        "coordinationEmergence": 0.9174316732450715,
+        "densityEmergence": 0.9107004500855582,
+        "hardnessEmergence": 0.8050404964602801,
+        "thermalStability": 0.886904460016365,
+        "opticalEmergence": 0.7804644351018394,
+        "defectTolerance": 0.8578694278820672,
+        "averageEmergence": 0.8811967166499689
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 5.577333333333333,
+          "temperature": 294.44444444444446,
+          "stability": 0.9860708591200227,
+          "energyState": -0.8173455343339523
+        },
+        "stabilityRange": {
+          "min": 0.32103921442361777,
+          "max": 0.9860708591200227
+        },
+        "avgStability": 0.6553987987313842
+      },
+      "trainingResult": {
+        "finalLoss": 0.0021086930681025076,
+        "epochsTrained": 100,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T02:58:22.581Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "molecules": {
+            "Na": 1,
+            "Cl": 1
+          },
+          "bondingType": "Ionic",
+          "timestamp": "2026-04-19T02:58:22.581Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials domain - current)",
+          "latticeSystem": "Cubic",
+          "spaceGroup": "Fm-3m",
+          "coordinationNumber": 6,
+          "timestamp": "2026-04-19T02:58:22.581Z"
+        },
+        "level4": {
+          "description": "Physical property emergence",
+          "emergenceIndices": {
+            "latticeEmergence": 0.9157580651864362,
+            "symmetryEmergence": 0.975404725222134,
+            "coordinationEmergence": 0.9174316732450715,
+            "densityEmergence": 0.9107004500855582,
+            "hardnessEmergence": 0.8050404964602801,
+            "thermalStability": 0.886904460016365,
+            "opticalEmergence": 0.7804644351018394,
+            "defectTolerance": 0.8578694278820672,
+            "averageEmergence": 0.8811967166499689
+          },
+          "parameterSweepStability": 0.6553987987313842,
+          "timestamp": "2026-04-19T02:58:22.581Z"
+        },
+        "level5": {
+          "description": "Prediction and validation",
+          "predictedProperties": {
+            "hardness": 2.5,
+            "density": 2.16,
+            "refractiveIndex": 2.26
+          },
+          "timestamp": "2026-04-19T02:58:22.581Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Diamond",
+      "commonName": "Carbon Diamond",
+      "type": "Covalent Network",
+      "emergenceIndices": {
+        "latticeEmergence": 0.9028896901188164,
+        "symmetryEmergence": 0.9305221939640153,
+        "coordinationEmergence": 0.9779816055195197,
+        "densityEmergence": 0.9348196680199957,
+        "hardnessEmergence": 0.8879448880048386,
+        "thermalStability": 0.9224681317017657,
+        "opticalEmergence": 0.7546425124366534,
+        "defectTolerance": 0.9409239687965114,
+        "averageEmergence": 0.9065240823202645
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.527366666666667,
+          "temperature": 294.44444444444446,
+          "stability": 0.9907288033120035,
+          "energyState": -0.8442438660883156
+        },
+        "stabilityRange": {
+          "min": 0.4702598898381639,
+          "max": 0.9907288033120035
+        },
+        "avgStability": 0.7499433490992483
+      },
+      "trainingResult": {
+        "finalLoss": 0.007961294826435343,
+        "epochsTrained": 100,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T02:58:22.582Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "molecules": {
+            "C": 1
+          },
+          "bondingType": "Covalent",
+          "timestamp": "2026-04-19T02:58:22.582Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials domain - current)",
+          "latticeSystem": "Cubic",
+          "spaceGroup": "Fd-3m",
+          "coordinationNumber": 4,
+          "timestamp": "2026-04-19T02:58:22.582Z"
+        },
+        "level4": {
+          "description": "Physical property emergence",
+          "emergenceIndices": {
+            "latticeEmergence": 0.9028896901188164,
+            "symmetryEmergence": 0.9305221939640153,
+            "coordinationEmergence": 0.9779816055195197,
+            "densityEmergence": 0.9348196680199957,
+            "hardnessEmergence": 0.8879448880048386,
+            "thermalStability": 0.9224681317017657,
+            "opticalEmergence": 0.7546425124366534,
+            "defectTolerance": 0.9409239687965114,
+            "averageEmergence": 0.9065240823202645
+          },
+          "parameterSweepStability": 0.7499433490992483,
+          "timestamp": "2026-04-19T02:58:22.582Z"
+        },
+        "level5": {
+          "description": "Prediction and validation",
+          "predictedProperties": {
+            "hardness": 10,
+            "density": 3.52,
+            "refractiveIndex": 2.42
+          },
+          "timestamp": "2026-04-19T02:58:22.582Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Ice",
+      "commonName": "Water Ice (Hexagonal)",
+      "type": "Hydrogen-bonded Molecular",
+      "emergenceIndices": {
+        "latticeEmergence": 0.8662921161453367,
+        "symmetryEmergence": 0.9052332756526661,
+        "coordinationEmergence": 0.9583160669987248,
+        "densityEmergence": 0.9074006498105391,
+        "hardnessEmergence": 0.9195665621830368,
+        "thermalStability": 0.9394845650160186,
+        "opticalEmergence": 0.8366720455809725,
+        "defectTolerance": 0.8397384471358483,
+        "averageEmergence": 0.8965879660653928
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.666666666666667,
+          "temperature": 294.44444444444446,
+          "stability": 0.9801381690832441,
+          "energyState": -0.8488445932623147
+        },
+        "stabilityRange": {
+          "min": 0.19691167520419406,
+          "max": 0.9801381690832441
+        },
+        "avgStability": 0.5644066872454832
+      },
+      "trainingResult": {
+        "finalLoss": 0.009895526177423102,
+        "epochsTrained": 100,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "molecules": {
+            "H": 2,
+            "O": 1
+          },
+          "bondingType": "Hydrogen Bond",
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials domain - current)",
+          "latticeSystem": "Hexagonal",
+          "spaceGroup": "P63/mmc",
+          "coordinationNumber": 4,
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level4": {
+          "description": "Physical property emergence",
+          "emergenceIndices": {
+            "latticeEmergence": 0.8662921161453367,
+            "symmetryEmergence": 0.9052332756526661,
+            "coordinationEmergence": 0.9583160669987248,
+            "densityEmergence": 0.9074006498105391,
+            "hardnessEmergence": 0.9195665621830368,
+            "thermalStability": 0.9394845650160186,
+            "opticalEmergence": 0.8366720455809725,
+            "defectTolerance": 0.8397384471358483,
+            "averageEmergence": 0.8965879660653928
+          },
+          "parameterSweepStability": 0.5644066872454832,
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level5": {
+          "description": "Prediction and validation",
+          "predictedProperties": {
+            "hardness": 1.5,
+            "density": 0.92,
+            "refractiveIndex": 1.31
+          },
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "Quartz",
+      "commonName": "Silicon Dioxide (α-Quartz)",
+      "type": "Network Silicate",
+      "emergenceIndices": {
+        "latticeEmergence": 0.8884227881421883,
+        "symmetryEmergence": 0.9416793291101443,
+        "coordinationEmergence": 0.9612983439718743,
+        "densityEmergence": 0.9326688813576012,
+        "hardnessEmergence": 0.8766253420203544,
+        "thermalStability": 0.9380573089339453,
+        "opticalEmergence": 0.8625040230331507,
+        "defectTolerance": 0.8897438133494837,
+        "averageEmergence": 0.9113749787398429
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.666666666666667,
+          "temperature": 294.44444444444446,
+          "stability": 0.9801381690832441,
+          "energyState": -0.8047217681409506
+        },
+        "stabilityRange": {
+          "min": 0.19691167520419406,
+          "max": 0.9801381690832441
+        },
+        "avgStability": 0.5644066872454832
+      },
+      "trainingResult": {
+        "finalLoss": 0.008649381490874287,
+        "epochsTrained": 100,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "molecules": {
+            "Si": 1,
+            "O": 2
+          },
+          "bondingType": "Covalent Network",
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials domain - current)",
+          "latticeSystem": "Trigonal",
+          "spaceGroup": "P3121",
+          "coordinationNumber": 4,
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level4": {
+          "description": "Physical property emergence",
+          "emergenceIndices": {
+            "latticeEmergence": 0.8884227881421883,
+            "symmetryEmergence": 0.9416793291101443,
+            "coordinationEmergence": 0.9612983439718743,
+            "densityEmergence": 0.9326688813576012,
+            "hardnessEmergence": 0.8766253420203544,
+            "thermalStability": 0.9380573089339453,
+            "opticalEmergence": 0.8625040230331507,
+            "defectTolerance": 0.8897438133494837,
+            "averageEmergence": 0.9113749787398429
+          },
+          "parameterSweepStability": 0.5644066872454832,
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        },
+        "level5": {
+          "description": "Prediction and validation",
+          "predictedProperties": {
+            "hardness": 7,
+            "density": 2.65,
+            "refractiveIndex": 1.54
+          },
+          "timestamp": "2026-04-19T02:58:22.583Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Graphite",
+      "commonName": "Carbon Graphite",
+      "type": "Layered Covalent",
+      "emergenceIndices": {
+        "latticeEmergence": 0.8653604245992945,
+        "symmetryEmergence": 0.9035159149898162,
+        "coordinationEmergence": 0.978846892386015,
+        "densityEmergence": 0.839812711452303,
+        "hardnessEmergence": 0.8145152176828432,
+        "thermalStability": 0.8983999142334508,
+        "opticalEmergence": 0.8505328611351883,
+        "defectTolerance": 0.8675825347128064,
+        "averageEmergence": 0.8773208088989647
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.666666666666667,
+          "temperature": 294.44444444444446,
+          "stability": 0.9801381690832441,
+          "energyState": -0.847477767071231
+        },
+        "stabilityRange": {
+          "min": 0.19691167520419406,
+          "max": 0.9801381690832441
+        },
+        "avgStability": 0.5644066872454832
+      },
+      "trainingResult": {
+        "finalLoss": 0.00962721437475542,
+        "epochsTrained": 100,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T02:58:22.584Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "molecules": {
+            "C": 1
+          },
+          "bondingType": "Covalent (layered)",
+          "timestamp": "2026-04-19T02:58:22.584Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials domain - current)",
+          "latticeSystem": "Hexagonal",
+          "spaceGroup": "P63/mmc",
+          "coordinationNumber": 3,
+          "timestamp": "2026-04-19T02:58:22.584Z"
+        },
+        "level4": {
+          "description": "Physical property emergence",
+          "emergenceIndices": {
+            "latticeEmergence": 0.8653604245992945,
+            "symmetryEmergence": 0.9035159149898162,
+            "coordinationEmergence": 0.978846892386015,
+            "densityEmergence": 0.839812711452303,
+            "hardnessEmergence": 0.8145152176828432,
+            "thermalStability": 0.8983999142334508,
+            "opticalEmergence": 0.8505328611351883,
+            "defectTolerance": 0.8675825347128064,
+            "averageEmergence": 0.8773208088989647
+          },
+          "parameterSweepStability": 0.5644066872454832,
+          "timestamp": "2026-04-19T02:58:22.584Z"
+        },
+        "level5": {
+          "description": "Prediction and validation",
+          "predictedProperties": {
+            "hardness": 1,
+            "density": 2.09,
+            "refractiveIndex": 2.26
+          },
+          "timestamp": "2026-04-19T02:58:22.584Z"
+        }
+      },
+      "executionTime": 0
+    }
+  ],
+  "summary": {
+    "totalCrystals": 5,
+    "successRate": 1,
+    "averageEmergence": 0.8946009105348868,
+    "avgStability": 0.6197124419134163,
+    "totalExecutionTime": 10,
+    "executionTimePerCrystal": 2,
+    "fpOpsPerRequest": 2,
+    "emergencePatternsDetected": 5,
+    "confidence": 0.9255865326305576
+  },
+  "emergencePatterns": [
+    {
+      "type": "Bonding Type Correlation",
+      "description": "Ionic binding (88.1%) vs Covalent (89.8%)",
+      "strength": 0.017209906669721775
+    },
+    {
+      "type": "Coordination-Geometry Emergence",
+      "description": "Coordination number determines crystal geometry",
+      "correlations": [
+        {
+          "name": "NaCl",
+          "coordination": 6,
+          "geometry": "Octahedral"
+        },
+        {
+          "name": "Diamond",
+          "coordination": 4,
+          "geometry": "Tetrahedral"
+        },
+        {
+          "name": "Ice",
+          "coordination": 4,
+          "geometry": "Tetrahedral"
+        },
+        {
+          "name": "Quartz",
+          "coordination": 4,
+          "geometry": "Tetrahedral"
+        },
+        {
+          "name": "Graphite",
+          "coordination": 3,
+          "geometry": "Trigonal Planar"
+        }
+      ],
+      "strength": 0.95
+    },
+    {
+      "type": "Lattice Parameter Emergence",
+      "description": "Crystal lattice parameter emerges from atomic/molecular size",
+      "samples": [
+        {
+          "name": "NaCl",
+          "latticeParameter": 5.64
+        },
+        {
+          "name": "Diamond",
+          "latticeParameter": 3.567
+        }
+      ],
+      "strength": 0.88
+    },
+    {
+      "type": "Hardness-Bonding Emergence",
+      "description": "Crystal hardness emerges from bonding type and strength",
+      "samples": [
+        {
+          "name": "NaCl",
+          "hardness": 2.5,
+          "bindingType": "Ionic"
+        },
+        {
+          "name": "Diamond",
+          "hardness": 10,
+          "bindingType": "Covalent"
+        },
+        {
+          "name": "Ice",
+          "hardness": 1.5,
+          "bindingType": "Hydrogen Bond"
+        },
+        {
+          "name": "Quartz",
+          "hardness": 7,
+          "bindingType": "Covalent Network"
+        },
+        {
+          "name": "Graphite",
+          "hardness": 1,
+          "bindingType": "Covalent (layered)"
+        }
+      ],
+      "strength": 0.92
+    },
+    {
+      "type": "Density-Structure Emergence",
+      "description": "Crystal density emerges from atomic packing geometry",
+      "samples": [
+        {
+          "name": "NaCl",
+          "density": 2.16,
+          "type": "Ionic"
+        },
+        {
+          "name": "Diamond",
+          "density": 3.52,
+          "type": "Covalent Network"
+        },
+        {
+          "name": "Ice",
+          "density": 0.92,
+          "type": "Hydrogen-bonded Molecular"
+        },
+        {
+          "name": "Quartz",
+          "density": 2.65,
+          "type": "Network Silicate"
+        },
+        {
+          "name": "Graphite",
+          "density": 2.09,
+          "type": "Layered Covalent"
+        }
+      ],
+      "strength": 0.87
+    }
+  ]
+}

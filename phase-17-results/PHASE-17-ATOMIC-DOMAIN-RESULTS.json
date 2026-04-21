@@ -1,0 +1,299 @@
+{
+  "timestamp": "2026-04-19T02:29:50.806Z",
+  "executionTime": 0.026,
+  "atomsProcessed": 18,
+  "successCount": 18,
+  "failureCount": 0,
+  "checkpoints": [
+    {
+      "atom": "He",
+      "electrons": 2,
+      "shells": 1,
+      "shellFull": true
+    },
+    {
+      "atom": "Ne",
+      "electrons": 10,
+      "shells": 2,
+      "shellFull": true
+    },
+    {
+      "atom": "Ar",
+      "electrons": 18,
+      "shells": 3,
+      "shellFull": true
+    }
+  ],
+  "atomResults": [
+    {
+      "symbol": "H",
+      "number": 1,
+      "electrons": 1,
+      "shells": 1,
+      "modelLoss": 18.358581091779445,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "He",
+      "number": 2,
+      "electrons": 2,
+      "shells": 1,
+      "modelLoss": 18.612731222557976,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Li",
+      "number": 3,
+      "electrons": 3,
+      "shells": 2,
+      "modelLoss": 18.102239071257596,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Be",
+      "number": 4,
+      "electrons": 4,
+      "shells": 2,
+      "modelLoss": 18.089504456520764,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "B",
+      "number": 5,
+      "electrons": 5,
+      "shells": 2,
+      "modelLoss": 17.70481180644858,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "C",
+      "number": 6,
+      "electrons": 6,
+      "shells": 2,
+      "modelLoss": 18.772814947985882,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "N",
+      "number": 7,
+      "electrons": 7,
+      "shells": 2,
+      "modelLoss": 18.88478020953847,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "O",
+      "number": 8,
+      "electrons": 8,
+      "shells": 2,
+      "modelLoss": 17.671890558386746,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "F",
+      "number": 9,
+      "electrons": 9,
+      "shells": 2,
+      "modelLoss": 18.058901876145207,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Ne",
+      "number": 10,
+      "electrons": 10,
+      "shells": 2,
+      "modelLoss": 18.32924799880717,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Na",
+      "number": 11,
+      "electrons": 11,
+      "shells": 3,
+      "modelLoss": 18.517920590204877,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Mg",
+      "number": 12,
+      "electrons": 12,
+      "shells": 3,
+      "modelLoss": 18.342031687449843,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Al",
+      "number": 13,
+      "electrons": 13,
+      "shells": 3,
+      "modelLoss": 17.78541260274519,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Si",
+      "number": 14,
+      "electrons": 14,
+      "shells": 3,
+      "modelLoss": 19.44968453865638,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "P",
+      "number": 15,
+      "electrons": 15,
+      "shells": 3,
+      "modelLoss": 18.19414458956909,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "S",
+      "number": 16,
+      "electrons": 16,
+      "shells": 3,
+      "modelLoss": 19.34620599003738,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Cl",
+      "number": 17,
+      "electrons": 17,
+      "shells": 3,
+      "modelLoss": 17.529157937724108,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "symbol": "Ar",
+      "number": 18,
+      "electrons": 18,
+      "shells": 3,
+      "modelLoss": 18.179984475966798,
+      "indicesCount": 8,
+      "sweepCells": 100,
+      "provenanceConfidence": 0.6254951999999999,
+      "requestFPOps": [
+        2,
+        1
+      ],
+      "passed": true
+    }
+  ]
+}

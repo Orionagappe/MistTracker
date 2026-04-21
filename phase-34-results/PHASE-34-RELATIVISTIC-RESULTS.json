@@ -1,0 +1,1531 @@
+{
+  "objects": [
+    {
+      "id": "RELATIVISTIC-0-Stellar Mass BH (10 M☉)",
+      "type": "Stellar Mass BH (10 M☉)",
+      "mass_solar": 10,
+      "emergence": "83.6",
+      "patternCount": 12,
+      "compactness": "0.0000",
+      "isco_in_km": "167.0",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "1.12e-8",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000001459591,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 84.14763830747,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.0000002052542,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": false,
+          "confidence": 80.00001105897734,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": false,
+          "confidence": 78.10300522297634,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Stellar Mass BH (10 M☉): M=10.0M☉, R=10.00R☉, spin=0.50",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 2.95e+4 m, compactness = 0.000",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=8.86e+4m, r_isco=1.67e+5m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=5.46e+13W, η=0.061",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=227.91Hz, L_gw=1.13e-15W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=1.12e-8 years, strain=1.17e-11",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.00",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-1-Intermediate Mass BH (100 M☉)",
+      "type": "Intermediate Mass BH (100 M☉)",
+      "mass_solar": 100,
+      "emergence": "84.9",
+      "patternCount": 12,
+      "compactness": "0.0424",
+      "isco_in_km": "1737.4",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "1.31e-7",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000017084761,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 90.1164541019164,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.00000205254244,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.23113344844214,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 87,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Intermediate Mass BH (100 M☉): M=100.0M☉, R=0.01R☉, spin=0.30",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 2.95e+5 m, compactness = 0.042",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=8.86e+5m, r_isco=1.74e+6m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=5.25e+12W, η=0.058",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=21.48Hz, L_gw=9.26e-18W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=1.31e-7 years, strain=2.52e-10",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.05",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-2-Supermassive BH (1e6 M☉)",
+      "type": "Supermassive BH (1e6 M☉)",
+      "mass_solar": 1000000,
+      "emergence": "84.5",
+      "patternCount": 12,
+      "compactness": "0.0212",
+      "isco_in_km": "13286379.4",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "4.48e-4",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00058410534979,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 86.11936141854873,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.02058628712143,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.11300485044931,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 87,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Supermassive BH (1e6 M☉): M=1000000.0M☉, R=100.00R☉, spin=0.90",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 2.95e+9 m, compactness = 0.021",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=8.86e+9m, r_isco=1.33e+10m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=6.93e+15W, η=0.077",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=0.00Hz, L_gw=3.54e-25W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=4.48e-4 years, strain=5.43e-5",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.02",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-3-Milliparsec Binary (10+8 M☉)",
+      "type": "Milliparsec Binary (10+8 M☉)",
+      "mass_solar": 10,
+      "emergence": "84.2",
+      "patternCount": 12,
+      "compactness": "0.0000",
+      "isco_in_km": "162.0",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "9.90e-9",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000001289777,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.0000002052542,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": false,
+          "confidence": 80.00001105897734,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": false,
+          "confidence": 78.10300522297634,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Milliparsec Binary (10+8 M☉): M=10.0M☉, R=10.00R☉, spin=0.60",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 2.95e+4 m, compactness = 0.000",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=8.86e+4m, r_isco=1.62e+5m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=2.82e+15W, η=0.063",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=238.73Hz, L_gw=1.32e-15W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=9.90e-9 years, strain=1.17e-11",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.00",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-4-Neutron Star (1.4 M☉)",
+      "type": "Neutron Star (1.4 M☉)",
+      "mass_solar": 1.4,
+      "emergence": "84.5",
+      "patternCount": 12,
+      "compactness": "0.0149",
+      "isco_in_km": "24.3",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "1.84e-9",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000000239187,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 85.93379835502239,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.00000002873558,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.07858586720778,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 86.61803525885263,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Neutron Star (1.4 M☉): M=1.4M☉, R=0.00R☉, spin=0.30",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 4.14e+3 m, compactness = 0.015",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=1.24e+4m, r_isco=2.43e+4m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=5.25e+14W, η=0.058",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=1534.62Hz, L_gw=4.73e-14W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=1.84e-9 years, strain=8.51e-13",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.02",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-5-Low-mass BH (5 M☉)",
+      "type": "Low-mass BH (5 M☉)",
+      "mass_solar": 5,
+      "emergence": "84.7",
+      "patternCount": 12,
+      "compactness": "0.0212",
+      "isco_in_km": "77.6",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "4.18e-9",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000000544814,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 88.66686855898475,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.0000001026271,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.11300485044931,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 87,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Low-mass BH (5 M☉): M=5.0M☉, R=0.00R☉, spin=0.70",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 1.48e+4 m, compactness = 0.021",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=4.43e+4m, r_isco=7.76e+4m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=1.77e+15W, η=0.066",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=508.64Hz, L_gw=6.50e-15W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=4.18e-9 years, strain=4.64e-12",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.02",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-6-Highly Spinning BH (Kerr)",
+      "type": "Highly Spinning BH (Kerr)",
+      "mass_solar": 20,
+      "emergence": "84.1",
+      "patternCount": 12,
+      "compactness": "0.0000",
+      "isco_in_km": "244.7",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "6.45e-9",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000000840778,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 89.92674358586237,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.00000041050839,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": false,
+          "confidence": 80.0000221180016,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": false,
+          "confidence": 78.14567138332839,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Highly Spinning BH (Kerr): M=20.0M☉, R=10.00R☉, spin=0.95",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 5.91e+4 m, compactness = 0.000",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=1.77e+5m, r_isco=2.45e+5m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=1.51e+15W, η=0.084",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=181.74Hz, L_gw=1.34e-15W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=6.45e-9 years, strain=2.95e-11",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.00",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-7-Ultra-compact Object",
+      "type": "Ultra-compact Object",
+      "mass_solar": 2.5,
+      "emergence": "84.9",
+      "patternCount": 12,
+      "compactness": "0.0177",
+      "isco_in_km": "41.8",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "2.80e-9",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00000000364898,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 90.92874141516525,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.00000005131355,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.09382709347024,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 87,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Ultra-compact Object: M=2.5M☉, R=0.00R☉, spin=0.50",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 7.38e+3 m, compactness = 0.018",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=2.22e+4m, r_isco=4.18e+4m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=2.73e+14W, η=0.061",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=911.66Hz, L_gw=1.80e-14W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=2.80e-9 years, strain=1.84e-12",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.02",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-8-AGN Central Engine",
+      "type": "AGN Central Engine",
+      "mass_solar": 10000000,
+      "emergence": "84.4",
+      "patternCount": 12,
+      "compactness": "0.0212",
+      "isco_in_km": "146232093.4",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "6.58e-3",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00854491597019,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 84.41055624647805,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.21156696489285,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.11300485044931,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 87,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "AGN Central Engine: M=10000000.0M☉, R=1000.00R☉, spin=0.80",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 2.95e+10 m, compactness = 0.021",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=8.86e+10m, r_isco=1.46e+11m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=6.27e+16W, η=0.070",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=0.00Hz, L_gw=2.19e-27W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=6.58e-3 years, strain=1.17e-3",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.1, Time dilation: γ=1.02",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "RELATIVISTIC-9-Galactic Center Sgr A*",
+      "type": "Galactic Center Sgr A*",
+      "mass_solar": 4100000,
+      "emergence": "84.9",
+      "patternCount": 12,
+      "compactness": "0.0870",
+      "isco_in_km": "68485896.1",
+      "eddington_ratio": "0.00",
+      "gw_detectable": "yes",
+      "merge_time_years": "4.59e-3",
+      "patterns": [
+        {
+          "name": "Schwarzschild Geometry",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Vacuum GR solution for spherical mass"
+        },
+        {
+          "name": "Event Horizon",
+          "detected": true,
+          "confidence": 85,
+          "physics": "One-way membrane at r_s"
+        },
+        {
+          "name": "Innermost Stable Circular Orbit",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Orbital stability boundary"
+        },
+        {
+          "name": "Gravitational Wave Production",
+          "detected": true,
+          "confidence": 90,
+          "physics": "Quadrupole radiation from accelerating masses"
+        },
+        {
+          "name": "Orbital Decay from GW Radiation",
+          "detected": true,
+          "confidence": 80.00597062032435,
+          "physics": "Binary inspiral timescale"
+        },
+        {
+          "name": "Relativistic Radiative Efficiency",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Energy release from accretion into strong field"
+        },
+        {
+          "name": "Frame Dragging (Kerr Effect)",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Spinning BH spacetime dragging"
+        },
+        {
+          "name": "Photon Orbit and Shadow",
+          "detected": true,
+          "confidence": 90.01525503734463,
+          "physics": "Unstable circular null geodesic"
+        },
+        {
+          "name": "Gravitational Lensing",
+          "detected": true,
+          "confidence": 75.08519014938335,
+          "physics": "Light bending by curved spacetime"
+        },
+        {
+          "name": "Gravitational Time Dilation",
+          "detected": true,
+          "confidence": 80.49813626480253,
+          "physics": "Clock rates depend on gravitational potential"
+        },
+        {
+          "name": "Relativistic Escape Velocity",
+          "detected": true,
+          "confidence": 87,
+          "physics": "v_esc approaches c near compact objects"
+        },
+        {
+          "name": "Eddington Accretion Limit",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Radiation pressure limits accretion rate"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Massive Object",
+          "description": "Galactic Center Sgr A*: M=4100000.0M☉, R=100.00R☉, spin=0.50",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Einstein Field Equations",
+          "description": "G_μν + Λg_μν = 8πT_μν",
+          "timestamp": 0.002,
+          "physics": "Spacetime curvature = stress-energy"
+        },
+        {
+          "level": 2,
+          "step": "Schwarzschild Solution",
+          "description": "r_s = 1.21e+10 m, compactness = 0.087",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Event Horizon",
+          "description": "Exists: false, one-way boundary",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Photon Orbit and ISCO",
+          "description": "r_photon=3.63e+10m, r_isco=6.85e+10m",
+          "timestamp": 0.005,
+          "physics": "Orbital stability boundaries"
+        },
+        {
+          "level": 5,
+          "step": "Accretion Disk Formation",
+          "description": "L_acc=5.46e+13W, η=0.061",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Gravitational Wave Emission",
+          "description": "f_gw=0.00Hz, L_gw=6.71e-27W",
+          "timestamp": 0.007,
+          "physics": "Quadrupole formula from GR"
+        },
+        {
+          "level": 7,
+          "step": "Binary Orbital Decay",
+          "description": "t_merge=4.59e-3 years, strain=3.56e-4",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Relativistic Effects",
+          "description": "Lensing: μ=1.0, Time dilation: γ=1.10",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "All Physics Emergent from GR",
+          "description": "Strong gravity completely described by Einstein equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalObjects": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "84.5"
+  }
+}

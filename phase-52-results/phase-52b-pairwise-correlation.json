@@ -1,0 +1,46 @@
+{
+  "phase": "52B",
+  "title": "Semantic-Aware Dataset Expansion with Intelligent Pairing",
+  "timestamp": "2026-04-19T16:35:02.012Z",
+  "strategy": "Domain-aligned variants + semantically-matched pairs",
+  "total_dataset_size": 50,
+  "paired_analysis": {
+    "sample_size": 6,
+    "correlation": 0.5,
+    "z_score": 0.31714205029878195,
+    "p_value": 1,
+    "significant": false,
+    "bridge_strength": 50,
+    "avg_match_quality": 0.15833333333333333,
+    "scores_by_pair": [
+      {
+        "linguistic": 0.771,
+        "physical": 0.7775,
+        "quality": 0
+      },
+      {
+        "linguistic": 0.7185,
+        "physical": 0.7775,
+        "quality": 0
+      },
+      {
+        "linguistic": 0.7135,
+        "physical": 0.7775,
+        "quality": 0
+      },
+      {
+        "linguistic": 0.729,
+        "physical": 0.7775,
+        "quality": 0
+      },
+      {
+        "linguistic": 0.8390000000000001,
+        "physical": 0.7775,
+        "quality": 0
+      }
+    ]
+  },
+  "domain_coverage": 7,
+  "pairings_created": 6,
+  "status": "NEEDS TUNING"
+}

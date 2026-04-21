@@ -1,0 +1,150 @@
+{
+  "testDate": "2026-04-21T00:28:27.752Z",
+  "title": "Physics Analysis - Atomic Domain",
+  "description": "Detailed analysis of physics principles validation",
+  "energy_hierarchy": {
+    "description": "Ground state energy becomes more negative with increasing Z",
+    "validation": true,
+    "atoms_tested": [
+      {
+        "atom": "Hydrogen",
+        "z": 1,
+        "ground_state_energy_ry": -1
+      },
+      {
+        "atom": "Helium",
+        "z": 2,
+        "ground_state_energy_ry": -2.903
+      },
+      {
+        "atom": "Lithium",
+        "z": 3,
+        "ground_state_energy_ry": -3.539
+      },
+      {
+        "atom": "Beryllium",
+        "z": 4,
+        "ground_state_energy_ry": -4.728
+      },
+      {
+        "atom": "Boron",
+        "z": 5,
+        "ground_state_energy_ry": -6.807
+      },
+      {
+        "atom": "Carbon",
+        "z": 6,
+        "ground_state_energy_ry": -9.456
+      },
+      {
+        "atom": "Nitrogen",
+        "z": 7,
+        "ground_state_energy_ry": -12.795
+      },
+      {
+        "atom": "Oxygen",
+        "z": 8,
+        "ground_state_energy_ry": -16.634
+      },
+      {
+        "atom": "Fluorine",
+        "z": 9,
+        "ground_state_energy_ry": -21.09
+      },
+      {
+        "atom": "Neon",
+        "z": 10,
+        "ground_state_energy_ry": -26.153
+      },
+      {
+        "atom": "Sodium",
+        "z": 11,
+        "ground_state_energy_ry": -31.89
+      },
+      {
+        "atom": "Magnesium",
+        "z": 12,
+        "ground_state_energy_ry": -39.314
+      },
+      {
+        "atom": "Aluminum",
+        "z": 13,
+        "ground_state_energy_ry": -48.382
+      },
+      {
+        "atom": "Silicon",
+        "z": 14,
+        "ground_state_energy_ry": -58.847
+      },
+      {
+        "atom": "Phosphorus",
+        "z": 15,
+        "ground_state_energy_ry": -71.205
+      },
+      {
+        "atom": "Sulfur",
+        "z": 16,
+        "ground_state_energy_ry": -84.767
+      },
+      {
+        "atom": "Chlorine",
+        "z": 17,
+        "ground_state_energy_ry": -99.735
+      },
+      {
+        "atom": "Argon",
+        "z": 18,
+        "ground_state_energy_ry": -116.407
+      }
+    ]
+  },
+  "periodic_trends": {
+    "description": "Ionization energy trends across groups and periods",
+    "validation": true,
+    "noble_gases": [
+      {
+        "atom": "Helium",
+        "z": 2,
+        "ie_ev": 24.587
+      },
+      {
+        "atom": "Neon",
+        "z": 10,
+        "ie_ev": 21.565
+      },
+      {
+        "atom": "Argon",
+        "z": 18,
+        "ie_ev": 15.76
+      }
+    ],
+    "alkali_metals": [
+      {
+        "atom": "Hydrogen",
+        "z": 1,
+        "ie_ev": 13.598
+      },
+      {
+        "atom": "Lithium",
+        "z": 3,
+        "ie_ev": 5.391
+      },
+      {
+        "atom": "Sodium",
+        "z": 11,
+        "ie_ev": 5.139
+      }
+    ]
+  },
+  "constraints": {
+    "description": "All atoms within known physics bounds",
+    "validation": true,
+    "issues": []
+  },
+  "conclusion": {
+    "status": "PASSED",
+    "passed": 18,
+    "total": 18,
+    "percentage": "100.0"
+  }
+}

@@ -1,0 +1,174 @@
+=========================================================
+  MISTTRACKER - MANUAL DEPLOYMENT GUIDE
+  Degraded Hardware Validation Test
+=========================================================
+
+OBJECTIVE:
+Deploy missing Phase 17.5-Beta modules and run hardware
+fitness validator on Devuan system (10.144.113.100)
+
+SYSTEM INFO:
+- Target: Devuan Excaliber (6.7GB RAM, degraded hardware)
+- Deployment path: /home/orion/Desktop/misttracker/
+- Flash drive location: d:\misttracker-deployment\
+
+=========================================================
+STEP 1: PREPARE FLASH DRIVE ACCESS
+=========================================================
+
+On Devuan system:
+
+1a. Insert flash drive and identify mount point:
+    $ lsblk
+    $ mount | grep media
+    
+    Look for: /media/orion/[flashdrive-name] or /mnt/usb
+
+1b. If not automatically mounted, mount manually:
+    $ sudo mkdir -p /mnt/usb
+    $ sudo mount /dev/sd[X]1 /mnt/usb
+    
+    (Replace sd[X] with actual device from lsblk output)
+
+1c. Verify flash drive contents:
+    $ ls /mnt/usb/
+    
+    Expected files:
+    - phase-17-5-beta-aggregator.js
+    - phase-17-5-beta-cve-forecaster.js
+    - phase-17-5-beta-friction-predictor.js
+    - phase-17-5-beta-stability-modeler.js
+    - hardware-fitness-validator.js
+    - phase-17-5-beta-network-predictor.js
+
+=========================================================
+STEP 2: COPY MISSING MODULES
+=========================================================
+
+On Devuan system:
+
+2a. Navigate to misttracker directory:
+    $ cd /home/orion/Desktop/misttracker
+
+2b. Copy all required modules from flash drive:
+    $ cp /mnt/usb/phase-17-5-beta-aggregator.js .
+    $ cp /mnt/usb/phase-17-5-beta-cve-forecaster.js .
+    $ cp /mnt/usb/phase-17-5-beta-friction-predictor.js .
+    $ cp /mnt/usb/phase-17-5-beta-stability-modeler.js .
+    $ cp /mnt/usb/phase-17-5-beta-network-predictor.js .
+    $ cp /mnt/usb/hardware-fitness-validator.js .
+
+2c. Verify all files are present:
+    $ ls -la *.js
+    
+    Expected 7 files:
+    - hardware-fitness-validator.js
+    - phase-17-5-beta-aggregator.js
+    - phase-17-5-beta-cve-forecaster.js
+    - phase-17-5-beta-extended-aggregator.js (already present)
+    - phase-17-5-beta-friction-predictor.js
+    - phase-17-5-beta-network-predictor.js
+    - phase-17-5-beta-stability-modeler.js
+
+2d. Check file sizes to confirm copy success:
+    $ ls -lh phase-17-5-beta-*.js hardware-fitness-validator.js
+
+=========================================================
+STEP 3: RUN HARDWARE FITNESS VALIDATOR
+=========================================================
+
+On Devuan system:
+
+3a. Start validator with output to file (5-10 minutes):
+    $ node hardware-fitness-validator.js > validator-results.txt 2>&1 &
+    
+    [or for verbose output]
+    
+    $ nohup node hardware-fitness-validator.js > validator-results.txt 2>&1 &
+
+3b. Monitor progress:
+    $ tail -f validator-results.txt
+    
+    (Press Ctrl+C to stop monitoring)
+
+3c. Check if validator is still running:
+    $ ps aux | grep hardware-fitness-validator
+    
+    If it shows in the list, it's still running.
+    If no output, the test has completed.
+
+3d. After ~5-10 minutes, check the results:
+    $ wc -l validator-results.txt
+    $ tail -50 validator-results.txt
+
+=========================================================
+STEP 4: RETRIEVE RESULTS
+=========================================================
+
+On Windows system (after test completes):
+
+4a. Copy results file back to Windows:
+    $ scp orion@10.144.113.100:/home/orion/Desktop/misttracker/validator-results.txt .
+
+4b. Or manually via flash drive:
+    On Devuan:
+    $ cp validator-results.txt /mnt/usb/
+    
+    Then retrieve flash drive and copy to Windows.
+
+=========================================================
+STEP 5: ANALYZE RESULTS
+=========================================================
+
+The validator output will show:
+
+- Device Prediction Benchmark (timing in ms)
+  Expected degraded: ~2.0ms vs normal ~0.3ms (6.7x slowdown)
+
+- Mesh Topology Benchmark (timing in ms)  
+  Expected degraded: ~15.0ms vs normal ~5.0ms (3x slowdown)
+
+- Memory Stability Test (GC analysis)
+  Expected: Some variance in GC collection times
+
+- Overall Fitness Assessment:
+  ACCEPTABLE: System meets requirements
+  LIMITED: System has performance concerns
+  POOR: System not fit for production
+
+=========================================================
+TROUBLESHOOTING
+=========================================================
+
+ERROR: Cannot find module './phase-17-5-beta-aggregator'
+FIX: Verify all 7 .js files are in /home/orion/Desktop/misttracker/
+     Run: ls -la phase-17-5-beta-*.js
+
+ERROR: Flash drive not found
+FIX: Try different mount points or use: sudo fdisk -l
+
+ERROR: Permission denied copying files
+FIX: Check ownership: ls -la /home/orion/Desktop/misttracker/
+     Or use: sudo cp (with sudo password)
+
+ERROR: Node command not found
+FIX: Verify Node.js is installed: which node
+     If not installed: apt-get install nodejs
+
+ERROR: Out of memory during test
+FIX: The degraded hardware is being tested as designed
+     This is expected behavior to demonstrate impact
+     Let test continue or adjust MAX_ITERATIONS in validator
+
+=========================================================
+EXPECTED TEST COMPLETION TIME: 5-10 minutes
+=========================================================
+
+Once test completes, retrieve validator-results.txt and
+provide to Copilot for metric analysis and comparison
+against degraded hardware assumptions.
+
+File location for retrieval:
+/home/orion/Desktop/misttracker/validator-results.txt
+
+=========================================================

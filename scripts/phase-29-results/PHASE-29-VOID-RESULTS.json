@@ -1,0 +1,1214 @@
+{
+  "voids": [
+    {
+      "id": "void-0",
+      "type": "Young-Forming Void",
+      "age": 1.5,
+      "density": 0.75,
+      "radius": 40,
+      "emergence": "84.1",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.97), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 67.60732586953304,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 83.10619461632712,
+          "evidence": "Boundaries blur with time (τ~1.5 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 88.35383457434082,
+          "evidence": "Subvoids merge timescale t_tidal ~ 39.5 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 85.60317977623791,
+          "evidence": "Evacuation rate 0.133/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 93.42774002511479,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 10.1",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 72.18976889412043,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.25",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 76.84666756917281,
+          "evidence": "Stability parameter Q ~ 124.53, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 71.3870017084156,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 90.6813679932424,
+          "evidence": "R ∝ √age scaling (R=40 Mpc, age=1.5 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 89.73196207342033,
+          "evidence": "Void rotation suppressed (ω ~ 0.0094 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 89.87021347440415,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 1.5 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Young-Forming Void void: age=1.5Gyr, density=0.75, radius=40Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.75 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 10.13 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.1013 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.133/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 1500 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 1.2 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 84.1%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-1",
+      "type": "Active-Expansion Void",
+      "age": 3,
+      "density": 0.6,
+      "radius": 60,
+      "emergence": "82.2",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.94), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 70.71936005032367,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 79.65702675623861,
+          "evidence": "Boundaries blur with time (τ~3.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 82.03561239587297,
+          "evidence": "Subvoids merge timescale t_tidal ~ 89.3 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 94.6064952125446,
+          "evidence": "Evacuation rate 0.117/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 77.11665742395415,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 6.7",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 72.02778958161164,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.40",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 72.7647847869754,
+          "evidence": "Stability parameter Q ~ 547.94, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 84.94446510433895,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 78.45353291299084,
+          "evidence": "R ∝ √age scaling (R=60 Mpc, age=3.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 89.61624538517302,
+          "evidence": "Void rotation suppressed (ω ~ 0.0005 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 84.53084974881737,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 3.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Active-Expansion Void void: age=3Gyr, density=0.60, radius=60Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.60 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 6.72 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.0672 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.117/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 3000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 2.5 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 82.2%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-2",
+      "type": "Mature Void",
+      "age": 5,
+      "density": 0.45,
+      "radius": 80,
+      "emergence": "85.0",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.90), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 81.55012632992309,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 80.40912231830849,
+          "evidence": "Boundaries blur with time (τ~5.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 79.00022733779188,
+          "evidence": "Subvoids merge timescale t_tidal ~ 69.2 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 93.47838244443038,
+          "evidence": "Evacuation rate 0.100/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 81.12334694090171,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 11.6",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 84.72119402968534,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.55",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 89.50782895893255,
+          "evidence": "Stability parameter Q ~ 1488.30, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 69.85397427246065,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 91.12650592042573,
+          "evidence": "R ∝ √age scaling (R=80 Mpc, age=5.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 92.29757123876081,
+          "evidence": "Void rotation suppressed (ω ~ 0.0033 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 85.47040706919353,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 5.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Mature Void void: age=5Gyr, density=0.45, radius=80Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.45 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 11.55 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.1155 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.100/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 5000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 4.2 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 85.7%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-3",
+      "type": "Old-Relaxed Void",
+      "age": 8,
+      "density": 0.3,
+      "radius": 100,
+      "emergence": "81.9",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.84), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 70.50045397518232,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 87.43752031139327,
+          "evidence": "Boundaries blur with time (τ~8.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 78.04635250227932,
+          "evidence": "Subvoids merge timescale t_tidal ~ 126.4 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 84.99032837968163,
+          "evidence": "Evacuation rate 0.081/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 85.61381746134784,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 7.9",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 76.17297252541783,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.70",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 78.34735004829362,
+          "evidence": "Stability parameter Q ~ 6948.92, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 82.35741480387362,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 78.07366022518129,
+          "evidence": "R ∝ √age scaling (R=100 Mpc, age=8.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 88.04314020327317,
+          "evidence": "Void rotation suppressed (ω ~ 0.0010 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 72.84743849970812,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 8.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Old-Relaxed Void void: age=8Gyr, density=0.30, radius=100Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.30 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 7.91 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.0791 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.081/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 8000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 6.6 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 81.9%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-4",
+      "type": "Binary-Void System",
+      "age": 4,
+      "density": 0.5,
+      "radius": 70,
+      "emergence": "84.4",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.92), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 67.35579128640596,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 87.23676759025292,
+          "evidence": "Boundaries blur with time (τ~4.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 75.38253038542157,
+          "evidence": "Subvoids merge timescale t_tidal ~ 39.1 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 81.28218622291183,
+          "evidence": "Evacuation rate 0.112/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 91.80538779238321,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 17.9",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 82.96514866684849,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.50",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 76.40902794328213,
+          "evidence": "Stability parameter Q ~ 732.03, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 79.93345912022305,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 92.18670423682494,
+          "evidence": "R ∝ √age scaling (R=70 Mpc, age=4.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 93.0414064012907,
+          "evidence": "Void rotation suppressed (ω ~ 0.0026 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 85.39074529001527,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 4.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Binary-Void System void: age=4Gyr, density=0.50, radius=70Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.50 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 17.90 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.1790 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.112/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 4000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 3.3 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 84.4%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-5",
+      "type": "Filament-Void Junction",
+      "age": 6,
+      "density": 0.4,
+      "radius": 85,
+      "emergence": "83.1",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.88), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 78.95552383591979,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 89.63567036276548,
+          "evidence": "Boundaries blur with time (τ~6.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 75.50493118951402,
+          "evidence": "Subvoids merge timescale t_tidal ~ 66.5 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 92.58518113848166,
+          "evidence": "Evacuation rate 0.092/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 77.17460523745207,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 12.8",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 77.18673459778287,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.60",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 86.44676582874912,
+          "evidence": "Stability parameter Q ~ 2093.77, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 70.27273913162581,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 84.8608324297575,
+          "evidence": "R ∝ √age scaling (R=85 Mpc, age=6.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 90.26736060185804,
+          "evidence": "Void rotation suppressed (ω ~ 0.0073 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 74.07882088783296,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 6.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Filament-Void Junction void: age=6Gyr, density=0.40, radius=85Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.40 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 12.78 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.1278 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.092/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 6000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 5.0 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 83.1%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-6",
+      "type": "Cosmic-Wall Void",
+      "age": 7,
+      "density": 0.35,
+      "radius": 95,
+      "emergence": "81.6",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.86), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 61.07114525824898,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 80.72708485871469,
+          "evidence": "Boundaries blur with time (τ~7.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 77.34263232638358,
+          "evidence": "Subvoids merge timescale t_tidal ~ 50.3 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 89.6659098801308,
+          "evidence": "Evacuation rate 0.086/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 93.72777483178764,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 18.9",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 82.36505308139867,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.65",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 69.95185865705676,
+          "evidence": "Stability parameter Q ~ 4122.17, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 69.91655980605914,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 82.34379535819102,
+          "evidence": "R ∝ √age scaling (R=95 Mpc, age=7.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 89.83695393403809,
+          "evidence": "Void rotation suppressed (ω ~ 0.0016 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 81.79566052353317,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 7.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Cosmic-Wall Void void: age=7Gyr, density=0.35, radius=95Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.35 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 18.87 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.1887 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.086/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 7000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 5.8 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 81.6%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "void-7",
+      "type": "Isolated Deep Void",
+      "age": 9,
+      "density": 0.25,
+      "radius": 120,
+      "emergence": "84.6",
+      "patternCount": 12,
+      "patterns": [
+        {
+          "name": "Expansion Rate vs Age",
+          "confidence": 100,
+          "evidence": "Younger voids expand faster (0.82), follows dynamics",
+          "emergent": true
+        },
+        {
+          "name": "Radial Density Profile",
+          "confidence": 71.81461672568497,
+          "evidence": "Profile scale ∝ radius, follows potential gradient",
+          "emergent": true
+        },
+        {
+          "name": "Boundary Sharpness Decay",
+          "confidence": 75.17369507248387,
+          "evidence": "Boundaries blur with time (τ~9.0 Gyr), diffusive",
+          "emergent": true
+        },
+        {
+          "name": "Tidal Disruption Timescale",
+          "confidence": 79.12771715637584,
+          "evidence": "Subvoids merge timescale t_tidal ~ 160.5 Gyr",
+          "emergent": true
+        },
+        {
+          "name": "Exponential Galaxy Evacuation",
+          "confidence": 83.46886153397418,
+          "evidence": "Evacuation rate 0.078/Gyr, follows exp(-t/τ)",
+          "emergent": true
+        },
+        {
+          "name": "Internal Hubble Flow Gradient",
+          "confidence": 91.55054297960889,
+          "evidence": "Linear velocity gradient inside void, ∇·v = 7.5",
+          "emergent": true
+        },
+        {
+          "name": "Void-Filament Density Contrast",
+          "confidence": 87.98675546922225,
+          "evidence": "Contrast grows with time: δρ/ρ ~ 1-exp(-t/τ), 0.75",
+          "emergent": true
+        },
+        {
+          "name": "Void Dynamical Stability",
+          "confidence": 88.81042799120937,
+          "evidence": "Stability parameter Q ~ 7930.70, stable if Q > 0.3",
+          "emergent": true
+        },
+        {
+          "name": "Viscous Energy Dissipation",
+          "confidence": 89.1813746153786,
+          "evidence": "Damping timescale t_visc ~ 0.0 Gyr, from diffusion",
+          "emergent": true
+        },
+        {
+          "name": "Void Size-Age Scaling",
+          "confidence": 85.66587411556254,
+          "evidence": "R ∝ √age scaling (R=120 Mpc, age=9.0 Gyr)",
+          "emergent": true
+        },
+        {
+          "name": "Vorticity Suppression",
+          "confidence": 85.29163150924927,
+          "evidence": "Void rotation suppressed (ω ~ 0.0085 rad/s), irrotational flow",
+          "emergent": true
+        },
+        {
+          "name": "Void Merger Dynamics",
+          "confidence": 77.42395256331022,
+          "evidence": "Merger timescale from relative expansion, t_merge ~ 9.0 Gyr",
+          "emergent": true
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Void Specification",
+          "description": "Isolated Deep Void void: age=9Gyr, density=0.25, radius=120Mpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Field",
+          "description": "Poisson equation: ∇²φ = 4πGρ determines potential",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Initial Density Profile",
+          "description": "Underdensity: ρ = 0.25 × ρ_bar",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Expansion Dynamics",
+          "description": "Hubble flow: v = H₀ × r, divergence ∇·v = 7.48 s⁻¹",
+          "timestamp": 0.004,
+          "physics": "cosmology"
+        },
+        {
+          "level": 4,
+          "step": "Tidal Forces",
+          "description": "Tidal tensor from potential gradients, strain rate ~ 0.0748 Gyr⁻¹",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Galaxy Evacuation",
+          "description": "Galaxies preferentially leave low-density regions (evacuation rate ~ 0.078/Gyr)",
+          "timestamp": 0.006,
+          "mechanism": "dynamical"
+        },
+        {
+          "level": 6,
+          "step": "Boundary Evolution",
+          "description": "Void boundary sharpness decays as void ages (τ ~ 9000 Myr)",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Subvoid Merging",
+          "description": "Internal subvoids merge via tidal forces (timescale ~ 7.5 Gyr)",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Pattern Emergence",
+          "description": "12 patterns emerge from first principles (avg confidence 84.6%)",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Void Dynamics Complete",
+          "description": "All void properties determined by gravity, density, and age. NO new physics needed.",
+          "timestamp": 0.01,
+          "conclusion": "EMERGENT"
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalVoids": 8,
+    "successCount": 8,
+    "failureCount": 0,
+    "patternCount": 96,
+    "averageEmergence": "83.4",
+    "patternConfidence": "83.4",
+    "overallConfidence": "83.4",
+    "executionTime": "0.0040"
+  }
+}

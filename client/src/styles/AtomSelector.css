@@ -1,0 +1,266 @@
+/* AtomSelector Styles - Phase 17.2.0 */
+
+.atom-selector-wrapper {
+  width: 100%;
+  background: #0f0f0f;
+  border: 1px solid #00ff88;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+}
+
+.display-mode-toggle {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 15px;
+}
+
+.mode-btn {
+  padding: 8px 16px;
+  background: #1a1a1a;
+  border: 1px solid #333;
+  color: #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mode-btn:hover {
+  background: #222;
+  border-color: #00ff88;
+  color: #00ff88;
+}
+
+.mode-btn.active {
+  background: #00ff88;
+  color: #0f0f0f;
+  border-color: #00ff88;
+}
+
+.atom-selector-content {
+  width: 100%;
+}
+
+/* Grid View */
+.atom-grid-container {
+  width: 100%;
+}
+
+.atom-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+  gap: 10px;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+.atom-button {
+  aspect-ratio: 1;
+  background: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 8px;
+  color: #aaa;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.atom-button:hover {
+  background: #222;
+  border-color: #00ff88;
+  color: #00ff88;
+  transform: scale(1.05);
+}
+
+.atom-button.selected {
+  background: #00ff88;
+  color: #0f0f0f;
+  border-color: #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.atom-button.atom-trained {
+  border-color: #00cc66;
+}
+
+.atom-button.atom-trained:hover {
+  border-color: #00ff88;
+}
+
+.atom-button.atom-untrained {
+  border-color: #666;
+}
+
+.atom-symbol {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.atom-number {
+  font-size: 12px;
+  color: #666;
+  font-size: 11px;
+}
+
+.atom-status {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  font-size: 10px;
+}
+
+.status-badge {
+  background: #00cc66;
+  color: #0f0f0f;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+/* Atom Details */
+.atom-details {
+  background: #1a1a1a;
+  border: 1px solid #00ff88;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.atom-details h3 {
+  color: #00ff88;
+  margin: 0 0 15px 0;
+  font-size: 20px;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.detail-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.detail-item .label {
+  color: #888;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.detail-item .value {
+  color: #00ff88;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Courier New', monospace;
+}
+
+/* Dropdown View */
+.atom-dropdown-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.atom-dropdown-container label {
+  color: #888;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.atom-dropdown {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #aaa;
+  padding: 10px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.atom-dropdown:hover {
+  border-color: #00ff88;
+}
+
+.atom-dropdown:focus {
+  outline: none;
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+}
+
+/* Info Box */
+.atom-info-box {
+  background: #1a1a1a;
+  border: 1px solid #00ff88;
+  border-radius: 8px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.atom-info-box h3 {
+  color: #00ff88;
+  margin: 0 0 10px 0;
+  font-size: 16px;
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.info-grid div {
+  display: flex;
+  justify-content: space-between;
+  color: #aaa;
+}
+
+.info-grid strong {
+  color: #00ff88;
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .atom-grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .atom-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .atom-selector-wrapper {
+    padding: 15px;
+  }
+
+  .mode-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}

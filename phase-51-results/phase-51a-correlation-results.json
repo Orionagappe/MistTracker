@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-04-19T16:27:57.503Z",
+  "correlations": {
+    "pearson": 0.3394117875463245,
+    "interpretation": "WEAK correlation"
+  },
+  "hypothesis_test": {
+    "null_hypothesis": "Linguistic emergence ≠ physical emergence",
+    "alternative": "Linguistic emergence ∝ physical emergence",
+    "z_score": 0.35342758147690145,
+    "p_value": 1,
+    "significant": false
+  },
+  "bridge_strength": 33.94117875463245,
+  "recommendation": "⚠️ BRIDGE NEEDS WORK - Investigate divergences"
+}

@@ -1,0 +1,147 @@
+{
+  "timestamp": "2026-04-19T14:48:05.248Z",
+  "phase": 45,
+  "subphase": "C",
+  "overall_metrics": {
+    "average_clarity": 92.5,
+    "max_clarity": 100,
+    "min_clarity": 76,
+    "clarity_range": 24
+  },
+  "domain_rankings": [
+    {
+      "domain": "Philosophy of Science",
+      "avg": 96.5,
+      "min": 92,
+      "max": 100
+    },
+    {
+      "domain": "Logic",
+      "avg": 95.66666666666667,
+      "min": 92,
+      "max": 100
+    },
+    {
+      "domain": "Metaphysics",
+      "avg": 95.66666666666667,
+      "min": 79,
+      "max": 100
+    },
+    {
+      "domain": "Philosophy of Mathematics",
+      "avg": 95.16666666666667,
+      "min": 92,
+      "max": 100
+    },
+    {
+      "domain": "Philosophy of Mind",
+      "avg": 94,
+      "min": 87,
+      "max": 100
+    },
+    {
+      "domain": "Philosophy of Language",
+      "avg": 93.5,
+      "min": 87,
+      "max": 100
+    },
+    {
+      "domain": "Political Philosophy",
+      "avg": 90.5,
+      "min": 87,
+      "max": 95
+    },
+    {
+      "domain": "Aesthetics",
+      "avg": 86.83333333333333,
+      "min": 76,
+      "max": 92
+    },
+    {
+      "domain": "Epistemology",
+      "avg": 84.33333333333333,
+      "min": 79,
+      "max": 92
+    }
+  ],
+  "metric_usage": [
+    {
+      "metric": "Technical Precision",
+      "count": 21,
+      "percentage": "39"
+    },
+    {
+      "metric": "Scope Clarity",
+      "count": 3,
+      "percentage": "6"
+    },
+    {
+      "metric": "Logical Structure",
+      "count": 2,
+      "percentage": "4"
+    },
+    {
+      "metric": "Ambiguity Reduction",
+      "count": 2,
+      "percentage": "4"
+    }
+  ],
+  "domain_metric_affinity": {
+    "Epistemology": {
+      "Technical Precision": 4,
+      "Scope Clarity": 2
+    },
+    "Logic": {
+      "Technical Precision": 2
+    },
+    "Metaphysics": {
+      "Technical Precision": 2
+    },
+    "Philosophy of Mind": {
+      "Technical Precision": 3,
+      "Logical Structure": 1
+    },
+    "Aesthetics": {
+      "Ambiguity Reduction": 2,
+      "Scope Clarity": 1
+    },
+    "Political Philosophy": {
+      "Technical Precision": 5
+    },
+    "Philosophy of Science": {
+      "Technical Precision": 1
+    },
+    "Philosophy of Mathematics": {
+      "Technical Precision": 1,
+      "Logical Structure": 1
+    },
+    "Philosophy of Language": {
+      "Technical Precision": 3
+    }
+  },
+  "insights": {
+    "most_consistent_domain": "Logic",
+    "most_variable_domain": "Metaphysics",
+    "most_specialized_metric": "Ambiguity Reduction",
+    "questions_needing_improvement": [
+      {
+        "domain": "Aesthetics",
+        "subdomain": "Aesthetic Judgment",
+        "score": 76
+      },
+      {
+        "domain": "Epistemology",
+        "subdomain": "Testimony",
+        "score": 79
+      },
+      {
+        "domain": "Epistemology",
+        "subdomain": "Social Epistemology",
+        "score": 79
+      }
+    ],
+    "lowest_clarity_domain": "Epistemology",
+    "highest_clarity_domain": "Philosophy of Science",
+    "clarity_gap": 12.2
+  }
+}

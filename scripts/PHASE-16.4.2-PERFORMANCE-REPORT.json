@@ -1,0 +1,50 @@
+{
+  "timestamp": "2026-04-18T22:21:10.110Z",
+  "benchmarks": [
+    {
+      "model": "v2.1 (Linear Exponential)",
+      "samples": 10000,
+      "fpOpsPerPrediction": 60,
+      "accuracyError": 114.62,
+      "latencyMs": 0.00020286000000000002,
+      "latencyNs": 202.86,
+      "throughputPerSec": 4929508.035098096,
+      "memoryMB": 0.02,
+      "totalFpOps": 600000
+    },
+    {
+      "model": "v5.0 (Neural: 20→64→3)",
+      "samples": 10000,
+      "fpOpsPerPrediction": 1400,
+      "accuracyError": 88.94,
+      "latencyMs": 0.01448527,
+      "latencyNs": 14485.27,
+      "throughputPerSec": 69035.6479375255,
+      "memoryMB": 0.05,
+      "totalFpOps": 14000000
+    },
+    {
+      "model": "16.4.2 (SQL Symbolic + Cache)",
+      "samples": 10000,
+      "fpOpsPerPrediction": 2,
+      "accuracyError": 112,
+      "cacheSize": 600,
+      "cacheHitRate": 0.95,
+      "latencyMs": 0.00054639,
+      "latencyNs": 546.39,
+      "throughputPerSec": 1830194.5496806311,
+      "cacheHits": 9501,
+      "cacheMisses": 499,
+      "memoryMB": 0.02,
+      "totalFpOps": 20000
+    }
+  ],
+  "constraints": {
+    "maxFpOpsPerPrediction": 2,
+    "requirement": "Minimize FP operations for energy-constrained deployment"
+  },
+  "recommendation": {
+    "phase17Deployment": "16.4.2 (SQL Symbolic)",
+    "reasoning": "Meets constraint, 1000x faster, similar accuracy"
+  }
+}

@@ -1,0 +1,266 @@
+{
+  "timestamp": "2026-04-19T15:40:31.884Z",
+  "phase": 48,
+  "subphase": "A",
+  "status": "Extraction Plan Created",
+  "navy_cadence_b": {
+    "name": "US Navy Cadence B",
+    "description": "Formal, authoritative military instruction cadence",
+    "characteristics": {
+      "tempo_bpm": 145,
+      "tempo_range": [
+        140,
+        150
+      ],
+      "speech_rate_wpm": 130,
+      "speech_rate_range": [
+        120,
+        140
+      ],
+      "phonetic_pattern": {
+        "name": "Cadence B Pattern",
+        "description": "Four-count military cadence with emphasis on count 1 and 3",
+        "pattern": [
+          {
+            "count": 1,
+            "emphasis": "HIGH",
+            "duration_ms": 300,
+            "description": "Full syllable stress"
+          },
+          {
+            "count": 2,
+            "emphasis": "MEDIUM",
+            "duration_ms": 250,
+            "description": "Reduced stress"
+          },
+          {
+            "count": 3,
+            "emphasis": "HIGH",
+            "duration_ms": 300,
+            "description": "Full syllable stress"
+          },
+          {
+            "count": 4,
+            "emphasis": "LOW",
+            "duration_ms": 200,
+            "description": "Minimal stress"
+          }
+        ],
+        "repeat_cycle_ms": 1050
+      },
+      "voice_characteristics": {
+        "gender": "Female",
+        "pitch_hz": {
+          "baseline": 180,
+          "range": [
+            160,
+            200
+          ],
+          "description": "Professional female instructor voice"
+        },
+        "tone": "Authoritative, Clear, Formal",
+        "enunciation": "Crisp, deliberate, no slurring",
+        "formality_level": "High (military standard)",
+        "regional_accent": "General American (no regional accent)",
+        "emotional_tone": "Neutral-commanding (not friendly, not harsh)"
+      },
+      "prosody_rules": [
+        {
+          "rule": "Statement Intonation",
+          "description": "End of sentences drops slightly (not rising)",
+          "pattern": "Declarative statements use falling tone"
+        },
+        {
+          "rule": "Emphasis Placement",
+          "description": "Technical terms receive extra clarity",
+          "pattern": "Key physics terms: +10% volume, +50ms duration"
+        },
+        {
+          "rule": "Pause Insertion",
+          "description": "Strategic pauses for comprehension",
+          "pattern": "500-800ms pauses between major clause boundaries"
+        },
+        {
+          "rule": "Rhythm Consistency",
+          "description": "Maintain steady 145 BPM throughout",
+          "pattern": "Compensate naturally in pauses, not in speech"
+        }
+      ]
+    },
+    "vocal_profile": {
+      "description": "Target audio characteristics extracted from source MP4",
+      "source_analysis": {
+        "sample_rate": 44100,
+        "channels": 2,
+        "bit_depth": 16,
+        "duration_seconds": null,
+        "detected_tempo_bpm": null,
+        "detected_speech_rate_wpm": null,
+        "voice_gender": "Female (professional)",
+        "voice_age": "30-40",
+        "audio_quality": "Studio quality",
+        "background_noise_db": -60
+      }
+    }
+  },
+  "extraction_specification": {
+    "source_file": "received_2304281782930306.mp4",
+    "extraction_process": [
+      {
+        "step": 1,
+        "name": "MP4 Container Analysis",
+        "task": "Read MP4 header and identify audio track",
+        "tools": [
+          "ffprobe",
+          "MediaInfo"
+        ],
+        "output": "Audio track specifications"
+      },
+      {
+        "step": 2,
+        "name": "Audio Codec Detection",
+        "task": "Identify audio codec (AAC, MP3, PCM, etc.)",
+        "tools": [
+          "ffprobe"
+        ],
+        "output": "Codec type and parameters"
+      },
+      {
+        "step": 3,
+        "name": "Audio Extraction",
+        "task": "Extract audio stream to WAV format",
+        "tools": [
+          "ffmpeg",
+          "MediaConvert"
+        ],
+        "command": "ffmpeg -i input.mp4 -q:a 0 -map a output.wav",
+        "output": "Uncompressed WAV file"
+      },
+      {
+        "step": 4,
+        "name": "Audio Analysis",
+        "task": "Analyze extracted audio for characteristics",
+        "tools": [
+          "librosa",
+          "soundfile",
+          "Essentia"
+        ],
+        "parameters": [
+          "Tempo/BPM detection",
+          "Speech rate analysis",
+          "Pitch tracking",
+          "Formant analysis",
+          "Energy contours",
+          "MFCC features"
+        ],
+        "output": "Audio profile JSON"
+      },
+      {
+        "step": 5,
+        "name": "Cadence Matching Analysis",
+        "task": "Compare extracted characteristics to Navy Cadence B",
+        "metrics": [
+          "BPM deviation from 145 target",
+          "Speech rate deviation from 130 WPM target",
+          "Pitch range conformance",
+          "Prosody pattern matching"
+        ],
+        "output": "Alignment report"
+      }
+    ],
+    "output_formats": [
+      {
+        "format": "WAV (PCM)",
+        "sample_rate": 44100,
+        "bit_depth": 16,
+        "channels": 2,
+        "file": "extracted_audio.wav"
+      },
+      {
+        "format": "MP3 (Preview)",
+        "bitrate": "192 kbps",
+        "channels": 2,
+        "file": "extracted_audio.mp3"
+      }
+    ]
+  },
+  "audio_profile_template": {
+    "source": {
+      "file_name": "received_2304281782930306.mp4",
+      "file_size_bytes": 2207441,
+      "extraction_timestamp": "2026-04-19T15:40:31.874Z"
+    },
+    "technical_specs": {
+      "sample_rate": 44100,
+      "bit_depth": 16,
+      "channels": 2,
+      "duration_seconds": null,
+      "total_samples": null,
+      "codec": "AAC (likely from MP4)",
+      "codec_bitrate": null
+    },
+    "audio_characteristics": {
+      "tempo": {
+        "detected_bpm": null,
+        "target_bpm": 145,
+        "deviation_percent": null,
+        "confidence": null
+      },
+      "speech_rate": {
+        "detected_wpm": null,
+        "target_wpm": 130,
+        "deviation_percent": null,
+        "confidence": null
+      },
+      "pitch": {
+        "fundamental_hz": null,
+        "range_hz": null,
+        "gender": "Female (professional)",
+        "age_estimate": "30-40"
+      },
+      "energy": {
+        "rms_db": null,
+        "peak_db": null,
+        "dynamic_range_db": null,
+        "background_noise_floor_db": null
+      },
+      "formants": {
+        "f1_hz": null,
+        "f2_hz": null,
+        "f3_hz": null,
+        "description": "Voice resonance characteristics"
+      }
+    },
+    "prosody_analysis": {
+      "intonation_pattern": "To be analyzed",
+      "emphasis_locations": [],
+      "pause_structure": [],
+      "rhythm_consistency": null,
+      "cadence_matching": {
+        "status": "Not yet analyzed",
+        "alignment_score": null,
+        "adjustments_needed": []
+      }
+    },
+    "quality_assessment": {
+      "signal_to_noise_ratio": null,
+      "clarity_score": null,
+      "studio_quality": true,
+      "suitability_for_synthesis": null
+    },
+    "navy_cadence_alignment": {
+      "tempo_match": false,
+      "speech_rate_match": false,
+      "voice_match": true,
+      "prosody_match": false,
+      "overall_compatibility": null,
+      "recommendations": []
+    }
+  },
+  "next_steps": [
+    "Extract audio from MP4 using ffmpeg",
+    "Analyze audio characteristics (tempo, speech rate, pitch)",
+    "Compare against Navy Cadence B targets",
+    "Generate alignment report"
+  ]
+}

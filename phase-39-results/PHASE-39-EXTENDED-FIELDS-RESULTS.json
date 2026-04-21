@@ -1,0 +1,1521 @@
+{
+  "objects": [
+    {
+      "id": "FIELD-0-Electromagnetic Radiation (Visible Light)",
+      "type": "Electromagnetic Radiation (Visible Light)",
+      "emergence": "47.7",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 0,
+      "frequency_Hz": "5.00e+14",
+      "wavelength_m": "6.00e-7",
+      "energy_J": "5.27e-20",
+      "polarization": "Linear",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "7.53e-15",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 67.13004137154611,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 64.48404804771013,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 19.460613058078742,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 42.13252804149403,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Electromagnetic Radiation (Visible Light)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-1-X-ray Electromagnetic Radiation",
+      "type": "X-ray Electromagnetic Radiation",
+      "emergence": "50.1",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 0,
+      "frequency_Hz": "3.00e+18",
+      "wavelength_m": "9.99e-11",
+      "energy_J": "3.16e-16",
+      "polarization": "Circular",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "2.49e-12",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 74.6863438723134,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 64.25735897268711,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 34.5731669478877,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 47.79975491175513,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "X-ray Electromagnetic Radiation",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-2-Gravitational Waves (Binary Neutron Stars)",
+      "type": "Gravitational Waves (Binary Neutron Stars)",
+      "emergence": "44.2",
+      "patternCount": 12,
+      "spin": 2,
+      "mass_GeV": 0,
+      "frequency_Hz": "1.00e+2",
+      "wavelength_m": "3.00e+6",
+      "energy_J": "1.05e-32",
+      "polarization": "Tensor Plus/Cross",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "2.57e-23",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 45,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 65.2459862479703,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 11,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 30.000015968064105,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Gravitational Waves (Binary Neutron Stars)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-2 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-3-Gravitational Waves (SMBH Merger)",
+      "type": "Gravitational Waves (SMBH Merger)",
+      "emergence": "44.3",
+      "patternCount": 12,
+      "spin": 2,
+      "mass_GeV": 0,
+      "frequency_Hz": "1.00e-3",
+      "wavelength_m": "3.00e+11",
+      "energy_J": "1.05e-37",
+      "polarization": "Tensor Plus/Cross",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "1.19e-26",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": false,
+          "confidence": 45,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": false,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 65.54598624797029,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 11,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 30.00000000015968,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Gravitational Waves (SMBH Merger)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-2 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-4-W Boson Production",
+      "type": "W Boson Production",
+      "emergence": "53.2",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 80.4,
+      "frequency_Hz": "1.00e+24",
+      "wavelength_m": "3.00e-16",
+      "energy_J": "1.05e-10",
+      "polarization": "Massive Vector",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "1.19e-8",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 82,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 63.925986247970286,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 56.66468192900763,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 56.084073029674755,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "W Boson Production",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-5-Z Boson Production",
+      "type": "Z Boson Production",
+      "emergence": "53.2",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 91.2,
+      "frequency_Hz": "1.00e+24",
+      "wavelength_m": "3.00e-16",
+      "energy_J": "1.05e-10",
+      "polarization": "Massive Vector",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "1.19e-8",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 82,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 63.925986247970286,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 56.66468192900763,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 56.084073029674755,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Z Boson Production",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-6-Tensor Metric Perturbations",
+      "type": "Tensor Metric Perturbations",
+      "emergence": "48.5",
+      "patternCount": 12,
+      "spin": 2,
+      "mass_GeV": 0,
+      "frequency_Hz": "1.00e+16",
+      "wavelength_m": "3.00e-8",
+      "energy_J": "1.05e-18",
+      "polarization": "Tensor Spin-2",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "5.55e-14",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 69.73210136287408,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 64.40598624797029,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 24.664682056790696,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 44.08407302994052,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Tensor Metric Perturbations",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-2 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-7-Radio Frequency Fields",
+      "type": "Radio Frequency Fields",
+      "emergence": "45.4",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 0,
+      "frequency_Hz": "1.00e+9",
+      "wavelength_m": "3.00e-1",
+      "energy_J": "1.05e-25",
+      "polarization": "Linear",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "1.19e-18",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 55.73210136287407,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 64.82598624797029,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 11.000000059041213,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 33.58672524742959,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Radio Frequency Fields",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-8-Microwave Background Radiation",
+      "type": "Microwave Background Radiation",
+      "emergence": "46.0",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 0,
+      "frequency_Hz": "1.00e+11",
+      "wavelength_m": "3.00e-3",
+      "energy_J": "1.05e-23",
+      "polarization": "Partially Polarized",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "2.57e-17",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 59.73210136287407,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 64.70598624797029,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 11.000590211558368,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 36.584099605373495,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Microwave Background Radiation",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "FIELD-9-Ultraviolet Radiation",
+      "type": "Ultraviolet Radiation",
+      "emergence": "48.5",
+      "patternCount": 12,
+      "spin": 1,
+      "mass_GeV": 0,
+      "frequency_Hz": "1.00e+16",
+      "wavelength_m": "3.00e-8",
+      "energy_J": "1.05e-18",
+      "polarization": "Linear",
+      "em_intensity": "2.65e-3",
+      "gw_strain": "5.55e-14",
+      "patterns": [
+        {
+          "name": "Electromagnetic Radiation",
+          "detected": true,
+          "confidence": 76.84791701493128,
+          "physics": "Maxwell equations, photon quantization"
+        },
+        {
+          "name": "Poynting Vector Energy Flux",
+          "detected": true,
+          "confidence": 76.13593776119846,
+          "physics": "EM energy flow, momentum transfer"
+        },
+        {
+          "name": "Thomson Scattering Cross-Section",
+          "detected": true,
+          "confidence": 50.829309292337435,
+          "physics": "Classical electron scattering"
+        },
+        {
+          "name": "Gravitational Wave Detection",
+          "detected": true,
+          "confidence": 69.73210136287408,
+          "physics": "GR quadrupole radiation, tensor waves"
+        },
+        {
+          "name": "GW Tensor Polarization",
+          "detected": true,
+          "confidence": 24,
+          "physics": "Plus and cross polarization states"
+        },
+        {
+          "name": "Massive Vector Boson Propagation",
+          "detected": true,
+          "confidence": 54.00000000610358,
+          "physics": "W/Z boson electroweak physics"
+        },
+        {
+          "name": "Massive Boson Decay Channels",
+          "detected": true,
+          "confidence": 12.000000043876483,
+          "physics": "Electroweak coupling, decay rates"
+        },
+        {
+          "name": "Tensor Field Polarization States",
+          "detected": true,
+          "confidence": 64.40598624797029,
+          "physics": "Spin-2 tensor degrees of freedom"
+        },
+        {
+          "name": "Metric Perturbation Amplitude",
+          "detected": true,
+          "confidence": 59.15051499783199,
+          "physics": "Spacetime curvature fluctuations"
+        },
+        {
+          "name": "Radiation Reaction Force",
+          "detected": true,
+          "confidence": 26.512804271856993,
+          "physics": "Radiation damping, self-energy"
+        },
+        {
+          "name": "Quantum Recoil Effects",
+          "detected": true,
+          "confidence": 24.664682056790696,
+          "physics": "Photon momentum transfer"
+        },
+        {
+          "name": "QED Lamb Shift",
+          "detected": true,
+          "confidence": 44.08407302994052,
+          "physics": "Virtual photon loops, energy level shift"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Extended Field Configuration",
+          "description": "Ultraviolet Radiation",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Fields",
+          "description": "QFT Lagrangian",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Field Equations",
+          "description": "Wave/Maxwell/Einstein equations",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Spin Structure",
+          "description": "Spin-1 field quantization",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Radiation Properties",
+          "description": "Energy-momentum tensor",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Polarization States",
+          "description": "Helicity/spin basis",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Interaction Effects",
+          "description": "Coupling to matter/curvature",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Radiation Reaction",
+          "description": "Self-energy corrections",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Signatures",
+          "description": "Detection patterns",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Field Theory",
+          "description": "First-principles emergence",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalObjects": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "48.1"
+  }
+}

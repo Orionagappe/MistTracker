@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-04-19T14:02:53.118Z",
+  "datasets_validated": 4,
+  "datasets_passed": 4,
+  "all_passed": true,
+  "results": [
+    {
+      "dataset": "EnglishLanguageRules.csv",
+      "status": "PASS",
+      "rowCount": 7
+    },
+    {
+      "dataset": "QuestionTemplates.csv",
+      "status": "PASS",
+      "rowCount": 7
+    },
+    {
+      "dataset": "QuestionValidationMetrics.csv",
+      "status": "PASS",
+      "rowCount": 25
+    },
+    {
+      "dataset": "SemanticRelationships.csv",
+      "status": "PASS",
+      "rowCount": 20
+    }
+  ]
+}

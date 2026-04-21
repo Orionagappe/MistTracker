@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Lithium",
+  "model": "Bohr",
+  "timestamp": "2026-04-20T23:49:24.470Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0010547605269514474,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.529,
+      "measured": 0.5343777903054457,
+      "error_pct": "1.02"
+    },
+    "ionization_energy": {
+      "reference": 5.39,
+      "measured": 5.425788312406458,
+      "error_pct": "0.66"
+    },
+    "ground_state_energy": {
+      "reference": -203.3,
+      "measured": -200.52669631689074,
+      "error_pct": "-1.36"
+    }
+  }
+}

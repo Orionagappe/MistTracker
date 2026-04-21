@@ -1,0 +1,368 @@
+[
+  {
+    "findingId": "P1",
+    "domain": "physics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "force",
+      "symmetry",
+      "emergence",
+      "hierarchy"
+    ],
+    "scale_hierarchy": [
+      "quantum"
+    ],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": true,
+      "has_quantization": true,
+      "scale_bridging": true
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.4,
+      "scale_span": 0.2,
+      "complexity_score": 0.6,
+      "emergence_potential": 0.4
+    }
+  },
+  {
+    "findingId": "L1",
+    "domain": "linguistics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "field",
+      "interaction"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.2,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0.1
+    }
+  },
+  {
+    "findingId": "P2",
+    "domain": "physics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "wave"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.1,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0.05
+    }
+  },
+  {
+    "findingId": "P3",
+    "domain": "physics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0
+    }
+  },
+  {
+    "findingId": "P4",
+    "domain": "physics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "symmetry"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": true,
+      "has_conservation": true,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.1,
+      "scale_span": 0,
+      "complexity_score": 0.4,
+      "emergence_potential": 0.15
+    }
+  },
+  {
+    "findingId": "P5",
+    "domain": "physics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "causality"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.1,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0.05
+    }
+  },
+  {
+    "findingId": "L2",
+    "domain": "linguistics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0
+    }
+  },
+  {
+    "findingId": "L3",
+    "domain": "linguistics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0
+    }
+  },
+  {
+    "findingId": "L4",
+    "domain": "linguistics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0
+    }
+  },
+  {
+    "findingId": "S1",
+    "domain": "semantics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": true,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0.2,
+      "emergence_potential": 0.05
+    }
+  },
+  {
+    "findingId": "S2",
+    "domain": "semantics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": true
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0.2,
+      "emergence_potential": 0.05
+    }
+  },
+  {
+    "findingId": "S3",
+    "domain": "semantics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "force",
+      "field",
+      "interaction"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.3,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0.15
+    }
+  },
+  {
+    "findingId": "S4",
+    "domain": "semantics",
+    "physical_metrics": {},
+    "mechanisms": [
+      "emergence"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": true
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.1,
+      "scale_span": 0,
+      "complexity_score": 0.2,
+      "emergence_potential": 0.1
+    }
+  },
+  {
+    "findingId": "S5",
+    "domain": "semantics",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [
+      "quantum"
+    ],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": true,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0.2,
+      "complexity_score": 0.2,
+      "emergence_potential": 0.1
+    }
+  },
+  {
+    "findingId": "I1",
+    "domain": "integration",
+    "physical_metrics": {},
+    "mechanisms": [
+      "emergence"
+    ],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": true
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0.1,
+      "scale_span": 0,
+      "complexity_score": 0.2,
+      "emergence_potential": 0.1
+    }
+  },
+  {
+    "findingId": "I2",
+    "domain": "integration",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0
+    }
+  },
+  {
+    "findingId": "I3",
+    "domain": "integration",
+    "physical_metrics": {},
+    "mechanisms": [],
+    "scale_hierarchy": [],
+    "complexity_markers": {
+      "has_nonlinearity": false,
+      "has_symmetry_breaking": false,
+      "has_conservation": false,
+      "has_quantization": false,
+      "scale_bridging": false
+    },
+    "emergence_signature": {
+      "mechanism_diversity": 0,
+      "scale_span": 0,
+      "complexity_score": 0,
+      "emergence_potential": 0
+    }
+  }
+]

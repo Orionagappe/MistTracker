@@ -1,0 +1,467 @@
+#!/usr/bin/env node
+/**
+ * PHASE 47C: INTERACTIVE CONTROLLER & UI COMPONENTS
+ * 
+ * Builds interactive controller with:
+ * - Three domain-specific demo controllers
+ * - Real-time clarity score updates
+ * - User interaction patterns (mouse, touch, keyboard)
+ * - Integration with Phase 46 findings database
+ * - Live parameter manipulation
+ */
+
+const fs = require('fs');
+const path = require('path');
+const { DomainAdapters, ClarityRenderer, PerformanceMonitor } = require('./phase-47b-framework-architecture.cjs');
+
+// ============================================================================
+// INTERACTIVE CONTROLLER BASE CLASS
+// ============================================================================
+
+const InteractiveControllerSpec = {
+  name: 'InteractiveController',
+  description: 'Base class for domain-specific interactive demonstrations',
+  
+  base_properties: [
+    'domain_id',
+    'current_parameters',
+    'parameter_constraints',
+    'parameter_history',
+    'is_running',
+    'current_clarity_score',
+    'active_findings',
+    'interaction_log'
+  ],
+
+  event_handlers: [
+    'onParameterChange',
+    'onDomainSwitch',
+    'onPlayPause',
+    'onReset',
+    'onClarityUpdate',
+    'onUserInteraction',
+    'onFindingSelect',
+    'onExplanationTierChange'
+  ],
+
+  methods: [
+    'initialize()',
+    'setParameter(name, value)',
+    'getParameter(name)',
+    'resetParameters()',
+    'run()',
+    'pause()',
+    'step()',
+    'updateClarityScore()',
+    'syncWithFindingsDatabase()',
+    'recordInteraction(event_type, details)',
+    'getPerformanceMetrics()',
+    'validateAgainstThresholds()'
+  ]
+};
+
+// ============================================================================
+// DOMAIN-SPECIFIC CONTROLLERS
+// ============================================================================
+
+const DomainControllers = [
+  {
+    name: 'AtomicPhysicsController',
+    domain: 'atomic',
+    inherits_from: 'InteractiveController',
+    
+    features: [
+      {
+        name: 'Orbital Visualization',
+        description: 'Real-time 3D orbital rendering with probability clouds',
+        parameters: ['principal_quantum_number', 'angular_momentum', 'magnetic_quantum_number'],
+        clarity_impact: 'Enables spatial understanding of quantum concepts',
+        related_findings: ['P1', 'P3', 'P4']
+      },
+      {
+        name: 'Energy Level Diagram',
+        description: 'Interactive energy level transitions',
+        parameters: ['energy_level', 'transition_type'],
+        clarity_impact: 'Shows discrete nature of atomic energy',
+        related_findings: ['P1', 'S1']
+      },
+      {
+        name: 'Electron Density Animation',
+        description: 'Animates electron probability density over time',
+        parameters: ['animation_speed', 'time_scale'],
+        clarity_impact: 'Connects quantum probability to visual motion',
+        related_findings: ['P3', 'S1']
+      },
+      {
+        name: 'Periodic Pattern Overlay',
+        description: 'Shows how periodic table emerges from orbital structure',
+        parameters: ['element_atomic_number', 'shell_view'],
+        clarity_impact: 'Demonstrates emergence of patterns from physics',
+        related_findings: ['P1', 'I1']
+      }
+    ],
+
+    interaction_patterns: [
+      {
+        name: 'Parameter Sliders',
+        description: 'User-adjustable sliders for quantum numbers',
+        feedback: 'Real-time orbital update + clarity score change',
+        touch_friendly: true
+      },
+      {
+        name: '3D Rotation',
+        description: 'Mouse drag to rotate orbital view',
+        feedback: 'Smooth 60 FPS rotation animation',
+        touch_friendly: true
+      },
+      {
+        name: 'Play/Pause Animation',
+        description: 'Control electron cloud animation timeline',
+        feedback: 'Timeline progress indicator',
+        touch_friendly: true
+      },
+      {
+        name: 'Finding Link Click',
+        description: 'Click orbital to highlight related Phase 46 findings',
+        feedback: 'Findings panel appears with associated clarity scores',
+        touch_friendly: true
+      }
+    ],
+
+    clarity_integration: {
+      base_score: 88,
+      factors: [
+        { factor: 'orbital_accuracy', weight: 0.3 },
+        { factor: 'label_clarity', weight: 0.25 },
+        { factor: 'animation_smoothness', weight: 0.15 },
+        { factor: 'interactive_feedback', weight: 0.15 },
+        { factor: 'finding_connection_clarity', weight: 0.15 }
+      ]
+    }
+  },
+
+  {
+    name: 'QuantumMechanicsController',
+    domain: 'quantum',
+    inherits_from: 'InteractiveController',
+    
+    features: [
+      {
+        name: 'Wave Interference Pattern',
+        description: 'Real-time double-slit interference visualization',
+        parameters: ['wavelength', 'slit_separation', 'observation_screen_distance'],
+        clarity_impact: 'Visualizes wave-particle duality concept',
+        related_findings: ['P2', 'P3']
+      },
+      {
+        name: 'Superposition State Vector',
+        description: 'Interactive 3D Bloch sphere showing quantum state',
+        parameters: ['theta_angle', 'phi_angle', 'amplitude_phase'],
+        clarity_impact: 'Makes abstract superposition geometrically concrete',
+        related_findings: ['S1']
+      },
+      {
+        name: 'Measurement-Induced Collapse',
+        description: 'Animates probability collapse upon measurement',
+        parameters: ['measurement_basis', 'collapse_speed'],
+        clarity_impact: 'Shows non-deterministic nature of quantum measurement',
+        related_findings: ['P3', 'S1']
+      },
+      {
+        name: 'Entanglement Correlation',
+        description: 'Two-particle entanglement with instantaneous correlation',
+        parameters: ['entanglement_degree', 'measurement_angle_1', 'measurement_angle_2'],
+        clarity_impact: 'Demonstrates quantum correlations beyond classical limits',
+        related_findings: ['P2', 'S1']
+      }
+    ],
+
+    interaction_patterns: [
+      {
+        name: 'Bloch Sphere Manipulation',
+        description: 'Click-drag to rotate quantum state on Bloch sphere',
+        feedback: 'Real-time state vector update + probability update',
+        touch_friendly: true
+      },
+      {
+        name: 'Measurement Trigger',
+        description: 'Click to perform measurement in chosen basis',
+        feedback: 'Instant collapse animation with new probability distribution',
+        touch_friendly: true
+      },
+      {
+        name: 'Time Evolution',
+        description: 'Slider to advance quantum state in time',
+        feedback: 'Smooth animation of phase evolution',
+        touch_friendly: true
+      },
+      {
+        name: 'Entanglement Strength Adjustment',
+        description: 'Dial to increase/decrease entanglement coupling',
+        feedback: 'Correlation coefficient displayed numerically',
+        touch_friendly: true
+      }
+    ],
+
+    clarity_integration: {
+      base_score: 85,
+      factors: [
+        { factor: 'geometric_representation', weight: 0.3 },
+        { factor: 'measurement_clarity', weight: 0.25 },
+        { factor: 'probability_visualization', weight: 0.2 },
+        { factor: 'state_vector_labeling', weight: 0.15 },
+        { factor: 'finding_connection_clarity', weight: 0.1 }
+      ]
+    }
+  },
+
+  {
+    name: 'UnificationTheoryController',
+    domain: 'unification',
+    inherits_from: 'InteractiveController',
+    
+    features: [
+      {
+        name: 'Coupling Constant Running',
+        description: 'Interactive graph showing how force coupling constants evolve',
+        parameters: ['energy_scale', 'alpha_s_initial', 'proton_mass'],
+        clarity_impact: 'Visualizes force strength behavior across scales',
+        related_findings: ['P2', 'P4', 'I1']
+      },
+      {
+        name: 'Symmetry Breaking Cascade',
+        description: 'Animates symmetry group breaking at different energy scales',
+        parameters: ['temperature', 'coupling_strength', 'breaking_sequence'],
+        clarity_impact: 'Shows how unified symmetry fragments into observed forces',
+        related_findings: ['P2', 'S1']
+      },
+      {
+        name: 'Phase Transition Visualization',
+        description: 'Depicts electroweak phase transition in early universe',
+        parameters: ['time_after_bigbang', 'temperature_scale'],
+        clarity_impact: 'Connects theory to early universe conditions',
+        related_findings: ['P4', 'I1']
+      },
+      {
+        name: 'Force Convergence Analysis',
+        description: 'Shows numerical convergence point and prediction accuracy',
+        parameters: ['calculation_precision', 'loop_order', 'threshold_energy'],
+        clarity_impact: 'Demonstrates empirical validation of theory',
+        related_findings: ['P5', 'I1']
+      }
+    ],
+
+    interaction_patterns: [
+      {
+        name: 'Energy Scale Slider',
+        description: 'Logarithmic slider from 1 GeV to Planck scale',
+        feedback: 'Coupling constants update in real-time on graph',
+        touch_friendly: true
+      },
+      {
+        name: 'Symmetry Breaking Timeline',
+        description: 'Scrub through cosmic history from Big Bang to now',
+        feedback: 'Phase transitions marked; forces shown as combined/separated',
+        touch_friendly: true
+      },
+      {
+        name: 'Coupling Comparison Toggle',
+        description: 'Show/hide different coupling constant families',
+        feedback: 'Graph legend updates; convergence point highlighted',
+        touch_friendly: true
+      },
+      {
+        name: 'Prediction vs Experiment',
+        description: 'Overlay theoretical predictions with experimental measurements',
+        feedback: 'Confidence bands shown; agreement quantified numerically',
+        touch_friendly: true
+      }
+    ],
+
+    clarity_integration: {
+      base_score: 86,
+      factors: [
+        { factor: 'graph_readability', weight: 0.3 },
+        { factor: 'scale_labeling', weight: 0.25 },
+        { factor: 'symmetry_clarity', weight: 0.2 },
+        { factor: 'prediction_display', weight: 0.15 },
+        { factor: 'finding_connection_clarity', weight: 0.1 }
+      ]
+    }
+  }
+];
+
+// ============================================================================
+// UI COMPONENT LIBRARY
+// ============================================================================
+
+const UIComponents = [
+  {
+    name: 'ClarityGauge',
+    type: 'HUD Element',
+    purpose: 'Displays current UI clarity score with threshold indicator',
+    properties: {
+      value: '0-100',
+      target: '85-100',
+      visual: 'Circular gauge with color coding (red <75, yellow 75-85, green >=85)',
+      update_frequency: 'Real-time on interaction'
+    }
+  },
+  {
+    name: 'FindingsPanel',
+    type: 'Collapsible Panel',
+    purpose: 'Shows Phase 46 findings relevant to current demonstration',
+    properties: {
+      layout: '3-column: executive | technical | deep',
+      height: 'Collapsible 0-500px',
+      content: 'From Phase 46 database, tier-selected by user'
+    }
+  },
+  {
+    name: 'ParameterControl',
+    type: 'Interactive Control',
+    purpose: 'Allows adjustment of physics parameters',
+    properties: {
+      types: ['Slider', 'Dial', 'TextInput', 'Dropdown'],
+      real_time_feedback: true,
+      constraint_validation: true
+    }
+  },
+  {
+    name: 'PerformanceIndicator',
+    type: 'Status Indicator',
+    purpose: 'Shows load time, FPS, memory usage',
+    properties: {
+      metrics_shown: ['Load Time', 'FPS', 'Memory', 'Geometry Complexity'],
+      alert_on_threshold_violation: true,
+      collapsible: true
+    }
+  },
+  {
+    name: 'DomainTabBar',
+    type: 'Navigation',
+    purpose: 'Switch between atomic, quantum, unification demos',
+    properties: {
+      tabs: ['Atomic', 'Quantum', 'Unification'],
+      persistent_state: true,
+      smooth_transitions: true
+    }
+  },
+  {
+    name: 'ExplanationTierSelector',
+    type: 'Control',
+    purpose: 'Choose 1-tier, 2-tier, or 3-tier explanation display',
+    properties: {
+      tiers: [1, 2, 3],
+      default: 2,
+      affects_clarity_calculation: false
+    }
+  },
+  {
+    name: 'VoiceReadyIndicator',
+    type: 'Info Display',
+    purpose: 'Shows which text is suitable for voice synthesis',
+    properties: {
+      highlights_text: true,
+      shows_duration: true,
+      suitable_for_phase_48: true
+    }
+  }
+];
+
+// ============================================================================
+// INTERACTIVE SYSTEM BUILDER
+// ============================================================================
+
+function buildInteractiveSystem() {
+  console.log('\n' + '='.repeat(80));
+  console.log('PHASE 47C: INTERACTIVE CONTROLLER & UI COMPONENTS');
+  console.log('Building domain-specific demonstrations with Phase 46 integration');
+  console.log('='.repeat(80) + '\n');
+
+  // Print interactive controller spec
+  console.log('INTERACTIVE CONTROLLER BASE\n');
+  console.log('─'.repeat(80) + '\n');
+  console.log(`Properties: ${InteractiveControllerSpec.base_properties.join(', ')}\n`);
+  console.log(`Event Handlers: ${InteractiveControllerSpec.event_handlers.join(', ')}\n`);
+
+  // Print domain controllers
+  console.log('DOMAIN-SPECIFIC CONTROLLERS\n');
+  console.log('─'.repeat(80) + '\n');
+  DomainControllers.forEach((controller, i) => {
+    console.log(`[${controller.name}]`);
+    console.log(`Domain: ${controller.domain}`);
+    console.log(`Features: ${controller.features.length}`);
+    console.log(`Clarity Base Score: ${controller.clarity_integration.base_score}/100`);
+    console.log(`Interaction Patterns: ${controller.interaction_patterns.length}\n`);
+
+    controller.features.forEach(feat => {
+      console.log(`  ├─ ${feat.name}`);
+      console.log(`     Impact: ${feat.clarity_impact}`);
+      console.log(`     Findings: ${feat.related_findings.join(', ')}`);
+    });
+    console.log();
+  });
+
+  // Print UI components
+  console.log('\nUI COMPONENT LIBRARY\n');
+  console.log('─'.repeat(80) + '\n');
+  UIComponents.forEach(comp => {
+    console.log(`[${comp.name}] (${comp.type})`);
+    console.log(`Purpose: ${comp.purpose}\n`);
+  });
+
+  console.log('═'.repeat(80) + '\n');
+
+  return {
+    timestamp: new Date().toISOString(),
+    phase: 47,
+    subphase: 'C',
+    status: 'Interactive System Designed',
+    components: {
+      interactive_controller_base: InteractiveControllerSpec,
+      domain_controllers: DomainControllers,
+      ui_components: UIComponents
+    },
+    statistics: {
+      total_domain_controllers: DomainControllers.length,
+      total_features: DomainControllers.reduce((sum, c) => sum + c.features.length, 0),
+      total_interaction_patterns: DomainControllers.reduce((sum, c) => sum + c.interaction_patterns.length, 0),
+      total_ui_components: UIComponents.length,
+      average_clarity_base_score: Math.round(
+        DomainControllers.reduce((sum, c) => sum + c.clarity_integration.base_score, 0) / DomainControllers.length
+      )
+    }
+  };
+}
+
+// ============================================================================
+// EXECUTION
+// ============================================================================
+
+if (require.main === module) {
+  const result = buildInteractiveSystem();
+
+  // Create results directory
+  const resultsDir = './phase-47-results';
+  if (!fs.existsSync(resultsDir)) {
+    fs.mkdirSync(resultsDir, { recursive: true });
+  }
+
+  // Save interactive system
+  fs.writeFileSync(
+    path.join(resultsDir, 'PHASE-47C-INTERACTIVE-SYSTEM.json'),
+    JSON.stringify(result, null, 2)
+  );
+
+  console.log(`✅ Interactive system designed. Results saved to: phase-47-results/PHASE-47C-INTERACTIVE-SYSTEM.json`);
+
+  process.exit(0);
+}
+
+module.exports = {
+  InteractiveControllerSpec,
+  DomainControllers,
+  UIComponents,
+  buildInteractiveSystem
+};

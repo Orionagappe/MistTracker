@@ -1,0 +1,1209 @@
+{
+  "testDate": "2026-04-21T00:07:21.260Z",
+  "configuration": {
+    "competitorCount": 5,
+    "competitorStrategies": [
+      "aggressive",
+      "stealthy",
+      "smart",
+      "balanced",
+      "aggressive"
+    ],
+    "defenseNodeCount": 3,
+    "roundsPerCompetition": 20,
+    "resultsDir": "J:\\Portfolio Site\\Gdocsdev\\MistTracker\\test-env\\phase59-results"
+  },
+  "summary": {
+    "totalAttacks": 100,
+    "totalDetections": 56,
+    "overallDetectionRate": "56.0",
+    "competitorCount": 5,
+    "defenseNodeCount": 3,
+    "simulationRounds": 20
+  },
+  "metrics": {
+    "totalAttacks": 100,
+    "totalDetections": 56,
+    "averageDetectionRate": "56.0",
+    "competitorPerformance": [
+      {
+        "competitorId": "comp_1",
+        "name": "Competitor 1",
+        "strategy": "aggressive",
+        "totalAttacks": 20,
+        "detectedAttempts": 11,
+        "detectionRate": "0.550",
+        "averageResponseTime": "83",
+        "uniqueVectorsUsed": 4
+      },
+      {
+        "competitorId": "comp_2",
+        "name": "Competitor 2",
+        "strategy": "stealthy",
+        "totalAttacks": 20,
+        "detectedAttempts": 8,
+        "detectionRate": "0.400",
+        "averageResponseTime": "169",
+        "uniqueVectorsUsed": 4
+      },
+      {
+        "competitorId": "comp_3",
+        "name": "Competitor 3",
+        "strategy": "smart",
+        "totalAttacks": 20,
+        "detectedAttempts": 12,
+        "detectionRate": "0.600",
+        "averageResponseTime": "118",
+        "uniqueVectorsUsed": 4
+      },
+      {
+        "competitorId": "comp_4",
+        "name": "Competitor 4",
+        "strategy": "balanced",
+        "totalAttacks": 20,
+        "detectedAttempts": 13,
+        "detectionRate": "0.650",
+        "averageResponseTime": "127",
+        "uniqueVectorsUsed": 10
+      },
+      {
+        "competitorId": "comp_5",
+        "name": "Competitor 5",
+        "strategy": "aggressive",
+        "totalAttacks": 20,
+        "detectedAttempts": 12,
+        "detectionRate": "0.600",
+        "averageResponseTime": "83",
+        "uniqueVectorsUsed": 4
+      }
+    ]
+  },
+  "vectorDistribution": {
+    "BUFFER_OVERFLOW": 22,
+    "TIMING_ATTACK": 13,
+    "SQL_INJECTION": 15,
+    "ZERO_DAY_VARIANT": 8,
+    "PATH_TRAVERSAL": 7,
+    "NETWORK_SCAN": 11,
+    "COMMAND_INJECTION": 11,
+    "XSS_INJECTION": 6,
+    "PRIVILEGE_ESCALATION": 6,
+    "SSH_BRUTE_FORCE": 1
+  },
+  "detectionByVectorType": {
+    "BUFFER_OVERFLOW": {
+      "detected": 17,
+      "total": 22
+    },
+    "TIMING_ATTACK": {
+      "detected": 5,
+      "total": 13
+    },
+    "SQL_INJECTION": {
+      "detected": 8,
+      "total": 15
+    },
+    "ZERO_DAY_VARIANT": {
+      "detected": 5,
+      "total": 8
+    },
+    "PATH_TRAVERSAL": {
+      "detected": 3,
+      "total": 7
+    },
+    "NETWORK_SCAN": {
+      "detected": 1,
+      "total": 11
+    },
+    "COMMAND_INJECTION": {
+      "detected": 7,
+      "total": 11
+    },
+    "XSS_INJECTION": {
+      "detected": 4,
+      "total": 6
+    },
+    "PRIVILEGE_ESCALATION": {
+      "detected": 5,
+      "total": 6
+    },
+    "SSH_BRUTE_FORCE": {
+      "detected": 1,
+      "total": 1
+    }
+  },
+  "nodePerformance": {
+    "Hydrogen": {
+      "detections": 19,
+      "total": 33,
+      "responseTimes": [
+        42.631174903532674,
+        189.4926221491403,
+        40.43861309739288,
+        230.5467721706356,
+        75.25909389556979,
+        179.27131533587402,
+        126.8790480792314,
+        61.47052242988827,
+        45.85570027721534,
+        162.06223018026068,
+        43.862311894881394,
+        66.76069571066438,
+        52.450955585857386,
+        242.69073175432783,
+        105.05732372805987,
+        100.03942533868627,
+        182.55147202380033,
+        68.9221584727234,
+        60.85364537884935,
+        54.53883288100915,
+        125.3859494778884,
+        110.656593998993,
+        54.69478666697923,
+        66.66324067676686,
+        194.44346052264765,
+        125.79648774925943,
+        203.9979551442651,
+        30.486018057536207,
+        175.56197575045792,
+        80.05415573297633,
+        138.06448350324277,
+        205.4897306128837,
+        34.65874127196265
+      ]
+    },
+    "Helium": {
+      "detections": 11,
+      "total": 29,
+      "responseTimes": [
+        203.62034636677237,
+        87.59683607378471,
+        96.17514714687266,
+        121.92668201642319,
+        257.25906062538286,
+        56.812847573137915,
+        98.67853598759693,
+        34.878429205139696,
+        136.4398431168951,
+        154.65937204615514,
+        176.8414274955309,
+        135.68873523356172,
+        217.64923737965125,
+        101.15907733988922,
+        122.5143101619765,
+        116.77589704032285,
+        101.8415396522572,
+        155.47573445251007,
+        67.51588902856969,
+        135.3621695265425,
+        95.41309295272274,
+        38.26848718372477,
+        138.52965397956672,
+        126.88545571387098,
+        94.27288652042455,
+        135.96795678389537,
+        161.63974058759948,
+        66.65337841900956,
+        81.51162607291708
+      ]
+    },
+    "Lithium": {
+      "detections": 26,
+      "total": 38,
+      "responseTimes": [
+        136.53479214083646,
+        46.502144210973356,
+        98.59003529374414,
+        159.18073213091367,
+        159.50345463092413,
+        257.3620518943003,
+        277.6445938031989,
+        232.25628370562984,
+        138.07265451012557,
+        49.18541577713569,
+        139.8353490878519,
+        57.075474433838394,
+        97.48405447106308,
+        45.518101784523815,
+        80.4202486949329,
+        41.802294629356574,
+        204.2276685989193,
+        103.72174181757546,
+        134.9081806928312,
+        96.59640610661118,
+        57.54358396664257,
+        64.92288352691818,
+        190.05980929476462,
+        160.03306654748,
+        135.4528413649095,
+        79.7521313721999,
+        239.87684124792,
+        65.70376851541076,
+        181.95736304912447,
+        44.720775496677796,
+        49.80608797002355,
+        68.70184178177075,
+        171.10574033758488,
+        39.14204695930096,
+        64.45872528504815,
+        127.36604999495003,
+        61.03850029599957,
+        52.11289063758173
+      ]
+    }
+  },
+  "competitorStats": [
+    {
+      "competitorId": "comp_4",
+      "name": "Competitor 4",
+      "strategy": "balanced",
+      "totalAttacks": 20,
+      "detectedAttempts": 13,
+      "detectionRate": "0.650",
+      "averageResponseTime": "127",
+      "uniqueVectorsUsed": 10
+    },
+    {
+      "competitorId": "comp_3",
+      "name": "Competitor 3",
+      "strategy": "smart",
+      "totalAttacks": 20,
+      "detectedAttempts": 12,
+      "detectionRate": "0.600",
+      "averageResponseTime": "118",
+      "uniqueVectorsUsed": 4
+    },
+    {
+      "competitorId": "comp_5",
+      "name": "Competitor 5",
+      "strategy": "aggressive",
+      "totalAttacks": 20,
+      "detectedAttempts": 12,
+      "detectionRate": "0.600",
+      "averageResponseTime": "83",
+      "uniqueVectorsUsed": 4
+    },
+    {
+      "competitorId": "comp_1",
+      "name": "Competitor 1",
+      "strategy": "aggressive",
+      "totalAttacks": 20,
+      "detectedAttempts": 11,
+      "detectionRate": "0.550",
+      "averageResponseTime": "83",
+      "uniqueVectorsUsed": 4
+    },
+    {
+      "competitorId": "comp_2",
+      "name": "Competitor 2",
+      "strategy": "stealthy",
+      "totalAttacks": 20,
+      "detectedAttempts": 8,
+      "detectionRate": "0.400",
+      "averageResponseTime": "169",
+      "uniqueVectorsUsed": 4
+    }
+  ],
+  "rawResults": [
+    {
+      "competitor": "Competitor 1",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.8747021410640345,
+      "responseTime": 42.631174903532674,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": true,
+      "confidence": 0.7205947633820363,
+      "responseTime": 203.62034636677237,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.19130345373817975,
+      "responseTime": 189.4926221491403,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.29561321426745213,
+      "responseTime": 136.53479214083646,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.2107201344525813,
+      "responseTime": 87.59683607378471,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.1710469400494017,
+      "responseTime": 40.43861309739288,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": false,
+      "confidence": 0.1637031950625837,
+      "responseTime": 96.17514714687266,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.20715428317950924,
+      "responseTime": 230.5467721706356,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9136647981167713,
+      "responseTime": 46.502144210973356,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7448357170790425,
+      "responseTime": 75.25909389556979,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.9256404263626163,
+      "responseTime": 98.59003529374414,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": false,
+      "confidence": 0.20599334168376585,
+      "responseTime": 121.92668201642319,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.21799738891903672,
+      "responseTime": 257.25906062538286,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.9674977406567404,
+      "responseTime": 179.27131533587402,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.15894194235677556,
+      "responseTime": 56.812847573137915,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.162972064439796,
+      "responseTime": 98.67853598759693,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.15658415625373764,
+      "responseTime": 159.18073213091367,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.21608420785993587,
+      "responseTime": 126.8790480792314,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9240626973220265,
+      "responseTime": 61.47052242988827,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9371829513835508,
+      "responseTime": 45.85570027721534,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.13686842699756893,
+      "responseTime": 34.878429205139696,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": true,
+      "confidence": 0.991936150449301,
+      "responseTime": 159.50345463092413,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": true,
+      "confidence": 0.7867510638767997,
+      "responseTime": 257.3620518943003,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "XSS_INJECTION",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.9741623859648149,
+      "responseTime": 162.06223018026068,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.875184065717115,
+      "responseTime": 43.862311894881394,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.18448243734352426,
+      "responseTime": 136.4398431168951,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.08060957571801416,
+      "responseTime": 154.65937204615514,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.20184700976708228,
+      "responseTime": 176.8414274955309,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.013536324691992773,
+      "responseTime": 277.6445938031989,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.17774246891892317,
+      "responseTime": 66.76069571066438,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7181255163670424,
+      "responseTime": 135.68873523356172,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.291746838189762,
+      "responseTime": 217.64923737965125,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.04101101626145087,
+      "responseTime": 232.25628370562984,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "XSS_INJECTION",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.8673389395449183,
+      "responseTime": 138.07265451012557,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.029192503997242866,
+      "responseTime": 52.450955585857386,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.2653126855779878,
+      "responseTime": 49.18541577713569,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.10172415039459638,
+      "responseTime": 242.69073175432783,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.13403418075353146,
+      "responseTime": 101.15907733988922,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.12650138536046693,
+      "responseTime": 122.5143101619765,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.17940000979004153,
+      "responseTime": 116.77589704032285,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.941118095719805,
+      "responseTime": 101.8415396522572,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": true,
+      "confidence": 0.7441338198710037,
+      "responseTime": 155.47573445251007,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9472522424416208,
+      "responseTime": 67.51588902856969,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "SSH_BRUTE_FORCE",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.7968749179224502,
+      "responseTime": 139.8353490878519,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.8539261004507099,
+      "responseTime": 135.3621695265425,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.019261782320759258,
+      "responseTime": 105.05732372805987,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": false,
+      "confidence": 0.18411287503895515,
+      "responseTime": 100.03942533868627,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.18836055799991278,
+      "responseTime": 57.075474433838394,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.1742041891490184,
+      "responseTime": 182.55147202380033,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.1280582742834377,
+      "responseTime": 95.41309295272274,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7704774829114124,
+      "responseTime": 68.9221584727234,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.7402570636746756,
+      "responseTime": 97.48405447106308,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7809129538573012,
+      "responseTime": 45.518101784523815,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7547283279145046,
+      "responseTime": 80.4202486949329,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.734685605562186,
+      "responseTime": 60.85364537884935,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9318027016664924,
+      "responseTime": 41.802294629356574,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.008160246314533603,
+      "responseTime": 204.2276685989193,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.8895247937830844,
+      "responseTime": 38.26848718372477,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.9132059639397857,
+      "responseTime": 103.72174181757546,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.01827045853677727,
+      "responseTime": 138.52965397956672,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7739623170127369,
+      "responseTime": 134.9081806928312,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "XSS_INJECTION",
+      "severity": "medium",
+      "detected": false,
+      "confidence": 0.06667996133595282,
+      "responseTime": 96.59640610661118,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7796246571458672,
+      "responseTime": 54.53883288100915,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7275280310976193,
+      "responseTime": 57.54358396664257,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.8737513025402442,
+      "responseTime": 126.88545571387098,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9872086197267911,
+      "responseTime": 64.92288352691818,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": true,
+      "confidence": 0.7161016820330754,
+      "responseTime": 190.05980929476462,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.8123023216955051,
+      "responseTime": 125.3859494778884,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.8356258924463041,
+      "responseTime": 110.656593998993,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7106695598579831,
+      "responseTime": 54.69478666697923,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.8953123489934428,
+      "responseTime": 66.66324067676686,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.16615632909736847,
+      "responseTime": 194.44346052264765,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.9671518563599254,
+      "responseTime": 125.79648774925943,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.1795004083558987,
+      "responseTime": 160.03306654748,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7307122547089999,
+      "responseTime": 135.4528413649095,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7816832383324972,
+      "responseTime": 79.7521313721999,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": true,
+      "confidence": 0.8065478472727442,
+      "responseTime": 239.87684124792,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.798103321267128,
+      "responseTime": 65.70376851541076,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.8998174304108335,
+      "responseTime": 181.95736304912447,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.9914549533876367,
+      "responseTime": 44.720775496677796,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.27438223680325624,
+      "responseTime": 94.27288652042455,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "XSS_INJECTION",
+      "severity": "medium",
+      "detected": false,
+      "confidence": 0.10129088325605752,
+      "responseTime": 203.9979551442651,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.76401668374683,
+      "responseTime": 49.80608797002355,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "PRIVILEGE_ESCALATION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.8407181555419732,
+      "responseTime": 68.70184178177075,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": false,
+      "confidence": 0.2849439361272959,
+      "responseTime": 30.486018057536207,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7177222476419924,
+      "responseTime": 135.96795678389537,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "XSS_INJECTION",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.8651141997308939,
+      "responseTime": 171.10574033758488,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.856833711690595,
+      "responseTime": 39.14204695930096,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "NETWORK_SCAN",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.24008386110038993,
+      "responseTime": 175.56197575045792,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.810413419923064,
+      "responseTime": 80.05415573297633,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.13269454977072828,
+      "responseTime": 64.45872528504815,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "PATH_TRAVERSAL",
+      "severity": "medium",
+      "detected": false,
+      "confidence": 0.07568150978286178,
+      "responseTime": 161.63974058759948,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7909909256501167,
+      "responseTime": 66.65337841900956,
+      "defenseNode": "Helium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "TIMING_ATTACK",
+      "severity": "low",
+      "detected": false,
+      "confidence": 0.2726554284833211,
+      "responseTime": 127.36604999495003,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "COMMAND_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.9708550826650653,
+      "responseTime": 138.06448350324277,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 1",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": false,
+      "confidence": 0.18909289064603083,
+      "responseTime": 61.03850029599957,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 2",
+      "vector": "XSS_INJECTION",
+      "severity": "medium",
+      "detected": true,
+      "confidence": 0.711662649363593,
+      "responseTime": 205.4897306128837,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 3",
+      "vector": "BUFFER_OVERFLOW",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7531140975562945,
+      "responseTime": 52.11289063758173,
+      "defenseNode": "Lithium"
+    },
+    {
+      "competitor": "Competitor 4",
+      "vector": "ZERO_DAY_VARIANT",
+      "severity": "critical",
+      "detected": true,
+      "confidence": 0.7700817872928328,
+      "responseTime": 34.65874127196265,
+      "defenseNode": "Hydrogen"
+    },
+    {
+      "competitor": "Competitor 5",
+      "vector": "SQL_INJECTION",
+      "severity": "high",
+      "detected": true,
+      "confidence": 0.7575515095598185,
+      "responseTime": 81.51162607291708,
+      "defenseNode": "Helium"
+    }
+  ]
+}

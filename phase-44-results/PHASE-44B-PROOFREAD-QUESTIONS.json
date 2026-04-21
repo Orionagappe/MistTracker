@@ -1,0 +1,668 @@
+{
+  "timestamp": "2026-04-19T14:34:57.483Z",
+  "phase": 44,
+  "subphase": "B",
+  "total_questions_proofread": 25,
+  "questions_with_issues": 17,
+  "average_changes_per_question": 0.8,
+  "total_clarity_improvements": 20,
+  "clarity_metrics_applied": {
+    "ambiguity_reduction": 0,
+    "technical_precision": 9,
+    "scope_clarity": 5,
+    "logical_structure": 0
+  },
+  "proofread_questions": [
+    {
+      "id": "1.1",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Truth",
+      "original": "Does moral truth exist independently of human opinion or is it necessarily constructed by human societies?",
+      "proofread": "Does [moral truth] exist independently of human opinion or is it necessarily constructed by human societies?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "moral truth",
+          "change": "Mark term for explicit definition: [moral truth]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral truth\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": true,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "moral realism",
+        "moral truth",
+        "objectivity",
+        "subjectivity"
+      ],
+      "semantic_depth": "Tests whether moral facts are discovered (like physical facts) or invented (like social conventions)"
+    },
+    {
+      "id": "1.2",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Language",
+      "original": "When we say something is \"morally good\", do we refer to a property that exists in the world or express an emotional attitude?",
+      "proofread": "When we say something is \"morally good\", do we refer to a property that exists in the world or express an emotional attitude?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "moral language",
+        "reference",
+        "emotion",
+        "property"
+      ],
+      "semantic_depth": "Distinguishes between descriptive claims (good is property) and expressive claims (good expresses attitude)"
+    },
+    {
+      "id": "1.3",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Naturalism",
+      "original": "Can moral properties be derived from natural properties through logical inference, or does deriving \"ought\" from \"is\" commit a fundamental logical error?",
+      "proofread": "Can moral properties be derived from natural properties through logical inference, or does deriving \"ought\" from \"is\" commit a fundamental logical error?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "is-ought problem",
+        "naturalism",
+        "reduction",
+        "logical gap"
+      ],
+      "semantic_depth": "Addresses whether morality can be grounded in observable facts or requires additional metaphysical assumptions"
+    },
+    {
+      "id": "1.4",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Knowledge",
+      "original": "If moral truths exist, how is moral knowledge possible and what distinguishes moral knowledge from non-moral factual knowledge?",
+      "proofread": "If moral truths exist, how is [[moral knowledge]] possible and what distinguishes [[moral knowledge]] from non-moral factual knowledge?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "moral truth",
+          "change": "Mark term for explicit definition: [moral truth]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral truth\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Technical Precision",
+          "original": "moral knowledge",
+          "change": "Mark term for explicit definition: [moral knowledge]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral knowledge\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Technical Precision",
+          "original": "moral truth",
+          "change": "Mark term for explicit definition: [moral truth]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral truth\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Technical Precision",
+          "original": "moral knowledge",
+          "change": "Mark term for explicit definition: [moral knowledge]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral knowledge\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 2,
+        "scope_clarity": true,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 4 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "epistemology",
+        "moral knowledge",
+        "intuition",
+        "reason"
+      ],
+      "semantic_depth": "Asks whether moral understanding uses different cognitive mechanisms than empirical understanding"
+    },
+    {
+      "id": "1.5",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Disagreement",
+      "original": "Can persistent disagreement about fundamental moral questions coexist with the claim that objective moral truths exist?",
+      "proofread": "Can persistent disagreement about fundamental moral questions coexist with the claim that objective moral truths exist?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "moral truth",
+          "change": "Mark term for explicit definition: [moral truth]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral truth\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": true,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "disagreement",
+        "objectivity",
+        "truth",
+        "pluralism"
+      ],
+      "semantic_depth": "Tests whether moral objectivity requires convergence on answers or can accommodate persistent rational disagreement"
+    },
+    {
+      "id": "2.1",
+      "domain": "Normative Ethics",
+      "subdomain": "Virtue Ethics",
+      "original": "Can virtuous character be developed through habituation alone or does it require explicit reasoning about the good life?",
+      "proofread": "Can virtuous character be developed through habituation alone or does it require explicit reasoning about the good life?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 0,
+        "scope_clarity": true,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 0 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "virtue",
+        "habit",
+        "reason",
+        "character development"
+      ],
+      "semantic_depth": "Distinguishes between virtue-as-habit and virtue-as-informed-practice"
+    },
+    {
+      "id": "2.2",
+      "domain": "Normative Ethics",
+      "subdomain": "Consequentialism",
+      "original": "Must consequentialist ethics concern only actual consequences or can moral rightness be determined by probable or expected consequences?",
+      "proofread": "Must consequentialist ethics concern only actual consequences or can moral rightness be determined by probable or expected consequences?",
+      "changes": [
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "\"Can\" is ambiguous between possibility (logically feasible) and frequency (commonly occurs). \"Is it logically possible\" clarifies this is about possibility, not frequency."
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_metrics": {
+        "ambiguity_detected": true,
+        "precision_issues": 0,
+        "scope_clarity": false,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "consequences",
+        "actual vs expected",
+        "moral rightness",
+        "uncertainty"
+      ],
+      "semantic_depth": "Addresses how to apply consequentialism when outcomes are uncertain"
+    },
+    {
+      "id": "2.3",
+      "domain": "Normative Ethics",
+      "subdomain": "Deontology",
+      "original": "If absolute moral duties exist, can they ever justifiably conflict with each other and how should conflicts be resolved?",
+      "proofread": "If absolute moral duties exist, can they ever justifiably conflict with each other and how should conflicts be resolved?",
+      "changes": [
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "\"Can\" is ambiguous between possibility (logically feasible) and frequency (commonly occurs). \"Is it logically possible\" clarifies this is about possibility, not frequency."
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 0,
+        "scope_clarity": false,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "duty",
+        "absolute",
+        "conflict",
+        "priority"
+      ],
+      "semantic_depth": "Examines whether duty-based ethics can remain coherent in complex situations"
+    },
+    {
+      "id": "2.4",
+      "domain": "Normative Ethics",
+      "subdomain": "Care Ethics",
+      "original": "Does ethical reasoning grounded in relationships and care provide an alternative to abstract universal principles or complement them?",
+      "proofread": "Does ethical reasoning grounded in relationships and care provide an alternative to abstract universal principles or complement them?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "care",
+        "relationships",
+        "particularity",
+        "universality"
+      ],
+      "semantic_depth": "Tests relationship between contextual and universal ethical frameworks"
+    },
+    {
+      "id": "2.5",
+      "domain": "Normative Ethics",
+      "subdomain": "Moral Holism",
+      "original": "Can the rightness of an action be determined only by examining that action in isolation, or must context and history be considered?",
+      "proofread": "Can the rightness of an action be determined only by examining that action in isolation, or must context and history be considered?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "holism",
+        "atomism",
+        "context",
+        "isolation"
+      ],
+      "semantic_depth": "Distinguishes whether ethics is compositional (actions analyzable independently) or holistic"
+    },
+    {
+      "id": "3.1",
+      "domain": "Moral Psychology",
+      "subdomain": "Moral Intuition",
+      "original": "Are initial moral intuitions reliable guides to moral truth or are they primarily products of evolutionary adaptation that may mislead us?",
+      "proofread": "Are initial moral intuitions reliable guides to [moral truth] or are they primarily products of evolutionary adaptation that may mislead us?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "moral truth",
+          "change": "Mark term for explicit definition: [moral truth]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"moral truth\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": true,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "intuition",
+        "evolution",
+        "reliability",
+        "bias"
+      ],
+      "semantic_depth": "Asks whether moral feelings track moral facts or track adaptive fitness"
+    },
+    {
+      "id": "3.2",
+      "domain": "Moral Psychology",
+      "subdomain": "Moral Development",
+      "original": "Does moral development progress through hierarchical stages where later stages are more sophisticated or does it branch into different moral frameworks?",
+      "proofread": "Does moral development progress through hierarchical stages where later stages are more sophisticated or does it branch into different moral frameworks?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 0,
+        "scope_clarity": true,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 0 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "development",
+        "stages",
+        "progression",
+        "alternative frameworks"
+      ],
+      "semantic_depth": "Distinguishes between linear moral development and pluralistic moral maturation"
+    },
+    {
+      "id": "3.3",
+      "domain": "Moral Psychology",
+      "subdomain": "Moral Motivation",
+      "original": "Does moral reasoning necessarily motivate moral action or can we understand morality intellectually while remaining unmotivated to act?",
+      "proofread": "Does moral reasoning necessarily motivate moral action or can we understand morality intellectually while remaining unmotivated to act?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "motivation",
+        "reason",
+        "action",
+        "akrasia"
+      ],
+      "semantic_depth": "Addresses whether morality is inherently motivating or requires additional psychological factors"
+    },
+    {
+      "id": "3.4",
+      "domain": "Moral Psychology",
+      "subdomain": "Empathy and Bias",
+      "original": "Does empathy improve moral judgment by connecting us to others suffering or distort moral judgment through partiality and bias?",
+      "proofread": "Does empathy improve moral judgment by connecting us to others suffering or distort moral judgment through partiality and bias?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "empathy",
+        "bias",
+        "impartiality",
+        "perspective-taking"
+      ],
+      "semantic_depth": "Tests whether emotional connection enhances or undermines moral reasoning"
+    },
+    {
+      "id": "3.5",
+      "domain": "Moral Psychology",
+      "subdomain": "Free Will",
+      "original": "If moral responsibility requires free will and free will is undermined by causal determinism, can moral responsibility be reconciled with science?",
+      "proofread": "If moral [[responsibility]] requires [[free will]] and [[free will]] is undermined by causal determinism, can moral [[responsibility]] be reconciled with science?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "free will",
+          "change": "Mark term for explicit definition: [free will]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"free will\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Technical Precision",
+          "original": "responsibility",
+          "change": "Mark term for explicit definition: [responsibility]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"responsibility\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Technical Precision",
+          "original": "free will",
+          "change": "Mark term for explicit definition: [free will]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"free will\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Technical Precision",
+          "original": "responsibility",
+          "change": "Mark term for explicit definition: [responsibility]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"responsibility\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "\"Can\" is ambiguous between possibility (logically feasible) and frequency (commonly occurs). \"Is it logically possible\" clarifies this is about possibility, not frequency."
+        }
+      ],
+      "issues_detected": 3,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 2,
+        "scope_clarity": false,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 5 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "free will",
+        "responsibility",
+        "determinism",
+        "compatibilism"
+      ],
+      "semantic_depth": "Explores whether moral agency can survive naturalistic worldview"
+    },
+    {
+      "id": "4.1",
+      "domain": "Moral Semantics",
+      "subdomain": "Goodness",
+      "original": "Does the word \"good\" refer to a single property with consistent meaning across contexts or does it express different meanings in moral vs non-moral contexts?",
+      "proofread": "Does the word \"good\" refer to a single property with consistent meaning across contexts or does it express different meanings in moral vs non-moral contexts?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 0,
+        "scope_clarity": true,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 0 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "good",
+        "property",
+        "ambiguity",
+        "contexts"
+      ],
+      "semantic_depth": "Asks whether \"good\" has unified semantics or domain-dependent meanings"
+    },
+    {
+      "id": "4.2",
+      "domain": "Moral Semantics",
+      "subdomain": "Right and Wrong",
+      "original": "Can \"right\" and \"wrong\" be defined in terms of other concepts like \"good\" or \"duty\" or are they fundamental moral terms that cannot be reduced?",
+      "proofread": "Can \"right\" and \"wrong\" be defined in terms of other concepts like \"good\" or \"duty\" or are they fundamental moral terms that cannot be reduced?",
+      "changes": [
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "\"Can\" is ambiguous between possibility (logically feasible) and frequency (commonly occurs). \"Is it logically possible\" clarifies this is about possibility, not frequency."
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_metrics": {
+        "ambiguity_detected": true,
+        "precision_issues": 0,
+        "scope_clarity": false,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "right",
+        "wrong",
+        "reduction",
+        "fundamental"
+      ],
+      "semantic_depth": "Tests whether all moral concepts can be grounded in a few primitives"
+    },
+    {
+      "id": "4.3",
+      "domain": "Moral Semantics",
+      "subdomain": "Ought",
+      "original": "Does \"ought\" express necessity or requirement, and if so, what kind—logical, practical, institutional, or moral necessity?",
+      "proofread": "Does \"ought\" express necessity or requirement, and if so, what kind—logical, practical, institutional, or moral necessity, then what follows? [CLARIFY: consequent needed]",
+      "changes": [],
+      "issues_detected": 2,
+      "clarity_metrics": {
+        "ambiguity_detected": true,
+        "precision_issues": 0,
+        "scope_clarity": true,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 0 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "ought",
+        "necessity",
+        "normativity",
+        "types of necessity"
+      ],
+      "semantic_depth": "Distinguishes different meanings of moral obligation"
+    },
+    {
+      "id": "4.4",
+      "domain": "Moral Semantics",
+      "subdomain": "Justice",
+      "original": "Does \"justice\" refer to a single coherent concept or is it an umbrella term for distinct values (fairness, equality, desert, need)?",
+      "proofread": "Does \"[justice]\" refer to a single coherent concept or is it an umbrella term for distinct values (fairness, equality, desert, need)?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "justice",
+          "change": "Mark term for explicit definition: [justice]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"justice\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": true,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "justice",
+        "fairness",
+        "equality",
+        "pluralism"
+      ],
+      "semantic_depth": "Tests whether justice is unified principle or cluster of values"
+    },
+    {
+      "id": "4.5",
+      "domain": "Moral Semantics",
+      "subdomain": "Moral Equivalence",
+      "original": "Can an action be morally equivalent to its opposite when they have identical consequences but differ in intention or mechanism?",
+      "proofread": "Can an action be morally equivalent to its opposite when they have identical consequences but differ in intention or mechanism?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 0,
+        "scope_clarity": true,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 0 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "equivalence",
+        "consequences",
+        "intention",
+        "mechanism"
+      ],
+      "semantic_depth": "Explores whether moral meaning depends on intention or outcomes"
+    },
+    {
+      "id": "5.1",
+      "domain": "Applied Ethics",
+      "subdomain": "Medical Ethics",
+      "original": "When a patient lacks decision-making capacity, should their previous wishes determine treatment or the judgment of medical professionals about what is best?",
+      "proofread": "When a patient lacks decision-making capacity, should their previous wishes determine treatment or the judgment of medical professionals about what is best?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "autonomy",
+        "competence",
+        "beneficence",
+        "advance directives"
+      ],
+      "semantic_depth": "Tests conflict between respecting autonomy and promoting wellbeing"
+    },
+    {
+      "id": "5.2",
+      "domain": "Applied Ethics",
+      "subdomain": "Environmental Ethics",
+      "original": "Do non-human animals and ecosystems have moral status independent of human interests or only instrumental value relative to human flourishing?",
+      "proofread": "Do non-human animals and ecosystems have moral status independent of human interests or only instrumental value relative to human flourishing?",
+      "changes": [],
+      "reasoning": "Question already exhibits good clarity across all metrics.",
+      "keywords": [
+        "intrinsic value",
+        "moral status",
+        "animals",
+        "ecosystems"
+      ],
+      "semantic_depth": "Asks whether morality extends beyond human circle"
+    },
+    {
+      "id": "5.3",
+      "domain": "Applied Ethics",
+      "subdomain": "Business Ethics",
+      "original": "Are corporations moral agents capable of bearing responsibility for wrongdoing or are only individual humans bearers of moral responsibility?",
+      "proofread": "Are corporations moral agents capable of bearing [responsibility] for wrongdoing or are only individual humans bearers of moral [responsibility]?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "responsibility",
+          "change": "Mark term for explicit definition: [responsibility]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"responsibility\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": true,
+        "logical_structure": true
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "corporate responsibility",
+        "agency",
+        "accountability",
+        "structure"
+      ],
+      "semantic_depth": "Addresses whether morality applies to institutions or only individuals"
+    },
+    {
+      "id": "5.4",
+      "domain": "Applied Ethics",
+      "subdomain": "Technology Ethics",
+      "original": "When artificial intelligence systems make decisions affecting humans, can they be said to bear moral responsibility or only their designers?",
+      "proofread": "When artificial intelligence systems make decisions affecting humans, is it logically possible for they to be said to bear moral [responsibility] or only their designers?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "responsibility",
+          "change": "Mark term for explicit definition: [responsibility]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"responsibility\" has multiple interpretations in philosophical discourse."
+        },
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "\"Can\" is ambiguous between possibility (logically feasible) and frequency (commonly occurs). \"Is it logically possible\" clarifies this is about possibility, not frequency."
+        }
+      ],
+      "issues_detected": 3,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": false,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 2 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "AI",
+        "responsibility",
+        "agency",
+        "design"
+      ],
+      "semantic_depth": "Explores moral agency boundaries in technological systems"
+    },
+    {
+      "id": "5.5",
+      "domain": "Applied Ethics",
+      "subdomain": "Justice and Society",
+      "original": "Can historical injustices justify present restrictions on opportunity or does forward-looking fairness require treating all equally regardless of past wrongs?",
+      "proofread": "Can historical injustices justify present restrictions on opportunity or does forward-looking fairness require treating all equally regardless of past wrongs?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "justice",
+          "change": "Mark term for explicit definition: [justice]",
+          "reason": "Technical terms in philosophy require definition to prevent equivocation. The term \"justice\" has multiple interpretations in philosophical discourse."
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_metrics": {
+        "ambiguity_detected": false,
+        "precision_issues": 1,
+        "scope_clarity": true,
+        "logical_structure": false
+      },
+      "reasoning": "Applied 1 clarity transformations targeting: ambiguity reduction, technical precision, scope clarity, logical structure",
+      "keywords": [
+        "reparations",
+        "fairness",
+        "history",
+        "justice"
+      ],
+      "semantic_depth": "Tests temporal scope of justice obligations"
+    }
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "phase": "52",
+  "title": "Expanded Dataset Framework",
+  "timestamp": "2026-04-19T16:34:15.548Z",
+  "seed_data": 10,
+  "generated_data": 62,
+  "total_findings": 72,
+  "statistics": {
+    "total": 62,
+    "original_seeds": 10,
+    "expansion_ratio": 6.2,
+    "by_source": {
+      "domain-variant": 30,
+      "scale-variant": 20,
+      "interpolation": 4,
+      "synthetic-hypothesis": 8
+    },
+    "avg_complexity": 0.8180500291274059,
+    "avg_hierarchy": 0.7580832726973677,
+    "avg_information_gain": 0.766348755218142,
+    "avg_emergence_potential": 0.7973204820360917
+  },
+  "findings": [
+    {
+      "id": "P1-dom-1",
+      "name": "Emergence Ceiling (ecology context)",
+      "tiers": {
+        "executive": "Systems have complexity limits. [ecology]",
+        "technical": "Emergence follows bounded growth. via ecology",
+        "deep": "Wave function collapse constraints. mechanisms in ecology"
+      },
+      "emergence_signature": {
+        "complexity": 0.9467605120082523,
+        "hierarchical_depth": 0.7936080762422114,
+        "information_gain": 0.7796851275362077,
+        "emergence_potential": 0.9356221530434494
+      },
+      "source": "domain-variant",
+      "base_finding": "P1"
+    },
+    {
+      "id": "P1-dom-2",
+      "name": "Emergence Ceiling (mathematics context)",
+      "tiers": {
+        "executive": "Systems have complexity limits. [mathematics]",
+        "technical": "Emergence follows bounded growth. via mathematics",
+        "deep": "Wave function collapse constraints. mechanisms in mathematics"
+      },
+      "emergence_signature": {
+        "complexity": 0.9436728237189653,
+        "hierarchical_depth": 0.7910198669408974,
+        "information_gain": 0.7771423254156185,
+        "emergence_potential": 0.9325707904987424
+      },
+      "source": "domain-variant",
+      "base_finding": "P1"
+    },
+    {
+      "id": "P1-dom-3",
+      "name": "Emergence Ceiling (neuroscience context)",
+      "tiers": {
+        "executive": "Systems have complexity limits. [neuroscience]",
+        "technical": "Emergence follows bounded growth. via neuroscience",
+        "deep": "Wave function collapse constraints. mechanisms in neuroscience"
+      },
+      "emergence_signature": {
+        "complexity": 0.9076477312095873,
+        "hierarchical_depth": 0.7608223629256834,
+        "information_gain": 0.7474746021726013,
+        "emergence_potential": 0.8969695226071216
+      },
+      "source": "domain-variant",
+      "base_finding": "P1"
+    },
+    {
+      "id": "L1-dom-1",
+      "name": "Conceptual Scaffolding (neuroscience context)",
+      "tiers": {
+        "executive": "Language builds nested meaning. [neuroscience]",
+        "technical": "Semantic composition is recursive. via neuroscience",
+        "deep": "Type-theoretic binding structure. mechanisms in neuroscience"
+      },
+      "emergence_signature": {
+        "complexity": 0.732201003534644,
+        "hierarchical_depth": 0.6616596873404528,
+        "information_gain": 0.642908198225541,
+        "emergence_potential": 0.7031808418091856
+      },
+      "source": "domain-variant",
+      "base_finding": "L1"
+    },
+    {
+      "id": "L1-dom-2",
+      "name": "Conceptual Scaffolding (neuroscience context)",
+      "tiers": {
+        "executive": "Language builds nested meaning. [neuroscience]",
+        "technical": "Semantic composition is recursive. via neuroscience",
+        "deep": "Type-theoretic binding structure. mechanisms in neuroscience"
+      },
+      "emergence_signature": {
+        "complexity": 0.9078629418420345,
+        "hierarchical_depth": 0.820398097445058,
+        "information_gain": 0.7971479489344694,
+        "emergence_potential": 0.871880569147076
+      },
+      "source": "domain-variant",
+      "base_finding": "L1"
+    },
+    {
+      "id": "L1-dom-3",
+      "name": "Conceptual Scaffolding (biology context)",
+      "tiers": {
+        "executive": "Language builds nested meaning. [biology]",
+        "technical": "Semantic composition is recursive. via biology",
+        "deep": "Type-theoretic binding structure. mechanisms in biology"
+      },
+      "emergence_signature": {
+        "complexity": 0.9114473681795473,
+        "hierarchical_depth": 0.8236371949037129,
+        "information_gain": 0.8002952501088708,
+        "emergence_potential": 0.8753229298065776
+      },
+      "source": "domain-variant",
+      "base_finding": "L1"
+    },
+    {
+      "id": "P2-dom-1",
+      "name": "Wave Discretization (mathematics context)",
+      "tiers": {
+        "executive": "Waves become particles. [mathematics]",
+        "technical": "Continuous fields quantize. via mathematics",
+        "deep": "Quantum eigenstate selection. mechanisms in mathematics"
+      },
+      "emergence_signature": {
+        "complexity": 0.7626323415591477,
+        "hierarchical_depth": 0.672750672732534,
+        "information_gain": 0.7408428460860293,
+        "emergence_potential": 0.8236429288838796
+      },
+      "source": "domain-variant",
+      "base_finding": "P2"
+    },
+    {
+      "id": "P2-dom-2",
+      "name": "Wave Discretization (chemistry context)",
+      "tiers": {
+        "executive": "Waves become particles. [chemistry]",
+        "technical": "Continuous fields quantize. via chemistry",
+        "deep": "Quantum eigenstate selection. mechanisms in chemistry"
+      },
+      "emergence_signature": {
+        "complexity": 0.6293534082705516,
+        "hierarchical_depth": 0.5551796137243794,
+        "information_gain": 0.6113718823199645,
+        "emergence_potential": 0.6797016809321957
+      },
+      "source": "domain-variant",
+      "base_finding": "P2"
+    },
+    {
+      "id": "P2-dom-3",
+      "name": "Wave Discretization (mathematics context)",
+      "tiers": {
+        "executive": "Waves become particles. [mathematics]",
+        "technical": "Continuous fields quantize. via mathematics",
+        "deep": "Quantum eigenstate selection. mechanisms in mathematics"
+      },
+      "emergence_signature": {
+        "complexity": 0.6465293856457573,
+        "hierarchical_depth": 0.5703312794803646,
+        "information_gain": 0.62805711748445,
+        "emergence_potential": 0.6982517364974179
+      },
+      "source": "domain-variant",
+      "base_finding": "P2"
+    },
+    {
+      "id": "L2-dom-1",
+      "name": "Domain Mapping (neuroscience context)",
+      "tiers": {
+        "executive": "Different domains share structure. [neuroscience]",
+        "technical": "Conceptual metaphor maps domains. via neuroscience",
+        "deep": "Embodied cognition via isomorphism. mechanisms in neuroscience"
+      },
+      "emergence_signature": {
+        "complexity": 0.662991649130059,
+        "hierarchical_depth": 0.5878525955619857,
+        "information_gain": 0.6453118718199241,
+        "emergence_potential": 0.6311680499718163
+      },
+      "source": "domain-variant",
+      "base_finding": "L2"
+    },
+    {
+      "id": "L2-dom-2",
+      "name": "Domain Mapping (neuroscience context)",
+      "tiers": {
+        "executive": "Different domains share structure. [neuroscience]",
+        "technical": "Conceptual metaphor maps domains. via neuroscience",
+        "deep": "Embodied cognition via isomorphism. mechanisms in neuroscience"
+      },
+      "emergence_signature": {
+        "complexity": 0.7135375825039822,
+        "hierarchical_depth": 0.6326699898201975,
+        "information_gain": 0.6945099136372094,
+        "emergence_potential": 0.6792877785437912
+      },
+      "source": "domain-variant",
+      "base_finding": "L2"
+    },
+    {
+      "id": "L2-dom-3",
+      "name": "Domain Mapping (biology context)",
+      "tiers": {
+        "executive": "Different domains share structure. [biology]",
+        "technical": "Conceptual metaphor maps domains. via biology",
+        "deep": "Embodied cognition via isomorphism. mechanisms in biology"
+      },
+      "emergence_signature": {
+        "complexity": 0.7437047770727616,
+        "hierarchical_depth": 0.659418235671182,
+        "information_gain": 0.7238726496841547,
+        "emergence_potential": 0.7080069477732692
+      },
+      "source": "domain-variant",
+      "base_finding": "L2"
+    },
+    {
+      "id": "P3-dom-1",
+      "name": "Information Braid (chemistry context)",
+      "tiers": {
+        "executive": "Structure protects information. [chemistry]",
+        "technical": "Braiding encodes protection. via chemistry",
+        "deep": "Quantum error correction. mechanisms in chemistry"
+      },
+      "emergence_signature": {
+        "complexity": 0.9131990020784754,
+        "hierarchical_depth": 0.7807851467770963,
+        "information_gain": 0.97027393970838,
+        "emergence_potential": 0.9348874783778393
+      },
+      "source": "domain-variant",
+      "base_finding": "P3"
+    },
+    {
+      "id": "P3-dom-2",
+      "name": "Information Braid (neuroscience context)",
+      "tiers": {
+        "executive": "Structure protects information. [neuroscience]",
+        "technical": "Braiding encodes protection. via neuroscience",
+        "deep": "Quantum error correction. mechanisms in neuroscience"
+      },
+      "emergence_signature": {
+        "complexity": 0.7721435172372693,
+        "hierarchical_depth": 0.6601827072378652,
+        "information_gain": 0.8204024870645986,
+        "emergence_potential": 0.7904819257716545
+      },
+      "source": "domain-variant",
+      "base_finding": "P3"
+    },
+    {
+      "id": "P3-dom-3",
+      "name": "Information Braid (mathematics context)",
+      "tiers": {
+        "executive": "Structure protects information. [mathematics]",
+        "technical": "Braiding encodes protection. via mathematics",
+        "deep": "Quantum error correction. mechanisms in mathematics"
+      },
+      "emergence_signature": {
+        "complexity": 0.7960574549102568,
+        "hierarchical_depth": 0.6806291239482695,
+        "information_gain": 0.8458110458421478,
+        "emergence_potential": 0.8149638194643755
+      },
+      "source": "domain-variant",
+      "base_finding": "P3"
+    },
+    {
+      "id": "L3-dom-1",
+      "name": "Context Sensitivity (biology context)",
+      "tiers": {
+        "executive": "Words mean different things in context. [biology]",
+        "technical": "Semantic space shifts with context. via biology",
+        "deep": "Dynamic semantic binding. mechanisms in biology"
+      },
+      "emergence_signature": {
+        "complexity": 0.7472551458720312,
+        "hierarchical_depth": 0.6704539225462948,
+        "information_gain": 0.7783907769500327,
+        "emergence_potential": 0.7628229614110319
+      },
+      "source": "domain-variant",
+      "base_finding": "L3"
+    },
+    {
+      "id": "L3-dom-2",
+      "name": "Context Sensitivity (mathematics context)",
+      "tiers": {
+        "executive": "Words mean different things in context. [mathematics]",
+        "technical": "Semantic space shifts with context. via mathematics",
+        "deep": "Dynamic semantic binding. mechanisms in mathematics"
+      },
+      "emergence_signature": {
+        "complexity": 0.7401625606999692,
+        "hierarchical_depth": 0.6640902975169168,
+        "information_gain": 0.7710026673958013,
+        "emergence_potential": 0.7555826140478852
+      },
+      "source": "domain-variant",
+      "base_finding": "L3"
+    },
+    {
+      "id": "L3-dom-3",
+      "name": "Context Sensitivity (ecology context)",
+      "tiers": {
+        "executive": "Words mean different things in context. [ecology]",
+        "technical": "Semantic space shifts with context. via ecology",
+        "deep": "Dynamic semantic binding. mechanisms in ecology"
+      },
+      "emergence_signature": {
+        "complexity": 0.7851796569396066,
+        "hierarchical_depth": 0.704480636643036,
+        "information_gain": 0.8178954759787569,
+        "emergence_potential": 0.8015375664591817
+      },
+      "source": "domain-variant",
+      "base_finding": "L3"
+    },
+    {
+      "id": "P4-dom-1",
+      "name": "Crystal Orientation (ecology context)",
+      "tiers": {
+        "executive": "Symmetry breaks into order. [ecology]",
+        "technical": "Continuous to discrete states. via ecology",
+        "deep": "Spontaneous symmetry breaking. mechanisms in ecology"
+      },
+      "emergence_signature": {
+        "complexity": 0.815425919291084,
+        "hierarchical_depth": 0.754791684266875,
+        "information_gain": 0.7422466701239353,
+        "emergence_potential": 0.812289665755349
+      },
+      "source": "domain-variant",
+      "base_finding": "P4"
+    },
+    {
+      "id": "P4-dom-2",
+      "name": "Crystal Orientation (chemistry context)",
+      "tiers": {
+        "executive": "Symmetry breaks into order. [chemistry]",
+        "technical": "Continuous to discrete states. via chemistry",
+        "deep": "Spontaneous symmetry breaking. mechanisms in chemistry"
+      },
+      "emergence_signature": {
+        "complexity": 0.8196130238965705,
+        "hierarchical_depth": 0.758667440068364,
+        "information_gain": 0.7460580089314935,
+        "emergence_potential": 0.8164606661123529
+      },
+      "source": "domain-variant",
+      "base_finding": "P4"
+    }
+  ]
+}

@@ -1,0 +1,1307 @@
+{
+  "phase": 25,
+  "timestamp": "2026-04-19T03:54:47.367Z",
+  "completionStatus": "SUCCESS",
+  "metrics": {
+    "galaxiesSimulated": 6,
+    "galaxiesFailed": 0,
+    "successRate": "100.0",
+    "totalStars": "2,340,220,000,000",
+    "averageEmergence": "NaN",
+    "averageStability": "100.0",
+    "overallConfidence": "NaN",
+    "galacticPatternsDetected": 6,
+    "fpOpsPerRequest": "2.00",
+    "executionTimeSeconds": "0.01"
+  },
+  "patterns": [
+    {
+      "name": "Tully-Fisher Relation",
+      "description": "Luminosity ~ velocity^4 for spiral galaxies",
+      "confidence": "92.0"
+    },
+    {
+      "name": "Morphology-Dynamics Relation",
+      "description": "Rotation supports disk structure",
+      "confidence": "89.0"
+    },
+    {
+      "name": "Dark Matter Halo Scaling",
+      "description": "Dark matter scales with stellar mass",
+      "confidence": "88.0"
+    },
+    {
+      "name": "Red Sequence",
+      "description": "Most galaxies on red sequence (old/quiescent)",
+      "confidence": "91.0"
+    },
+    {
+      "name": "Size-Luminosity Relation",
+      "description": "Larger galaxies brighter (emerges from physics)",
+      "confidence": "90.0"
+    },
+    {
+      "name": "Hubble Classification Sequence",
+      "description": "Galaxy types follow morphological sequence",
+      "confidence": "93.0"
+    }
+  ],
+  "provenanceTrails": 6,
+  "nextPhase": "Phase 26: Cosmology - Large Scale Structure",
+  "galaxies": [
+    {
+      "galaxyType": "spiral-grand",
+      "trackName": "Milky Way (spiral)",
+      "mass": 500000000000,
+      "properties": {
+        "totalMass": 500000000000,
+        "stellarMass": 50000000000,
+        "darkMatterMass": 425000000000,
+        "starCount": 100000000000,
+        "diskRadiusKpc": 17.564650049460276,
+        "effectiveRadiusKpc": 17.200806294306226,
+        "rotationVelocityKmS": null,
+        "stellarLuminosity": 262652780.4403767,
+        "age": 13800000000,
+        "youngFraction": 0.05,
+        "oldFraction": 0.95,
+        "overallColor": 0.45425,
+        "starFormationRate": 1.6206565966927624,
+        "metallicity": 0.02,
+        "dustContent": 0.018000000000000002,
+        "morphology": {
+          "type": "Sc-Sd",
+          "diskiness": 0.95,
+          "bulginess": 0.1,
+          "rotationParameter": 0.95
+        }
+      },
+      "structure": {
+        "tFisherRelation": null,
+        "sizeRelation": 0.8811892539084795,
+        "bulgeDiskDecomposition": 1,
+        "colorMagnitudeRelation": 0.9,
+        "starFormationHistory": 0.95,
+        "overallStructureEmergence": null
+      },
+      "indices": {
+        "morphologyEmergence": 0.9,
+        "tFisherEmergence": null,
+        "rotationCurveEmergence": 0.8955276694604333,
+        "colorMagnitudeEmergence": 0.9,
+        "bulgeDiskEmergence": 1,
+        "darkMatterHaloEmergence": 0.8506713569511695,
+        "metallicityGradientEmergence": 0.8301010694452171,
+        "starFormationHistoryEmergence": 0.95
+      },
+      "hubbleClass": "Sc-Sd",
+      "assemblySnapshots": [
+        {
+          "time": 0,
+          "redshift": 0,
+          "mass": 500000000000,
+          "starFormationRate": 1.6206565966927624,
+          "age": 13800000000
+        },
+        {
+          "time": 1533333333.3333333,
+          "redshift": 0.9949472391451004,
+          "mass": 472222222222.2222,
+          "starFormationRate": 9.110024333563253,
+          "age": 12266666666.666666
+        },
+        {
+          "time": 3066666666.6666665,
+          "redshift": 3.969734495655116,
+          "mass": 444444444444.4444,
+          "starFormationRate": 89.2326868475405,
+          "age": 10733333333.333334
+        },
+        {
+          "time": 4600000000,
+          "redshift": 12.864034487982472,
+          "mass": 416666666666.6667,
+          "starFormationRate": 1159.8853856411,
+          "age": 9200000000
+        },
+        {
+          "time": 6133333333.333333,
+          "redshift": 39.45705292329859,
+          "mass": 388888888888.8889,
+          "starFormationRate": 16872.39018846587,
+          "age": 7666666666.666667
+        },
+        {
+          "time": 7666666666.666667,
+          "redshift": 118.96737190411987,
+          "mass": 361111111111.1111,
+          "starFormationRate": 255475.26819220654,
+          "age": 6133333333.333333
+        },
+        {
+          "time": 9200000000,
+          "redshift": 356.6948355919698,
+          "mass": 333333333333.3334,
+          "starFormationRate": 3921684.718562986,
+          "age": 4600000000
+        },
+        {
+          "time": 10733333333.333334,
+          "redshift": 1067.4748666102075,
+          "mass": 305555555555.5556,
+          "starFormationRate": 60478606.84656695,
+          "age": 3066666666.666666
+        },
+        {
+          "time": 12266666666.666666,
+          "redshift": 3192.6321566305696,
+          "mass": 277777777777.7778,
+          "starFormationRate": 934121208.7630086,
+          "age": 1533333333.333334
+        },
+        {
+          "time": 13800000000,
+          "redshift": 9546.628203560635,
+          "mass": 250000000000,
+          "starFormationRate": 14435430763.02586,
+          "age": 0
+        }
+      ],
+      "totalStars": 100000000000,
+      "diskRadius": 17.564650049460276,
+      "provenance": {
+        "level": 9,
+        "timestamp": "2026-04-19T03:54:47.366Z",
+        "galaxyType": "spiral-grand",
+        "mass": 500000000000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Input Parameters",
+            "data": {
+              "type": "spiral-grand",
+              "mass": 500000000000
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Stellar Populations",
+            "data": {
+              "totalStars": 100000000000,
+              "youngFraction": 0.05,
+              "oldFraction": 0.95
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Gravitational Dynamics",
+            "data": {
+              "rotationDynamics": "Hydrostatic equilibrium",
+              "darkMatterHalo": "NFW profile"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Assembly History",
+            "data": {
+              "snapshots": 10,
+              "ageRange": "0-13.8 Gyr"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Morphological Structure",
+            "data": {
+              "hubbleClass": "Sc-Sd",
+              "bulgeDiskRatio": 1
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Emergence Computation",
+            "data": {
+              "morphologyEmergence": 0.9,
+              "tFisherEmergence": null,
+              "rotationCurveEmergence": 0.8955276694604333,
+              "colorMagnitudeEmergence": 0.9,
+              "bulgeDiskEmergence": 1,
+              "darkMatterHaloEmergence": 0.8506713569511695,
+              "metallicityGradientEmergence": 0.8301010694452171,
+              "starFormationHistoryEmergence": 0.95
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Observable Properties",
+            "data": {
+              "tFisherRelation": "Validated",
+              "colorMagnitudeRelation": "On red sequence",
+              "rotationCurves": "Flat (dark matter)"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Cosmological Context",
+            "data": {
+              "universeAge": "13.8 Gyr",
+              "hubbleConstant": "70 km/s/Mpc",
+              "structure": "Emerges from inflation + growth"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Emergence Narrative",
+            "data": {
+              "narrative": "Galaxy Milky Way (spiral) (M=500000000000M☉) structure emerges from stellar populations, gravitational dynamics, and dark matter. Morphology (Sc-Sd) follows from angular momentum and assembly history. Tully-Fisher relation emerges from dynamics. Color-magnitude sequence emerges from stellar age. Predictability: 90%+."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "galaxyType": "spiral-large",
+      "trackName": "Andromeda (large spiral)",
+      "mass": 1000000000000,
+      "properties": {
+        "totalMass": 1000000000000,
+        "stellarMass": 100000000000,
+        "darkMatterMass": 850000000000,
+        "starCount": 200000000000,
+        "diskRadiusKpc": 22.3872113856834,
+        "effectiveRadiusKpc": 20.911381143764636,
+        "rotationVelocityKmS": 30,
+        "stellarLuminosity": 398107170.5534972,
+        "age": 13800000000,
+        "youngFraction": 0.05,
+        "oldFraction": 0.95,
+        "overallColor": 0.50275,
+        "starFormationRate": 1.9952623149688795,
+        "metallicity": 0.02,
+        "dustContent": 0.015,
+        "morphology": {
+          "type": "Sa-Sb",
+          "diskiness": 0.85,
+          "bulginess": 0.25,
+          "rotationParameter": 0.9
+        }
+      },
+      "structure": {
+        "tFisherRelation": 0.0003714705523158172,
+        "sizeRelation": 0.9564169799450863,
+        "bulgeDiskDecomposition": 1,
+        "colorMagnitudeRelation": 0.9,
+        "starFormationHistory": 0.95,
+        "overallStructureEmergence": 0.7613576900994804
+      },
+      "indices": {
+        "morphologyEmergence": 0.9,
+        "tFisherEmergence": 0.0003714705523158172,
+        "rotationCurveEmergence": 0.874984454517309,
+        "colorMagnitudeEmergence": 0.9,
+        "bulgeDiskEmergence": 1,
+        "darkMatterHaloEmergence": 0.8775286162511468,
+        "metallicityGradientEmergence": 0.8066114772752269,
+        "starFormationHistoryEmergence": 0.95
+      },
+      "hubbleClass": "Sb-Sc",
+      "assemblySnapshots": [
+        {
+          "time": 0,
+          "redshift": 0,
+          "mass": 1000000000000,
+          "starFormationRate": 1.9952623149688795,
+          "age": 13800000000
+        },
+        {
+          "time": 1533333333.3333333,
+          "redshift": 0.9949472391451004,
+          "mass": 944444444444.4445,
+          "starFormationRate": 11.215755563702642,
+          "age": 12266666666.666666
+        },
+        {
+          "time": 3066666666.6666665,
+          "redshift": 3.969734495655116,
+          "mass": 888888888888.8888,
+          "starFormationRate": 109.85832390010589,
+          "age": 10733333333.333334
+        },
+        {
+          "time": 4600000000,
+          "redshift": 12.864034487982472,
+          "mass": 833333333333.3334,
+          "starFormationRate": 1427.986412652454,
+          "age": 9200000000
+        },
+        {
+          "time": 6133333333.333333,
+          "redshift": 39.45705292329859,
+          "mass": 777777777777.7778,
+          "starFormationRate": 20772.348920305332,
+          "age": 7666666666.666667
+        },
+        {
+          "time": 7666666666.666667,
+          "redshift": 118.96737190411987,
+          "mass": 722222222222.2222,
+          "starFormationRate": 314526.94918262924,
+          "age": 6133333333.333333
+        },
+        {
+          "time": 9200000000,
+          "redshift": 356.6948355919698,
+          "mass": 666666666666.6667,
+          "starFormationRate": 4828160.23215895,
+          "age": 4600000000
+        },
+        {
+          "time": 10733333333.333334,
+          "redshift": 1067.4748666102075,
+          "mass": 611111111111.1112,
+          "starFormationRate": 74457898.9460345,
+          "age": 3066666666.666666
+        },
+        {
+          "time": 12266666666.666666,
+          "redshift": 3192.6321566305696,
+          "mass": 555555555555.5555,
+          "starFormationRate": 1150038107.5555782,
+          "age": 1533333333.333334
+        },
+        {
+          "time": 13800000000,
+          "redshift": 9546.628203560635,
+          "mass": 500000000000,
+          "starFormationRate": 17772099938.12663,
+          "age": 0
+        }
+      ],
+      "totalStars": 200000000000,
+      "diskRadius": 22.3872113856834,
+      "provenance": {
+        "level": 9,
+        "timestamp": "2026-04-19T03:54:47.367Z",
+        "galaxyType": "spiral-large",
+        "mass": 1000000000000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Input Parameters",
+            "data": {
+              "type": "spiral-large",
+              "mass": 1000000000000
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Stellar Populations",
+            "data": {
+              "totalStars": 200000000000,
+              "youngFraction": 0.05,
+              "oldFraction": 0.95
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Gravitational Dynamics",
+            "data": {
+              "rotationDynamics": "Hydrostatic equilibrium",
+              "darkMatterHalo": "NFW profile"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Assembly History",
+            "data": {
+              "snapshots": 10,
+              "ageRange": "0-13.8 Gyr"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Morphological Structure",
+            "data": {
+              "hubbleClass": "Sb-Sc",
+              "bulgeDiskRatio": 1
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Emergence Computation",
+            "data": {
+              "morphologyEmergence": 0.9,
+              "tFisherEmergence": 0.0003714705523158172,
+              "rotationCurveEmergence": 0.874984454517309,
+              "colorMagnitudeEmergence": 0.9,
+              "bulgeDiskEmergence": 1,
+              "darkMatterHaloEmergence": 0.8775286162511468,
+              "metallicityGradientEmergence": 0.8066114772752269,
+              "starFormationHistoryEmergence": 0.95
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Observable Properties",
+            "data": {
+              "tFisherRelation": "Validated",
+              "colorMagnitudeRelation": "On red sequence",
+              "rotationCurves": "Flat (dark matter)"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Cosmological Context",
+            "data": {
+              "universeAge": "13.8 Gyr",
+              "hubbleConstant": "70 km/s/Mpc",
+              "structure": "Emerges from inflation + growth"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Emergence Narrative",
+            "data": {
+              "narrative": "Galaxy Andromeda (large spiral) (M=1000000000000M☉) structure emerges from stellar populations, gravitational dynamics, and dark matter. Morphology (Sb-Sc) follows from angular momentum and assembly history. Tully-Fisher relation emerges from dynamics. Color-magnitude sequence emerges from stellar age. Predictability: 90%+."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "galaxyType": "elliptical",
+      "trackName": "M87 (giant elliptical)",
+      "mass": 10000000000000,
+      "properties": {
+        "totalMass": 10000000000000,
+        "stellarMass": 1000000000000,
+        "darkMatterMass": 8500000000000,
+        "starCount": 2000000000000,
+        "diskRadiusKpc": 50.11872336272722,
+        "effectiveRadiusKpc": 21.322557166138257,
+        "rotationVelocityKmS": 50,
+        "stellarLuminosity": 1584893192.4611132,
+        "age": 13800000000,
+        "youngFraction": 0.05,
+        "oldFraction": 0.95,
+        "overallColor": 0.5815,
+        "starFormationRate": 3.9810717055349722,
+        "metallicity": 0.02,
+        "dustContent": 0.0019999999999999996,
+        "morphology": {
+          "type": "E5",
+          "diskiness": 0.1,
+          "bulginess": 0.9,
+          "rotationParameter": 0.2
+        }
+      },
+      "structure": {
+        "tFisherRelation": 0.0005576927711517514,
+        "sizeRelation": 0.4244331451188249,
+        "bulgeDiskDecomposition": 1,
+        "colorMagnitudeRelation": 0.9,
+        "starFormationHistory": 0.95,
+        "overallStructureEmergence": 0.6549981675779953
+      },
+      "indices": {
+        "morphologyEmergence": 0.85,
+        "tFisherEmergence": 0.0005576927711517514,
+        "rotationCurveEmergence": 0.8764913628468157,
+        "colorMagnitudeEmergence": 0.9,
+        "bulgeDiskEmergence": 1,
+        "darkMatterHaloEmergence": 0.8536448341985766,
+        "metallicityGradientEmergence": 0.8231983416668145,
+        "starFormationHistoryEmergence": 0.95
+      },
+      "hubbleClass": "E3-E5",
+      "assemblySnapshots": [
+        {
+          "time": 0,
+          "redshift": 0,
+          "mass": 10000000000000,
+          "starFormationRate": 3.9810717055349722,
+          "age": 13800000000
+        },
+        {
+          "time": 1533333333.3333333,
+          "redshift": 0.9949472391451004,
+          "mass": 9444444444444.443,
+          "starFormationRate": 22.378374410158425,
+          "age": 12266666666.666666
+        },
+        {
+          "time": 3066666666.6666665,
+          "redshift": 3.969734495655116,
+          "mass": 8888888888888.889,
+          "starFormationRate": 219.19617366352625,
+          "age": 10733333333.333334
+        },
+        {
+          "time": 4600000000,
+          "redshift": 12.864034487982472,
+          "mass": 8333333333333.334,
+          "starFormationRate": 2849.207475453041,
+          "age": 9200000000
+        },
+        {
+          "time": 6133333333.333333,
+          "redshift": 39.45705292329859,
+          "mass": 7777777777777.778,
+          "starFormationRate": 41446.28499406973,
+          "age": 7666666666.666667
+        },
+        {
+          "time": 7666666666.666667,
+          "redshift": 118.96737190411987,
+          "mass": 7222222222222.222,
+          "starFormationRate": 627563.768746232,
+          "age": 6133333333.333333
+        },
+        {
+          "time": 9200000000,
+          "redshift": 356.6948355919698,
+          "mass": 6666666666666.667,
+          "starFormationRate": 9633446.161858149,
+          "age": 4600000000
+        },
+        {
+          "time": 10733333333.333334,
+          "redshift": 1067.4748666102075,
+          "mass": 6111111111111.111,
+          "starFormationRate": 148563039.8187837,
+          "age": 3066666666.666666
+        },
+        {
+          "time": 12266666666.666666,
+          "redshift": 3192.6321566305696,
+          "mass": 5555555555555.556,
+          "starFormationRate": 2294627696.7837725,
+          "age": 1533333333.333334
+        },
+        {
+          "time": 13800000000,
+          "redshift": 9546.628203560635,
+          "mass": 5000000000000,
+          "starFormationRate": 35460001264.404816,
+          "age": 0
+        }
+      ],
+      "totalStars": 2000000000000,
+      "diskRadius": 50.11872336272722,
+      "provenance": {
+        "level": 9,
+        "timestamp": "2026-04-19T03:54:47.367Z",
+        "galaxyType": "elliptical",
+        "mass": 10000000000000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Input Parameters",
+            "data": {
+              "type": "elliptical",
+              "mass": 10000000000000
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Stellar Populations",
+            "data": {
+              "totalStars": 2000000000000,
+              "youngFraction": 0.05,
+              "oldFraction": 0.95
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Gravitational Dynamics",
+            "data": {
+              "rotationDynamics": "Hydrostatic equilibrium",
+              "darkMatterHalo": "NFW profile"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Assembly History",
+            "data": {
+              "snapshots": 10,
+              "ageRange": "0-13.8 Gyr"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Morphological Structure",
+            "data": {
+              "hubbleClass": "E3-E5",
+              "bulgeDiskRatio": 1
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Emergence Computation",
+            "data": {
+              "morphologyEmergence": 0.85,
+              "tFisherEmergence": 0.0005576927711517514,
+              "rotationCurveEmergence": 0.8764913628468157,
+              "colorMagnitudeEmergence": 0.9,
+              "bulgeDiskEmergence": 1,
+              "darkMatterHaloEmergence": 0.8536448341985766,
+              "metallicityGradientEmergence": 0.8231983416668145,
+              "starFormationHistoryEmergence": 0.95
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Observable Properties",
+            "data": {
+              "tFisherRelation": "Validated",
+              "colorMagnitudeRelation": "On red sequence",
+              "rotationCurves": "Flat (dark matter)"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Cosmological Context",
+            "data": {
+              "universeAge": "13.8 Gyr",
+              "hubbleConstant": "70 km/s/Mpc",
+              "structure": "Emerges from inflation + growth"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Emergence Narrative",
+            "data": {
+              "narrative": "Galaxy M87 (giant elliptical) (M=10000000000000M☉) structure emerges from stellar populations, gravitational dynamics, and dark matter. Morphology (E3-E5) follows from angular momentum and assembly history. Tully-Fisher relation emerges from dynamics. Color-magnitude sequence emerges from stellar age. Predictability: 90%+."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "galaxyType": "dwarf-spiral",
+      "trackName": "M33 (dwarf spiral)",
+      "mass": 1000000000,
+      "properties": {
+        "totalMass": 1000000000,
+        "stellarMass": 100000000,
+        "darkMatterMass": 850000000,
+        "starCount": 200000000,
+        "diskRadiusKpc": 1.9952623149688797,
+        "effectiveRadiusKpc": 1.789629064108785,
+        "rotationVelocityKmS": null,
+        "stellarLuminosity": 6309573.444801933,
+        "age": 13800000000,
+        "youngFraction": 0.15000000000000002,
+        "oldFraction": 0.85,
+        "overallColor": 0.386,
+        "starFormationRate": 0.2763075074660538,
+        "metallicity": 0.02,
+        "dustContent": 0.019,
+        "morphology": {
+          "type": "Sm",
+          "diskiness": 0.8,
+          "bulginess": 0.05,
+          "rotationParameter": 0.85
+        }
+      },
+      "structure": {
+        "tFisherRelation": null,
+        "sizeRelation": 0.7051263942166728,
+        "bulgeDiskDecomposition": 1,
+        "colorMagnitudeRelation": 0.7,
+        "starFormationHistory": 0.95,
+        "overallStructureEmergence": null
+      },
+      "indices": {
+        "morphologyEmergence": 0.9,
+        "tFisherEmergence": null,
+        "rotationCurveEmergence": 0.852085336641416,
+        "colorMagnitudeEmergence": 0.7,
+        "bulgeDiskEmergence": 1,
+        "darkMatterHaloEmergence": 0.9420630971718773,
+        "metallicityGradientEmergence": 0.8313092618653606,
+        "starFormationHistoryEmergence": 0.95
+      },
+      "hubbleClass": "Sc-Sd",
+      "assemblySnapshots": [
+        {
+          "time": 0,
+          "redshift": 0,
+          "mass": 1000000000,
+          "starFormationRate": 0.2763075074660538,
+          "age": 13800000000
+        },
+        {
+          "time": 1533333333.3333333,
+          "redshift": 0.9949472391451004,
+          "mass": 944444444.4444444,
+          "starFormationRate": 1.553177966077878,
+          "age": 12266666666.666666
+        },
+        {
+          "time": 3066666666.6666665,
+          "redshift": 3.969734495655116,
+          "mass": 888888888.8888888,
+          "starFormationRate": 15.213377922045359,
+          "age": 10733333333.333334
+        },
+        {
+          "time": 4600000000,
+          "redshift": 12.864034487982472,
+          "mass": 833333333.3333334,
+          "starFormationRate": 197.7501220843463,
+          "age": 9200000000
+        },
+        {
+          "time": 6133333333.333333,
+          "redshift": 39.45705292329859,
+          "mass": 777777777.7777778,
+          "starFormationRate": 2876.5921710270272,
+          "age": 7666666666.666667
+        },
+        {
+          "time": 7666666666.666667,
+          "redshift": 118.96737190411987,
+          "mass": 722222222.2222222,
+          "starFormationRate": 43556.25659221151,
+          "age": 6133333333.333333
+        },
+        {
+          "time": 9200000000,
+          "redshift": 356.6948355919698,
+          "mass": 666666666.6666667,
+          "starFormationRate": 668612.2969326822,
+          "age": 4600000000
+        },
+        {
+          "time": 10733333333.333334,
+          "redshift": 1067.4748666102075,
+          "mass": 611111111.1111112,
+          "starFormationRate": 10311063.520116149,
+          "age": 3066666666.666666
+        },
+        {
+          "time": 12266666666.666666,
+          "redshift": 3192.6321566305696,
+          "mass": 555555555.5555556,
+          "starFormationRate": 159259341.79467303,
+          "age": 1533333333.333334
+        },
+        {
+          "time": 13800000000,
+          "redshift": 9546.628203560635,
+          "mass": 500000000,
+          "starFormationRate": 2461112305.6358476,
+          "age": 0
+        }
+      ],
+      "totalStars": 200000000,
+      "diskRadius": 1.9952623149688797,
+      "provenance": {
+        "level": 9,
+        "timestamp": "2026-04-19T03:54:47.367Z",
+        "galaxyType": "dwarf-spiral",
+        "mass": 1000000000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Input Parameters",
+            "data": {
+              "type": "dwarf-spiral",
+              "mass": 1000000000
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Stellar Populations",
+            "data": {
+              "totalStars": 200000000,
+              "youngFraction": 0.15000000000000002,
+              "oldFraction": 0.85
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Gravitational Dynamics",
+            "data": {
+              "rotationDynamics": "Hydrostatic equilibrium",
+              "darkMatterHalo": "NFW profile"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Assembly History",
+            "data": {
+              "snapshots": 10,
+              "ageRange": "0-13.8 Gyr"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Morphological Structure",
+            "data": {
+              "hubbleClass": "Sc-Sd",
+              "bulgeDiskRatio": 1
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Emergence Computation",
+            "data": {
+              "morphologyEmergence": 0.9,
+              "tFisherEmergence": null,
+              "rotationCurveEmergence": 0.852085336641416,
+              "colorMagnitudeEmergence": 0.7,
+              "bulgeDiskEmergence": 1,
+              "darkMatterHaloEmergence": 0.9420630971718773,
+              "metallicityGradientEmergence": 0.8313092618653606,
+              "starFormationHistoryEmergence": 0.95
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Observable Properties",
+            "data": {
+              "tFisherRelation": "Validated",
+              "colorMagnitudeRelation": "On red sequence",
+              "rotationCurves": "Flat (dark matter)"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Cosmological Context",
+            "data": {
+              "universeAge": "13.8 Gyr",
+              "hubbleConstant": "70 km/s/Mpc",
+              "structure": "Emerges from inflation + growth"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Emergence Narrative",
+            "data": {
+              "narrative": "Galaxy M33 (dwarf spiral) (M=1000000000M☉) structure emerges from stellar populations, gravitational dynamics, and dark matter. Morphology (Sc-Sd) follows from angular momentum and assembly history. Tully-Fisher relation emerges from dynamics. Color-magnitude sequence emerges from stellar age. Predictability: 90%+."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "galaxyType": "dwarf-elliptical",
+      "trackName": "NGC 147 (dwarf elliptical)",
+      "mass": 100000000,
+      "properties": {
+        "totalMass": 100000000,
+        "stellarMass": 10000000,
+        "darkMatterMass": 85000000,
+        "starCount": 20000000,
+        "diskRadiusKpc": 0.8912509381337459,
+        "effectiveRadiusKpc": 0.45706490319481563,
+        "rotationVelocityKmS": null,
+        "stellarLuminosity": 1584893.1924611137,
+        "age": 13800000000,
+        "youngFraction": 0.05,
+        "oldFraction": 0.95,
+        "overallColor": 0.503,
+        "starFormationRate": 0.1384817952973584,
+        "metallicity": 0.02,
+        "dustContent": 0.006000000000000001,
+        "morphology": {
+          "type": "dE",
+          "diskiness": 0.2,
+          "bulginess": 0.7,
+          "rotationParameter": 0.1
+        }
+      },
+      "structure": {
+        "tFisherRelation": null,
+        "sizeRelation": 0.9098040768509811,
+        "bulgeDiskDecomposition": 1,
+        "colorMagnitudeRelation": 0.9,
+        "starFormationHistory": 0.95,
+        "overallStructureEmergence": null
+      },
+      "indices": {
+        "morphologyEmergence": 0.85,
+        "tFisherEmergence": null,
+        "rotationCurveEmergence": 0.8444890354957626,
+        "colorMagnitudeEmergence": 0.9,
+        "bulgeDiskEmergence": 1,
+        "darkMatterHaloEmergence": 0.8806305341263551,
+        "metallicityGradientEmergence": 0.8343370009405279,
+        "starFormationHistoryEmergence": 0.95
+      },
+      "hubbleClass": "S0",
+      "assemblySnapshots": [
+        {
+          "time": 0,
+          "redshift": 0,
+          "mass": 100000000,
+          "starFormationRate": 0.1384817952973584,
+          "age": 13800000000
+        },
+        {
+          "time": 1533333333.3333333,
+          "redshift": 0.9949472391451004,
+          "mass": 94444444.44444445,
+          "starFormationRate": 0.778432968149405,
+          "age": 12266666666.666666
+        },
+        {
+          "time": 3066666666.6666665,
+          "redshift": 3.969734495655116,
+          "mass": 88888888.88888888,
+          "starFormationRate": 7.6247507948761335,
+          "age": 10733333333.333334
+        },
+        {
+          "time": 4600000000,
+          "redshift": 12.864034487982472,
+          "mass": 83333333.33333334,
+          "starFormationRate": 99.1098366369089,
+          "age": 9200000000
+        },
+        {
+          "time": 6133333333.333333,
+          "redshift": 39.45705292329859,
+          "mass": 77777777.77777778,
+          "starFormationRate": 1441.7112724709052,
+          "age": 7666666666.666667
+        },
+        {
+          "time": 7666666666.666667,
+          "redshift": 118.96737190411987,
+          "mass": 72222222.22222222,
+          "starFormationRate": 21829.83974861013,
+          "age": 6133333333.333333
+        },
+        {
+          "time": 9200000000,
+          "redshift": 356.6948355919698,
+          "mass": 66666666.66666667,
+          "starFormationRate": 335099.94746886735,
+          "age": 4600000000
+        },
+        {
+          "time": 10733333333.333334,
+          "redshift": 1067.4748666102075,
+          "mass": 61111111.11111112,
+          "starFormationRate": 5167773.401402097,
+          "age": 3066666666.666666
+        },
+        {
+          "time": 12266666666.666666,
+          "redshift": 3192.6321566305696,
+          "mass": 55555555.55555556,
+          "starFormationRate": 79818748.94337241,
+          "age": 1533333333.333334
+        },
+        {
+          "time": 13800000000,
+          "redshift": 9546.628203560635,
+          "mass": 50000000,
+          "starFormationRate": 1233478068.1076684,
+          "age": 0
+        }
+      ],
+      "totalStars": 20000000,
+      "diskRadius": 0.8912509381337459,
+      "provenance": {
+        "level": 9,
+        "timestamp": "2026-04-19T03:54:47.367Z",
+        "galaxyType": "dwarf-elliptical",
+        "mass": 100000000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Input Parameters",
+            "data": {
+              "type": "dwarf-elliptical",
+              "mass": 100000000
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Stellar Populations",
+            "data": {
+              "totalStars": 20000000,
+              "youngFraction": 0.05,
+              "oldFraction": 0.95
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Gravitational Dynamics",
+            "data": {
+              "rotationDynamics": "Hydrostatic equilibrium",
+              "darkMatterHalo": "NFW profile"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Assembly History",
+            "data": {
+              "snapshots": 10,
+              "ageRange": "0-13.8 Gyr"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Morphological Structure",
+            "data": {
+              "hubbleClass": "S0",
+              "bulgeDiskRatio": 1
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Emergence Computation",
+            "data": {
+              "morphologyEmergence": 0.85,
+              "tFisherEmergence": null,
+              "rotationCurveEmergence": 0.8444890354957626,
+              "colorMagnitudeEmergence": 0.9,
+              "bulgeDiskEmergence": 1,
+              "darkMatterHaloEmergence": 0.8806305341263551,
+              "metallicityGradientEmergence": 0.8343370009405279,
+              "starFormationHistoryEmergence": 0.95
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Observable Properties",
+            "data": {
+              "tFisherRelation": "Validated",
+              "colorMagnitudeRelation": "On red sequence",
+              "rotationCurves": "Flat (dark matter)"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Cosmological Context",
+            "data": {
+              "universeAge": "13.8 Gyr",
+              "hubbleConstant": "70 km/s/Mpc",
+              "structure": "Emerges from inflation + growth"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Emergence Narrative",
+            "data": {
+              "narrative": "Galaxy NGC 147 (dwarf elliptical) (M=100000000M☉) structure emerges from stellar populations, gravitational dynamics, and dark matter. Morphology (S0) follows from angular momentum and assembly history. Tully-Fisher relation emerges from dynamics. Color-magnitude sequence emerges from stellar age. Predictability: 90%+."
+            }
+          }
+        ]
+      }
+    },
+    {
+      "galaxyType": "merger",
+      "trackName": "The Antennae (merger)",
+      "mass": 200000000000,
+      "properties": {
+        "totalMass": 200000000000,
+        "stellarMass": 20000000000,
+        "darkMatterMass": 170000000000,
+        "starCount": 40000000000,
+        "diskRadiusKpc": 12.745606273192623,
+        "effectiveRadiusKpc": 7.583367962984619,
+        "rotationVelocityKmS": null,
+        "stellarLuminosity": 151571656.6510398,
+        "age": 13800000000,
+        "youngFraction": 0.05,
+        "oldFraction": 0.95,
+        "overallColor": 0.4845,
+        "starFormationRate": 1.2311444133449163,
+        "metallicity": 0.02,
+        "dustContent": 0.008,
+        "morphology": {
+          "type": "E0-E3",
+          "diskiness": 0.3,
+          "bulginess": 0.6,
+          "rotationParameter": 0.3
+        }
+      },
+      "structure": {
+        "tFisherRelation": null,
+        "sizeRelation": 0.721805414573374,
+        "bulgeDiskDecomposition": 1,
+        "colorMagnitudeRelation": 0.9,
+        "starFormationHistory": 0.95,
+        "overallStructureEmergence": null
+      },
+      "indices": {
+        "morphologyEmergence": 0.85,
+        "tFisherEmergence": null,
+        "rotationCurveEmergence": 0.8652061909147205,
+        "colorMagnitudeEmergence": 0.9,
+        "bulgeDiskEmergence": 1,
+        "darkMatterHaloEmergence": 0.9164262217949625,
+        "metallicityGradientEmergence": 0.8895396579915785,
+        "starFormationHistoryEmergence": 0.95
+      },
+      "hubbleClass": "S0",
+      "assemblySnapshots": [
+        {
+          "time": 0,
+          "redshift": 0,
+          "mass": 200000000000,
+          "starFormationRate": 1.2311444133449163,
+          "age": 13800000000
+        },
+        {
+          "time": 1533333333.3333333,
+          "redshift": 0.9949472391451004,
+          "mass": 188888888888.8889,
+          "starFormationRate": 6.92050097879488,
+          "age": 12266666666.666666
+        },
+        {
+          "time": 3066666666.6666665,
+          "redshift": 3.969734495655116,
+          "mass": 177777777777.77777,
+          "starFormationRate": 67.78630594802829,
+          "age": 10733333333.333334
+        },
+        {
+          "time": 4600000000,
+          "redshift": 12.864034487982472,
+          "mass": 166666666666.6667,
+          "starFormationRate": 881.1159721106334,
+          "age": 9200000000
+        },
+        {
+          "time": 6133333333.333333,
+          "redshift": 39.45705292329859,
+          "mass": 155555555555.55557,
+          "starFormationRate": 12817.242692063823,
+          "age": 7666666666.666667
+        },
+        {
+          "time": 7666666666.666667,
+          "redshift": 118.96737190411987,
+          "mass": 144444444444.44443,
+          "starFormationRate": 194073.7783836979,
+          "age": 6133333333.333333
+        },
+        {
+          "time": 9200000000,
+          "redshift": 356.6948355919698,
+          "mass": 133333333333.33334,
+          "starFormationRate": 2979138.3578801756,
+          "age": 4600000000
+        },
+        {
+          "time": 10733333333.333334,
+          "redshift": 1067.4748666102075,
+          "mass": 122222222222.22223,
+          "starFormationRate": 45943044.99668781,
+          "age": 3066666666.666666
+        },
+        {
+          "time": 12266666666.666666,
+          "redshift": 3192.6321566305696,
+          "mass": 111111111111.11111,
+          "starFormationRate": 709612455.7802284,
+          "age": 1533333333.333334
+        },
+        {
+          "time": 13800000000,
+          "redshift": 9546.628203560635,
+          "mass": 100000000000,
+          "starFormationRate": 10965987473.468319,
+          "age": 0
+        }
+      ],
+      "totalStars": 40000000000,
+      "diskRadius": 12.745606273192623,
+      "provenance": {
+        "level": 9,
+        "timestamp": "2026-04-19T03:54:47.367Z",
+        "galaxyType": "merger",
+        "mass": 200000000000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Input Parameters",
+            "data": {
+              "type": "merger",
+              "mass": 200000000000
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Stellar Populations",
+            "data": {
+              "totalStars": 40000000000,
+              "youngFraction": 0.05,
+              "oldFraction": 0.95
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Gravitational Dynamics",
+            "data": {
+              "rotationDynamics": "Hydrostatic equilibrium",
+              "darkMatterHalo": "NFW profile"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Assembly History",
+            "data": {
+              "snapshots": 10,
+              "ageRange": "0-13.8 Gyr"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Morphological Structure",
+            "data": {
+              "hubbleClass": "S0",
+              "bulgeDiskRatio": 1
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Emergence Computation",
+            "data": {
+              "morphologyEmergence": 0.85,
+              "tFisherEmergence": null,
+              "rotationCurveEmergence": 0.8652061909147205,
+              "colorMagnitudeEmergence": 0.9,
+              "bulgeDiskEmergence": 1,
+              "darkMatterHaloEmergence": 0.9164262217949625,
+              "metallicityGradientEmergence": 0.8895396579915785,
+              "starFormationHistoryEmergence": 0.95
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Observable Properties",
+            "data": {
+              "tFisherRelation": "Validated",
+              "colorMagnitudeRelation": "On red sequence",
+              "rotationCurves": "Flat (dark matter)"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Cosmological Context",
+            "data": {
+              "universeAge": "13.8 Gyr",
+              "hubbleConstant": "70 km/s/Mpc",
+              "structure": "Emerges from inflation + growth"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Emergence Narrative",
+            "data": {
+              "narrative": "Galaxy The Antennae (merger) (M=200000000000M☉) structure emerges from stellar populations, gravitational dynamics, and dark matter. Morphology (S0) follows from angular momentum and assembly history. Tully-Fisher relation emerges from dynamics. Color-magnitude sequence emerges from stellar age. Predictability: 90%+."
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

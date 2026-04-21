@@ -1,0 +1,1511 @@
+{
+  "objects": [
+    {
+      "id": "COSMO-0-Big Bang Nucleosynthesis (T=1e9K)",
+      "type": "Big Bang Nucleosynthesis (T=1e9K)",
+      "emergence": "61.3",
+      "patternCount": 12,
+      "redshift": "1.00e+10",
+      "temperature_K": "1.00e+9",
+      "scale_factor": "1.00e-10",
+      "cosmic_age_Gyr": "0.000",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": false,
+          "confidence": 78.5912210563048,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Big Bang Nucleosynthesis (T=1e9K)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-1-Matter-Radiation Equality",
+      "type": "Matter-Radiation Equality",
+      "emergence": "60.6",
+      "patternCount": 12,
+      "redshift": "3.40e+3",
+      "temperature_K": "1.00e+4",
+      "scale_factor": "2.94e-4",
+      "cosmic_age_Gyr": "0.124",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00003993992048,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": false,
+          "confidence": 76.20282504156152,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Matter-Radiation Equality",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-2-Inflation Era (e-fold 50)",
+      "type": "Inflation Era (e-fold 50)",
+      "emergence": "61.9",
+      "patternCount": 12,
+      "redshift": "1.00e+60",
+      "temperature_K": "1.00e+16",
+      "scale_factor": "1.00e-60",
+      "cosmic_age_Gyr": "0.000",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Inflation Era (e-fold 50)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-3-End of Inflation",
+      "type": "End of Inflation",
+      "emergence": "61.9",
+      "patternCount": 12,
+      "redshift": "1.00e+50",
+      "temperature_K": "1.00e+15",
+      "scale_factor": "1.00e-50",
+      "cosmic_age_Gyr": "0.000",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "End of Inflation",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-4-Recombination Epoch",
+      "type": "Recombination Epoch",
+      "emergence": "61.4",
+      "patternCount": 12,
+      "redshift": "1.09e+3",
+      "temperature_K": "3.00e+3",
+      "scale_factor": "9.17e-4",
+      "cosmic_age_Gyr": "0.220",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00000359466804,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Recombination Epoch",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-5-Dark Ages (z=100)",
+      "type": "Dark Ages (z=100)",
+      "emergence": "61.4",
+      "patternCount": 12,
+      "redshift": "1.00e+2",
+      "temperature_K": "3.00e+2",
+      "scale_factor": "9.90e-3",
+      "cosmic_age_Gyr": "0.722",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00000003594675,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Dark Ages (z=100)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-6-Reionization Era",
+      "type": "Reionization Era",
+      "emergence": "61.4",
+      "patternCount": 12,
+      "redshift": "8.00e+0",
+      "temperature_K": "3.00e+1",
+      "scale_factor": "1.11e-1",
+      "cosmic_age_Gyr": "2.418",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00000000035946,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Reionization Era",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-7-Galaxy Formation Peak",
+      "type": "Galaxy Formation Peak",
+      "emergence": "61.4",
+      "patternCount": 12,
+      "redshift": "2.00e+0",
+      "temperature_K": "1.00e+1",
+      "scale_factor": "3.33e-1",
+      "cosmic_age_Gyr": "4.188",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00000000003995,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Galaxy Formation Peak",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-8-z=0.5 Universe (Age~6Gyr)",
+      "type": "z=0.5 Universe (Age~6Gyr)",
+      "emergence": "61.4",
+      "patternCount": 12,
+      "redshift": "5.00e-1",
+      "temperature_K": "2.70e+0",
+      "scale_factor": "6.67e-1",
+      "cosmic_age_Gyr": "5.923",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00000000000291,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "z=0.5 Universe (Age~6Gyr)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "COSMO-9-Present Day Universe",
+      "type": "Present Day Universe",
+      "emergence": "61.4",
+      "patternCount": 12,
+      "redshift": "0.00e+0",
+      "temperature_K": "2.73e+0",
+      "scale_factor": "1.00e+0",
+      "cosmic_age_Gyr": "7.254",
+      "He4_abundance": "0.2450",
+      "CMB_temp": "2.725",
+      "matter_density": "0.315",
+      "patterns": [
+        {
+          "name": "Big Bang Nucleosynthesis",
+          "detected": true,
+          "confidence": 82.00000000000297,
+          "physics": "Weak interaction freeze-out"
+        },
+        {
+          "name": "Deuterium Production",
+          "detected": false,
+          "confidence": 33,
+          "physics": "Nuclear barrier penetration"
+        },
+        {
+          "name": "CMB Blackbody Spectrum",
+          "detected": true,
+          "confidence": 89,
+          "physics": "Thermal equilibrium photons"
+        },
+        {
+          "name": "CMB Power Spectrum Peaks",
+          "detected": true,
+          "confidence": 54.63629608981159,
+          "physics": "Acoustic oscillations"
+        },
+        {
+          "name": "Inflation Scalar Field",
+          "detected": true,
+          "confidence": 31,
+          "physics": "Slow-roll potential"
+        },
+        {
+          "name": "Primordial Tensor Modes",
+          "detected": false,
+          "confidence": 12,
+          "physics": "Gravitational wave amplification"
+        },
+        {
+          "name": "Recombination Epoch",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Hydrogen neutralization"
+        },
+        {
+          "name": "Baryon Acoustic Oscillations",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Sound wave imprint"
+        },
+        {
+          "name": "Matter Power Spectrum",
+          "detected": true,
+          "confidence": 62.07451007123343,
+          "physics": "Linear perturbations"
+        },
+        {
+          "name": "Dark Matter Halo Formation",
+          "detected": true,
+          "confidence": 53.23836264987857,
+          "physics": "Gravitational collapse"
+        },
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 77.79197001847503,
+          "physics": "Perturbation amplification"
+        },
+        {
+          "name": "Reionization History",
+          "detected": true,
+          "confidence": 72.45882919825476,
+          "physics": "Stellar ionization"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Cosmological Epoch",
+          "description": "Present Day Universe",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Forces",
+          "description": "Gravity + Particle physics",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Early Universe",
+          "description": "High energy QFT",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "BBN",
+          "description": "Nuclear reactions",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Inflation",
+          "description": "Scalar field dynamics",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Recombination",
+          "description": "Hydrogen neutralization",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Structure Formation",
+          "description": "Gravitational collapse",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Perturbation Growth",
+          "description": "Linear → nonlinear regime",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Observable Universe",
+          "description": "Galaxies and clusters",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete History",
+          "description": "First principles cosmology",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalObjects": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "61.4"
+  }
+}
