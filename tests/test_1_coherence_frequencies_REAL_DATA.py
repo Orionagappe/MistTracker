@@ -75,8 +75,8 @@ except ImportError:
 class SPDFDataDownloader:
     """Download real PSP FIELDS data from NASA SPDF archive"""
     
-    SPDF_BASE_MAG = "https://spdf.gsfc.nasa.gov/pub/data/psp/fields/l2/mag"
-    SPDF_BASE_EFD = "https://spdf.gsfc.nasa.gov/pub/data/psp/fields/l2/efd"
+    SPDF_BASE_MAG = "https://spdf.gsfc.nasa.gov/pub/data/psp/fields/l2/mag_rtn"
+    SPDF_BASE_EFD = "https://spdf.gsfc.nasa.gov/pub/data/psp/fields/l2/dfb_wf_vdc"
     CACHE_DIR = "./psp_data_cache"
     
     def __init__(self):
@@ -101,8 +101,8 @@ class SPDFDataDownloader:
         date_yyyymmdd = date_obj.strftime('%Y%m%d')
         
         # SPDF directory URLs
-        mag_dir = f"{self.SPDF_BASE_MAG}/{year}/"
-        efd_dir = f"{self.SPDF_BASE_EFD}/{year}/"
+        mag_dir = f"{self.SPDF_BASE_MAG}/"
+        efd_dir = f"{self.SPDF_BASE_EFD}/"
         
         logger.info(f"Searching NASA SPDF for {date_str} data...")
         logger.info(f"Magnetometer directory: {mag_dir}")
@@ -118,7 +118,7 @@ class SPDFDataDownloader:
             html = response.read().decode('utf-8')
             
             # Find all CDF files for this date
-            mag_pattern = re.compile(f'href="(psp_fld_l2_mag_{date_yyyymmdd}_v[0-9]+\.cdf)"')
+            mag_pattern = re.compile(f'href="(psp_fld_l2_mag_rtn_{date_yyyymmdd}_v[0-9]+\.cdf)"')
             mag_matches = mag_pattern.findall(html)
             
             if mag_matches:
@@ -143,7 +143,7 @@ class SPDFDataDownloader:
             html = response.read().decode('utf-8')
             
             # Find all CDF files for this date
-            efd_pattern = re.compile(f'href="(psp_fld_l2_efd_{date_yyyymmdd}_v[0-9]+\.cdf)"')
+            efd_pattern = re.compile(f'href="(psp_fld_l2_dfb_wf_vdc_{date_yyyymmdd}_v[0-9]+\.cdf)"')
             efd_matches = efd_pattern.findall(html)
             
             if efd_matches:
@@ -218,8 +218,8 @@ class RealDataCoherenceAnalyzer:
         Load real Parker Solar Probe FIELDS data from CDF files
         
         Args:
-            mag_file: Path to psp_fld_l2_mag_*.cdf
-            efd_file: Path to psp_fld_l2_efd_*.cdf
+            mag_file: Path to psp_fld_l2_mag_rtn_*.cdf
+            efd_file: Path to psp_fld_l2_dfb_wf_vdc_*.cdf
             
         Returns:
             Tuple of (time, E_field, B_field)
