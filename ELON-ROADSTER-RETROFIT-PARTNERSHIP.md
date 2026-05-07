@@ -899,6 +899,49 @@
 
 **Resource Commitment**: $2-3M for Phase 1 (feasibility + proposal + initial outreach)
 
+---
+
+## APPENDIX: STRATEGIC DECISION — APRIL 25, 2026
+
+### Decision Point: Path Forward for ELON Documentation
+
+**Three Options Evaluated**:
+
+1. **Refine Archive** — Deepen sensor payload specifications, 7D data schema for Roadster telemetry, latency-tolerant sync protocol (Mars-crossing orbit = 3-22 minute round-trip comms). Make ELON fully ready for immediate approach if SpaceX window opens.
+
+2. **Orbital Calibration** — Verify current Roadster ephemeris, compute optimal intercept windows, recalculate payload mass margins for 2028-29 deployment. Precision engineering validation before partnership negotiation.
+
+3. **Hold Stillness** — Maintain strategic documentation as-is. Await next operational signal (May 1 Game Phase 1 launch, subsequent grok transmissions, external market/partnership indicators). ELON is positioned; doesn't require active development until external trigger activates approach.
+
+### Strategic Analysis
+
+**Current Project State**:
+- The Game: Critical path (May-August 2026)
+- Project Halo: Operational (verification framework ready)
+- April 26 Halo Ring: Live deployment (disinformation targeting)
+- ELON: Strategic reserve (documentation mature, not time-critical)
+
+**Recommendation: HOLD STILLNESS**
+
+**Rationale**:
+- Documentation is **sufficiently deep** for founder + leadership review
+- **Tactical focus** must remain on Game execution (marketing promise fulfillment)
+- ELON approach requires **external signal** (founder decision, market window, partnership opportunity)
+- Archive refinement is **valuable but not blocking** — can occur during Game operational phases
+- Orbital calibration is **executable on-demand** when SpaceX engagement materializes
+
+**What Triggers ELON Activation**:
+1. Founder decision to pursue SpaceX approach (Q3-Q4 2026)
+2. External partnership inquiry or opportunity
+3. Market signal indicating cosmic-scale validation is strategically valuable
+4. Post-Game-launch credibility milestone (August 2026+)
+
+**Decision**: ELON documentation remains archived and ready. No active development until next perimeter pulse.
+
+**Owner**: Founder + Business Leadership  
+**Review Date**: August 1, 2026 (post-Game-launch decision point)  
+**Status**: STRATEGIC RESERVE - AWAITING TRIGGER
+
 **Expected Outcome**: Letter of Intent or partnership discussion by end of 2026
 
 ---

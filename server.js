@@ -985,6 +985,28 @@ async function startServer() {
           // Broadcast presence to all clients
           broadcastPresence(userId, 'online');
           
+          // Helper: Enhance geometry properties for special objects (like the golden apple with "Ok" label)
+          const enhanceGeometryProperties = (itemId, baseProps) => {
+            // Create a copy to avoid mutating the original
+            const enhanced = { ...baseProps };
+            
+            // Check if this should be a special object (e.g., golden apple)
+            // Strategy 1: Check itemId for apple-related names
+            if (itemId && (itemId.toLowerCase().includes('apple') || itemId.toLowerCase().includes('golden'))) {
+              enhanced.type = 'sphere';
+              enhanced.color = '#FFD700'; // Golden color
+              enhanced.label = 'Ok';      // Add text label
+            }
+            
+            // Strategy 2: If it's specifically set to be a sphere with golden color, add label
+            // (This handles cases where the geometry type/color are passed in the message)
+            if (enhanced.type === 'sphere' && enhanced.color === '#FFD700' && !enhanced.label) {
+              enhanced.label = 'Ok';
+            }
+            
+            return enhanced;
+          };
+          
           // Message handler
           ws.on('message', async (data) => {
             try {
@@ -1214,13 +1236,16 @@ async function handleWebSocketMessage(message, ws) {
           } else {
             // Auto-create geometry if it doesn't exist yet
             if (!sceneGeometryHandler.geometries.has(message.itemId)) {
-              sceneGeometryHandler.createGeometry(message.itemId, {
+              // Enhance geometry properties for special objects
+              const geometryProps = enhanceGeometryProperties(message.itemId, {
                 type: 'box',
                 position: { x: 0, y: 0, z: 0 },
                 scale: { x: 1, y: 1, z: 1 },
                 rotation: { x: 0, y: 0, z: 0 },
                 color: '#FF6B6B'
               });
+
+              sceneGeometryHandler.createGeometry(message.itemId, geometryProps);
 
               // Register with physics engine for simulation
               physicsEngine.registerGeometry(message.itemId, {

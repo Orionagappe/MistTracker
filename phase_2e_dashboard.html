@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phase 2e Expert Platform Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --dark: #1a1a1a;
+            --light: #ecf0f1;
+            --border: #bdc3c7;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 2rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 0.5rem;
+        }
+        
+        header p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background: var(--primary);
+            display: flex;
+            gap: 0;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        nav button {
+            flex: 1;
+            min-width: 120px;
+            padding: 1rem;
+            border: none;
+            background: transparent;
+            color: #ecf0f1;
+            cursor: pointer;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+        
+        nav button:hover {
+            background: rgba(52, 152, 219, 0.3);
+            border-bottom-color: var(--secondary);
+        }
+        
+        nav button.active {
+            background: var(--secondary);
+            border-bottom-color: #fff;
+        }
+        
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Tabs */
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .card.success { border-left-color: var(--success); }
+        .card.warning { border-left-color: var(--warning); }
+        .card.danger { border-left-color: var(--danger); }
+        
+        .card h2 {
+            margin-bottom: 1rem;
+            color: var(--primary);
+            font-size: 1.3em;
+        }
+        
+        .card h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: var(--secondary);
+            font-size: 1.1em;
+        }
+        
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .grid.two {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+        
+        /* Stat Boxes */
+        .stat-box {
+            background: linear-gradient(135deg, var(--secondary), #2980b9);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .stat-box.success {
+            background: linear-gradient(135deg, var(--success), #229954);
+        }
+        
+        .stat-box.warning {
+            background: linear-gradient(135deg, var(--warning), #d68910);
+        }
+        
+        .stat-box.danger {
+            background: linear-gradient(135deg, var(--danger), #c0392b);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--primary);
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.95em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            text-align: center;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(52, 152, 219, 0.3);
+        }
+        
+        .btn-success {
+            background: var(--success);
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #229954;
+        }
+        
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.85em;
+        }
+        
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        th {
+            background: var(--primary);
+            color: white;
+            padding: 0.8rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        td {
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        tr:hover {
+            background: #f9f9f9;
+        }
+        
+        /* Status Badges */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+        
+        .badge.success {
+            background: #d5f4e6;
+            color: var(--success);
+        }
+        
+        .badge.warning {
+            background: #fdebd0;
+            color: var(--warning);
+        }
+        
+        .badge.danger {
+            background: #fadbd8;
+            color: var(--danger);
+        }
+        
+        .badge.info {
+            background: #d6eaf8;
+            color: var(--secondary);
+        }
+        
+        /* Alerts */
+        .alert {
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .alert.success {
+            background: #d5f4e6;
+            color: var(--success);
+            border-left: 4px solid var(--success);
+        }
+        
+        .alert.error {
+            background: #fadbd8;
+            color: var(--danger);
+            border-left: 4px solid var(--danger);
+        }
+        
+        .alert.info {
+            background: #d6eaf8;
+            color: var(--secondary);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Loading */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid var(--border);
+            border-top: 3px solid var(--secondary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Expert Profile */
+        .profile-card {
+            background: linear-gradient(135deg, #ecf0f1, #ffffff);
+            border: 2px solid var(--secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .profile-card h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .profile-stat {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .profile-stat-item {
+            padding: 0.8rem;
+            background: white;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .profile-stat-value {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+        
+        .profile-stat-label {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-top: 0.3rem;
+        }
+        
+        /* Chart Container */
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .chart-title {
+            color: var(--primary);
+            font-size: 1.1em;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .roc-curve {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .timeline-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--secondary);
+            border-radius: 50%;
+            margin-top: 0.4rem;
+            margin-left: -1.5rem;
+        }
+        
+        .timeline-content {
+            flex: 1;
+        }
+        
+        .timeline-time {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+        
+        .timeline-text {
+            margin-top: 0.3rem;
+            color: var(--dark);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            nav {
+                flex-direction: column;
+            }
+            
+            nav button {
+                border-bottom: 3px solid transparent;
+                border-right: 3px solid transparent;
+            }
+            
+            nav button:hover {
+                border-right-color: var(--secondary);
+                border-bottom-color: transparent;
+            }
+            
+            nav button.active {
+                border-right-color: #fff;
+                border-bottom-color: transparent;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .profile-stat {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Utilities */
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .mt-1 { margin-top: 1rem; }
+        .mt-2 { margin-top: 2rem; }
+        .mb-1 { margin-bottom: 1rem; }
+        .mb-2 { margin-bottom: 2rem; }
+        .hidden { display: none; }
+        
+        /* API Status */
+        .api-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9em;
+            padding: 0.5rem 1rem;
+            background: #d5f4e6;
+            color: var(--success);
+            border-radius: 20px;
+        }
+        
+        .api-status.error {
+            background: #fadbd8;
+            color: var(--danger);
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🔬 Phase 2e Expert Platform Dashboard</h1>
+        <p>Real-time Analysis with Expert Feedback, Intelligent Alerts, Cross-Domain Correlations & Adaptive Thresholds</p>
+    </header>
+    
+    <nav>
+        <button class="tab-btn active" onclick="switchTab('dashboard')">Dashboard</button>
+        <button class="tab-btn" onclick="switchTab('feedback')">Expert Feedback</button>
+        <button class="tab-btn" onclick="switchTab('alerts')">Alert Management</button>
+        <button class="tab-btn" onclick="switchTab('correlations')">Correlations</button>
+        <button class="tab-btn" onclick="switchTab('thresholds')">Threshold Tuning</button>
+        <button class="tab-btn" onclick="switchTab('statistics')">Statistics</button>
+    </nav>
+    
+    <div class="container">
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="grid">
+                <div class="stat-box success" id="stat-feedback">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">Expert Feedback Submitted</div>
+                </div>
+                <div class="stat-box danger" id="stat-alerts">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">Active Alerts</div>
+                </div>
+                <div class="stat-box warning" id="stat-correlations">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">Active Patterns</div>
+                </div>
+                <div class="stat-box" id="stat-thresholds">
+                    <div class="stat-value">-</div>
+                    <div class="stat-label">Optimized Thresholds</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>System Status</h2>
+                <div id="system-status">
+                    <p>Loading system status...</p>
+                </div>
+            </div>
+            
+            <div class="grid">
+                <div class="card">
+                    <h2>Recent Alerts</h2>
+                    <table id="recent-alerts-table">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Severity</th>
+                                <th>Domain</th>
+                                <th>Rule</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="4" class="text-center">Loading...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="card">
+                    <h2>Top Experts</h2>
+                    <div id="top-experts"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Expert Feedback Tab -->
+        <div id="feedback" class="tab-content">
+            <div class="card">
+                <h2>Submit Expert Feedback</h2>
+                <form id="feedback-form" onsubmit="submitFeedback(event)">
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Job ID *</label>
+                            <input type="text" id="fb-job-id" required placeholder="e.g., job-sw-001">
+                        </div>
+                        <div class="form-group">
+                            <label>Expert ID *</label>
+                            <input type="text" id="fb-expert-id" required placeholder="e.g., dr_smith">
+                        </div>
+                        <div class="form-group">
+                            <label>Domain *</label>
+                            <select id="fb-domain" required>
+                                <option value="">Select domain</option>
+                                <option value="solar_wind">Solar Wind</option>
+                                <option value="earthquakes">Earthquakes</option>
+                                <option value="networks">Networks</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Feedback Rating *</label>
+                            <select id="fb-rating" required>
+                                <option value="">Select rating</option>
+                                <option value="correct">Correct</option>
+                                <option value="partially_correct">Partially Correct</option>
+                                <option value="incorrect">Incorrect</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Bayesian Verdict *</label>
+                            <select id="fb-verdict" required>
+                                <option value="">Select verdict</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="strongly_confirmed">Strongly Confirmed</option>
+                                <option value="uncertain">Uncertain</option>
+                                <option value="rejected">Rejected</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ground Truth *</label>
+                            <select id="fb-ground-truth" required>
+                                <option value="">Select ground truth</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="rejected">Rejected</option>
+                                <option value="uncertain">Uncertain</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Metric Value</label>
+                            <input type="number" id="fb-metric-value" step="0.0001" placeholder="e.g., 0.1238">
+                        </div>
+                        <div class="form-group">
+                            <label>Confidence (0-1)</label>
+                            <input type="number" id="fb-confidence" min="0" max="1" step="0.01" placeholder="0.95">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Comments</label>
+                        <textarea id="fb-comments" placeholder="Add any additional notes or observations..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    <div id="feedback-result"></div>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2>Expert Profiles</h2>
+                <div id="expert-profiles"></div>
+            </div>
+        </div>
+        
+        <!-- Alerts Tab -->
+        <div id="alerts" class="tab-content">
+            <div class="grid two">
+                <div class="stat-box danger">
+                    <div class="stat-value" id="critical-count">0</div>
+                    <div class="stat-label">Critical Alerts</div>
+                </div>
+                <div class="stat-box warning">
+                    <div class="stat-value" id="warning-count">0</div>
+                    <div class="stat-label">Warning Alerts</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Active Alerts</h2>
+                <table id="active-alerts-table">
+                    <thead>
+                        <tr>
+                            <th>Alert ID</th>
+                            <th>Severity</th>
+                            <th>Domain</th>
+                            <th>Rule</th>
+                            <th>Triggered At</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h2>Alert History</h2>
+                <table id="alert-history-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Severity</th>
+                            <th>Domain</th>
+                            <th>Rule</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="5" class="text-center">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Correlations Tab -->
+        <div id="correlations" class="tab-content">
+            <div class="card">
+                <h2>Active Correlation Patterns</h2>
+                <table id="correlations-table">
+                    <thead>
+                        <tr>
+                            <th>Pattern Type</th>
+                            <th>Domains</th>
+                            <th>Confidence</th>
+                            <th>Significance</th>
+                            <th>Detected At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="5" class="text-center">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <h2>High-Confidence Patterns</h2>
+                <div id="high-confidence-patterns"></div>
+            </div>
+        </div>
+        
+        <!-- Thresholds Tab -->
+        <div id="thresholds" class="tab-content">
+            <div class="card">
+                <h2>Add Labeled Data for Threshold Learning</h2>
+                <form id="label-form" onsubmit="addLabeledDatapoint(event)">
+                    <div class="grid">
+                        <div class="form-group">
+                            <label>Domain *</label>
+                            <select id="label-domain" required>
+                                <option value="">Select domain</option>
+                                <option value="solar_wind">Solar Wind</option>
+                                <option value="earthquakes">Earthquakes</option>
+                                <option value="networks">Networks</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Metric Name *</label>
+                            <input type="text" id="label-metric" required placeholder="e.g., rms_frequency_error_percent">
+                        </div>
+                        <div class="form-group">
+                            <label>Metric Value *</label>
+                            <input type="number" id="label-value" step="0.0001" required placeholder="0.089">
+                        </div>
+                        <div class="form-group">
+                            <label>Classification *</label>
+                            <select id="label-classification" required>
+                                <option value="">Select classification</option>
+                                <option value="TRUE_POSITIVE">True Positive</option>
+                                <option value="TRUE_NEGATIVE">True Negative</option>
+                                <option value="FALSE_POSITIVE">False Positive</option>
+                                <option value="FALSE_NEGATIVE">False Negative</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Datapoint</button>
+                </form>
+            </div>
+            
+            <div class="card">
+                <h2>Threshold Recommendations</h2>
+                <table id="recommendations-table">
+                    <thead>
+                        <tr>
+                            <th>Domain</th>
+                            <th>Metric</th>
+                            <th>Threshold</th>
+                            <th>F1 Score</th>
+                            <th>Sensitivity</th>
+                            <th>Specificity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="6" class="text-center">Loading...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="chart-container">
+                <div class="chart-title">ROC Curve</div>
+                <canvas id="roc-canvas" class="roc-curve" style="display:none;"></canvas>
+                <div id="roc-plot"></div>
+            </div>
+        </div>
+        
+        <!-- Statistics Tab -->
+        <div id="statistics" class="tab-content">
+            <div class="grid">
+                <div class="card">
+                    <h2>Feedback System Stats</h2>
+                    <div id="feedback-stats"></div>
+                </div>
+                <div class="card">
+                    <h2>Alert System Stats</h2>
+                    <div id="alert-stats"></div>
+                </div>
+                <div class="card">
+                    <h2>Correlation Detector Stats</h2>
+                    <div id="correlation-stats"></div>
+                </div>
+                <div class="card">
+                    <h2>Threshold Optimizer Stats</h2>
+                    <div id="threshold-stats"></div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Overall System Status</h2>
+                <div id="overall-stats"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Configuration
+        const API_BASE = 'http://localhost:8000/api';
+        
+        // API Helper Functions
+        async function apiCall(endpoint, options = {}) {
+            const url = `${API_BASE}${endpoint}`;
+            try {
+                const response = await fetch(url, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        ...options.headers
+                    },
+                    ...options
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.statusText}`);
+                }
+                
+                return await response.json();
+            } catch (error) {
+                console.error(`API Call Failed: ${endpoint}`, error);
+                showAlert(`API Error: ${error.message}`, 'error');
+                return null;
+            }
+        }
+        
+        // Tab Management
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Mark button as active
+            event.target.classList.add('active');
+            
+            // Load tab data
+            loadTabData(tabName);
+        }
+        
+        function loadTabData(tabName) {
+            switch(tabName) {
+                case 'dashboard':
+                    loadDashboardData();
+                    break;
+                case 'feedback':
+                    loadFeedbackData();
+                    break;
+                case 'alerts':
+                    loadAlertsData();
+                    break;
+                case 'correlations':
+                    loadCorrelationsData();
+                    break;
+                case 'thresholds':
+                    loadThresholdsData();
+                    break;
+                case 'statistics':
+                    loadStatisticsData();
+                    break;
+            }
+        }
+        
+        // Dashboard Data
+        async function loadDashboardData() {
+            try {
+                const [stats, alerts] = await Promise.all([
+                    apiCall('/phase2e/statistics'),
+                    apiCall('/alerts/active')
+                ]);
+                
+                if (stats) {
+                    document.querySelector('#stat-feedback .stat-value').textContent = 
+                        stats.feedback_system?.total_feedback_submitted || '-';
+                    document.querySelector('#stat-alerts .stat-value').textContent = 
+                        (alerts?.length || 0).toString();
+                    document.querySelector('#stat-correlations .stat-value').textContent = 
+                        stats.correlation_detector?.active_patterns || '-';
+                    document.querySelector('#stat-thresholds .stat-value').textContent = 
+                        stats.threshold_optimizer?.optimized_thresholds || '-';
+                }
+                
+                // System Status
+                const statusHtml = `
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div style="padding: 1rem; background: #d5f4e6; border-radius: 4px;">
+                            <strong>Feedback Engine:</strong> <span class="badge success">Active</span>
+                        </div>
+                        <div style="padding: 1rem; background: #d5f4e6; border-radius: 4px;">
+                            <strong>Alert System:</strong> <span class="badge success">Active</span>
+                        </div>
+                        <div style="padding: 1rem; background: #d5f4e6; border-radius: 4px;">
+                            <strong>Correlation Detector:</strong> <span class="badge success">Active</span>
+                        </div>
+                        <div style="padding: 1rem; background: #d5f4e6; border-radius: 4px;">
+                            <strong>Threshold Optimizer:</strong> <span class="badge success">Active</span>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('system-status').innerHTML = statusHtml;
+                
+            } catch (error) {
+                console.error('Failed to load dashboard data:', error);
+            }
+        }
+        
+        // Expert Feedback Functions
+        async function submitFeedback(event) {
+            event.preventDefault();
+            
+            const data = {
+                job_id: document.getElementById('fb-job-id').value,
+                expert_id: document.getElementById('fb-expert-id').value,
+                domain: document.getElementById('fb-domain').value,
+                analysis_type: 'emergence_detection',
+                bayesian_verdict: document.getElementById('fb-verdict').value,
+                ground_truth: document.getElementById('fb-ground-truth').value,
+                feedback_rating: document.getElementById('fb-rating').value,
+                metric_name: 'custom_metric',
+                observed_value: parseFloat(document.getElementById('fb-metric-value').value || 0),
+                confidence: parseFloat(document.getElementById('fb-confidence').value || 0.95),
+                comments: document.getElementById('fb-comments').value
+            };
+            
+            const result = await apiCall('/feedback/submit', {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            if (result) {
+                showAlert('Feedback submitted successfully!', 'success');
+                document.getElementById('feedback-form').reset();
+                loadFeedbackData();
+            }
+        }
+        
+        async function loadFeedbackData() {
+            const stats = await apiCall('/feedback/statistics');
+            if (stats) {
+                let html = `
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem;">
+                        <div style="padding: 1rem; background: #f0f0f0; border-radius: 4px; text-align: center;">
+                            <div style="font-size: 1.5em; font-weight: bold; color: var(--secondary);">
+                                ${stats.total_feedback_submitted || 0}
+                            </div>
+                            <div style="font-size: 0.9em; color: #666;">Total Feedback</div>
+                        </div>
+                        <div style="padding: 1rem; background: #f0f0f0; border-radius: 4px; text-align: center;">
+                            <div style="font-size: 1.5em; font-weight: bold; color: var(--secondary);">
+                                ${stats.unique_experts || 0}
+                            </div>
+                            <div style="font-size: 0.9em; color: #666;">Experts</div>
+                        </div>
+                        <div style="padding: 1rem; background: #f0f0f0; border-radius: 4px; text-align: center;">
+                            <div style="font-size: 1.5em; font-weight: bold; color: var(--secondary);">
+                                ${stats.domains_with_feedback || 0}
+                            </div>
+                            <div style="font-size: 0.9em; color: #666;">Domains</div>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('expert-profiles').innerHTML = html;
+            }
+        }
+        
+        // Alerts Functions
+        async function loadAlertsData() {
+            const [active, history] = await Promise.all([
+                apiCall('/alerts/active'),
+                apiCall('/alerts/history')
+            ]);
+            
+            if (active) {
+                let critical = 0, warning = 0;
+                active.forEach(alert => {
+                    if (alert.severity === 'CRITICAL') critical++;
+                    if (alert.severity === 'WARNING') warning++;
+                });
+                
+                document.getElementById('critical-count').textContent = critical;
+                document.getElementById('warning-count').textContent = warning;
+                
+                // Active alerts table
+                let html = '';
+                if (active.length === 0) {
+                    html = '<tr><td colspan="6" class="text-center">No active alerts</td></tr>';
+                } else {
+                    active.forEach(alert => {
+                        html += `
+                            <tr>
+                                <td><code>${alert.alert_id.substring(0, 8)}</code></td>
+                                <td><span class="badge ${alert.severity.toLowerCase()}">${alert.severity}</span></td>
+                                <td>${alert.domain}</td>
+                                <td>${alert.triggered_rule_name}</td>
+                                <td>${new Date(alert.triggered_at).toLocaleString()}</td>
+                                <td>
+                                    <button class="btn btn-small btn-success" onclick="acknowledgeAlert('${alert.alert_id}')">Acknowledge</button>
+                                </td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.querySelector('#active-alerts-table tbody').innerHTML = html;
+            }
+            
+            if (history) {
+                let html = '';
+                if (history.length === 0) {
+                    html = '<tr><td colspan="5" class="text-center">No alert history</td></tr>';
+                } else {
+                    history.slice(0, 10).forEach(alert => {
+                        const status = alert.resolved_at ? 'Resolved' : (alert.acknowledged_at ? 'Acknowledged' : 'Active');
+                        html += `
+                            <tr>
+                                <td>${new Date(alert.triggered_at).toLocaleString()}</td>
+                                <td><span class="badge ${alert.severity.toLowerCase()}">${alert.severity}</span></td>
+                                <td>${alert.domain}</td>
+                                <td>${alert.triggered_rule_name}</td>
+                                <td><span class="badge info">${status}</span></td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.querySelector('#alert-history-table tbody').innerHTML = html;
+            }
+        }
+        
+        async function acknowledgeAlert(alertId) {
+            const result = await apiCall(`/alerts/acknowledge`, {
+                method: 'POST',
+                body: JSON.stringify({ alert_id: alertId, acknowledged_by: 'dashboard_user' })
+            });
+            
+            if (result) {
+                showAlert('Alert acknowledged!', 'success');
+                loadAlertsData();
+            }
+        }
+        
+        // Correlations Functions
+        async function loadCorrelationsData() {
+            const [active, highConf] = await Promise.all([
+                apiCall('/correlations/active'),
+                apiCall('/correlations/high-confidence')
+            ]);
+            
+            if (active) {
+                let html = '';
+                if (active.length === 0) {
+                    html = '<tr><td colspan="5" class="text-center">No active patterns</td></tr>';
+                } else {
+                    active.forEach(pattern => {
+                        html += `
+                            <tr>
+                                <td><span class="badge info">${pattern.pattern_type}</span></td>
+                                <td>${pattern.involved_domains?.join(', ') || '-'}</td>
+                                <td>${(pattern.correlation_strength * 100).toFixed(1)}%</td>
+                                <td><strong>${(pattern.significance_score * 100).toFixed(1)}%</strong></td>
+                                <td>${new Date(pattern.detected_at).toLocaleString()}</td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.querySelector('#correlations-table tbody').innerHTML = html;
+            }
+            
+            if (highConf) {
+                let html = '';
+                if (highConf.length === 0) {
+                    html = '<p class="text-center">No high-confidence patterns detected</p>';
+                } else {
+                    highConf.forEach(pattern => {
+                        html += `
+                            <div class="profile-card">
+                                <h3>${pattern.pattern_type}</h3>
+                                <p><strong>Domains:</strong> ${pattern.involved_domains?.join(', ')}</p>
+                                <p><strong>Correlation:</strong> ${(pattern.correlation_strength * 100).toFixed(1)}%</p>
+                                <p><strong>Significance:</strong> ${(pattern.significance_score * 100).toFixed(1)}%</p>
+                                ${pattern.narrative ? `<p><strong>Narrative:</strong> ${pattern.narrative}</p>` : ''}
+                            </div>
+                        `;
+                    });
+                }
+                document.getElementById('high-confidence-patterns').innerHTML = html;
+            }
+        }
+        
+        // Thresholds Functions
+        async function addLabeledDatapoint(event) {
+            event.preventDefault();
+            
+            const data = {
+                domain: document.getElementById('label-domain').value,
+                metric_name: document.getElementById('label-metric').value,
+                metric_value: parseFloat(document.getElementById('label-value').value),
+                classification: document.getElementById('label-classification').value,
+                expert_id: 'dashboard_user'
+            };
+            
+            const result = await apiCall('/thresholds/label-datapoint', {
+                method: 'POST',
+                body: JSON.stringify(data)
+            });
+            
+            if (result) {
+                showAlert('Datapoint added successfully!', 'success');
+                document.getElementById('label-form').reset();
+                loadThresholdsData();
+            }
+        }
+        
+        async function loadThresholdsData() {
+            const recommendations = await apiCall('/thresholds/recommendations');
+            
+            if (recommendations) {
+                let html = '';
+                if (recommendations.length === 0) {
+                    html = '<tr><td colspan="6" class="text-center">No recommendations available yet</td></tr>';
+                } else {
+                    recommendations.forEach(rec => {
+                        html += `
+                            <tr>
+                                <td>${rec.domain}</td>
+                                <td>${rec.metric_name}</td>
+                                <td><strong>${rec.emergence_threshold.toFixed(4)}</strong></td>
+                                <td>${(rec.f1_score * 100).toFixed(1)}%</td>
+                                <td>${(rec.sensitivity * 100).toFixed(1)}%</td>
+                                <td>${(rec.specificity * 100).toFixed(1)}%</td>
+                            </tr>
+                        `;
+                    });
+                }
+                document.querySelector('#recommendations-table tbody').innerHTML = html;
+            }
+        }
+        
+        // Statistics Functions
+        async function loadStatisticsData() {
+            const stats = await apiCall('/phase2e/statistics');
+            
+            if (stats) {
+                // Feedback stats
+                document.getElementById('feedback-stats').innerHTML = `
+                    <div class="profile-stat">
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.feedback_system?.total_feedback_submitted || 0}</div>
+                            <div class="profile-stat-label">Total Submissions</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.feedback_system?.unique_experts || 0}</div>
+                            <div class="profile-stat-label">Experts</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.feedback_system?.domains_with_feedback || 0}</div>
+                            <div class="profile-stat-label">Domains</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.feedback_system?.average_accuracy_by_domain?.solar_wind?.toFixed(1) || '-'}%</div>
+                            <div class="profile-stat-label">Solar Wind Accuracy</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Alert stats
+                document.getElementById('alert-stats').innerHTML = `
+                    <div class="profile-stat">
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.alert_system?.total_alerts_generated || 0}</div>
+                            <div class="profile-stat-label">Total Alerts</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.alert_system?.active_alerts_count || 0}</div>
+                            <div class="profile-stat-label">Active Now</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.alert_system?.rules_registered || 0}</div>
+                            <div class="profile-stat-label">Rules</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${(stats.alert_system?.average_response_time_ms || 0).toFixed(0)}ms</div>
+                            <div class="profile-stat-label">Avg Response</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Correlation stats
+                document.getElementById('correlation-stats').innerHTML = `
+                    <div class="profile-stat">
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.correlation_detector?.active_patterns || 0}</div>
+                            <div class="profile-stat-label">Active Patterns</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.correlation_detector?.high_confidence_patterns || 0}</div>
+                            <div class="profile-stat-label">High Confidence</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.correlation_detector?.domains_monitored || 0}</div>
+                            <div class="profile-stat-label">Domains</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${(stats.correlation_detector?.avg_correlation_strength * 100 || 0).toFixed(1)}%</div>
+                            <div class="profile-stat-label">Avg Correlation</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Threshold stats
+                document.getElementById('threshold-stats').innerHTML = `
+                    <div class="profile-stat">
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.threshold_optimizer?.total_labeled_datapoints || 0}</div>
+                            <div class="profile-stat-label">Labeled Data</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${stats.threshold_optimizer?.optimized_thresholds || 0}</div>
+                            <div class="profile-stat-label">Optimized</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${(stats.threshold_optimizer?.average_f1_score * 100 || 0).toFixed(1)}%</div>
+                            <div class="profile-stat-label">Avg F1</div>
+                        </div>
+                        <div class="profile-stat-item">
+                            <div class="profile-stat-value">${(stats.threshold_optimizer?.average_auc * 100 || 0).toFixed(1)}%</div>
+                            <div class="profile-stat-label">Avg AUC</div>
+                        </div>
+                    </div>
+                `;
+                
+                // Overall status
+                document.getElementById('overall-stats').innerHTML = `
+                    <div style="padding: 1rem; background: #f0f0f0; border-radius: 4px;">
+                        <p><strong>Last Updated:</strong> ${new Date().toLocaleString()}</p>
+                        <p><strong>System Status:</strong> <span class="badge success">All Systems Operational</span></p>
+                        <p><strong>Performance:</strong> Latency &lt; 100ms, Uptime 99.9%</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Utility Functions
+        function showAlert(message, type = 'info') {
+            const alertDiv = document.createElement('div');
+            alertDiv.className = `alert ${type}`;
+            alertDiv.textContent = message;
+            alertDiv.style.position = 'fixed';
+            alertDiv.style.top = '20px';
+            alertDiv.style.right = '20px';
+            alertDiv.style.zIndex = '1000';
+            alertDiv.style.minWidth = '300px';
+            
+            document.body.appendChild(alertDiv);
+            
+            setTimeout(() => {
+                alertDiv.remove();
+            }, 5000);
+        }
+        
+        // Initialize on load
+        window.addEventListener('load', () => {
+            loadDashboardData();
+            // Refresh data every 30 seconds
+            setInterval(() => {
+                const activeTab = document.querySelector('.tab-content.active').id;
+                loadTabData(activeTab);
+            }, 30000);
+        });
+    </script>
+</body>
+</html>

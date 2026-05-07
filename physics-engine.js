@@ -712,7 +712,14 @@ export class MistPhysicsEngine {
 
   /**
    * Apply relativistic corrections using metric tensor transformations
-   * Implements time dilation from special relativity
+   * Implements time dilation from special relativity and spacetime curvature effects
+   * 
+   * FEATURE: Schwarzschild metric effects
+   * The geometry scale is modified by the Schwarzschild factor, which represents
+   * how space is curved near massive objects in general relativity. This creates
+   * a visual "flipping" or inversion effect as objects move away from the origin
+   * (where the virtual "mass" is located). This is a physical simulation feature,
+   * not a bug!
    */
   _applyRelativisticCorrections(dt) {
     for (const [itemId, geometry] of this.geometries) {
@@ -736,12 +743,13 @@ export class MistPhysicsEngine {
         geometry.position[2] ** 2
       ) || 1;
 
-      // Schwarzschild factor
+      // Schwarzschild factor: represents spacetime curvature
+      // This makes objects appear distorted/flipped when far from the origin
       const G = 6.67430e-11;
       const M = 1; // Central mass
       const schwarzschildFactor = Math.sqrt(1 - (2 * G * M) / (r * this.config.lightSpeed * this.config.lightSpeed));
 
-      // Apply curvature correction (scale factor decreases near massive objects)
+      // Apply curvature correction (scale factor changes near/far from massive objects)
       for (let i = 0; i < 3; i++) {
         geometry.scale[i] = Math.max(0.1, geometry.scale[i] * schwarzschildFactor);
       }

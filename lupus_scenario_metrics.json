@@ -1,0 +1,47 @@
+{
+  "none": {
+    "remission_achieved": true,
+    "remission_day": 25,
+    "flare_free_days": 363,
+    "flare_free_fraction": 0.9918032786885246,
+    "peak_B_auto": 180.0,
+    "peak_inflammation": 2.5,
+    "min_T_reg": 106.15649140903687
+  },
+  "standard_care": {
+    "remission_achieved": true,
+    "remission_day": 21,
+    "flare_free_days": 364,
+    "flare_free_fraction": 0.994535519125683,
+    "peak_B_auto": 180.0,
+    "peak_inflammation": 2.5,
+    "min_T_reg": 109.65978816026376
+  },
+  "delivery_only": {
+    "remission_achieved": true,
+    "remission_day": 25,
+    "flare_free_days": 363,
+    "flare_free_fraction": 0.9918032786885246,
+    "peak_B_auto": 180.0,
+    "peak_inflammation": 2.5,
+    "min_T_reg": 106.23799208776985
+  },
+  "combined": {
+    "remission_achieved": true,
+    "remission_day": 21,
+    "flare_free_days": 364,
+    "flare_free_fraction": 0.994535519125683,
+    "peak_B_auto": 180.0,
+    "peak_inflammation": 2.5,
+    "min_T_reg": 109.70748559783391
+  },
+  "delivery_maintenance": {
+    "remission_achieved": true,
+    "remission_day": 21,
+    "flare_free_days": 364,
+    "flare_free_fraction": 0.994535519125683,
+    "peak_B_auto": 180.0,
+    "peak_inflammation": 2.5,
+    "min_T_reg": 109.70748559783391
+  }
+}

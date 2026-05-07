@@ -1,0 +1,27 @@
+{
+  "status": "partial",
+  "particle": "Delta",
+  "domain": "subatomic",
+  "timestamp": "2026-05-01T02:21:42.052Z",
+  "tests_passed": 2,
+  "tests_total": 3,
+  "causality_score": 79,
+  "residual_error": 0.021053333333333337,
+  "measurements": {
+    "mass": {
+      "reference": 1232,
+      "measured": 1231.6,
+      "error_pct": "-0.031"
+    },
+    "width": {
+      "reference": 117,
+      "measured": 124.3,
+      "error_pct": "6.251"
+    },
+    "decay_fraction": {
+      "reference": 0.994,
+      "measured": 0.995,
+      "error_pct": "0.096"
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "status": "initialized",
+  "timestamp": "2026-05-01T02:23:24.889Z",
+  "launch_target": "2026-08-06T09:30:00Z",
+  "configuration": {
+    "version": "1.0.0-alpha",
+    "launch_date": "2026-08-06T09:30:00Z",
+    "max_players": 50,
+    "causality_threshold": 75,
+    "residual_tolerance": 0.02,
+    "reputation": {
+      "initial_score": 50,
+      "min_score": 25,
+      "max_score": 100,
+      "perfect_verdict_bonus": 5,
+      "failed_verdict_penalty": -10
+    },
+    "claim_types": {
+      "atomic_effect": {
+        "domain": "atomic",
+        "model": "Bohr"
+      },
+      "baryon_particle": {
+        "domain": "subatomic",
+        "model": "Quark"
+      },
+      "psionic_effect": {
+        "domain": "psionic",
+        "model": "TBD"
+      }
+    }
+  },
+  "validation_baselines": {
+    "atomic": {
+      "perfect_count": 15,
+      "partial_count": 2,
+      "avg_causality": "97.65",
+      "residual_variance": "0.006900"
+    },
+    "baryon": {
+      "perfect_count": 3,
+      "partial_count": 1,
+      "avg_causality": "94.75",
+      "residual_variance": "0.021053"
+    }
+  },
+  "infrastructure": {
+    "validators_initialized": 50,
+    "claim_types": 3,
+    "audit_chain": "ready",
+    "reputation_system": "active",
+    "coherence_enforcement": "active"
+  },
+  "readiness": {
+    "atomic_domain": "ready",
+    "baryon_domain": "ready",
+    "overall_status": "initialized",
+    "launch_readiness": "on-track"
+  }
+}

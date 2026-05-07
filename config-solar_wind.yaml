@@ -1,0 +1,31 @@
+
+# MistTracker Configuration: Solar Wind Emergence Detection
+# Parker Solar Probe / Wind SPDF Data
+
+description: "Solar wind ion cyclotron wave detection (Test 1 replication)"
+
+adapter:
+  name: spdf
+  config:
+    date: "2024-01-01"
+    duration_hours: 24
+    spacecraft: "parker"  # or "wind"
+
+analysis:
+  type: emergence_detection
+  parameters:
+    fundamental_freq: 0.5  # Hz (ion cyclotron frequency)
+    num_harmonics: 4
+    search_width: 0.1  # Fraction of expected frequency
+    harmonics_threshold: 5.0  # Max allowed frequency error %
+    min_coherence: 0.7
+    output_metrics: ["rms_error", "coherence", "power"]
+
+engine:
+  nperseg: 512  # Welch window size
+  noverlap: 256  # Overlap between windows
+  freq_range: [0.01, 5.0]  # Min/max frequency (Hz)
+
+output_dir: "./phase-17-output"
+output_format: "json"
+verbose: true

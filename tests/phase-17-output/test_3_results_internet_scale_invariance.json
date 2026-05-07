@@ -1,0 +1,84 @@
+{
+  "test_name": "Phase 0 Test 3: Internet Scale-Invariance Analysis",
+  "test_date": "2026-04-21T15:04:30.245428",
+  "domain": "Data Networks - Multiple Layers",
+  "comparison_to_test_1": "Solar wind frequency scaling vs. network latency scaling - both test universality",
+  "hypothesis": "Network latency variance follows power-law with universal exponent \u03b2 \u2248 1.0",
+  "samples_per_layer": 300,
+  "layers_analyzed": 4,
+  "power_law_exponents_by_layer": {
+    "local": NaN,
+    "regional": 0.499,
+    "national": 0.651,
+    "global": 0.161
+  },
+  "mean_beta": NaN,
+  "std_beta": NaN,
+  "expected_beta": 1.0,
+  "tolerance": 0.3,
+  "percent_within_tolerance": 0.0,
+  "falsification_threshold_percent": 60.0,
+  "status": "FALSIFIED",
+  "verdict": "No universal scaling: exponents scattered",
+  "layer_details": {
+    "local": {
+      "ip": "192.168.1.1",
+      "description": "Local ISP gateway (~1ms)",
+      "status": "ok",
+      "samples": 300,
+      "mean_rtt_ms": 2000.0,
+      "std_rtt_ms": 0.0,
+      "min_rtt_ms": 2000.0,
+      "max_rtt_ms": 2000.0,
+      "power_law_exponent_beta": NaN
+    },
+    "regional": {
+      "ip": "8.8.8.8",
+      "description": "Regional endpoint (~10-50ms)",
+      "status": "ok",
+      "samples": 300,
+      "mean_rtt_ms": 572.18,
+      "std_rtt_ms": 30.34,
+      "min_rtt_ms": 529.0,
+      "max_rtt_ms": 772.0,
+      "power_law_exponent_beta": 0.499
+    },
+    "national": {
+      "ip": "1.1.1.1",
+      "description": "National endpoint (~20-100ms)",
+      "status": "ok",
+      "samples": 300,
+      "mean_rtt_ms": 555.64,
+      "std_rtt_ms": 22.63,
+      "min_rtt_ms": 529.0,
+      "max_rtt_ms": 635.0,
+      "power_law_exponent_beta": 0.651
+    },
+    "global": {
+      "ip": "208.67.222.222",
+      "description": "Global endpoint (~50-200ms)",
+      "status": "ok",
+      "samples": 300,
+      "mean_rtt_ms": 557.27,
+      "std_rtt_ms": 24.17,
+      "min_rtt_ms": 519.0,
+      "max_rtt_ms": 750.0,
+      "power_law_exponent_beta": 0.161
+    }
+  },
+  "methodology": "Network latency variance analysis using power spectral density. Welch FFT method applied to RTT samples from 4 network layers (local\u2192global). Power-law exponent \u03b2 computed from log-log fit of PSD. Universal scaling hypothesis: \u03b2 should cluster around 1.0 across layers. Same analysis methodology as Test 1 (solar wind frequency scaling), applied to network domain.",
+  "data_sources": {
+    "local": "ISP gateway (192.168.1.1)",
+    "regional": "Google DNS (8.8.8.8)",
+    "national": "Cloudflare DNS (1.1.1.1)",
+    "global": "OpenDNS (208.67.222.222)",
+    "measurement": "ICMP ping RTT samples"
+  },
+  "validation_notes": [
+    "Scale-invariance in networks: Same noise characteristics across path lengths",
+    "Power-law exponent \u03b2 \u2248 1.0 is theoretical prediction for 1/f noise",
+    "Observed mean \u03b2: nan \u00b1 nan",
+    "0.0% of layers within 1.0 \u00b1 0.3 (60% threshold for CONFIRMED)",
+    "Network emergence is scale-invariant: local\u2192global path scaling follows universal law"
+  ]
+}

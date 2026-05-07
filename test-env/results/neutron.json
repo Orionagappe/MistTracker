@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "particle": "Neutron",
+  "domain": "subatomic",
+  "timestamp": "2026-05-01T02:21:41.965Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.011256666666666667,
+  "measurements": {
+    "mass": {
+      "reference": 939.565,
+      "measured": 938.565,
+      "error_pct": "-0.106"
+    },
+    "charge_radius": {
+      "reference": 0.8751,
+      "measured": 0.8889,
+      "error_pct": "1.572"
+    },
+    "magnetic_moment": {
+      "reference": -1.913,
+      "measured": -1.876,
+      "error_pct": "-1.911"
+    }
+  }
+}

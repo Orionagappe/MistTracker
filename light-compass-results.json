@@ -1,0 +1,149 @@
+{
+  "timestamp": "2026-04-23T12:18:09.339Z",
+  "testCount": 8,
+  "equation": "L1 = (L0 + (L0 * v/c)) * gamma",
+  "results": [
+    {
+      "L0": 1,
+      "v": 0,
+      "velocityFraction": 0,
+      "gamma": 1,
+      "dopplerTerm": 0,
+      "L1": 1,
+      "contraction": 0,
+      "invariance": {
+        "spacetimeInterval": 1,
+        "momentumFactor": 0,
+        "lightTravelTime": 3.3356409519815204e-9,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 29979245.8,
+      "velocityFraction": 0.1,
+      "gamma": 1.005037815259212,
+      "dopplerTerm": 0.1,
+      "L1": 1.1055415967851334,
+      "contraction": 0.10554159678513342,
+      "invariance": {
+        "spacetimeInterval": 1.1,
+        "momentumFactor": 30130275.70195091,
+        "lightTravelTime": 3.687689824355533e-9,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 74948114.5,
+      "velocityFraction": 0.25,
+      "gamma": 1.0327955589886444,
+      "dopplerTerm": 0.25,
+      "L1": 1.2909944487358054,
+      "contraction": 0.2909944487358054,
+      "invariance": {
+        "spacetimeInterval": 1.2499999999999998,
+        "momentumFactor": 77406079.81017242,
+        "lightTravelTime": 4.3062939519839605e-9,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 149896229,
+      "velocityFraction": 0.5,
+      "gamma": 1.1547005383792517,
+      "dopplerTerm": 0.5,
+      "L1": 1.7320508075688776,
+      "contraction": 0.7320508075688776,
+      "invariance": {
+        "spacetimeInterval": 1.5000000000000002,
+        "momentumFactor": 173085256.3273196,
+        "lightTravelTime": 5.777499604639413e-9,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 224844343.5,
+      "velocityFraction": 0.75,
+      "gamma": 1.5118578920369088,
+      "dopplerTerm": 0.75,
+      "L1": 2.6457513110645903,
+      "contraction": 1.6457513110645903,
+      "invariance": {
+        "spacetimeInterval": 1.7499999999999996,
+        "momentumFactor": 339932695.20033264,
+        "lightTravelTime": 8.825276421945846e-9,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 269813212.2,
+      "velocityFraction": 0.8999999999999999,
+      "gamma": 2.2941573387056167,
+      "dopplerTerm": 0.8999999999999999,
+      "L1": 4.358898943540671,
+      "contraction": 3.3588989435406713,
+      "invariance": {
+        "spacetimeInterval": 1.9,
+        "momentumFactor": 618993960.8483658,
+        "lightTravelTime": 1.453972182162325e-8,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 284802835.09999996,
+      "velocityFraction": 0.9499999999999998,
+      "gamma": 3.2025630761017387,
+      "dopplerTerm": 0.9499999999999998,
+      "L1": 6.244997998398389,
+      "contraction": 5.244997998398389,
+      "invariance": {
+        "spacetimeInterval": 1.9499999999999986,
+        "momentumFactor": 912099043.6603521,
+        "lightTravelTime": 2.0831071068500295e-8,
+        "invariantPreserved": true
+      }
+    },
+    {
+      "L0": 1,
+      "v": 296794533.42,
+      "velocityFraction": 0.9900000000000001,
+      "gamma": 7.088812050083393,
+      "dopplerTerm": 0.9900000000000001,
+      "L1": 14.106735979665954,
+      "contraction": 13.106735979665954,
+      "invariance": {
+        "spacetimeInterval": 1.99000000000001,
+        "momentumFactor": 2103920664.9065745,
+        "lightTravelTime": 4.705500623256491e-8,
+        "invariantPreserved": true
+      }
+    }
+  ],
+  "analysis": {
+    "contraction": {
+      "min": 0,
+      "max": 13.106735979665954,
+      "mean": 3.0606213857199274
+    },
+    "gamma": {
+      "min": 1,
+      "max": 7.088812050083393,
+      "mean": 2.286240533694346
+    },
+    "L1": {
+      "min": 1,
+      "max": 14.106735979665954,
+      "mean": 4.060621385719927
+    },
+    "physicalProperties": {
+      "allInvariantsPreserved": true,
+      "allVelocitiesSubLuminal": true,
+      "monotonicIncrease": true
+    }
+  }
+}

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Game - Validator Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-bottom: 2px solid #00ff00;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 255, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-info {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .header-stat {
+            font-size: 13px;
+        }
+
+        .header-stat-label {
+            color: #888;
+            text-transform: uppercase;
+            font-size: 11px;
+        }
+
+        .header-stat-value {
+            color: #00ff00;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .panel {
+            background: #1a1a2e;
+            border: 1px solid #00ff00;
+            border-radius: 4px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.05);
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #00ff00;
+            padding-bottom: 15px;
+        }
+
+        .panel-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #00ff00;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .claim-card {
+            background: #0a0a0a;
+            border: 1px solid #333;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .claim-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .claim-element {
+            font-size: 16px;
+            font-weight: bold;
+            color: #e0e0e0;
+        }
+
+        .claim-measurement {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .claim-causality {
+            font-size: 14px;
+            font-weight: bold;
+            padding: 6px 12px;
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid #00ff00;
+            border-radius: 4px;
+            color: #00ff00;
+        }
+
+        .claim-data {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .claim-data-item {
+            background: rgba(0, 255, 0, 0.05);
+            padding: 8px;
+            border-radius: 4px;
+            color: #888;
+        }
+
+        .claim-data-label {
+            color: #666;
+            font-size: 10px;
+            text-transform: uppercase;
+            margin-bottom: 3px;
+        }
+
+        .claim-data-value {
+            color: #e0e0e0;
+            font-size: 13px;
+        }
+
+        .verdict-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .btn-approve {
+            flex: 1;
+            padding: 10px;
+            background: rgba(0, 255, 0, 0.2);
+            border: 1px solid #00ff00;
+            color: #00ff00;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-approve:hover {
+            background: #00ff00;
+            color: #0a0a0a;
+        }
+
+        .btn-reject {
+            flex: 1;
+            padding: 10px;
+            background: rgba(255, 68, 68, 0.2);
+            border: 1px solid #ff4444;
+            color: #ff4444;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 12px;
+            transition: all 0.2s;
+        }
+
+        .btn-reject:hover {
+            background: #ff4444;
+            color: #fff;
+        }
+
+        .reputation-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: rgba(0, 255, 0, 0.05);
+            padding: 20px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .reputation-circle {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: conic-gradient(#00ff00 0deg 270deg, #333 270deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 20px;
+            color: #00ff00;
+            flex-shrink: 0;
+        }
+
+        .reputation-info {
+            flex: 1;
+        }
+
+        .reputation-label {
+            font-size: 12px;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .verdict-history {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .verdict-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            background: #0a0a0a;
+            border-bottom: 1px solid #333;
+            font-size: 12px;
+        }
+
+        .verdict-item:last-child {
+            border-bottom: none;
+        }
+
+        .verdict-claim {
+            color: #e0e0e0;
+            flex: 1;
+        }
+
+        .verdict-result {
+            font-weight: bold;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .verdict-approved {
+            color: #00ff00;
+        }
+
+        .verdict-rejected {
+            color: #ff4444;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: rgba(0, 255, 0, 0.05);
+            border: 1px solid #00ff00;
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00ff00;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: #888;
+            margin-top: 8px;
+            text-transform: uppercase;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            border-left: 3px solid;
+        }
+
+        .message-success {
+            background: rgba(0, 255, 0, 0.1);
+            color: #00ff00;
+            border-left-color: #00ff00;
+        }
+
+        .message-error {
+            background: rgba(255, 68, 68, 0.1);
+            color: #ff4444;
+            border-left-color: #ff4444;
+        }
+
+        @media (max-width: 1024px) {
+            .grid-2col {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-row {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">⚖️ Validator Console</div>
+            <div class="header-info">
+                <div class="header-stat">
+                    <div class="header-stat-label">Your Reputation</div>
+                    <div class="header-stat-value" id="header-reputation">—</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-label">Verdicts Issued</div>
+                    <div class="header-stat-value" id="header-verdicts">0</div>
+                </div>
+                <div class="header-stat">
+                    <div class="header-stat-label">Claims Waiting</div>
+                    <div class="header-stat-value" id="header-pending">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div id="message-container"></div>
+
+        <!-- VALIDATOR STATS -->
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-value" id="stat-verdicts">0</div>
+                <div class="stat-label">Total Verdicts</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-correct">0</div>
+                <div class="stat-label">Correct</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-accuracy">0%</div>
+                <div class="stat-label">Accuracy</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value" id="stat-rank">—</div>
+                <div class="stat-label">Leaderboard Rank</div>
+            </div>
+        </div>
+
+        <div class="grid-2col">
+            <!-- VALIDATOR REPUTATION -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Your Status</div>
+                </div>
+                <div class="reputation-badge">
+                    <div class="reputation-circle" id="reputation-circle">0%</div>
+                    <div class="reputation-info">
+                        <div class="reputation-label">Current Reputation Score</div>
+                        <div style="font-size: 16px; font-weight: bold; color: #e0e0e0;">
+                            <span id="reputation-value">0</span> / 100
+                        </div>
+                        <div class="reputation-label" style="margin-top: 10px;">Status</div>
+                        <div style="font-size: 14px; color: #00ff00; font-weight: bold;">
+                            <span id="reputation-status">ACTIVE</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="border-top: 1px solid #333; padding-top: 15px; margin-top: 15px;">
+                    <div style="color: #888; font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">Verdict Statistics</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 12px;">
+                        <div style="background: rgba(0, 255, 0, 0.05); padding: 10px; border-radius: 4px;">
+                            <div style="color: #888;">Approved Verdicts</div>
+                            <div style="font-size: 16px; font-weight: bold; color: #00ff00;" id="stat-approved-count">0</div>
+                        </div>
+                        <div style="background: rgba(255, 68, 68, 0.05); padding: 10px; border-radius: 4px;">
+                            <div style="color: #888;">Rejected Verdicts</div>
+                            <div style="font-size: 16px; font-weight: bold; color: #ff4444;" id="stat-rejected-count">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PENDING CLAIMS -->
+            <div class="panel">
+                <div class="panel-header">
+                    <div class="panel-title">Claims to Evaluate</div>
+                </div>
+                <div id="pending-claims-container">
+                    <div style="color: #888; text-align: center; padding: 30px;">
+                        Loading claims...
+                    </div>
+                </div>
+            </div>
+
+            <!-- VERDICT HISTORY -->
+            <div class="panel full-width">
+                <div class="panel-header">
+                    <div class="panel-title">Your Verdict History</div>
+                </div>
+                <div class="verdict-history" id="verdict-history">
+                    <div style="color: #888; text-align: center; padding: 30px;">
+                        No verdicts recorded yet
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="validator-ui.js"></script>
+</body>
+</html>

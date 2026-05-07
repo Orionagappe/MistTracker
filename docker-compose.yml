@@ -3,7 +3,7 @@ version: '3.9'
 services:
   # Cluster coordinator (main orchestrator)
   coordinator:
-    image: node:18-alpine
+    image: node:18
     container_name: mist-coordinator
     working_dir: /app
     volumes:
@@ -31,7 +31,7 @@ services:
 
   # Cluster node 1 (Hydrogen atom training)
   node-1:
-    image: node:18-alpine
+    image: node:18
     container_name: mist-node-1
     working_dir: /app
     volumes:
@@ -63,7 +63,7 @@ services:
 
   # Cluster node 2 (Helium atom training)
   node-2:
-    image: node:18-alpine
+    image: node:18
     container_name: mist-node-2
     working_dir: /app
     volumes:
@@ -95,7 +95,7 @@ services:
 
   # Cluster node 3 (Lithium atom training)
   node-3:
-    image: node:18-alpine
+    image: node:18
     container_name: mist-node-3
     working_dir: /app
     volumes:
@@ -127,7 +127,7 @@ services:
 
   # Cluster node 4 (Beryllium atom training)
   node-4:
-    image: node:18-alpine
+    image: node:18
     container_name: mist-node-4
     working_dir: /app
     volumes:
@@ -159,7 +159,7 @@ services:
 
   # Cluster node 5 (Boron atom training)
   node-5:
-    image: node:18-alpine
+    image: node:18
     container_name: mist-node-5
     working_dir: /app
     volumes:
@@ -196,12 +196,12 @@ services:
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: misttracker
+      POSTGRES_DB: mist_user
       POSTGRES_USER: mist_user
       POSTGRES_PASSWORD: mist_dev_password
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database-schema.sql:/docker-entrypoint-initdb.d/01-schema.sql
+      - ./database-schema-postgres.sql:/docker-entrypoint-initdb.d/01-schema.sql
     networks:
       - mist-cluster
     healthcheck:

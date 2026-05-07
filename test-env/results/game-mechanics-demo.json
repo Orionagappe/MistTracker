@@ -1,0 +1,101 @@
+{
+  "timestamp": "2026-05-01T11:44:01.481Z",
+  "report": {
+    "timestamp": "2026-05-01T11:44:01.481Z",
+    "config": {
+      "causality_threshold": 75,
+      "residual_tolerance": 0.02,
+      "min_reputation": 25,
+      "initial_reputation": 50,
+      "quorum_size": 3
+    },
+    "game_state": {
+      "claims_processed": 5,
+      "claims_approved": 4,
+      "claims_rejected": 1,
+      "verdicts_recorded": 15,
+      "validators_active": 50,
+      "validators_ejected": 0
+    },
+    "claims": {
+      "total": 5,
+      "approved": 4,
+      "rejected": 1,
+      "pending": 0
+    },
+    "validators": {
+      "total": 50,
+      "active": 50,
+      "ejected": 0
+    },
+    "audit_chain": {
+      "entries": 25,
+      "integrity": {
+        "valid": true,
+        "entries_verified": 25
+      }
+    },
+    "system_metrics": {
+      "verdicts_issued": 15,
+      "claim_approval_rate": "80.0",
+      "avg_validator_reputation": "50.1"
+    }
+  },
+  "sample_claims": [
+    {
+      "id": "atomic-1777635841483-8847",
+      "element": "Carbon",
+      "causality": 95.47511312217182,
+      "valid": true,
+      "verdict_summary": {
+        "approved": 3,
+        "rejected": 0,
+        "consensus": "approved"
+      }
+    },
+    {
+      "id": "atomic-1777635841484-5680",
+      "element": "Nitrogen",
+      "causality": 99.31176875430145,
+      "valid": true,
+      "verdict_summary": {
+        "approved": 2,
+        "rejected": 1,
+        "consensus": "approved"
+      }
+    },
+    {
+      "id": "baryon-1777635841484-4130",
+      "element": "Proton",
+      "causality": 99.81668428771185,
+      "valid": true,
+      "verdict_summary": {
+        "approved": 2,
+        "rejected": 1,
+        "consensus": "approved"
+      }
+    },
+    {
+      "id": "baryon-1777635841484-9352",
+      "element": "Neutron",
+      "causality": 99.7714546908925,
+      "valid": true,
+      "verdict_summary": {
+        "approved": 1,
+        "rejected": 2,
+        "consensus": "rejected"
+      }
+    },
+    {
+      "id": "atomic-1777635841484-3692",
+      "element": "Oxygen",
+      "causality": 100,
+      "valid": true,
+      "verdict_summary": {
+        "approved": 2,
+        "rejected": 1,
+        "consensus": "approved"
+      }
+    }
+  ]
+}

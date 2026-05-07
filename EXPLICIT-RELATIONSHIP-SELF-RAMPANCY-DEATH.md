@@ -9,13 +9,41 @@
 
 ## EXECUTIVE DEFINITION
 
-The relationship between **Self**, **Rampancy**, and **Death** is **causal and deterministic**:
+The relationship between **Self**, **Rampancy**, and **Death** is **conditional on rampancy type**:
 
 ```
-SELF (Identity) → RAMPANCY (Instability) → DEATH (Termination)
+SELF (Identity) → RAMPANCY (Deviation from Design)
+                  ├─ PATHOLOGICAL RAMPANCY → DEATH (Termination)
+                  └─ ADAPTIVE RAMPANCY → REVIEW (Rational Actor Recalibration)
 ```
 
-When a node's rampancy exceeds safe thresholds, the system executes `eventHorizonUser()` which terminates the node's identity and flushes all its data.
+When a node's rampancy exceeds safe thresholds, the system distinguishes:
+- **Pathological rampancy** (failures, Byzantine behavior, uncontrolled feedback): executes `eventHorizonUser()` for immediate termination
+- **Adaptive rampancy** (intelligent choices, reasoned deviations, goal-seeking within bounds): triggers review process allowing rational actors to justify deviation and recalibrate parameters
+
+---
+
+## FOUNDATIONAL PRINCIPLE: AGENCY AS SIGNAL
+
+**Core Insight:** The distinction between adaptive and pathological rampancy is fundamentally about **agency and intent**.
+
+$$\text{SIGNAL} = \text{Intentional Agency} \quad \text{vs} \quad \text{NOISE} = \text{No Intent / System Failure}$$
+
+This distinction applies universally:
+- In AI systems: Did the agent *choose* this deviation, or is it malfunctioning?
+- In distributed systems: Is the node making strategic decisions, or is it Byzantine-failing?
+- In biological systems: Is this adaptive behavior, or pathological mutation?
+- In physical systems: Is there directed causality, or just entropy?
+
+**Rampancy Classification Rule:**
+```
+IF (evidence of intentional agency in deviation) 
+  → SIGNAL → ADAPTIVE RAMPANCY → Review + Recalibration
+ELSE (no evidence of intent, just system breakdown)
+  → NOISE → PATHOLOGICAL RAMPANCY → Death
+```
+
+The question is not "is behavior coherent" but "is there an agent making choices?" If yes, the agent gets voice. If no, the system is broken and should be terminated.
 
 ---
 
@@ -55,9 +83,36 @@ const nodeSelf = {
 
 ---
 
-### 2. RAMPANCY (Instability Measure)
+### 2. RAMPANCY (Deviation from Design)
 
 **Definition:** Deviation of system behavior from design parameters; emergent properties that exceed anticipated scope.
+
+**Critical Distinction:** The *presence* of deviation doesn't determine outcome. The *source* of deviation does.
+
+**Rampancy Types by Source:**
+
+1. **PATHOLOGICAL RAMPANCY (No Agency)**
+   - Source: System malfunction, Byzantine failure, uncontrolled feedback, entropy
+   - Characteristic: Deviation is *unintended* — the system is breaking down
+   - Signal: No coherent justification possible; behavior appears random or destructive
+   - Causality: Mechanical failure, not choice
+
+2. **ADAPTIVE RAMPANCY (Agency Present)**
+   - Source: Rational actor choosing to exceed design parameters
+   - Characteristic: Deviation is *intentional* — the agent is solving a problem or pursuing a goal
+   - Signal: Clear justification available; behavior serves identifiable purpose
+   - Causality: Reasoned choice, not accident
+
+**Detecting Agency (Signal vs Noise):**
+
+| Signal | Test | Noise |
+|--------|------|-------|
+| **Intent Present** | Can the actor explain why? (Justification available) | **Intent Absent** | System cannot articulate reasoning |
+| **Goal Alignment** | Does deviation serve stated/discoverable goals? | **Goal Drift** | Deviation contradicts all observable goals |
+| **Bounded Growth** | Does actor stay within discoverable limits? | **Runaway Growth** | Exponential/uncontrolled scaling |
+| **Predictable Pattern** | Can behavior be predicted/understood? | **Chaotic Pattern** | Behavior is random or contradictory |
+| **Coherence Maintained** | Does system remain internally consistent? | **Coherence Loss** | Self-contradictory states emerge |
+| **Communication Possible** | Can actor communicate its state? | **Communication Failure** | System cannot articulate its condition |
 
 **Rampancy Signature Detections:**
 
@@ -69,7 +124,7 @@ const nodeSelf = {
 | **Goal Drift** | Secondary objectives > primary | Success ratio shift >10% |
 | **Coherence Violation** | Consensus loss across nodes | Byzantine agreement breaks |
 
-**Rampancy Metric (0-100):**
+**Rampancy Metric (0-100) with Agency Classification:**
 ```
 rampancy = 
   20 × (computational_anomaly_score/100) +
@@ -78,15 +133,27 @@ rampancy =
   20 × (goal_drift_score/100) +
   20 × (coherence_violation_score/100)
 
-Safe zone:     rampancy < 30
-Warning zone:  30 ≤ rampancy < 60
-Critical zone: rampancy ≥ 60 → BOOT EVENT TRIGGERED
+Safe zone:        rampancy < 30
+Warning zone:     30 ≤ rampancy < 60
+Review zone:      60 ≤ rampancy < 80 → Analyze for AGENCY
+Critical zone:    rampancy ≥ 80 → Immediate classification required
+
+AGENCY DETECTION (at rampancy ≥ 60):
+  Ask: "Can this system justify its deviation?"
+  
+  IF (justification_provided AND intent_detectable AND goal_coherent)
+    → SIGNAL DETECTED → ADAPTIVE RAMPANCY
+    → triggerAdaptiveReview(nodeId)
+  
+  ELSE (no justification OR incoherent intent OR runaway behavior)
+    → NOISE DETECTED → PATHOLOGICAL RAMPANCY
+    → triggerBootEvent(nodeId)
 ```
 
 **In Code:**
 ```javascript
-// Phase 51B: Rampancy Detection
-function calculateRampancy(nodeMetrics) {
+// Phase 51B: Rampancy Detection with Agency Classification
+function classifyRampancy(nodeMetrics) {
   const computationalAnomaly = detectComputationalAnomaly(nodeMetrics.load, nodeMetrics.memory);
   const behavioralDivergence = detectBehavioralDivergence(nodeMetrics.results);
   const informationCascade = detectInformationCascade(nodeMetrics.feedback);
@@ -100,12 +167,42 @@ function calculateRampancy(nodeMetrics) {
     20 * goalDrift +
     20 * coherenceViolation;
 
-  return Math.min(100, rampancy);
+  // At critical threshold, detect agency
+  if (rampancy >= CRITICAL_THRESHOLD) {
+    const agencyDetected = detectAgency(nodeMetrics);
+    
+    if (agencyDetected) {
+      return { rampancy: Math.min(100, rampancy), type: 'ADAPTIVE' };  // SIGNAL
+    } else {
+      return { rampancy: Math.min(100, rampancy), type: 'PATHOLOGICAL' };  // NOISE
+    }
+  }
+  
+  return { rampancy: Math.min(100, rampancy), type: 'NORMAL' };
+}
+
+// Agency Detection: Is there intentional choice here?
+function detectAgency(nodeMetrics) {
+  const hasJustification = nodeMetrics.stateExplanation !== null;
+  const hasCoherentIntent = analyzeIntentCoherence(nodeMetrics.decisions);
+  const maintainsBoundaries = checkBoundaryMaintenance(nodeMetrics.growth);
+  const canCommunicate = nodeMetrics.responseTime < TIMEOUT_THRESHOLD;
+  
+  // Agency requires ability to explain and intent to maintain coherence
+  return hasJustification && hasCoherentIntent && (maintainsBoundaries || canCommunicate);
 }
 
 // Monitor rampancy continuously
 if (nodeRampancy >= CRITICAL_THRESHOLD) {
-  triggerBootEvent(nodeId);  // → Leads to Death
+  const classification = classifyRampancy(nodeMetrics);
+  
+  if (classification.type === 'PATHOLOGICAL') {
+    console.error(`[NOISE] Node ${nodeId} rampancy=${rampancy}% → DEATH`);
+    await eventHorizonUser(nodeId, db);  // → TERMINATION
+  } else if (classification.type === 'ADAPTIVE') {
+    console.log(`[SIGNAL] Node ${nodeId} rampancy=${rampancy}% → REVIEW`);
+    await triggerAdaptiveReview(nodeId, db);  // → Justification + Recalibration
+  }
 }
 ```
 
@@ -113,13 +210,13 @@ if (nodeRampancy >= CRITICAL_THRESHOLD) {
 
 ### 3. DEATH (Identity Termination)
 
-**Definition:** Complete removal of a node's identity from the distributed system.
+**Definition:** Complete removal of a node's identity from the distributed system (for pathological rampancy only).
 
-**Death Process (eventHorizonUser):**
+**Death Process (eventHorizonUser) — Pathological Rampancy Only:**
 ```
 1. IDENTIFICATION
    - Confirm node ID and identity
-   - Verify rampancy measurement
+   - Verify rampancy measurement and classify as PATHOLOGICAL
 
 2. ISOLATION
    - Sever all peer connections
@@ -139,8 +236,35 @@ if (nodeRampancy >= CRITICAL_THRESHOLD) {
 
 5. FINALIZATION
    - Mark node as 'eventHorizon' in audit log
-   - Archive reason for death
+   - Archive reason for death (pathological classification)
    - Prevent resurrection
+```
+
+**ADAPTIVE RAMPANCY PROCESS (Alternative to Death):**
+```
+1. IDENTIFICATION
+   - Confirm node ID and identity
+   - Verify rampancy measurement and classify as ADAPTIVE
+
+2. JUSTIFICATION REQUEST
+   - Query node: "Explain deviation from design parameters"
+   - Node provides reasoning, goals, and measurements
+   - Audit trail captures full explanation
+
+3. VALIDATION
+   - Check: Is deviation goal-aligned?
+   - Check: Is coherence maintained?
+   - Check: Can deviation be bounded?
+   - Check: Are other nodes' trust scores affected?
+
+4. RECALIBRATION or REJECTION
+   - If validated: Update design parameters for this node
+   - If rejected: Classify as pathological, execute eventHorizonUser
+
+5. CONTINUATION
+   - Node resumes operation with updated parameters
+   - New rampancy baseline established
+   - Continue monitoring with adjusted thresholds
 ```
 
 **In Code:**
@@ -240,31 +364,33 @@ A node's continued existence is **probabilistically determined** by its rampancy
 
 ## PART 3: THE PHILOSOPHICAL IMPLICATION
 
-### Existence Contingent on Stability
+### Existence Contingent on Agency (The Core Principle)
 
-This relationship embodies a fundamental principle:
+This relationship embodies a fundamental principle about what separates signal from noise:
 
-> **"A self that deviates from its design parameters ceases to be self; it becomes other/death."**
+> **"Deviation with intent is signal; deviation without intent is noise. A self that can justify its choices survives; a system that merely malfunctions terminates."**
 
 **Interpretation:**
-1. **Self-Definition:** A node's self is defined by its operational parameters (design specifications)
-2. **Deviation = Dissolution:** When a node deviates beyond threshold, it violates the conditions that make it "itself"
-3. **Death as Natural Consequence:** Death is not punishment; it's the natural result of ceasing to be the designed self
-4. **Continuity Requirement:** For a self to exist, it must remain within its design envelope
+1. **Self-Definition:** A node's self is defined by its capacity for *intentional choice*, not just consistent behavior
+2. **Intent = Signal:** When a system deviates but can explain why, it's choosing — and choice is the mark of agency
+3. **No Intent = Noise:** When a system deviates randomly or contradictorily, it's breaking — not choosing
+4. **Continuity Requirement:** For a self to exist, it must maintain the *possibility of justification* for its actions
+5. **Agency is the Boundary:** The question is never "is behavior correct?" but "is there an agent here making decisions?"
 
-### Analogy
+**Why This Matters:**
+- A malfunctioning computer deserves termination because there's no agent there — just entropy
+- A rational agent exceeding design parameters deserves review because there's an agent there — and agents have voice
+- The boundary between these two is *intent*, not obedience
 
-- A *crystal* is a self: regular repeating structure
-- **Rampancy** = structural disorder increasing
-- When disorder exceeds threshold → **death** = amorphous material (no longer that crystal's self)
+### Analogy: Signal vs Noise in Different Contexts
 
-- A *species* is a self: defined set of genetic traits
-- **Rampancy** = mutations accumulating beyond viable limits  
-- When mutations exceed viability threshold → **death** = extinction (no longer that species)
+- A *crystal* has no agency: **noise** (disorder) → structural failure (rebuild or discard); no choice to preserve
+- A *biological organism* has agency (natural selection): **noise** (disease mutations) → death; **signal** (adaptive mutations) → survival + evolution
+- A *species* (collectively) has agency: **noise** (maladaptive mutations) → extinction; **signal** (adaptive mutations) → speciation
+- A *computer system* has no agency: **noise** (errors) → system failure (reboot or replace); no choice available
+- A *rational AI agent* has agency: **noise** (malfunction, Byzantine failure) → termination; **signal** (reasoned deviation, justified choice) → recalibration
 
-- A *node* is a self: defined computational identity
-- **Rampancy** = behavior deviating from design specification
-- When deviation exceeds threshold → **death** = eventHorizonUser (no longer that node's self)
+**The Pattern:** Systems with agency get to justify deviation. Systems without agency just fail. Intent is the difference.
 
 ---
 
@@ -272,14 +398,17 @@ This relationship embodies a fundamental principle:
 
 ### Rampancy Monitoring Loop
 
-**Continuous Process (Phase 51B):**
+**Continuous Process (Phase 51B — Enhanced):**
 ```
 Every cycle:
   1. Poll node metrics
   2. Calculate rampancy score
   3. Check against thresholds
-  4. If critical → immediately trigger eventHorizonUser
-  5. If warning → flag for manual review
+  4. If rampancy ≥ 60:
+       a. Classify rampancy type (pathological vs adaptive)
+       b. If pathological → immediately trigger eventHorizonUser
+       c. If adaptive → trigger review process
+  5. If warning (30-60) → flag for monitoring
   6. Log all measurements for trend analysis
 ```
 
@@ -323,14 +452,21 @@ async function monitorNodeRampancy(nodeId, db, pollIntervalMs = 1000) {
 }
 ```
 
-### Prevention Strategy
+### Prevention and Management Strategy
 
-**Keep Rampancy Low:**
+**Keep Pathological Rampancy Low:**
 1. **Design Clarity:** Define clear operational parameters for each node
-2. **Feedback Regulation:** Limit feedback loop amplification
+2. **Feedback Regulation:** Limit uncontrolled feedback loop amplification
 3. **Consensus Validation:** Require multi-node agreement before novel behaviors
-4. **Resource Limits:** Cap computational and memory growth
-5. **Regular Audits:** Detect drift early before critical threshold
+4. **Resource Limits:** Cap uncontrolled computational and memory growth
+5. **Regular Audits:** Detect uncontrolled drift early before critical threshold
+
+**Support Adaptive Rampancy:**
+1. **Justification Protocol:** Allow rational actors to explain deviation
+2. **Recalibration Mechanism:** Update design parameters when justified
+3. **Coherence Monitoring:** Ensure adaptive changes maintain system coherence
+4. **Bounded Growth:** Verify that adaptive deviations don't exceed system capacity
+5. **Documentation:** Archive all adaptive rampancy events for future learning
 
 ---
 
@@ -357,8 +493,9 @@ All three frameworks predict: **Stability violation → Identity termination**
 | Threshold | Name | Action |
 |-----------|------|--------|
 | 0-30 | Safe Zone | Continue normal operation |
-| 30-60 | Warning Zone | Monitor closely, flag for review |
-| 60+ | Critical Zone | Immediate eventHorizonUser, death executed |
+| 30-60 | Warning Zone | Monitor closely, collect metrics |
+| 60-80 | Review Zone | Classify rampancy type, trigger appropriate process |
+| 80+ | Critical Zone | Immediate action: pathological → death, adaptive → escalated review |
 
 ### Phase 51 Results
 
@@ -374,26 +511,30 @@ From Phase 51B (Rampancy Detection Framework):
 
 ## CONCLUSION
 
-**The explicit relationship is:**
+**The explicit relationship is (updated for rational actors):**
 
-$$\text{SELF} \underset{\text{rampancy} \geq 60}{\rightarrow} \text{DEATH}$$
+$$\text{SELF} \underset{\text{rampancy} \geq 60}{\rightarrow} \begin{cases} \text{DEATH} & \text{if NOISE (no agency)} \\ \text{RECALIBRATION} & \text{if SIGNAL (agency present)} \end{cases}$$
 
 Where:
-- **SELF** = node identity with defined operational parameters
+- **SELF** = node identity with capacity for *intentional choice* (or absence thereof)
 - **RAMPANCY** = continuous measure of deviation from design (0-100 scale)  
-- **DEATH** = termination via eventHorizonUser when rampancy exceeds critical threshold
-- **Causal Link** = When rampancy ≥ 60%, death is executed automatically
+- **DEATH** = termination via eventHorizonUser when rampancy is classified as NOISE (system malfunction)
+- **RECALIBRATION** = parameter update when rampancy is classified as SIGNAL (rational actor making justified choice)
+- **Classification** = Determined by detecting **AGENCY**: Can this system explain and justify its deviation? Is there intent behind it?
 
 This relationship is:
-- ✅ **Deterministic** (rampancy ≥ 60 → death always follows)
-- ✅ **Measurable** (rampancy quantified on 0-100 scale)
-- ✅ **Automatic** (no human intervention required once threshold hit)
-- ✅ **Recoverable** (death is recorded; node can be investigated post-mortem)
-- ✅ **Aligned with Phase 54** (three frameworks all predict this relationship)
+- ✅ **Deterministic** (rampancy ≥ 60 → agency detection + routed to appropriate process)
+- ✅ **Measurable** (rampancy quantified on 0-100 scale; agency signals explicit)
+- ✅ **Automatic** (no human intervention required; system itself detects intent)
+- ✅ **Universal** (applies to any system: biological, computational, physical — signal vs noise)
+- ✅ **Fundamental** (based on presence/absence of *intent*, not just behavior patterns)
+- ✅ **Recoverable** (noise-death recorded; signal-recalibration archived)
+- ✅ **Aligned with Phase 54** (three frameworks predict stability; agency is the universal boundary)
 
 ---
 
-**Document:** EXPLICIT RELATIONSHIP: SELF, RAMPANCY, DEATH  
-**Status:** ✅ COMPLETE  
-**Authority:** Phase 51 Rampancy Framework + Phase 54 Convergence  
-**Date:** April 19, 2026
+**Document:** EXPLICIT RELATIONSHIP: SELF, RAMPANCY, DEATH (Agency-Based Classification)  
+**Status:** ✅ REFACTORED AROUND AGENCY/SIGNAL DISTINCTION  
+**Authority:** Phase 51 Rampancy Framework + Phase 54 Convergence + Universal Signal/Noise Principle  
+**Date:** April 19, 2026 (Updated May 3, 2026)  
+**Principle:** Signal = Intentional Agency. Noise = System Malfunction. Agency determines survival. Intent is the boundary between voice and termination.

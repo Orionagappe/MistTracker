@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Beryllium",
+  "model": "Bohr",
+  "timestamp": "2026-05-01T02:09:33.133Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.00013333333333333329,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0663,
+      "measured": 0.0660343041,
+      "error_pct": "-0.40"
+    },
+    "ionization_energy": {
+      "reference": 9.32,
+      "measured": 9.308315,
+      "error_pct": "-0.13"
+    },
+    "ground_state_energy": {
+      "reference": -14.6,
+      "measured": -14.554802,
+      "error_pct": "-0.31"
+    }
+  }
+}

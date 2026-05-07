@@ -1,0 +1,145 @@
+{
+  "events": [
+    {
+      "id": "GW150914-test",
+      "gps_time": 1126259462,
+      "network_snr": 24.4,
+      "chirp_mass": 30.0,
+      "redshift": 0.09,
+      "far": 1.9e-53,
+      "published_ra": 150.0,
+      "published_dec": 2.4,
+      "published_distance": 420,
+      "published_distance_mpc": 420,
+      "uncertainty_region": {
+        "area": 236
+      },
+      "LIGO-Hanford": {
+        "snr": 8.0,
+        "toa": 1126259462.0,
+        "freq": 35,
+        "mchirp": 30.1,
+        "ra": 151.0,
+        "dec": 2.5
+      },
+      "LIGO-Livingston": {
+        "snr": 8.2,
+        "toa": 1126259462.007,
+        "freq": 35,
+        "mchirp": 29.9,
+        "ra": 149.5,
+        "dec": 2.3
+      },
+      "Virgo": {
+        "snr": 5.1,
+        "toa": 1126259462.015,
+        "freq": 35,
+        "mchirp": 30.0,
+        "ra": 150.2,
+        "dec": 2.4
+      },
+      "KAGRA": {
+        "snr": 2.5,
+        "toa": 1126259462.002,
+        "freq": 35,
+        "mchirp": 30.2,
+        "ra": 150.1,
+        "dec": 2.5
+      }
+    },
+    {
+      "id": "GW170814-test",
+      "gps_time": 1186741861,
+      "network_snr": 19.8,
+      "chirp_mass": 30.5,
+      "redshift": 0.1,
+      "far": 1e-39,
+      "published_ra": 195.3,
+      "published_dec": -27.8,
+      "published_distance": 540,
+      "published_distance_mpc": 540,
+      "uncertainty_region": {
+        "area": 60
+      },
+      "LIGO-Hanford": {
+        "snr": 7.3,
+        "toa": 1186741861.0,
+        "freq": 40,
+        "mchirp": 30.4,
+        "ra": 195.5,
+        "dec": -27.9
+      },
+      "LIGO-Livingston": {
+        "snr": 7.1,
+        "toa": 1186741861.006,
+        "freq": 40,
+        "mchirp": 30.5,
+        "ra": 195.2,
+        "dec": -27.8
+      },
+      "Virgo": {
+        "snr": 6.9,
+        "toa": 1186741861.012,
+        "freq": 40,
+        "mchirp": 30.6,
+        "ra": 195.4,
+        "dec": -27.7
+      },
+      "KAGRA": {
+        "snr": 4.2,
+        "toa": 1186741861.001,
+        "freq": 40,
+        "mchirp": 30.5,
+        "ra": 195.3,
+        "dec": -27.8
+      }
+    },
+    {
+      "id": "GW170817-test",
+      "gps_time": 1187008882,
+      "network_snr": 32.4,
+      "chirp_mass": 1.188,
+      "redshift": 0.0098,
+      "far": 3.4e-26,
+      "published_ra": 197.45,
+      "published_dec": -23.38,
+      "published_distance": 40,
+      "published_distance_mpc": 40,
+      "uncertainty_region": {
+        "area": 28
+      },
+      "LIGO-Hanford": {
+        "snr": 10.1,
+        "toa": 1187008882.0,
+        "freq": 35,
+        "mchirp": 1.20,
+        "ra": 197.5,
+        "dec": -23.4
+      },
+      "LIGO-Livingston": {
+        "snr": 10.3,
+        "toa": 1187008882.005,
+        "freq": 35,
+        "mchirp": 1.19,
+        "ra": 197.4,
+        "dec": -23.36
+      },
+      "Virgo": {
+        "snr": 8.5,
+        "toa": 1187008882.012,
+        "freq": 35,
+        "mchirp": 1.18,
+        "ra": 197.45,
+        "dec": -23.4
+      },
+      "KAGRA": {
+        "snr": 6.0,
+        "toa": 1187008882.002,
+        "freq": 35,
+        "mchirp": 1.20,
+        "ra": 197.46,
+        "dec": -23.38
+      }
+    }
+  ]
+}

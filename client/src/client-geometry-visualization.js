@@ -206,19 +206,63 @@ export class ClientGeometryVisualizer {
     }
 
     if (mesh) {
-      // Apply transform
-      this._applyTransform(mesh, geometry.transform);
+      // Apply transform (handle both formats: transform object or direct position/rotation/scale)
+      if (geometry.transform) {
+        this._applyTransform(mesh, geometry.transform);
+      } else if (geometry.position || geometry.rotation || geometry.scale) {
+        this._applyTransform(mesh, geometry);
+      }
 
-      // Apply material
-      this._applyMaterial(mesh, geometry.material);
+      // Apply material (handle both formats: material object or direct color)
+      if (geometry.material) {
+        this._applyMaterial(mesh, geometry.material);
+      } else if (geometry.color) {
+        this._applyMaterial(mesh, { color: geometry.color });
+      }
+
+      // Add text label if provided
+      if (geometry.label) {
+        const label = this._createTextLabel(geometry.label);
+        mesh.add(label);
+      }
 
       // Add to scene
       this.scene.add(mesh);
 
       // Track geometry
-      this.geometryMeshes.set(geometry.id, mesh);
-      this.geometryData.set(geometry.id, geometry);
+      this.geometryMeshes.set(geometry.id || geometry.itemId, mesh);
+      this.geometryData.set(geometry.id || geometry.itemId, geometry);
     }
+  }
+
+  /**
+   * Create text label sprite
+   * @private
+   */
+  _createTextLabel(text, options = {}) {
+    const fontSize = options.fontSize || 64;
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 512;
+    
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.font = `${fontSize}px Arial, sans-serif`;
+    ctx.fillStyle = '#000000';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+    
+    const texture = new THREE.CanvasTexture(canvas);
+    const spriteMaterial = new THREE.SpriteMaterial({ map: texture });
+    const sprite = new THREE.Sprite(spriteMaterial);
+    
+    sprite.scale.set(4, 4, 1);
+    sprite.position.y = 3;
+    
+    return sprite;
   }
 
   /**
@@ -340,15 +384,38 @@ export class ClientGeometryVisualizer {
     if (updates.transform) {
       this._applyTransform(mesh, updates.transform);
     }
+    
+    // Also support direct position/rotation/scale updates
+    if (updates.position || updates.rotation || updates.scale) {
+      this._applyTransform(mesh, updates);
+    }
 
     // Update material
     if (updates.material) {
       this._applyMaterial(mesh, updates.material);
     }
+    
+    // Also support direct color updates
+    if (updates.color) {
+      this._applyMaterial(mesh, { color: updates.color });
+    }
 
     // Update visibility
     if (updates.visible !== undefined) {
       mesh.visible = updates.visible;
+    }
+    
+    // Update label if provided
+    if (updates.label !== undefined) {
+      // Remove existing label sprite if any
+      const labelSprites = mesh.children.filter(child => child instanceof THREE.Sprite);
+      labelSprites.forEach(sprite => mesh.remove(sprite));
+      
+      // Add new label if not empty
+      if (updates.label) {
+        const label = this._createTextLabel(updates.label);
+        mesh.add(label);
+      }
     }
 
     // Update geometry data
@@ -376,14 +443,32 @@ export class ClientGeometryVisualizer {
    * @private
    */
   _applyTransform(mesh, transform) {
+    // Handle format: { position: { x, y, z }, rotation: { x, y, z }, scale: { x, y, z } }
     if (transform.position) {
-      mesh.position.set(...transform.position);
+      const pos = transform.position;
+      if (Array.isArray(pos)) {
+        mesh.position.set(...pos);
+      } else if (typeof pos === 'object') {
+        mesh.position.set(pos.x || 0, pos.y || 0, pos.z || 0);
+      }
     }
+    
     if (transform.rotation) {
-      mesh.rotation.set(...transform.rotation);
+      const rot = transform.rotation;
+      if (Array.isArray(rot)) {
+        mesh.rotation.set(...rot);
+      } else if (typeof rot === 'object') {
+        mesh.rotation.set(rot.x || 0, rot.y || 0, rot.z || 0);
+      }
     }
+    
     if (transform.scale) {
-      mesh.scale.set(...transform.scale);
+      const scl = transform.scale;
+      if (Array.isArray(scl)) {
+        mesh.scale.set(...scl);
+      } else if (typeof scl === 'object') {
+        mesh.scale.set(scl.x || 1, scl.y || 1, scl.z || 1);
+      }
     }
   }
 
@@ -394,17 +479,31 @@ export class ClientGeometryVisualizer {
   _applyMaterial(mesh, material) {
     if (!mesh.material) return;
 
+    // Handle color: either hex string like '#FF6B6B' or RGB array
     if (material.color) {
-      mesh.material.color.setRGB(...material.color);
+      if (typeof material.color === 'string') {
+        // Hex color string
+        mesh.material.color.setStyle(material.color);
+      } else if (Array.isArray(material.color)) {
+        // RGB array
+        mesh.material.color.setRGB(...material.color);
+      }
     }
+    
     if (material.metallic !== undefined) {
       mesh.material.metallic = material.metallic;
     }
     if (material.roughness !== undefined) {
       mesh.material.roughness = material.roughness;
     }
+    
+    // Handle emissive
     if (material.emissive) {
-      mesh.material.emissive.setRGB(...material.emissive);
+      if (typeof material.emissive === 'string') {
+        mesh.material.emissive.setStyle(material.emissive);
+      } else if (Array.isArray(material.emissive)) {
+        mesh.material.emissive.setRGB(...material.emissive);
+      }
     }
 
     mesh.material.needsUpdate = true;

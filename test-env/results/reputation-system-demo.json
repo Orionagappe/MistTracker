@@ -1,0 +1,180 @@
+{
+  "timestamp": "2026-05-01T02:25:41.824Z",
+  "system_metrics": {
+    "timestamp": "2026-05-01T02:25:41.824Z",
+    "validators_total": 50,
+    "validators_active": 50,
+    "validators_ejected": 0,
+    "verdicts_issued_total": 30,
+    "verdicts_correct_total": 23,
+    "verdicts_incorrect_total": 7,
+    "system_accuracy_pct": "76.7",
+    "avg_reputation": "51.6",
+    "min_reputation": 50,
+    "max_reputation": 100
+  },
+  "ranking_top_20": [
+    {
+      "rank": 1,
+      "validator_id": "validator-1",
+      "reputation": 100,
+      "verdicts_issued": 10,
+      "verdicts_correct": 9,
+      "status": "active"
+    },
+    {
+      "rank": 2,
+      "validator_id": "validator-3",
+      "reputation": 71,
+      "verdicts_issued": 10,
+      "verdicts_correct": 7,
+      "status": "active"
+    },
+    {
+      "rank": 3,
+      "validator_id": "validator-2",
+      "reputation": 61,
+      "verdicts_issued": 10,
+      "verdicts_correct": 7,
+      "status": "active"
+    },
+    {
+      "rank": 4,
+      "validator_id": "validator-4",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 5,
+      "validator_id": "validator-5",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 6,
+      "validator_id": "validator-6",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 7,
+      "validator_id": "validator-7",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 8,
+      "validator_id": "validator-8",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 9,
+      "validator_id": "validator-9",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 10,
+      "validator_id": "validator-10",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 11,
+      "validator_id": "validator-11",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 12,
+      "validator_id": "validator-12",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 13,
+      "validator_id": "validator-13",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 14,
+      "validator_id": "validator-14",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 15,
+      "validator_id": "validator-15",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 16,
+      "validator_id": "validator-16",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 17,
+      "validator_id": "validator-17",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 18,
+      "validator_id": "validator-18",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 19,
+      "validator_id": "validator-19",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    },
+    {
+      "rank": 20,
+      "validator_id": "validator-20",
+      "reputation": 50,
+      "verdicts_issued": 0,
+      "verdicts_correct": 0,
+      "status": "active"
+    }
+  ],
+  "ejections": [],
+  "verdict_history_count": 30
+}

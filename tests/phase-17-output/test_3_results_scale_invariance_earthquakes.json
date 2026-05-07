@@ -1,0 +1,52 @@
+{
+  "test_name": "Phase 0 Test 3: Scale-Invariance of Earthquake Magnitude Scaling",
+  "test_date": "2026-04-21T14:42:39.809723",
+  "domain": "Earthquakes - Multiple Tectonic Regions",
+  "comparison_to_test_1": "Solar wind: f_ratio = \u221a10 vs. earthquakes: b-value = 1.0 - both test universal scaling",
+  "data_source": "USGS Earthquake API",
+  "data_source_is_real": true,
+  "date_range_start": "2020-01-01",
+  "date_range_end": "2025-12-31",
+  "regions_analyzed": 4,
+  "b_values_by_region": {
+    "california": 0.8732,
+    "japan": 0.301,
+    "chile": 0.3075,
+    "new_zealand": 0.3069
+  },
+  "b_value_mean": 0.4471,
+  "b_value_std": 0.246,
+  "expected_b_value": 1.0,
+  "tolerance": 0.2,
+  "percent_within_tolerance": 25.0,
+  "falsification_threshold_percent": 60.0,
+  "rms_error_percent": 55.286,
+  "status": "FALSIFIED",
+  "verdict": "No universal scaling: b-values scattered",
+  "event_counts_by_region": {
+    "california": 2758,
+    "japan": 4342,
+    "chile": 3631,
+    "new_zealand": 524
+  },
+  "r_squared_by_region": {
+    "california": 0.3584,
+    "japan": -27.1085,
+    "chile": -29.8391,
+    "new_zealand": -18.5587
+  },
+  "methodology": "Magnitude-frequency analysis using Gutenberg-Richter law: log\u2081\u2080(N) = a - b*M. B-value computed via maximum likelihood estimation on real (or realistic synthetic) earthquakes. Universal scaling hypothesis: b-value \u2248 1.0 across all tectonic regions. Validates that earthquake physics is scale-invariant: same patterns at local, regional, global scales. Same falsifiable methodology as Test 1 (solar wind frequency scaling), different domain.",
+  "data_sources": {
+    "usgs_api": "https://earthquake.usgs.gov/fdsnws/event/1/",
+    "iris_catalogs": "https://ds.iris.edu/",
+    "gutenberg_richter": "Gutenberg & Richter (1954) foundational seismology paper"
+  },
+  "validation_notes": [
+    "Gutenberg-Richter law: log\u2081\u2080(N) = a - b*M predicts frequency of earthquakes",
+    "b-value \u2248 1.0 is universal across most tectonic settings (subduction, transform, rifts)",
+    "Observed mean b-value: 0.447 \u00b1 0.246",
+    "25.0% of regions within 1.0 \u00b1 0.2 (60% threshold for CONFIRMED)",
+    "If b-values scatter: indicates domain-dependent physics",
+    "If b-values cluster: proves universal scaling law holds"
+  ]
+}

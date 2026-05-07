@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Sodium",
+  "timestamp": "2026-05-01T02:16:36.318Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": -0.0023666666666666667,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0242,
+      "measured": 0.0239851873,
+      "error_pct": "-0.89"
+    },
+    "ionization_energy": {
+      "reference": 5.14,
+      "measured": 5.146343,
+      "error_pct": "0.12"
+    },
+    "ground_state_energy": {
+      "reference": -40.7,
+      "measured": -40.674976,
+      "error_pct": "-0.06"
+    }
+  }
+}

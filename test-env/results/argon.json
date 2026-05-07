@@ -1,0 +1,26 @@
+{
+  "status": "partial",
+  "atom": "Argon",
+  "timestamp": "2026-05-01T02:16:36.606Z",
+  "tests_passed": 2,
+  "tests_total": 3,
+  "causality_score": 80,
+  "residual_error": -0.005599999999999999,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0147,
+      "measured": 0.0144327969,
+      "error_pct": "-1.82"
+    },
+    "ionization_energy": {
+      "reference": 15.76,
+      "measured": 15.73927,
+      "error_pct": "-0.13"
+    },
+    "ground_state_energy": {
+      "reference": -411.6,
+      "measured": -411.656195,
+      "error_pct": "0.01"
+    }
+  }
+}

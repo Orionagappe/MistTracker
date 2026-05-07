@@ -1,0 +1,121 @@
+{
+  "summary": {
+    "total_events": 3,
+    "successful_predictions": 2,
+    "failed_predictions": 1,
+    "average_confidence": 0.73,
+    "timestamp": 1776945357625
+  },
+  "predictions": [
+    {
+      "success": true,
+      "eventId": 1126259462,
+      "coordinates": {
+        "eventId": 1126259462,
+        "gpsTime": 1126259462,
+        "coordinates": {
+          "ra": 150.2172268907563,
+          "dec": 2.4096638655462184,
+          "distance_Mpc": 82,
+          "uncertainty_area_deg2": -32.8
+        },
+        "confidence": 0.7,
+        "confidence_breakdown": {
+          "snrAgreement": 0.86,
+          "timingConsistency": 0.3,
+          "frequencyCluster": 1,
+          "reputationWeight": 0.7
+        },
+        "event_class": "BH-NS",
+        "validator_agreement": {
+          "LIGO-Hanford": {
+            "detects": true,
+            "snr": 8,
+            "validator": "LIGO-Hanford"
+          },
+          "LIGO-Livingston": {
+            "detects": true,
+            "snr": 8.2,
+            "validator": "LIGO-Livingston"
+          },
+          "Virgo": {
+            "detects": false,
+            "snr": 5.1,
+            "validator": "Virgo"
+          },
+          "KAGRA": {
+            "detects": false,
+            "snr": 2.5,
+            "validator": "KAGRA"
+          }
+        },
+        "reputation_weights": {},
+        "timestamp": 1776945357626,
+        "testable": true,
+        "comparison_to_published": {
+          "angularSeparation_deg": 0.217,
+          "distanceError_percent": 0.8,
+          "prediction_match": "GOOD"
+        }
+      }
+    },
+    {
+      "success": false,
+      "eventId": 1186741861,
+      "error": "Event reality not agreed: 0/4 detectors",
+      "coordinates": null
+    },
+    {
+      "success": true,
+      "eventId": 1187008882,
+      "coordinates": {
+        "eventId": 1187008882,
+        "gpsTime": 1187008882,
+        "coordinates": {
+          "ra": 197.45143266475645,
+          "dec": -23.384756446991403,
+          "distance_Mpc": 61.7,
+          "uncertainty_area_deg2": -24.7
+        },
+        "confidence": 0.76,
+        "confidence_breakdown": {
+          "snrAgreement": 0.96,
+          "timingConsistency": 0.44,
+          "frequencyCluster": 1,
+          "reputationWeight": 0.7
+        },
+        "event_class": "NS-NS",
+        "validator_agreement": {
+          "LIGO-Hanford": {
+            "detects": true,
+            "snr": 10.1,
+            "validator": "LIGO-Hanford"
+          },
+          "LIGO-Livingston": {
+            "detects": true,
+            "snr": 10.3,
+            "validator": "LIGO-Livingston"
+          },
+          "Virgo": {
+            "detects": true,
+            "snr": 8.5,
+            "validator": "Virgo"
+          },
+          "KAGRA": {
+            "detects": false,
+            "snr": 6,
+            "validator": "KAGRA"
+          }
+        },
+        "reputation_weights": {},
+        "timestamp": 1776945357626,
+        "testable": true,
+        "comparison_to_published": {
+          "angularSeparation_deg": 0.005,
+          "distanceError_percent": 0.54,
+          "prediction_match": "GOOD"
+        }
+      }
+    }
+  ]
+}
