@@ -1,0 +1,1531 @@
+{
+  "satellites": [
+    {
+      "id": "SATELLITE-0-Classical Satellite (Small Dwarf)",
+      "type": "Classical Satellite (Small Dwarf)",
+      "hostMass": 100,
+      "satelliteMass": 1,
+      "massRatio": 0.01,
+      "separation": 50,
+      "emergence": "71.7",
+      "patternCount": 12,
+      "coalescenceTime": "1400.86",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.014822510667419363,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Classical Satellite (Small Dwarf): host=100×10¹¹ M☉, sat=1×10¹⁰ M☉, sep=50.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 7.5 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 0.9 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.008923 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0089 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 1400.86 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-1-Ultra-Faint Satellite",
+      "type": "Ultra-Faint Satellite",
+      "hostMass": 100,
+      "satelliteMass": 0.3,
+      "massRatio": 0.003,
+      "separation": 40,
+      "emergence": "71.7",
+      "patternCount": 12,
+      "coalescenceTime": "1321.10",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.019380228601005807,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Ultra-Faint Satellite: host=100×10¹¹ M☉, sat=0×10¹⁰ M☉, sep=40.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 4.0 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 0.6 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.006056 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0061 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 1321.10 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-2-Massive Satellite (Pre-merge)",
+      "type": "Massive Satellite (Pre-merge)",
+      "hostMass": 100,
+      "satelliteMass": 10,
+      "massRatio": 0.1,
+      "separation": 80,
+      "emergence": "73.2",
+      "patternCount": 12,
+      "coalescenceTime": "1823.12",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.007796418743958968,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Massive Satellite (Pre-merge): host=100×10¹¹ M☉, sat=10×10¹⁰ M☉, sep=80.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 25.7 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 1.9 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.017552 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0176 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 1823.12 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-3-Infalling Satellite",
+      "type": "Infalling Satellite",
+      "hostMass": 200,
+      "satelliteMass": 5,
+      "massRatio": 0.025,
+      "separation": 30,
+      "emergence": "71.7",
+      "patternCount": 12,
+      "coalescenceTime": "135.26",
+      "tidalStrain": "0.000",
+      "survivalProbability": "99.8",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.23468645102449884,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Infalling Satellite: host=200×10¹¹ M☉, sat=5×10¹⁰ M☉, sep=30.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 6.1 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 1.5 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.033270 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0333 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.2%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 99.8%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 135.26 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-4-Satellite in Tidal Disruption",
+      "type": "Satellite in Tidal Disruption",
+      "hostMass": 150,
+      "satelliteMass": 2,
+      "massRatio": 0.013333333333333334,
+      "separation": 15,
+      "emergence": "71.8",
+      "patternCount": 12,
+      "coalescenceTime": "17.43",
+      "tidalStrain": "0.001",
+      "survivalProbability": "99.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 1.0375107334540534,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Satellite in Tidal Disruption: host=150×10¹¹ M☉, sat=2×10¹⁰ M☉, sep=15.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.001, Hill radius: 2.5 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 1.1 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.064535 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0645 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 1.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 99.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 17.43 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-5-Wide Orbiting Satellite",
+      "type": "Wide Orbiting Satellite",
+      "hostMass": 100,
+      "satelliteMass": 0.5,
+      "massRatio": 0.005,
+      "separation": 200,
+      "emergence": "68.8",
+      "patternCount": 12,
+      "coalescenceTime": "271783.43",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.000183822414267745,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": false,
+          "confidence": 75,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Wide Orbiting Satellite: host=100×10¹¹ M☉, sat=1×10¹⁰ M☉, sep=200.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 23.7 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 0.7 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.000736 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0007 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 271783.43 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-6-Recently Accreted Satellite",
+      "type": "Recently Accreted Satellite",
+      "hostMass": 120,
+      "satelliteMass": 3,
+      "massRatio": 0.025,
+      "separation": 60,
+      "emergence": "71.7",
+      "patternCount": 12,
+      "coalescenceTime": "1530.26",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.014845666417335108,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Recently Accreted Satellite: host=120×10¹¹ M☉, sat=3×10¹⁰ M☉, sep=60.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 12.2 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 1.3 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.011763 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0118 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 1530.26 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-7-Binary Satellite System",
+      "type": "Binary Satellite System",
+      "hostMass": 150,
+      "satelliteMass": 2,
+      "massRatio": 0.013333333333333334,
+      "separation": 70,
+      "emergence": "71.7",
+      "patternCount": 12,
+      "coalescenceTime": "3827.19",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.010208742639671808,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Binary Satellite System: host=150×10¹¹ M☉, sat=2×10¹⁰ M☉, sep=70.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 11.5 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 1.1 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.006402 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0064 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 3827.19 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-8-Tidally Disrupting Satellite",
+      "type": "Tidally Disrupting Satellite",
+      "hostMass": 180,
+      "satelliteMass": 1.5,
+      "massRatio": 0.008333333333333333,
+      "separation": 12,
+      "emergence": "73.0",
+      "patternCount": 12,
+      "coalescenceTime": "10.58",
+      "tidalStrain": "0.001",
+      "survivalProbability": "97.8",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": true,
+          "confidence": 94,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 2.20931498325438,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Tidally Disrupting Satellite: host=180×10¹¹ M☉, sat=2×10¹⁰ M☉, sep=12.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.001, Hill radius: 1.7 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 1.0 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.068028 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0680 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 2.2%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 97.8%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 10.58 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "SATELLITE-9-Ancient Satellite (Fully Disrupted Progenitor)",
+      "type": "Ancient Satellite (Fully Disrupted Progenitor)",
+      "hostMass": 140,
+      "satelliteMass": 0.8,
+      "massRatio": 0.005714285714285714,
+      "separation": 100,
+      "emergence": "71.7",
+      "patternCount": 12,
+      "coalescenceTime": "22172.92",
+      "tidalStrain": "0.000",
+      "survivalProbability": "100.0",
+      "patterns": [
+        {
+          "name": "Tidal Disruption Threshold",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Tidal forces exceed satellite self-gravity"
+        },
+        {
+          "name": "Dynamical Friction Decay",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Background matter slows satellite orbit"
+        },
+        {
+          "name": "Tidal Mass Loss",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Stellar streams escape satellite"
+        },
+        {
+          "name": "Hill Sphere Erosion",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Tidal forces exceed satellite gravity at surface"
+        },
+        {
+          "name": "Orbital Circularization",
+          "detected": false,
+          "confidence": 88,
+          "physics": "Tidal heating circularizes eccentric orbits"
+        },
+        {
+          "name": "Virial Contraction",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal compression reduces satellite size"
+        },
+        {
+          "name": "Satellite Survival Time",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Satellite avoids complete disruption"
+        },
+        {
+          "name": "Coalescence Timescale",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Dynamical friction predicts merger time"
+        },
+        {
+          "name": "Substructure Tidal Disruption",
+          "detected": false,
+          "confidence": 0.002408000000000001,
+          "physics": "Complete disruption into stream"
+        },
+        {
+          "name": "Host Response to Satellite",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Host halo responds to satellite gravity"
+        },
+        {
+          "name": "Angular Momentum Dissipation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Dynamical friction removes orbital angular momentum"
+        },
+        {
+          "name": "Tidal Stream Formation",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Tidal disruption creates stellar streams"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Satellite System Specification",
+          "description": "Ancient Satellite (Fully Disrupted Progenitor): host=140×10¹¹ M☉, sat=1×10¹⁰ M☉, sep=100.0 kpc",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Gravitational Potential",
+          "description": "NFW profile: ∇²φ = 4πGρ, tidal gradient emerges",
+          "timestamp": 0.002,
+          "physics": "gravity"
+        },
+        {
+          "level": 2,
+          "step": "Tidal Acceleration Field",
+          "description": "Tidal strain: 0.000, Hill radius: 12.4 kpc",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Satellite Potential Well",
+          "description": "Escape velocity from satellite: 0.8 km/s",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Dynamical Friction",
+          "description": "Decay rate: -0.002255 kpc/Gyr², friction time: 5.00 Gyr",
+          "timestamp": 0.005,
+          "physics": "N-body interaction"
+        },
+        {
+          "level": 5,
+          "step": "Orbital Decay",
+          "description": "Separation shrinks: da/dt = -0.0023 kpc/Gyr",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Tidal Disruption",
+          "description": "Mass loss rate: 0.0000 M☉/Gyr, disruption prob: 0.0%",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Stream Formation",
+          "description": "Tidal streams emerge, satellite radius shrinks by tidal strain factor",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Assembly Phases",
+          "description": "Dominant phase: Infall Phase, survival prob: 100.0%",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Substructure Evolution Complete",
+          "description": "Coalescence time: 22172.92 Gyr, all patterns emergent from gravity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalSatellites": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "71.7"
+  }
+}

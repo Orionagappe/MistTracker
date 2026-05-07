@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Boron",
+  "model": "Bohr",
+  "timestamp": "2026-05-01T02:11:34.909Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0012,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.053,
+      "measured": 0.0528518917,
+      "error_pct": "-0.28"
+    },
+    "ionization_energy": {
+      "reference": 8.3,
+      "measured": 8.305397,
+      "error_pct": "0.07"
+    },
+    "ground_state_energy": {
+      "reference": -24.6,
+      "measured": -24.460234,
+      "error_pct": "-0.57"
+    }
+  }
+}

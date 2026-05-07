@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Aluminum",
+  "timestamp": "2026-05-01T02:16:36.401Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.005033333333333334,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0204,
+      "measured": 0.02067763,
+      "error_pct": "1.36"
+    },
+    "ionization_energy": {
+      "reference": 5.99,
+      "measured": 5.984754,
+      "error_pct": "-0.09"
+    },
+    "ground_state_energy": {
+      "reference": -122.6,
+      "measured": -122.66754,
+      "error_pct": "0.06"
+    }
+  }
+}

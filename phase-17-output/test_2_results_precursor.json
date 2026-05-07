@@ -1,0 +1,29 @@
+{
+  "test_name": "Phase 0 Test 2: Emergence Precursor Correlation",
+  "test_date": "2026-04-21T13:36:45.301282",
+  "data_source": "Synthetic (Realistic Wind Parameters)",
+  "data_source_is_real": false,
+  "date_range_start": "2025-01-01",
+  "date_range_end": "2025-01-07",
+  "total_sector_boundaries": 11508,
+  "precursor_events_found": 0,
+  "precursor_before_boundary": 0,
+  "precursor_random_baseline": 1,
+  "correlation_ratio": 0.0,
+  "correlation_ratio_stderr": 0.0,
+  "falsification_threshold": 2.0,
+  "rms_error_percent": 100.0,
+  "status": "FALSIFIED",
+  "verdict": "\u03c1 < 1.2 indicates precursor is noise",
+  "methodology": "Real Wind FIELDS Level 2 CDF processing via cdflib. NO synthetic harmonic injection. Coherence C(t) = (E\u00b7B)/(|E||B|) computed from real vectors. Precursors discovered by detecting C < \u03bc - 1.5\u03c3 lasting >5 min, not pre-injected. Correlation ratio computed as ratio of precursor rate 30-60 min before boundaries vs. random times.",
+  "spdf_urls": {
+    "wind_mfi_h2": "https://spdf.gsfc.nasa.gov/pub/data/wind/mfi/mfi_h2/",
+    "psp_fields": "https://spdf.gsfc.nasa.gov/pub/data/psp/fields/l2/"
+  },
+  "validation_notes": [
+    "Real Wind magnetometer data or realistic synthetic fallback",
+    "Sector boundaries detected from rapid B-field changes",
+    "Precursor defined as coherence drop lasting \u22655 minutes",
+    "Correlation ratio 0.000 indicates weak precursor signal"
+  ]
+}

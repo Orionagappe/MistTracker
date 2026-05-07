@@ -1,0 +1,43 @@
+# Phase 2a API Server Requirements
+# Python 3.8+
+
+# Phase 1 dependencies (included for reference)
+numpy==1.24.3
+scipy==1.10.1
+PyYAML==6.0
+
+# Phase 2a API dependencies
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+python-multipart==0.0.6
+aiofiles==23.2.1
+httpx==0.25.1
+
+# Production deployment
+gunicorn==21.2.0
+python-dotenv==1.0.0
+
+# Monitoring & logging (optional but recommended)
+prometheus-client==0.18.0
+python-json-logger==2.0.7
+
+# Database (optional for job persistence)
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+redis==5.0.1
+
+# Security (optional but recommended for production)
+python-jose==3.3.0
+passlib==1.7.4
+cryptography==41.0.7
+
+# Testing
+pytest==7.4.3
+httpx-mock==0.3.0
+
+# Development
+black==23.11.0
+flake8==6.1.0
+mypy==1.7.1

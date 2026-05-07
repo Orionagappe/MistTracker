@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Nitrogen",
+  "model": "Bohr",
+  "timestamp": "2026-05-01T02:12:47.281Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0019333333333333336,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0379,
+      "measured": 0.0380710827,
+      "error_pct": "0.45"
+    },
+    "ionization_energy": {
+      "reference": 14.53,
+      "measured": 14.52168,
+      "error_pct": "-0.06"
+    },
+    "ground_state_energy": {
+      "reference": -54.4,
+      "measured": -54.363121,
+      "error_pct": "-0.07"
+    }
+  }
+}

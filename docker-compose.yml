@@ -1,0 +1,235 @@
+version: '3.9'
+
+services:
+  # Cluster coordinator (main orchestrator)
+  coordinator:
+    image: node:18
+    container_name: mist-coordinator
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"    # React dev server
+      - "5000:5000"    # API server
+      - "6000:6000"    # WebSocket server
+    environment:
+      NODE_ENV: development
+      CLUSTER_MODE: coordinator
+      CLUSTER_NODES: "node-1,node-2,node-3,node-4,node-5"
+      COORDINATOR_PORT: 5000
+    networks:
+      - mist-cluster
+    command: >
+      sh -c "npm install && node server/cluster-coordinator.js"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 20s
+
+  # Cluster node 1 (Hydrogen atom training)
+  node-1:
+    image: node:18
+    container_name: mist-node-1
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5001:5000"
+    environment:
+      NODE_ENV: development
+      CLUSTER_MODE: worker
+      NODE_ID: node-1
+      WORKER_PORT: 5000
+      COORDINATOR_HOST: coordinator
+      COORDINATOR_PORT: 5000
+      ATOM_TYPE: H
+      ATOM_NUMBER: 1
+    networks:
+      - mist-cluster
+    depends_on:
+      coordinator:
+        condition: service_healthy
+    command: >
+      sh -c "npm install && node server/cluster-worker.js"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Cluster node 2 (Helium atom training)
+  node-2:
+    image: node:18
+    container_name: mist-node-2
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5002:5000"
+    environment:
+      NODE_ENV: development
+      CLUSTER_MODE: worker
+      NODE_ID: node-2
+      WORKER_PORT: 5000
+      COORDINATOR_HOST: coordinator
+      COORDINATOR_PORT: 5000
+      ATOM_TYPE: He
+      ATOM_NUMBER: 2
+    networks:
+      - mist-cluster
+    depends_on:
+      coordinator:
+        condition: service_healthy
+    command: >
+      sh -c "npm install && node server/cluster-worker.js"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Cluster node 3 (Lithium atom training)
+  node-3:
+    image: node:18
+    container_name: mist-node-3
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5003:5000"
+    environment:
+      NODE_ENV: development
+      CLUSTER_MODE: worker
+      NODE_ID: node-3
+      WORKER_PORT: 5000
+      COORDINATOR_HOST: coordinator
+      COORDINATOR_PORT: 5000
+      ATOM_TYPE: Li
+      ATOM_NUMBER: 3
+    networks:
+      - mist-cluster
+    depends_on:
+      coordinator:
+        condition: service_healthy
+    command: >
+      sh -c "npm install && node server/cluster-worker.js"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Cluster node 4 (Beryllium atom training)
+  node-4:
+    image: node:18
+    container_name: mist-node-4
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5004:5000"
+    environment:
+      NODE_ENV: development
+      CLUSTER_MODE: worker
+      NODE_ID: node-4
+      WORKER_PORT: 5000
+      COORDINATOR_HOST: coordinator
+      COORDINATOR_PORT: 5000
+      ATOM_TYPE: Be
+      ATOM_NUMBER: 4
+    networks:
+      - mist-cluster
+    depends_on:
+      coordinator:
+        condition: service_healthy
+    command: >
+      sh -c "npm install && node server/cluster-worker.js"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Cluster node 5 (Boron atom training)
+  node-5:
+    image: node:18
+    container_name: mist-node-5
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - "5005:5000"
+    environment:
+      NODE_ENV: development
+      CLUSTER_MODE: worker
+      NODE_ID: node-5
+      WORKER_PORT: 5000
+      COORDINATOR_HOST: coordinator
+      COORDINATOR_PORT: 5000
+      ATOM_TYPE: B
+      ATOM_NUMBER: 5
+    networks:
+      - mist-cluster
+    depends_on:
+      coordinator:
+        condition: service_healthy
+    command: >
+      sh -c "npm install && node server/cluster-worker.js"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Database (PostgreSQL for milestone storage)
+  postgres:
+    image: postgres:15-alpine
+    container_name: mist-database
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mist_user
+      POSTGRES_USER: mist_user
+      POSTGRES_PASSWORD: mist_dev_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database-schema-postgres.sql:/docker-entrypoint-initdb.d/01-schema.sql
+    networks:
+      - mist-cluster
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U mist_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Redis (for caching & session store)
+  redis:
+    image: redis:7-alpine
+    container_name: mist-cache
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mist-cluster
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  mist-cluster:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:

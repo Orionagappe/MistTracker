@@ -1,0 +1,767 @@
+[
+  {
+    "findingId": "P1",
+    "domain": "physics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 12,
+        "sentence_count": 3,
+        "unique_concepts": 2,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 43.01955000865387,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 19,
+        "sentence_count": 4,
+        "unique_concepts": 4,
+        "concept_density": 0.21052631578947367,
+        "information_bits": 80.71062275542809,
+        "semantic_depth": 2,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 26,
+        "sentence_count": 5,
+        "unique_concepts": 5,
+        "concept_density": 0.19230769230769232,
+        "information_bits": 120.21143267166835,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0.6
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 1,
+      "depth_growth": 0,
+      "emergence_rate": 1.6,
+      "information_expansion": 1.794344260864803
+    }
+  },
+  {
+    "findingId": "L1",
+    "domain": "linguistics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 13,
+        "sentence_count": 3,
+        "unique_concepts": 2,
+        "concept_density": 0.15384615384615385,
+        "information_bits": 48.1057163358342,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 16,
+        "sentence_count": 4,
+        "unique_concepts": 3,
+        "concept_density": 0.1875,
+        "information_bits": 64,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 21,
+        "sentence_count": 4,
+        "unique_concepts": 3,
+        "concept_density": 0.14285714285714285,
+        "information_bits": 92.23866587835396,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0.5,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.9174159102926587
+    }
+  },
+  {
+    "findingId": "P2",
+    "domain": "physics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 3,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 4.754887502163468,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 1.4416225345298785
+    }
+  },
+  {
+    "findingId": "P3",
+    "domain": "physics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 2,
+        "concept_density": 0.5,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": -0.5,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.9387218755408671
+    }
+  },
+  {
+    "findingId": "P4",
+    "domain": "physics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 2,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0.3333333333333333,
+      "emergence_rate": 2,
+      "information_expansion": 0
+    }
+  },
+  {
+    "findingId": "P5",
+    "domain": "physics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 2,
+        "concept_density": 0.4,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.4512050593046013
+    }
+  },
+  {
+    "findingId": "L2",
+    "domain": "linguistics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.4512050593046013
+    }
+  },
+  {
+    "findingId": "L3",
+    "domain": "linguistics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0
+    }
+  },
+  {
+    "findingId": "L4",
+    "domain": "linguistics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 2,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.9387218755408671
+    }
+  },
+  {
+    "findingId": "S1",
+    "domain": "semantics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 3,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 4.754887502163468,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": -0.40563906222956647
+    }
+  },
+  {
+    "findingId": "S2",
+    "domain": "semantics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 3,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 4.754887502163468,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 3,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 4.754887502163468,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": -0.40563906222956647
+    }
+  },
+  {
+    "findingId": "S3",
+    "domain": "semantics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.4512050593046013
+    }
+  },
+  {
+    "findingId": "S4",
+    "domain": "semantics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 3,
+        "concept_density": 0.6,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0.6666666666666666
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 1.6666666666666665,
+      "information_expansion": 0.4512050593046013
+    }
+  },
+  {
+    "findingId": "S5",
+    "domain": "semantics",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 2,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.5,
+        "information_bits": 2,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.3359393030712541
+    }
+  },
+  {
+    "findingId": "I1",
+    "domain": "integration",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 5,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.2,
+        "information_bits": 11.60964047443681,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 2,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 1,
+      "depth_growth": 0,
+      "emergence_rate": 1,
+      "information_expansion": -0.31091750708257104
+    }
+  },
+  {
+    "findingId": "I2",
+    "domain": "integration",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 3,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.3333333333333333,
+        "information_bits": 4.754887502163468,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 7,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.14285714285714285,
+        "information_bits": 19.651484454403228,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 3.132902081376652
+    }
+  },
+  {
+    "findingId": "I3",
+    "domain": "integration",
+    "linguistic_metrics": {
+      "executive": {
+        "tier": "executive",
+        "tier_level": 0,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 0
+      },
+      "technical": {
+        "tier": "technical",
+        "tier_level": 1,
+        "word_count": 4,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.25,
+        "information_bits": 8,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      },
+      "deep": {
+        "tier": "deep",
+        "tier_level": 2,
+        "word_count": 6,
+        "sentence_count": 1,
+        "unique_concepts": 1,
+        "concept_density": 0.16666666666666666,
+        "information_bits": 15.509775004326936,
+        "semantic_depth": 1,
+        "conceptual_emergence": 1
+      }
+    },
+    "emergence_signature": {
+      "concept_growth": 0,
+      "depth_growth": 0,
+      "emergence_rate": 2,
+      "information_expansion": 0.9387218755408671
+    }
+  }
+]

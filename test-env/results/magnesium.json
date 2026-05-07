@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Magnesium",
+  "timestamp": "2026-05-01T02:16:36.359Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.003866666666666667,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0221,
+      "measured": 0.0222738545,
+      "error_pct": "0.79"
+    },
+    "ionization_energy": {
+      "reference": 7.65,
+      "measured": 7.627658,
+      "error_pct": "-0.29"
+    },
+    "ground_state_energy": {
+      "reference": -80.1,
+      "measured": -80.16259,
+      "error_pct": "0.08"
+    }
+  }
+}

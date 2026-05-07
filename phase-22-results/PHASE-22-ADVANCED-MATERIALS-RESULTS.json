@@ -1,0 +1,817 @@
+{
+  "phase": 22,
+  "domain": "Advanced Materials",
+  "timestamp": "2026-04-19T03:14:30.931Z",
+  "materials": [
+    {
+      "name": "Al₂O₃",
+      "commonName": "Aluminum Oxide (Alumina)",
+      "type": "Advanced Ceramic",
+      "emergenceIndices": {
+        "componentEmergence": 0.9317490298780199,
+        "interfaceEmergence": 0.8706099768345175,
+        "bulkPropertyEmergence": 0.9462372779343764,
+        "defectRobustness": 0.8621156481896808,
+        "thermalEmergence": 0.8630686223326742,
+        "mechanicalEmergence": 0.957067287331021,
+        "functionalEmergence": 0.9617696612939197,
+        "stabilityEmergence": 0.8709954551520946,
+        "averageEmergence": 0.9079516198682879
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -0.9801096411533909
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.00017861311452144424,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.932Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.932Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.932Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Advanced Ceramic",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.932Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Abrasives",
+            "Catalysts",
+            "Electronics substrates"
+          ],
+          "timestamp": "2026-04-19T03:14:30.932Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "SiC",
+      "commonName": "Silicon Carbide",
+      "type": "Wide Bandgap Semiconductor",
+      "emergenceIndices": {
+        "componentEmergence": 0.9075530395181135,
+        "interfaceEmergence": 0.9039159474903354,
+        "bulkPropertyEmergence": 0.8617847362298972,
+        "defectRobustness": 0.9171331863237618,
+        "thermalEmergence": 0.8566521441897861,
+        "mechanicalEmergence": 0.8863742866629,
+        "functionalEmergence": 0.9088366456308254,
+        "stabilityEmergence": 0.9407704979467003,
+        "averageEmergence": 0.8978775604990399
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -1.01935011840614
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.016882131899029033,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.933Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.933Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.933Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Wide Bandgap Semiconductor",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.933Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Power electronics",
+            "LED substrates",
+            "High-temp devices"
+          ],
+          "timestamp": "2026-04-19T03:14:30.933Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "ZrO₂",
+      "commonName": "Zirconia (Yttria-stabilized)",
+      "type": "Advanced Toughened Ceramic",
+      "emergenceIndices": {
+        "componentEmergence": 0.9590478755441043,
+        "interfaceEmergence": 0.8244201109734255,
+        "bulkPropertyEmergence": 0.8903552494597976,
+        "defectRobustness": 0.8761825024567436,
+        "thermalEmergence": 0.8805330275719581,
+        "mechanicalEmergence": 0.947974162381092,
+        "functionalEmergence": 0.9340441752056392,
+        "stabilityEmergence": 0.9026564159845222,
+        "averageEmergence": 0.9019016899471602
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 5.054333333333333,
+          "temperature": 832.2222222222222,
+          "stability": 0.9873305102786059,
+          "energyState": -1.0011615031476757
+        },
+        "stabilityRange": {
+          "min": 0.2906210773563729,
+          "max": 0.9873305102786059
+        },
+        "averageStability": 0.656484425055631
+      },
+      "trainingResult": {
+        "finalLoss": 0.011985020114681189,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Advanced Toughened Ceramic",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Dental implants",
+            "Thermal barriers",
+            "Industrial crucibles"
+          ],
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "h-BN",
+      "commonName": "Hexagonal Boron Nitride",
+      "type": "Layered Ceramic",
+      "emergenceIndices": {
+        "componentEmergence": 0.8485367204875638,
+        "interfaceEmergence": 0.8263375816077015,
+        "bulkPropertyEmergence": 0.9100333283932548,
+        "defectRobustness": 0.9043349428236529,
+        "thermalEmergence": 0.9480957813661728,
+        "mechanicalEmergence": 0.9680152210342949,
+        "functionalEmergence": 0.8890252749525693,
+        "stabilityEmergence": 0.9370230739117531,
+        "averageEmergence": 0.9039252405721204
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -0.9722562973886331
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.005192975362230583,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Layered Ceramic",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Lubricants",
+            "Heat sinks",
+            "Insulators"
+          ],
+          "timestamp": "2026-04-19T03:14:30.934Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Ti",
+      "commonName": "Titanium Metal",
+      "type": "Structural Metal",
+      "emergenceIndices": {
+        "componentEmergence": 0.8525373060686708,
+        "interfaceEmergence": 0.915336634428594,
+        "bulkPropertyEmergence": 0.8721054259183855,
+        "defectRobustness": 0.9111498404404086,
+        "thermalEmergence": 0.8651945875666578,
+        "mechanicalEmergence": 0.9692708121505356,
+        "functionalEmergence": 0.8581871142474915,
+        "stabilityEmergence": 0.863141600792326,
+        "averageEmergence": 0.8883654152016336
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -1.0066884765695614
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.0010943253911360707,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Structural Metal",
+          "componentComplexity": 1,
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Aerospace",
+            "Biomedical",
+            "Chemical plants"
+          ],
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "TiC",
+      "commonName": "Titanium Carbide",
+      "type": "Ceramic Compound",
+      "emergenceIndices": {
+        "componentEmergence": 0.9453299026932738,
+        "interfaceEmergence": 0.9576122117548248,
+        "bulkPropertyEmergence": 0.8816542550349368,
+        "defectRobustness": 0.9097752956319642,
+        "thermalEmergence": 0.9534459709610056,
+        "mechanicalEmergence": 0.9610740928882274,
+        "functionalEmergence": 0.8924463789453241,
+        "stabilityEmergence": 0.953650824668403,
+        "averageEmergence": 0.931873616572245
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.255866666666667,
+          "temperature": 832.2222222222222,
+          "stability": 0.9908509442178944,
+          "energyState": -0.9815351947663871
+        },
+        "stabilityRange": {
+          "min": 0.38773452013686227,
+          "max": 0.9908509442178944
+        },
+        "averageStability": 0.717659544954542
+      },
+      "trainingResult": {
+        "finalLoss": 0.010349838221093113,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.935Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Ceramic Compound",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Cutting tools",
+            "Wear resistant coatings"
+          ],
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "CF-Composite",
+      "commonName": "Carbon Fiber Reinforced Polymer",
+      "type": "Engineered Composite",
+      "emergenceIndices": {
+        "componentEmergence": 0.8963730343549984,
+        "interfaceEmergence": 0.8667041303389686,
+        "bulkPropertyEmergence": 0.9209517714814185,
+        "defectRobustness": 0.8972320056659242,
+        "thermalEmergence": 0.8884543034319821,
+        "mechanicalEmergence": 0.9358724367784679,
+        "functionalEmergence": 0.917341333708168,
+        "stabilityEmergence": 0.9421867788945957,
+        "averageEmergence": 0.9081394743318154
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -0.999811161795343
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.017469508313840042,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Engineered Composite",
+          "componentComplexity": 1,
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Aircraft structures",
+            "Sports equipment",
+            "Automotive"
+          ],
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Sapphire",
+      "commonName": "Sapphire Single Crystal (Al₂O₃)",
+      "type": "Single-Crystal Ceramic",
+      "emergenceIndices": {
+        "componentEmergence": 0.8937750454703141,
+        "interfaceEmergence": 0.8229502586081971,
+        "bulkPropertyEmergence": 0.8812233665520548,
+        "defectRobustness": 0.9423786213069726,
+        "thermalEmergence": 0.8691044068070591,
+        "mechanicalEmergence": 0.9282503848070801,
+        "functionalEmergence": 0.9358273211534713,
+        "stabilityEmergence": 0.9254814975603803,
+        "averageEmergence": 0.8998738627831911
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -1.043537205489724
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.012198121127086363,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Single-Crystal Ceramic",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Optics",
+            "Semiconductors",
+            "Watches"
+          ],
+          "timestamp": "2026-04-19T03:14:30.936Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "WC",
+      "commonName": "Tungsten Carbide",
+      "type": "Ultra-Hard Ceramic",
+      "emergenceIndices": {
+        "componentEmergence": 0.9335418917151486,
+        "interfaceEmergence": 0.8149648149795651,
+        "bulkPropertyEmergence": 0.8822579595626261,
+        "defectRobustness": 0.8300402403379095,
+        "thermalEmergence": 0.9400007725287826,
+        "mechanicalEmergence": 0.8713434820753976,
+        "functionalEmergence": 0.9521087670465148,
+        "stabilityEmergence": 0.9598954991792167,
+        "averageEmergence": 0.8980191784281452
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -0.9786203369362292
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.01434834448023739,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Ultra-Hard Ceramic",
+          "componentComplexity": 2,
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Drill bits",
+            "Cutting tools",
+            "Armor"
+          ],
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "GF-Composite",
+      "commonName": "Glass Fiber Reinforced Plastic",
+      "type": "Polymer Composite",
+      "emergenceIndices": {
+        "componentEmergence": 0.8484578877837112,
+        "interfaceEmergence": 0.8516319729383506,
+        "bulkPropertyEmergence": 0.9310750301584122,
+        "defectRobustness": 0.8336214936104402,
+        "thermalEmergence": 0.9461907019518893,
+        "mechanicalEmergence": 0.8840080441007038,
+        "functionalEmergence": 0.8165529039935379,
+        "stabilityEmergence": 0.9118457191967643,
+        "averageEmergence": 0.8779229692167261
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.066666666666666,
+          "temperature": 832.2222222222222,
+          "stability": 0.9921047889937428,
+          "energyState": -1.0088106038992488
+        },
+        "stabilityRange": {
+          "min": 0.4295573582107391,
+          "max": 0.9921047889937428
+        },
+        "averageStability": 0.7423070137885334
+      },
+      "trainingResult": {
+        "finalLoss": 0.013727590790551997,
+        "epochsTrained": 40,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level2": {
+          "description": "Molecular bonding",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level3": {
+          "description": "Simple crystal structures",
+          "source": "Phases 20-21 (Basic materials)",
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level4": {
+          "description": "Advanced engineered materials",
+          "source": "Phase 22 (Advanced materials - current)",
+          "materialType": "Polymer Composite",
+          "componentComplexity": 1,
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        },
+        "level5": {
+          "description": "Industrial/technological applications",
+          "keyApplications": [
+            "Wind turbine blades",
+            "Boats",
+            "Construction"
+          ],
+          "timestamp": "2026-04-19T03:14:30.937Z"
+        }
+      },
+      "executionTime": 0
+    }
+  ],
+  "summary": {
+    "totalMaterials": 10,
+    "successRate": 1,
+    "averageEmergence": 0.9015850627420366,
+    "averageStability": 0.731260008031844,
+    "totalExecutionTime": 13,
+    "executionTimePerMaterial": 1.3,
+    "fpOpsPerRequest": 2,
+    "emergencePatternsDetected": 5,
+    "confidence": 0.9308354630633104
+  },
+  "emergencePatterns": [
+    {
+      "type": "Simple vs Composite Emergence",
+      "description": "Pure materials (90.4%) vs Composites (89.3%)",
+      "strength": 0.010692301209707211
+    },
+    {
+      "type": "Ceramic vs Metallic Material Classes",
+      "description": "Ceramics (90.7%) vs Metals (88.8%)",
+      "strength": 0.018892119493557957
+    },
+    {
+      "type": "Hardness Hierarchy in Advanced Materials",
+      "description": "Ultra-hard ceramics (WC) > Advanced ceramics (SiC, Al₂O₃) > Metals > Composites",
+      "ranking": [
+        {
+          "name": "WC",
+          "hardness": 9.5,
+          "type": "Ultra-Hard Ceramic"
+        },
+        {
+          "name": "SiC",
+          "hardness": 9.2,
+          "type": "Wide Bandgap Semiconductor"
+        },
+        {
+          "name": "Al₂O₃",
+          "hardness": 9,
+          "type": "Advanced Ceramic"
+        },
+        {
+          "name": "TiC",
+          "hardness": 9,
+          "type": "Ceramic Compound"
+        },
+        {
+          "name": "Sapphire",
+          "hardness": 9,
+          "type": "Single-Crystal Ceramic"
+        },
+        {
+          "name": "ZrO₂",
+          "hardness": 8,
+          "type": "Advanced Toughened Ceramic"
+        },
+        {
+          "name": "Ti",
+          "hardness": 6,
+          "type": "Structural Metal"
+        },
+        {
+          "name": "h-BN",
+          "hardness": 2,
+          "type": "Layered Ceramic"
+        },
+        {
+          "name": "CF-Composite",
+          "hardness": "Variable (3-8)",
+          "type": "Engineered Composite"
+        },
+        {
+          "name": "GF-Composite",
+          "hardness": "Moderate (2-5)",
+          "type": "Polymer Composite"
+        }
+      ],
+      "strength": 0.92
+    },
+    {
+      "type": "Thermal Stability Emergence",
+      "description": "Highest melting point: TiC (3160°C)",
+      "samples": [
+        {
+          "name": "TiC",
+          "meltingPoint": 3160
+        },
+        {
+          "name": "h-BN",
+          "meltingPoint": 3000
+        },
+        {
+          "name": "WC",
+          "meltingPoint": 2870
+        },
+        {
+          "name": "ZrO₂",
+          "meltingPoint": 2715
+        },
+        {
+          "name": "Al₂O₃",
+          "meltingPoint": 2072
+        },
+        {
+          "name": "Sapphire",
+          "meltingPoint": 2072
+        },
+        {
+          "name": "Ti",
+          "meltingPoint": 1668
+        }
+      ],
+      "strength": 0.88
+    },
+    {
+      "type": "Composite Interface Effects",
+      "description": "Interface emergence: 85.9% (weakest point)",
+      "implication": "Composites limited by interface bonding, not component strength",
+      "strength": 0.85
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Hydrogen",
+  "model": "Bohr",
+  "timestamp": "2026-04-20T23:49:13.832Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": -0.001269984770615129,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.529,
+      "measured": 0.526353003707461,
+      "error_pct": "0.50"
+    },
+    "ionization_energy": {
+      "reference": 13.6,
+      "measured": 13.689105288931096,
+      "error_pct": "0.66"
+    },
+    "ground_state_energy": {
+      "reference": -13.6,
+      "measured": -13.808971990026883,
+      "error_pct": "-1.54"
+    }
+  }
+}

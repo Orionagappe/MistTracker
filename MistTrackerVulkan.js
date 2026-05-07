@@ -91,7 +91,12 @@ const TABLES = {
   categories: 'Categories',
   users: 'Users',
   currentState: 'CurrentState',
-  assets: 'MistAssets'  // New table for asset management
+  assets: 'MistAssets',  // New table for asset management
+  // Phase 42: Linguistic Emergence Analysis
+  englishLanguageRules: 'EnglishLanguageRules',
+  questionValidationMetrics: 'QuestionValidationMetrics',
+  questionTemplates: 'QuestionTemplates',
+  semanticRelationships: 'SemanticRelationships'
 };
 
 // --- Session and State Management ---
@@ -317,6 +322,56 @@ function ensureMistDatabase(db) {
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.users} (id INT AUTO_INCREMENT PRIMARY KEY, userName VARCHAR(255), accountId VARCHAR(255) UNIQUE, password_hash VARCHAR(255), dateCreated DATETIME, lastSession DATETIME, sessions TEXT)`);
   db.query(`CREATE TABLE IF NOT EXISTS ${TABLES.currentState} (sessionId VARCHAR(255) PRIMARY KEY, state TEXT, timestamp DATETIME)`);
   db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.user_milestones (user_id VARCHAR(255) PRIMARY KEY, milestone_data TEXT, updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP)`);
+  
+  // Phase 42: Linguistic Emergence Analysis Tables
+  db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.${TABLES.englishLanguageRules} (
+    rule_id INT AUTO_INCREMENT PRIMARY KEY,
+    rule_name VARCHAR(255) NOT NULL,
+    rule_type ENUM('grammar', 'syntax', 'semantic', 'pragmatic') NOT NULL,
+    rule_category VARCHAR(255),
+    rule_definition TEXT NOT NULL,
+    examples JSON,
+    emergence_penalty DECIMAL(5,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )`);
+  
+  db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.${TABLES.questionValidationMetrics} (
+    metric_id INT AUTO_INCREMENT PRIMARY KEY,
+    question TEXT NOT NULL,
+    question_type VARCHAR(255),
+    information_content DECIMAL(5,2),
+    clarity_score DECIMAL(5,2),
+    answerability_score DECIMAL(5,2),
+    framework_independence DECIMAL(5,2),
+    emergence_measure DECIMAL(5,2),
+    quality_rating VARCHAR(50),
+    tested_in_phase VARCHAR(50),
+    results JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )`);
+  
+  db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.${TABLES.questionTemplates} (
+    template_id INT AUTO_INCREMENT PRIMARY KEY,
+    template_name VARCHAR(255) NOT NULL,
+    template_structure TEXT NOT NULL,
+    parameter_slots INT,
+    valid_domains VARCHAR(255),
+    success_rate_physics DECIMAL(5,2),
+    emergence_boost DECIMAL(5,2),
+    exemplar_questions JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )`);
+  
+  db.query(`CREATE TABLE IF NOT EXISTS ${MIST_SCHEMA}.${TABLES.semanticRelationships} (
+    relationship_id INT AUTO_INCREMENT PRIMARY KEY,
+    concept_1 VARCHAR(255),
+    concept_2 VARCHAR(255),
+    relationship_type VARCHAR(255),
+    bidirectional BOOLEAN,
+    information_flow DECIMAL(5,2),
+    emergence_metric DECIMAL(5,2),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )`);
 }
 
 // --- Data Integrity and Utilities ---
@@ -333,7 +388,11 @@ async function updateMistData(db, csvDir = './data') {
     'DataRelationships',
     'WordDefinitions',
     'Categories',
-    'Users'
+    'Users',
+    'EnglishLanguageRules',
+    'QuestionValidationMetrics',
+    'QuestionTemplates',
+    'SemanticRelationships'
     // Add more as needed
   ];
 

@@ -1,0 +1,26 @@
+{
+  "status": "partial",
+  "atom": "Potassium",
+  "timestamp": "2026-05-01T02:16:36.647Z",
+  "tests_passed": 2,
+  "tests_total": 3,
+  "causality_score": 80,
+  "residual_error": 0.0069,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0139,
+      "measured": 0.0141094411,
+      "error_pct": "1.51"
+    },
+    "ionization_energy": {
+      "reference": 4.34,
+      "measured": 4.364074,
+      "error_pct": "0.55"
+    },
+    "ground_state_energy": {
+      "reference": -175.8,
+      "measured": -175.824778,
+      "error_pct": "0.01"
+    }
+  }
+}

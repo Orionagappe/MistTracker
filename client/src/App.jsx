@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './App.css';
 import { setAuthToken, authAPI } from './api';
 import LoginPage from './pages/LoginPage';
-import DashboardPage from './pages/DashboardPage';
+import HydrogenProxyPage from './pages/HydrogenProxyPage';
 import ErrorBoundary from './components/ErrorBoundary';
 import ToastContainer from './components/ToastContainer';
 import { errorHandler } from './utils/errorHandling';
@@ -115,7 +115,7 @@ function App() {
     <ErrorBoundary>
       <div className="app">
         {user ? (
-          <DashboardPage user={user} onLogout={handleLogout} ws={wsRef.current} />
+          <HydrogenProxyPage user={user} onLogout={handleLogout} />
         ) : (
           <LoginPage onLogin={handleLogin} />
         )}

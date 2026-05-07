@@ -1,0 +1,242 @@
+Know the basic lab safety rules.
+
+Always wear safety goggles, gloves, and lab coats. Know the location of safety equipment. Never eat, drink, or run in the lab.
+
+
+
+Know why it is necessary for everyone to have a fundamental knowledge of biology.
+
+Biology helps us understand living systems, health, and the environment. It informs medical, environmental, and ethical decisions. Basic knowledge is essential for informed citizenship.
+
+
+
+Recognize the different types of variables that may be present in an experiment.
+
+Independent variable (changed), dependent variable (measured), and controlled variables (kept constant).
+
+
+
+Explain the advantage of using the metric system over the system we use in the United States.
+
+The metric system is decimal-based, universal, and easier for scientific calculations and conversions.
+
+
+
+Identify the basic units of measure in the metric system.
+
+Meter (length), gram (mass), liter (volume), and second (time).
+
+
+
+Know the pH of a neutral solution.
+
+pH 7 is neutral.
+
+
+
+Be able to calculate the difference in hydrogen ion concentration between two different solutions.
+
+Each pH unit represents a tenfold difference in [H+]. For example, pH 4 is 100 times more acidic than pH 6.
+
+
+
+Know what the positive reactions look like when testing for sugar, starch, or protein.
+
+Benedict’s test (sugar): orange/red; Iodine (starch): blue-black; Biuret (protein): violet.
+
+
+
+Be able to identify the reagents used to detect sugars, starch, lipids, and proteins.
+
+Benedict’s (sugar), iodine (starch), Sudan III or brown paper (lipids), Biuret (protein).
+
+
+
+Define magnification, resolution, and contrast.
+
+Magnification: enlarging image; resolution: clarity/detail; contrast: difference between light/dark areas.
+
+
+
+
+Explain the purpose of a wet mount.
+
+Allows observation of living cells/tissues in a natural, hydrated state.
+
+
+
+Identify the various parts of a microscope.
+
+Parts: eyepiece, objective lenses, stage, coarse/fine focus, light source, diaphragm, arm, base.
+
+
+
+State differences between eukaryotic and prokaryotic cells.
+
+Eukaryotes have nuclei and organelles; prokaryotes lack both. Eukaryotes are usually larger.
+
+
+
+Recognize an animal cell or a plant cell under a microscope and identify one cell structure that differs between these two cell types.
+
+Plant cells have cell walls and chloroplasts; animal cells do not. Look for a large central vacuole in plants.
+
+
+
+Know the source of bromelain in our experiment on enzyme activity.
+
+Bromelain comes from pineapple.
+
+
+
+Explain what is lost when a protein is denatured.
+
+The protein loses its three-dimensional structure and function.
+
+
+
+Identify factors that could influence the rate of diffusion.
+
+Temperature, concentration gradient, molecule size, and medium (solid/liquid/gas).
+
+
+
+Define osmosis, hypotonic, hypertonic, and isotonic.
+
+Osmosis: water movement across a membrane. Hypotonic: lower solute; hypertonic: higher solute; isotonic: equal solute.
+
+
+
+Describe the function of stomata.
+
+Stomata allow gas exchange (CO2 in, O2 and water vapor out) in plant leaves.
+
+
+
+Identify the process commonly used to separate leaf pigments.
+
+Paper chromatography.
+
+
+
+Identify the ultimate source of energy powering photosynthesis.
+
+Sunlight.
+
+
+
+Identify the reasons bromothymol blue turned yellow, then blue again, during the photosynthesis lab.
+
+Yellow: CO2 produced (acidic); blue: CO2 used up during photosynthesis (solution becomes basic/neutral).
+
+
+Identify the gas that caused the balloon to expand in the respiration lab and the reaction that produced it.
+
+CO2 from cellular respiration (glucose breakdown).
+
+
+
+Name the products of aerobic respiration.
+
+CO2, H2O, and ATP.
+
+
+
+Describe the function of ATP in a cell.
+
+ATP stores and provides energy for cellular processes.
+
+
+
+Identify the phase of mitosis shown by each of several plant cell cycle models.
+
+Identify by chromosome arrangement: prophase (condensing), metaphase (aligned), anaphase (separating), telophase (two groups).
+
+
+
+Know the types of cells that undergo mitosis and meiosis.
+
+Mitosis: somatic (body) cells. Meiosis: germ cells (produce gametes).
+
+
+
+Describe the end product, including the number of end product, of meiosis.
+
+Four non-identical haploid cells (gametes).
+
+
+
+Describe the difference between diploid and haploid cells.
+
+Diploid: two sets of chromosomes (2n); haploid: one set (n).
+
+
+
+Determine the genotype possibilities resulting from a cross between two heterozygous parents.
+
+Genotypes: 1 AA : 2 Aa : 1 aa (if A = dominant, a = recessive).
+
+
+
+Be able to recognize the 9:3:3:1 phenotype ratio in the results of a dihybrid cross.
+
+9:3:3:1 ratio = two traits, both parents heterozygous for both genes.
+
+
+
+Determine the possible blood types of a child, given the blood type of one parent.
+
+Depends on both parents’ genotypes; use Punnett square for combinations (A, B, AB, O).
+
+
+
+Contrast replication with transcription.
+
+Replication copies DNA; transcription makes RNA from DNA.
+
+
+
+Compare and contrast ribose with deoxyribose.
+
+Ribose (RNA) has an extra oxygen atom compared to deoxyribose (DNA).
+
+
+Be able to transcribe and translate a given DNA sequence (generate the resulting mRNA and amino acid sequences).  You will be given a copy of the genetic code table.
+
+Transcribe: DNA to mRNA (A→U, T→A, C↔G). Translate: use codons to find amino acids.
+
+
+
+Name the reasons why strawberries were chosen for DNA extraction.
+
+Strawberries are octoploid (8 sets of chromosomes), soft, and yield lots of DNA.
+
+
+
+Identify the material most commonly used to prepare the gel for electrophoresis.
+
+Agarose.
+
+
+
+Explain how gel electrophoresis separates molecules.
+
+Molecules move through gel by size/charge; smaller move farther.
+
+
+
+Identify the different beak adaptations evaluated and the food each was best suited for.
+
+Different beak shapes suited for seeds, insects, nectar, etc.; adaptation matches food source.
+
+
+
+Define protein clock theory and macroevolution.
+
+Protein clock: molecular changes accumulate at steady rate. Macroevolution: large-scale evolutionary changes above species level.
+
+
+
+Know the difference between a scientific name and a common name.
+
+Scientific name: universal, Latin, two parts (genus, species). Common name: varies by region/language.

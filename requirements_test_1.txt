@@ -1,0 +1,10 @@
+# Test 1: Coherence Frequency Prediction Validation
+# Requirements for running MistTracker Phase 0 validation
+
+numpy>=1.20.0
+scipy>=1.7.0
+matplotlib>=3.4.0
+cdflib>=1.0.0  # Optional: for direct PSP FIELDS CDF file access
+
+# Installation:
+# pip install -r requirements_test_1.txt

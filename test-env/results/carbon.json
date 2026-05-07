@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Carbon",
+  "model": "Bohr",
+  "timestamp": "2026-05-01T02:12:21.555Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": -0.0006666666666666666,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0442,
+      "measured": 0.0439262181,
+      "error_pct": "-0.62"
+    },
+    "ionization_energy": {
+      "reference": 11.26,
+      "measured": 11.290463,
+      "error_pct": "0.27"
+    },
+    "ground_state_energy": {
+      "reference": -37.8,
+      "measured": -37.857115,
+      "error_pct": "0.15"
+    }
+  }
+}

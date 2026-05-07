@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Chlorine",
+  "timestamp": "2026-05-01T02:16:36.566Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0049,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0156,
+      "measured": 0.0157933415,
+      "error_pct": "1.24"
+    },
+    "ionization_energy": {
+      "reference": 12.97,
+      "measured": 12.997011,
+      "error_pct": "0.21"
+    },
+    "ground_state_energy": {
+      "reference": -340.7,
+      "measured": -340.774012,
+      "error_pct": "0.02"
+    }
+  }
+}

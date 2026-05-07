@@ -1,0 +1,124 @@
+/* Convergence Analysis Styles */
+
+.convergence-analysis {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+  color: #e0e0e0;
+}
+
+.convergence-analysis h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.metric-selector {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.metric-btn {
+  padding: 8px 16px;
+  border: 2px solid #333;
+  background: transparent;
+  color: #aaa;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: monospace;
+  font-size: 0.9em;
+  transition: all 0.2s;
+}
+
+.metric-btn:hover {
+  border-color: #555;
+  color: #ccc;
+}
+
+.metric-btn.active {
+  border-color: #4ecdc4;
+  color: #4ecdc4;
+  background: rgba(78, 205, 196, 0.1);
+}
+
+.chart-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  padding: 10px;
+  background: #0f0f0f;
+  border-radius: 4px;
+}
+
+.convergence-canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+.convergence-table {
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.convergence-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: monospace;
+  font-size: 0.9em;
+}
+
+.convergence-table thead {
+  background: #0f0f0f;
+  border-bottom: 2px solid #333;
+}
+
+.convergence-table th {
+  padding: 12px;
+  text-align: left;
+  color: #4ecdc4;
+  font-weight: bold;
+}
+
+.convergence-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid #222;
+}
+
+.convergence-table tbody tr:hover {
+  background: #111;
+}
+
+.atom-cell {
+  font-weight: bold;
+}
+
+.convergence-insights {
+  margin-top: 20px;
+  padding: 16px;
+  background: #0f0f0f;
+  border-left: 3px solid #4ecdc4;
+  border-radius: 4px;
+}
+
+.convergence-insights h3 {
+  margin: 0 0 12px 0;
+  color: #4ecdc4;
+}
+
+.convergence-insights ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.convergence-insights li {
+  padding: 8px 0;
+  color: #aaa;
+}
+
+.convergence-insights strong {
+  color: #fff;
+}

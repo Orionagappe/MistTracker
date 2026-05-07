@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-04-19T16:28:38.291Z",
+  "detector_config": {
+    "anomaly_z_score": 3,
+    "divergence_threshold": 0.5,
+    "cascade_threshold": 2,
+    "goal_drift_threshold": 0.3,
+    "consensus_threshold": 0.8,
+    "rampancy_score_alert": 70
+  },
+  "test_results": {
+    "nodes_monitored": 5,
+    "alerts_triggered": 0,
+    "avg_rampancy": 8.02,
+    "status_distribution": {
+      "GREEN": 5,
+      "YELLOW": 0,
+      "ORANGE": 0,
+      "RED": 0,
+      "CRITICAL": 0
+    },
+    "latest_detections": []
+  },
+  "signatures_detected": []
+}

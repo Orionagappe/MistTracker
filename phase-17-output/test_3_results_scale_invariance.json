@@ -1,0 +1,59 @@
+{
+  "test_name": "Phase 0 Test 3: Scale-Invariance Frequency Ratio",
+  "test_date": "2026-04-21T13:40:31.339724",
+  "data_source": "Synthetic (Realistic Parker/Wind Parameters)",
+  "data_source_is_real": false,
+  "date_range_start": "2025-01-01",
+  "date_range_end": "2025-01-07",
+  "concurrent_windows_found": 7,
+  "windows_analyzed": 7,
+  "frequency_ratios": [
+    0.5179,
+    1.4684,
+    2.4348,
+    1.2579,
+    1.5789,
+    0.2973,
+    0.2846
+  ],
+  "parker_frequencies_hz": [
+    0.155029,
+    0.322998,
+    0.355469,
+    0.097656,
+    0.300293,
+    0.131592,
+    0.078369
+  ],
+  "wind_frequencies_hz": [
+    0.299316,
+    0.219971,
+    0.145996,
+    0.077637,
+    0.190186,
+    0.442627,
+    0.275391
+  ],
+  "ratio_mean": 1.12,
+  "ratio_std": 0.7384,
+  "expected_ratio": 3.162,
+  "predicted_tolerance": 0.3,
+  "windows_within_tolerance": 0,
+  "percent_within_tolerance": 0.0,
+  "falsification_threshold_percent": 60.0,
+  "rms_error_percent": 64.5804,
+  "status": "FALSIFIED",
+  "verdict": "No scale-invariance pattern detected",
+  "methodology": "Parker Solar Probe FIELDS L2 + Wind MFI H2 concurrent CDFs. Dominant frequencies extracted via continuous wavelet transform. No frequency injection or pre-building. Frequencies discovered from real (or realistic synthetic) B-field data. Ratio computed across multiple simultaneous observation windows. Scale-invariance validated if ratio clusters around \u00e2\u02c6\u016110 \u00c2\u00b1 0.3.",
+  "spdf_urls": {
+    "psp_fields": "https://spdf.gsfc.nasa.gov/pub/data/psp/fields/l2/",
+    "wind_mfi": "https://spdf.gsfc.nasa.gov/pub/data/wind/mfi/mfi_h2/"
+  },
+  "validation_notes": [
+    "Parker Solar Probe orbits at 0.1-0.7 AU",
+    "Wind orbits at ~1 AU (L1 point)",
+    "Frequency ratio should reflect orbital radius scaling if physics is scale-invariant",
+    "Observed mean ratio: 1.120 (expected: 3.162)",
+    "0.0% of windows within tolerance \u00c2\u00b1 0.3"
+  ]
+}

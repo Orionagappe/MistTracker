@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "particle": "Lambda",
+  "domain": "subatomic",
+  "timestamp": "2026-05-01T02:21:42.007Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.008686666666666665,
+  "measurements": {
+    "mass": {
+      "reference": 1115.683,
+      "measured": 1115.105,
+      "error_pct": "-0.052"
+    },
+    "decay_lifetime": {
+      "reference": "2.60e-10",
+      "measured": "2.57e-10",
+      "error_pct": "-1.338"
+    },
+    "magnetic_moment": {
+      "reference": -0.613,
+      "measured": -0.621,
+      "error_pct": "1.320"
+    }
+  }
+}

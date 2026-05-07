@@ -1,0 +1,1541 @@
+{
+  "modes": [
+    {
+      "id": "MODE-0-Large-Scale Mode (k ~ 0.01 h/Mpc)",
+      "type": "Large-Scale Mode (k ~ 0.01 h/Mpc)",
+      "wavenumber": 0.01,
+      "redshift": 10,
+      "wavelength": "628.32",
+      "emergence": "73.0",
+      "patternCount": 12,
+      "growthFactor": "0.0455",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0000",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 90,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": false,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.0000020661157,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": false,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": true,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.000877489104816,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Large-Scale Mode (k ~ 0.01 h/Mpc): k=0.010, λ=628.3 Mpc, z=10",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=20.49×H₀, age=1.08 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=4604.022",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.0455, f=1.00",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=1.000, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0000",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0000, ratio=1.000",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-1-Intermediate Mode (k ~ 0.1 h/Mpc)",
+      "type": "Intermediate Mode (k ~ 0.1 h/Mpc)",
+      "wavenumber": 0.1,
+      "redshift": 5,
+      "wavelength": "62.83",
+      "emergence": "73.0",
+      "patternCount": 12,
+      "growthFactor": "0.0833",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0006",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 90,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.00000693653011,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": false,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.05536581953847,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Intermediate Mode (k ~ 0.1 h/Mpc): k=0.100, λ=62.8 Mpc, z=5",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=8.29×H₀, age=1.99 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=1862.499",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.0833, f=0.99",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=0.999, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0006",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0006, ratio=1.001",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-2-Galaxy-Scale Mode (k ~ 0.3 h/Mpc)",
+      "type": "Galaxy-Scale Mode (k ~ 0.3 h/Mpc)",
+      "wavenumber": 0.3,
+      "redshift": 3,
+      "wavelength": "20.94",
+      "emergence": "73.0",
+      "patternCount": 12,
+      "growthFactor": "0.1250",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0038",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 90,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.0000151708445,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": false,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.4,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Galaxy-Scale Mode (k ~ 0.3 h/Mpc): k=0.300, λ=20.9 Mpc, z=3",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=4.57×H₀, age=3.00 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=1025.745",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.1250, f=0.98",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=0.971, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0038",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0038, ratio=1.010",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-3-BAO Feature (k ~ 0.05 h/Mpc)",
+      "type": "BAO Feature (k ~ 0.05 h/Mpc)",
+      "wavenumber": 0.05,
+      "redshift": 0.5,
+      "wavelength": "125.66",
+      "emergence": "73.7",
+      "patternCount": 12,
+      "growthFactor": "0.3333",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0051",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 76.06879137410922,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.00011109525083,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.015899656456725,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "BAO Feature (k ~ 0.05 h/Mpc): k=0.050, λ=125.7 Mpc, z=0.5",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=1.32×H₀, age=8.91 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=297.047",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.3333, f=0.76",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=1.000, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0051",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0051, ratio=1.000",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-4-High-Redshift Mode (z=100)",
+      "type": "High-Redshift Mode (z=100)",
+      "wavenumber": 0.02,
+      "redshift": 100,
+      "wavelength": "314.16",
+      "emergence": "73.0",
+      "patternCount": 12,
+      "growthFactor": "0.0050",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0000",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 90,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": false,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.0000000245074,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": false,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": true,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.00305559453793,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "High-Redshift Mode (z=100): k=0.020, λ=314.2 Mpc, z=100",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=569.69×H₀, age=0.12 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=127990.117",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.0050, f=1.00",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=1.000, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0000",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0000, ratio=1.000",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-5-Cluster-Scale Mode (k ~ 1.0 h/Mpc)",
+      "type": "Cluster-Scale Mode (k ~ 1.0 h/Mpc)",
+      "wavenumber": 1,
+      "redshift": 0,
+      "wavelength": "6.28",
+      "emergence": "70.1",
+      "patternCount": 12,
+      "growthFactor": "0.5000",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0011",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 52.97498038588546,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 70,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": true,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.00001876569694,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": true,
+          "confidence": 43.49334704709611,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Cluster-Scale Mode (k ~ 1.0 h/Mpc): k=1.000, λ=6.3 Mpc, z=0",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=1.00×H₀, age=Infinity Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=224.667",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.5000, f=0.53",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=0.075, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0011",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0012, ratio=1.087",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-6-Small-Scale Mode (k ~ 5.0 h/Mpc)",
+      "type": "Small-Scale Mode (k ~ 5.0 h/Mpc)",
+      "wavenumber": 5,
+      "redshift": 0,
+      "wavelength": "1.26",
+      "emergence": "75.2",
+      "patternCount": 12,
+      "growthFactor": "0.5000",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0001",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 52.97498038588546,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 70,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.0000025,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Small-Scale Mode (k ~ 5.0 h/Mpc): k=5.000, λ=1.3 Mpc, z=0",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=1.00×H₀, age=Infinity Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=224.667",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.5000, f=0.53",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=0.010, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0001",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0002, ratio=2.582",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-7-Radiative Era Mode (z=1e6)",
+      "type": "Radiative Era Mode (z=1e6)",
+      "wavenumber": 0.5,
+      "redshift": 1000000,
+      "wavelength": "12.57",
+      "emergence": "64.1",
+      "patternCount": 12,
+      "growthFactor": "0.0000",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0000",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": false,
+          "confidence": 2.4999975000025,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 90,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 70,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": true,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": false,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": true,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": true,
+          "confidence": 41.003200501608255,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Radiative Era Mode (z=1e6): k=0.500, λ=12.6 Mpc, z=1000000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=561249449.89×H₀, age=0.00 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=126094043075.110",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.0000, f=1.00",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=0.312, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0000",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0000, ratio=1.025",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-8-CMB-Scale Mode (k ~ 0.01 h/Mpc, z=1090)",
+      "type": "CMB-Scale Mode (k ~ 0.01 h/Mpc, z=1090)",
+      "wavenumber": 0.01,
+      "redshift": 1090,
+      "wavelength": "628.32",
+      "emergence": "73.0",
+      "patternCount": 12,
+      "growthFactor": "0.0005",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0000",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 90,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": false,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.00000000021004,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": false,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": true,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.000877489104816,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "CMB-Scale Mode (k ~ 0.01 h/Mpc, z=1090): k=0.010, λ=628.3 Mpc, z=1090",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=20225.18×H₀, age=0.01 Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=4543923.854",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.0005, f=1.00",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=1.000, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0000",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0000, ratio=1.000",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "MODE-9-Current Universe Mode (k ~ 0.1 h/Mpc, z=0)",
+      "type": "Current Universe Mode (k ~ 0.1 h/Mpc, z=0)",
+      "wavenumber": 0.1,
+      "redshift": 0,
+      "wavelength": "62.83",
+      "emergence": "69.9",
+      "patternCount": 12,
+      "growthFactor": "0.5000",
+      "densityContrast": "0.0000",
+      "powerSpectrum": "0.0222",
+      "willCollapse": false,
+      "patterns": [
+        {
+          "name": "Linear Growth Factor",
+          "detected": true,
+          "confidence": 92,
+          "physics": "D(a) ∝ a in matter-dominated era"
+        },
+        {
+          "name": "Growth Rate f(Ω_m)",
+          "detected": true,
+          "confidence": 52.97498038588546,
+          "physics": "f = d(ln D)/d(ln a) ≈ Ω_m^0.55"
+        },
+        {
+          "name": "Transfer Function Evolution",
+          "detected": true,
+          "confidence": 88,
+          "physics": "T(k) suppresses power at small scales"
+        },
+        {
+          "name": "Power Spectrum P(k) ∝ k^n",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Harrison-Zeldovich spectrum n ≈ 1"
+        },
+        {
+          "name": "Nonlinear Growth Effects",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Perturbation theory: second-order terms appear"
+        },
+        {
+          "name": "Jeans Instability Criterion",
+          "detected": false,
+          "confidence": 50,
+          "physics": "Wavelength > Jeans length allows growth"
+        },
+        {
+          "name": "Density Contrast Evolution",
+          "detected": false,
+          "confidence": 70,
+          "physics": "δ ∝ D(a) from linear perturbation theory"
+        },
+        {
+          "name": "Virialized Halo Formation",
+          "detected": false,
+          "confidence": 75.00024971508414,
+          "physics": "δ > 1.686 triggers gravitational collapse"
+        },
+        {
+          "name": "Radiation-Matter Equality Effect",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Growth suppressed during radiation era"
+        },
+        {
+          "name": "Scale-Dependent Power Spectrum",
+          "detected": false,
+          "confidence": 70,
+          "physics": "Different scales grow at different rates"
+        },
+        {
+          "name": "Baryon Acoustic Features",
+          "detected": false,
+          "confidence": 60,
+          "physics": "Sound waves frozen at recombination"
+        },
+        {
+          "name": "Mode Coupling (Nonlinear)",
+          "detected": false,
+          "confidence": 40.05536581953847,
+          "physics": "Modes interact nonlinearly at small scales"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Primordial Fluctuation",
+          "description": "Current Universe Mode (k ~ 0.1 h/Mpc, z=0): k=0.100, λ=62.8 Mpc, z=0",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Expansion Background",
+          "description": "ΛCDM universe: H(z)=1.00×H₀, age=Infinity Gyr",
+          "timestamp": 0.002,
+          "physics": "Friedmann equation"
+        },
+        {
+          "level": 2,
+          "step": "Jeans Instability Check",
+          "description": "Supersonic: true, k_Jeans=224.667",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Linear Perturbation Theory",
+          "description": "Growth factor D(a)=0.5000, f=0.53",
+          "timestamp": 0.004,
+          "physics": "Perturbation equation: d²δ/dt² + 2H dδ/dt = 4πGρδ"
+        },
+        {
+          "level": 4,
+          "step": "Transfer Function",
+          "description": "T(k)=0.999, k_eq=0.460",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Power Spectrum Evolution",
+          "description": "P(k)∝k^0.96, P_linear=0.0222",
+          "timestamp": 0.006,
+          "physics": "Harrison-Zeldovich + growth + transfer"
+        },
+        {
+          "level": 6,
+          "step": "Nonlinear Corrections",
+          "description": "P_nonlinear=0.0222, ratio=1.001",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Density Contrast Growth",
+          "description": "δ=0.0000, threshold=1.686",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Collapse Prediction",
+          "description": "Will collapse: false, time to collapse: 1686.00 Gyr",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Structure Formation Complete",
+          "description": "All patterns emergent from gravity + Friedmann equations",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalModes": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "71.8"
+  }
+}

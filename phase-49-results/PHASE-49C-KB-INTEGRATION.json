@@ -1,0 +1,247 @@
+{
+  "timestamp": "2026-04-19T15:46:56.666Z",
+  "phase": 49,
+  "subphase": "C",
+  "schema": {
+    "name": "MistTracker Q&A Knowledge Base",
+    "version": "1.0",
+    "description": "Comprehensive Q&A system for physics, linguistics, semantics integration",
+    "indexes": {
+      "full_text": {
+        "fields": [
+          "question",
+          "answer",
+          "keywords"
+        ],
+        "type": "inverted_index",
+        "stemming": true,
+        "stop_words": true,
+        "language": "english"
+      },
+      "semantic": {
+        "fields": [
+          "question_embedding",
+          "answer_embedding"
+        ],
+        "type": "vector_search",
+        "dimension": 384,
+        "metric": "cosine_similarity"
+      },
+      "tag_index": {
+        "fields": [
+          "tags",
+          "domain"
+        ],
+        "type": "hash_index",
+        "cardinality": "high"
+      },
+      "finding_index": {
+        "fields": [
+          "findingId",
+          "findingTitle"
+        ],
+        "type": "hash_index"
+      },
+      "tier_index": {
+        "fields": [
+          "tier"
+        ],
+        "type": "hash_index"
+      }
+    },
+    "search_capabilities": [
+      {
+        "type": "Keyword Search",
+        "description": "Full-text search across questions and answers",
+        "example": "Search for \"emergence ceiling\" or \"quantum coherence\"",
+        "latency_ms": 50
+      },
+      {
+        "type": "Semantic Search",
+        "description": "Find conceptually similar Q&A pairs using embeddings",
+        "example": "Search similar to \"Why is complexity limited?\"",
+        "latency_ms": 100
+      },
+      {
+        "type": "Tag Filtering",
+        "description": "Filter by domain, concept, difficulty",
+        "example": "Show all \"quantum\" or \"physics\" Q&A pairs",
+        "latency_ms": 10
+      },
+      {
+        "type": "Advanced Filtering",
+        "description": "Combine tier, domain, finding, complexity",
+        "example": "Physics + technical tier + symmetry concepts",
+        "latency_ms": 25
+      }
+    ]
+  },
+  "total_qa_pairs": 48,
+  "indexes": {
+    "full_text_terms": 534,
+    "tag_keys": 76,
+    "finding_keys": 16,
+    "tier_keys": 3,
+    "domain_keys": 4
+  },
+  "ui_integration": {
+    "integration_points": [
+      {
+        "component": "FindingsPanel",
+        "action": "Display finding summary with Q&A link",
+        "ui_element": "Info button → open Q&A search",
+        "behavior": "Pre-filter Q&A for current finding",
+        "audio_sync": "Play audio for selected Q&A tier"
+      },
+      {
+        "component": "SearchBar",
+        "action": "Global Q&A search across all findings",
+        "ui_element": "Main search input",
+        "behavior": "Execute full-text + semantic search",
+        "results_display": "Ranked list with preview"
+      },
+      {
+        "component": "TierSelector",
+        "action": "Filter Q&A by explanation tier",
+        "ui_element": "Tier tabs",
+        "behavior": "Switch between executive/technical/deep Q&A",
+        "audio_sync": "Load appropriate audio tier"
+      },
+      {
+        "component": "DomainTabs",
+        "action": "Filter Q&A by domain",
+        "ui_element": "Domain selector",
+        "behavior": "Show all Q&A for selected domain",
+        "audio_sync": "Domain-specific audio narration"
+      },
+      {
+        "component": "AudioPlayer",
+        "action": "Play synthesized answer audio",
+        "ui_element": "Media player controls",
+        "behavior": "Control playback, show captions",
+        "sync": "Text highlight + visualization sync"
+      }
+    ],
+    "qa_modal": {
+      "title": "Q&A Detail View",
+      "sections": [
+        {
+          "name": "Question",
+          "element": "H3",
+          "editable": false
+        },
+        {
+          "name": "Answer",
+          "element": "Paragraph",
+          "editable": false
+        },
+        {
+          "name": "Audio",
+          "element": "Player",
+          "controls": [
+            "play",
+            "pause",
+            "speed",
+            "captions"
+          ]
+        },
+        {
+          "name": "Metadata",
+          "element": "Tags",
+          "content": [
+            "domain",
+            "tier",
+            "finding",
+            "keywords"
+          ]
+        },
+        {
+          "name": "Related",
+          "element": "List",
+          "content": "Related Q&A pairs"
+        }
+      ]
+    },
+    "search_result_card": {
+      "elements": [
+        {
+          "field": "question",
+          "prominence": "high",
+          "truncate": 100
+        },
+        {
+          "field": "answer_preview",
+          "prominence": "medium",
+          "truncate": 150
+        },
+        {
+          "field": "domain",
+          "prominence": "low",
+          "highlight": true
+        },
+        {
+          "field": "tier",
+          "prominence": "low"
+        },
+        {
+          "field": "relevance_score",
+          "prominence": "medium"
+        }
+      ]
+    }
+  },
+  "accessibility": {
+    "closed_captions": {
+      "format": "WebVTT",
+      "timing_sync": "±200ms tolerance",
+      "speaker_identification": true,
+      "emphasis_markers": true,
+      "technical_term_definitions": true
+    },
+    "audio_descriptions": {
+      "for_diagrams": "Text descriptions of visualizations",
+      "for_equations": "LaTeX to plain English",
+      "for_concepts": "Definition available on demand",
+      "length": "Concise but complete"
+    },
+    "keyboard_navigation": {
+      "tab_order": "Logical (Q&A search → results → player)",
+      "shortcuts": [
+        {
+          "key": "Space",
+          "action": "Play/Pause"
+        },
+        {
+          "key": "Right",
+          "action": "Next Q&A"
+        },
+        {
+          "key": "Left",
+          "action": "Previous Q&A"
+        },
+        {
+          "key": "/",
+          "action": "Focus search"
+        },
+        {
+          "key": "Esc",
+          "action": "Close Q&A modal"
+        }
+      ]
+    },
+    "screen_reader_support": {
+      "aria_labels": true,
+      "role_descriptions": true,
+      "focus_management": true,
+      "loading_states": true,
+      "error_messages": true
+    },
+    "cognitive_accessibility": {
+      "simple_language_option": "Simplified answer explanations",
+      "concept_definitions": "Hover definitions for technical terms",
+      "visual_emphasis": "Color highlighting of key concepts",
+      "pacing_control": "Adjustable audio playback speed"
+    }
+  },
+  "status": "KNOWLEDGE BASE INTEGRATION COMPLETE"
+}

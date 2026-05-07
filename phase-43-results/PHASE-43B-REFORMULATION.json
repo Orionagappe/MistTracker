@@ -1,0 +1,247 @@
+{
+  "timestamp": "2026-04-19T14:18:23.045Z",
+  "original_mean_emergence": 58.6,
+  "reformulated_mean_emergence": 54.5,
+  "total_improvement": -4.1,
+  "high_emergence_count": 2,
+  "total_questions": 15,
+  "all_high_emergence": false,
+  "batches": [
+    {
+      "domain": "Epistemological Concepts",
+      "original_mean_emergence": 55.2,
+      "reformulated_questions": [
+        {
+          "id": "1.1",
+          "original_question": "Can the nature of \"proof\" be derived from mathematical logic and empirical validation independently?",
+          "original_emergence": 72,
+          "reformulated_question": "Can the nature of \"proof\" be derived from mathematical logic and empirical validation independently?",
+          "new_emergence": 72,
+          "improvement": 0,
+          "applied_strategies": [],
+          "concept": "Proof",
+          "high_emergence_achieved": true
+        },
+        {
+          "id": "1.2",
+          "original_question": "Must evidence necessarily support only one interpretation, or can irreducible ambiguity preserve valid uncertainty?",
+          "original_emergence": 41.4,
+          "reformulated_question": "Must evidence necessarily support only one interpretation, or can irreducible ambiguity preserve valid uncertainty independently across multiple theoretical frameworks?",
+          "new_emergence": 56.4,
+          "improvement": 15,
+          "applied_strategies": [
+            "Add Framework Independence",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Evidence",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "1.3",
+          "original_question": "What is the fundamental limit preventing certainty from exceeding 100% in empirical knowledge systems?",
+          "original_emergence": 53,
+          "reformulated_question": "What is necessarily the fundamental limit preventing certainty from exceeding 100% in empirical knowledge systems independently, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 44.4,
+          "improvement": -8.6,
+          "applied_strategies": [
+            "Add Framework Independence",
+            "Add Necessity Language",
+            "Increase Semantic Depth",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Certainty",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "1.4",
+          "original_question": "If a proposition can be proven true in formal logic systems, must it necessarily be empirically true in all cases?",
+          "original_emergence": 56.4,
+          "reformulated_question": "If a proposition can be proven true in formal logic systems, must it necessarily be empirically true in all cases across multiple theoretical frameworks?",
+          "new_emergence": 56.4,
+          "improvement": 0,
+          "applied_strategies": [
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Truth",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "1.5",
+          "original_question": "Does knowledge validated through peer review in physics exhibit the same irreducibility to first principles as mathematical proof?",
+          "original_emergence": 53,
+          "reformulated_question": "Does knowledge validated through peer review in physics exhibit the same irreducibility to first principles as mathematical proof independently, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 52.4,
+          "improvement": -0.6,
+          "applied_strategies": [
+            "Add Framework Independence",
+            "Add Necessity Language",
+            "Increase Semantic Depth",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Knowledge",
+          "high_emergence_achieved": false
+        }
+      ],
+      "new_mean_emergence": 56.3,
+      "high_emergence_count": 1,
+      "total_questions": 5
+    },
+    {
+      "domain": "Emergent Concepts",
+      "original_mean_emergence": 62.5,
+      "reformulated_questions": [
+        {
+          "id": "2.1",
+          "original_question": "Can complexity be derived from randomness and determinism independently, or is emergence framework-dependent?",
+          "original_emergence": 66.4,
+          "reformulated_question": "Must complexity be derived from randomness and determinism independently, or is emergence framework-dependent, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 46.4,
+          "improvement": -20,
+          "applied_strategies": [
+            "Add Necessity Language",
+            "Increase Semantic Depth"
+          ],
+          "concept": "Complexity",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "2.2",
+          "original_question": "Must patterns necessarily emerge in all complex systems, or can pure randomness persist indefinitely?",
+          "original_emergence": 56.4,
+          "reformulated_question": "Must patterns necessarily emerge in all complex systems, or can pure randomness persist indefinitely?",
+          "new_emergence": 56.4,
+          "improvement": 0,
+          "applied_strategies": [
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Pattern",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "2.3",
+          "original_question": "What is the fundamental limit preventing randomness from generating order above a certain organizational threshold?",
+          "original_emergence": 62.4,
+          "reformulated_question": "What is necessarily the fundamental limit preventing randomness from generating order above a certain organizational threshold, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 44.4,
+          "improvement": -18,
+          "applied_strategies": [
+            "Add Necessity Language",
+            "Increase Semantic Depth",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Randomness",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "2.4",
+          "original_question": "If hierarchical structure emerges at molecular scales through self-assembly, must similar hierarchies emerge at all scales?",
+          "original_emergence": 70,
+          "reformulated_question": "If hierarchical structure emerges at molecular scales through self-assembly, must similar hierarchies emerge at all scales?",
+          "new_emergence": 70,
+          "improvement": 0,
+          "applied_strategies": [],
+          "concept": "Hierarchy",
+          "high_emergence_achieved": true
+        },
+        {
+          "id": "2.5",
+          "original_question": "Does self-organization in thermodynamic systems exhibit the same emergence as self-organization in information systems?",
+          "original_emergence": 57.4,
+          "reformulated_question": "Does self-organization in thermodynamic systems exhibit the same emergence as self-organization in information systems independently, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 62.4,
+          "improvement": 5,
+          "applied_strategies": [
+            "Add Framework Independence",
+            "Add Necessity Language",
+            "Increase Semantic Depth",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Self-Organization",
+          "high_emergence_achieved": false
+        }
+      ],
+      "new_mean_emergence": 55.9,
+      "high_emergence_count": 1,
+      "total_questions": 5
+    },
+    {
+      "domain": "Universal Principles",
+      "original_mean_emergence": 58,
+      "reformulated_questions": [
+        {
+          "id": "3.1",
+          "original_question": "Can symmetry principles be derived from conservation laws and from invariance under transformations independently?",
+          "original_emergence": 56.4,
+          "reformulated_question": "Must symmetry principles be derived from conservation laws and from invariance under transformations independently?",
+          "new_emergence": 46.4,
+          "improvement": -10,
+          "applied_strategies": [
+            "Add Necessity Language",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Symmetry",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "3.2",
+          "original_question": "Must conservation laws necessarily hold in all systems, or can they be violated under specific conditions?",
+          "original_emergence": 56.4,
+          "reformulated_question": "Must conservation laws necessarily hold in all systems, or can they be violated under specific conditions across multiple theoretical frameworks?",
+          "new_emergence": 56.4,
+          "improvement": 0,
+          "applied_strategies": [
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Conservation",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "3.3",
+          "original_question": "What is the fundamental limit preventing scale-invariance from being perfect at all scales in physical systems?",
+          "original_emergence": 68,
+          "reformulated_question": "What is necessarily the fundamental limit preventing scale-invariance from being perfect at all scales in physical systems, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 44.4,
+          "improvement": -23.6,
+          "applied_strategies": [
+            "Add Necessity Language",
+            "Increase Semantic Depth"
+          ],
+          "concept": "Scale",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "3.4",
+          "original_question": "If symmetry holds in quantum mechanical systems, must it necessarily hold in classical systems at all scales?",
+          "original_emergence": 62,
+          "reformulated_question": "If symmetry holds in quantum mechanical systems, must it necessarily hold in classical systems at all scales across multiple theoretical frameworks?",
+          "new_emergence": 56.4,
+          "improvement": -5.6,
+          "applied_strategies": [
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Duality",
+          "high_emergence_achieved": false
+        },
+        {
+          "id": "3.5",
+          "original_question": "Does the invariance principle observed in relativity exhibit the same universality as invariance principles in information theory?",
+          "original_emergence": 47.4,
+          "reformulated_question": "Does the invariance principle observed in relativity exhibit the same universality as invariance principles in information theory independently, and what does this imply for the broader theoretical structure?",
+          "new_emergence": 52.4,
+          "improvement": 5,
+          "applied_strategies": [
+            "Add Framework Independence",
+            "Add Necessity Language",
+            "Increase Semantic Depth",
+            "Add Multiple Perspectives"
+          ],
+          "concept": "Invariance",
+          "high_emergence_achieved": false
+        }
+      ],
+      "new_mean_emergence": 51.2,
+      "high_emergence_count": 0,
+      "total_questions": 5
+    }
+  ]
+}

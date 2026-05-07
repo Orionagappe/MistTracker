@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Phosphorus",
+  "timestamp": "2026-05-01T02:16:36.484Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.004566666666666667,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0177,
+      "measured": 0.0178951375,
+      "error_pct": "1.10"
+    },
+    "ionization_energy": {
+      "reference": 10.49,
+      "measured": 10.510886,
+      "error_pct": "0.20"
+    },
+    "ground_state_energy": {
+      "reference": -221.2,
+      "measured": -221.348983,
+      "error_pct": "0.07"
+    }
+  }
+}

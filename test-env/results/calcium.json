@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Calcium",
+  "timestamp": "2026-05-01T02:16:36.688Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0042,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0133,
+      "measured": 0.013433069,
+      "error_pct": "1.00"
+    },
+    "ionization_energy": {
+      "reference": 6.11,
+      "measured": 6.125195,
+      "error_pct": "0.25"
+    },
+    "ground_state_energy": {
+      "reference": -246.5,
+      "measured": -246.487103,
+      "error_pct": "-0.01"
+    }
+  }
+}

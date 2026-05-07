@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Silicon",
+  "timestamp": "2026-05-01T02:16:36.443Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.004666666666666666,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0189,
+      "measured": 0.0191355183,
+      "error_pct": "1.25"
+    },
+    "ionization_energy": {
+      "reference": 8.15,
+      "measured": 8.160588,
+      "error_pct": "0.13"
+    },
+    "ground_state_energy": {
+      "reference": -168.8,
+      "measured": -168.759124,
+      "error_pct": "-0.02"
+    }
+  }
+}

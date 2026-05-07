@@ -1,0 +1,1511 @@
+{
+  "objects": [
+    {
+      "id": "QUANTUM-0-Primordial Mini BH (1e12 kg)",
+      "type": "Primordial Mini BH (1e12 kg)",
+      "mass_solar": 5e-19,
+      "emergence": "85.2",
+      "patternCount": 12,
+      "hawking_temp_K": "1.23e+11",
+      "hawking_luminosity_W": "3.60e+8",
+      "evaporation_years": "2.62e+12",
+      "dm_production_rate": "1.33e+38",
+      "tunneling_prob": "1.00e+0",
+      "entropy_k_B": "3.62e+17",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 93,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 82,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": true,
+          "confidence": 74.99999999999994,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Primordial Mini BH (1e12 kg): M=0.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-1-Micro BH (1 MT)",
+      "type": "Micro BH (1 MT)",
+      "mass_solar": 5e-13,
+      "emergence": "85.2",
+      "patternCount": 12,
+      "hawking_temp_K": "1.23e+5",
+      "hawking_luminosity_W": "3.60e-4",
+      "evaporation_years": "2.62e+30",
+      "dm_production_rate": "1.33e+26",
+      "tunneling_prob": "1.00e+0",
+      "entropy_k_B": "3.62e+29",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 93,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 82,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": true,
+          "confidence": 74.99999994935555,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Micro BH (1 MT): M=0.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-2-Lunar Mass BH",
+      "type": "Lunar Mass BH",
+      "mass_solar": 1e-11,
+      "emergence": "84.9",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e+3",
+      "hawking_luminosity_W": "9.01e-7",
+      "evaporation_years": "2.10e+34",
+      "dm_production_rate": "3.33e+23",
+      "tunneling_prob": "1.00e+0",
+      "entropy_k_B": "1.45e+32",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 93,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 82,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": true,
+          "confidence": 74.9999989871112,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Lunar Mass BH: M=0.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-3-Asteroid BH",
+      "type": "Asteroid BH",
+      "mass_solar": 1e-10,
+      "emergence": "84.9",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e+2",
+      "hawking_luminosity_W": "9.01e-9",
+      "evaporation_years": "2.10e+37",
+      "dm_production_rate": "3.33e+21",
+      "tunneling_prob": "1.00e+0",
+      "entropy_k_B": "1.45e+34",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 93,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 82,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": true,
+          "confidence": 74.99998987111202,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Asteroid BH: M=0.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-4-Stellar Mass BH (10 M☉)",
+      "type": "Stellar Mass BH (10 M☉)",
+      "mass_solar": 10,
+      "emergence": "75.0",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e-9",
+      "hawking_luminosity_W": "9.01e-31",
+      "evaporation_years": "2.10e+70",
+      "dm_production_rate": "3.33e-1",
+      "tunneling_prob": "0.00e+0",
+      "entropy_k_B": "1.45e+56",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 72.37421882838608,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": false,
+          "confidence": -25,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 78.04834534278005,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Stellar Mass BH (10 M☉): M=10.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-5-Intermediate Mass BH (1000 M☉)",
+      "type": "Intermediate Mass BH (1000 M☉)",
+      "mass_solar": 1000,
+      "emergence": "74.4",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e-11",
+      "hawking_luminosity_W": "9.01e-35",
+      "evaporation_years": "2.10e+76",
+      "dm_production_rate": "3.33e-5",
+      "tunneling_prob": "0.00e+0",
+      "entropy_k_B": "1.45e+60",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 72.00004334909444,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": false,
+          "confidence": -25,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 74.04834534278005,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 84.42777728820792,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": false,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Intermediate Mass BH (1000 M☉): M=1000.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-6-Galactic Nucleus (1e6 M☉)",
+      "type": "Galactic Nucleus (1e6 M☉)",
+      "mass_solar": 1000000,
+      "emergence": "73.6",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e-14",
+      "hawking_luminosity_W": "9.01e-41",
+      "evaporation_years": "2.10e+85",
+      "dm_production_rate": "3.33e-11",
+      "tunneling_prob": "0.00e+0",
+      "entropy_k_B": "1.45e+66",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 72.00000000004334,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": false,
+          "confidence": -25,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 68.04834534278004,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 81.04299665894506,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": false,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Galactic Nucleus (1e6 M☉): M=1000000.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-7-AGN Central (1e8 M☉)",
+      "type": "AGN Central (1e8 M☉)",
+      "mass_solar": 100000000,
+      "emergence": "73.3",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e-16",
+      "hawking_luminosity_W": "9.01e-45",
+      "evaporation_years": "2.10e+91",
+      "dm_production_rate": "3.33e-15",
+      "tunneling_prob": "0.00e+0",
+      "entropy_k_B": "1.45e+70",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 72,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": false,
+          "confidence": -25,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 64.04834534278005,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 81.00044067462379,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": false,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "AGN Central (1e8 M☉): M=100000000.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-8-Ultra-massive BH (1e10 M☉)",
+      "type": "Ultra-massive BH (1e10 M☉)",
+      "mass_solar": 10000000000,
+      "emergence": "72.9",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e-18",
+      "hawking_luminosity_W": "9.01e-49",
+      "evaporation_years": "2.10e+97",
+      "dm_production_rate": "3.33e-19",
+      "tunneling_prob": "0.00e+0",
+      "entropy_k_B": "1.45e+74",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 72,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": false,
+          "confidence": -25,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 60.04834534278087,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 81.00000440785311,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": false,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Ultra-massive BH (1e10 M☉): M=10000000000.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "QUANTUM-9-Cosmological BH Seed (100 M☉)",
+      "type": "Cosmological BH Seed (100 M☉)",
+      "mass_solar": 100,
+      "emergence": "74.7",
+      "patternCount": 12,
+      "hawking_temp_K": "6.17e-10",
+      "hawking_luminosity_W": "9.01e-33",
+      "evaporation_years": "2.10e+73",
+      "dm_production_rate": "3.33e-3",
+      "tunneling_prob": "0.00e+0",
+      "entropy_k_B": "1.45e+58",
+      "patterns": [
+        {
+          "name": "Hawking Radiation Temperature",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Quantum field theory at event horizon"
+        },
+        {
+          "name": "Hawking Luminosity",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Energy via particle creation"
+        },
+        {
+          "name": "Black Hole Evaporation",
+          "detected": true,
+          "confidence": 88,
+          "physics": "Finite lifetime from quantum effects"
+        },
+        {
+          "name": "Particle Creation",
+          "detected": true,
+          "confidence": 81.72956297143202,
+          "physics": "Virtual pair separation and tunneling"
+        },
+        {
+          "name": "Dark Matter Production",
+          "detected": true,
+          "confidence": 72.00432778579427,
+          "physics": "WIMP/axion generation from Hawking radiation"
+        },
+        {
+          "name": "Quantum Tunneling",
+          "detected": false,
+          "confidence": -25,
+          "physics": "WKB barrier penetration"
+        },
+        {
+          "name": "Greybody Factor",
+          "detected": true,
+          "confidence": 83,
+          "physics": "Absorption and scattering by geometry"
+        },
+        {
+          "name": "Bekenstein-Hawking Entropy",
+          "detected": true,
+          "confidence": 91,
+          "physics": "Area-entropy relationship"
+        },
+        {
+          "name": "Black Hole Microstates",
+          "detected": false,
+          "confidence": 78.30102999566398,
+          "physics": "Exponential state degeneracy"
+        },
+        {
+          "name": "Information Dynamics",
+          "detected": true,
+          "confidence": 76.04834534278005,
+          "physics": "Page curve and information preservation"
+        },
+        {
+          "name": "Surface Gravity Quantum Effects",
+          "detected": true,
+          "confidence": 86.41253772595154,
+          "physics": "Acceleration radiation and Unruh effect"
+        },
+        {
+          "name": "Inverse Temperature-Mass Relation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "T ∝ M^-1: hotter = smaller"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Black Hole System",
+          "description": "Cosmological BH Seed (100 M☉): M=100.0M☉",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Quantum Field Theory",
+          "description": "Curved spacetime QFT",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Hawking-Unruh Effect",
+          "description": "Thermal radiation",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Pair Production",
+          "description": "Virtual pairs at horizon",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Particle Escape",
+          "description": "Hawking emission",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Mass-Energy Loss",
+          "description": "Evaporation",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Dark Matter Production",
+          "description": "DM generation",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Quantum Tunneling",
+          "description": "Barrier penetration",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Information and Entropy",
+          "description": "Area-entropy relation",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Quantum Gravity Emerges",
+          "description": "QFT + GR = complete",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalObjects": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "78.4"
+  }
+}

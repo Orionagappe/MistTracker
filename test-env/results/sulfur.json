@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Sulfur",
+  "timestamp": "2026-05-01T02:16:36.524Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": -0.002466666666666667,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0166,
+      "measured": 0.0164419072,
+      "error_pct": "-0.95"
+    },
+    "ionization_energy": {
+      "reference": 10.36,
+      "measured": 10.3395,
+      "error_pct": "-0.20"
+    },
+    "ground_state_energy": {
+      "reference": -277.4,
+      "measured": -277.434378,
+      "error_pct": "0.01"
+    }
+  }
+}

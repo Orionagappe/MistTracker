@@ -1,0 +1,405 @@
+/* ProxyComparisonMatrix Styles - Phase 17.2.0 */
+
+.proxy-comparison-matrix {
+  background: #0f0f0f;
+  border: 1px solid #00ff88;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 136, 0.1);
+  width: 100%;
+}
+
+.loading-state {
+  text-align: center;
+  color: #666;
+  padding: 40px 20px;
+  font-size: 14px;
+}
+
+.matrix-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #333;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.matrix-header h2 {
+  margin: 0;
+  color: #00ff88;
+  font-size: 22px;
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sort-controls label {
+  color: #888;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sort-controls select {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 4px;
+  color: #00ff88;
+  padding: 8px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.sort-controls select:hover {
+  border-color: #00ff88;
+}
+
+.sort-controls select:focus {
+  outline: none;
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.2);
+}
+
+.error-message {
+  background: #1a1a1a;
+  border: 1px solid #ff9900;
+  border-radius: 4px;
+  color: #ffaa00;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  font-size: 12px;
+}
+
+/* Comparison Table */
+.comparison-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 30px;
+  border: 1px solid #333;
+  border-radius: 8px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.comparison-table thead {
+  background: #1a1a1a;
+  border-bottom: 2px solid #00ff88;
+}
+
+.comparison-table th {
+  color: #00ff88;
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 11px;
+}
+
+.comparison-table tbody tr {
+  border-bottom: 1px solid #333;
+  transition: background-color 0.2s ease;
+}
+
+.comparison-table tbody tr:hover {
+  background: #1a1a1a;
+}
+
+.comparison-table tbody tr.trained {
+  opacity: 1;
+}
+
+.comparison-table tbody tr.untrained {
+  opacity: 0.6;
+}
+
+.comparison-table td {
+  padding: 15px;
+  color: #aaa;
+}
+
+/* Atom Name Cell */
+.atom-name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #00ff88 !important;
+  font-weight: 500;
+}
+
+.atom-badge {
+  min-width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1a1a1a;
+  border: 1px solid #00ff88;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #00ff88;
+  font-size: 14px;
+}
+
+/* Accuracy Cell */
+.accuracy-cell .metric-value {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.accuracy-bar {
+  height: 6px;
+  min-width: 60px;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+/* Convergence Cell */
+.convergence-cell .metric-value {
+  font-family: 'Courier New', monospace;
+  color: #00ff88;
+}
+
+/* Speedup Cell */
+.speedup-cell .metric-value {
+  display: flex;
+  justify-content: center;
+}
+
+.speedup-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: #0f0f0f;
+  font-weight: 600;
+  font-size: 12px;
+  min-width: 45px;
+  text-align: center;
+}
+
+/* Size Cell */
+.size-cell .metric-value {
+  font-family: 'Courier New', monospace;
+  color: #00ff88;
+}
+
+/* Status Cell */
+.status-cell {
+  text-align: center;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.trained {
+  background: #00cc66;
+  color: #0f0f0f;
+}
+
+.status-badge.untrained {
+  background: #666;
+  color: #0f0f0f;
+}
+
+/* Comparison Stats */
+.comparison-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.stat-box {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.stat-box:hover {
+  border-color: #00ff88;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
+}
+
+.stat-box h4 {
+  margin: 0 0 10px 0;
+  color: #888;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  margin: 0;
+  color: #00ff88;
+  font-size: 28px;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+/* Legend */
+.comparison-legend {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.comparison-legend h4 {
+  margin: 0 0 12px 0;
+  color: #888;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.legend-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.legend-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 2px;
+}
+
+.legend-color.excellent {
+  background: #00ff88;
+}
+
+.legend-color.good {
+  background: #00cc66;
+}
+
+.legend-color.fair {
+  background: #ffaa00;
+}
+
+.legend-color.poor {
+  background: #ff5555;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .comparison-table th,
+  .comparison-table td {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .atom-badge {
+    min-width: 32px;
+    height: 32px;
+    font-size: 12px;
+  }
+
+  .stat-value {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .matrix-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .matrix-header h2 {
+    font-size: 18px;
+  }
+
+  .comparison-table-wrapper {
+    font-size: 11px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 10px;
+  }
+
+  .atom-badge {
+    min-width: 28px;
+    height: 28px;
+    font-size: 11px;
+  }
+
+  .comparison-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-value {
+    font-size: 20px;
+  }
+
+  .legend-items {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .proxy-comparison-matrix {
+    padding: 15px;
+  }
+
+  .matrix-header h2 {
+    font-size: 16px;
+  }
+
+  .sort-controls {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sort-controls select {
+    width: 100%;
+  }
+
+  .comparison-table {
+    font-size: 10px;
+  }
+
+  .comparison-table th,
+  .comparison-table td {
+    padding: 8px;
+  }
+
+  .atom-name {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .comparison-stats {
+    grid-template-columns: 1fr;
+  }
+}

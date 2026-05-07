@@ -1,0 +1,1665 @@
+{
+  "timestamp": "2026-04-19T14:48:02.876Z",
+  "phase": 45,
+  "subphase": "B",
+  "total_questions_proofread": 54,
+  "average_clarity_score": 92.5,
+  "average_changes_per_question": 0.6,
+  "total_clarity_improvements": 35,
+  "metric_usage": {
+    "Technical Precision": 21,
+    "Scope Clarity": 3,
+    "Logical Structure": 2,
+    "Ambiguity Reduction": 2
+  },
+  "domain_statistics": {
+    "Epistemology": {
+      "scores": [
+        87,
+        82,
+        87,
+        92,
+        79,
+        79
+      ],
+      "count": 6
+    },
+    "Logic": {
+      "scores": [
+        95,
+        100,
+        92,
+        100,
+        95,
+        92
+      ],
+      "count": 6
+    },
+    "Metaphysics": {
+      "scores": [
+        95,
+        100,
+        79,
+        100,
+        100,
+        100
+      ],
+      "count": 6
+    },
+    "Philosophy of Mind": {
+      "scores": [
+        95,
+        87,
+        92,
+        100,
+        92,
+        98
+      ],
+      "count": 6
+    },
+    "Aesthetics": {
+      "scores": [
+        87,
+        92,
+        76,
+        90,
+        92,
+        84
+      ],
+      "count": 6
+    },
+    "Political Philosophy": {
+      "scores": [
+        87,
+        87,
+        92,
+        95,
+        95,
+        87
+      ],
+      "count": 6
+    },
+    "Philosophy of Science": {
+      "scores": [
+        100,
+        92,
+        92,
+        100,
+        100,
+        95
+      ],
+      "count": 6
+    },
+    "Philosophy of Mathematics": {
+      "scores": [
+        92,
+        92,
+        95,
+        92,
+        100,
+        100
+      ],
+      "count": 6
+    },
+    "Philosophy of Language": {
+      "scores": [
+        95,
+        87,
+        92,
+        92,
+        100,
+        95
+      ],
+      "count": 6
+    }
+  },
+  "proofread_questions": [
+    {
+      "id": "1.1",
+      "domain": "Epistemology",
+      "subdomain": "Knowledge",
+      "original": "Is knowledge fundamentally propositional (knowledge that X) or can practical skills (knowledge how to do X) count as knowledge without propositional content?",
+      "proofread": "Is [knowledge: justified true [belief: mental state directed at a proposition] (or equivalent)] fundamentally propositional (knowledge that X) or can practical skills (knowledge how to do X) count as knowledge without propositional content?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "knowledge",
+          "change": "Add definition: [knowledge: justified true belief (or equivalent)]",
+          "reason": "Domain requires explicit definition of \"knowledge\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "belief",
+          "change": "Add definition: [belief: mental state directed at a proposition]",
+          "reason": "Domain requires explicit definition of \"belief\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Epistemology",
+      "keywords": [
+        "propositional knowledge",
+        "practical knowledge",
+        "reduction",
+        "skills"
+      ],
+      "semantic_depth": "Tests whether knowledge concept is unified or domain-dependent"
+    },
+    {
+      "id": "1.2",
+      "domain": "Epistemology",
+      "subdomain": "Justification",
+      "original": "Does justification for a belief require infinite backwards chain of supporting reasons or can foundational beliefs be self-justifying?",
+      "proofread": "Does [justification: sufficient rational support for [belief: mental state directed at a proposition]] for a belief require infinite backwards chain of supporting reasons or is it logically possible for foundational to beliefs be self-justifying?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "justification",
+          "change": "Add definition: [justification: sufficient rational support for belief]",
+          "reason": "Domain requires explicit definition of \"justification\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "belief",
+          "change": "Add definition: [belief: mental state directed at a proposition]",
+          "reason": "Domain requires explicit definition of \"belief\" to prevent equivocation"
+        },
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "Disambiguates between logical possibility and practical feasibility"
+        }
+      ],
+      "issues_detected": 3,
+      "clarity_score": 82,
+      "metrics_applied": [
+        "Technical Precision",
+        "Scope Clarity"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 3 clarity improvements using 2 priority metrics for Epistemology",
+      "keywords": [
+        "infinite regress",
+        "foundationalism",
+        "justification",
+        "reasons"
+      ],
+      "semantic_depth": "Addresses whether justification must be linear or can be self-supporting"
+    },
+    {
+      "id": "1.3",
+      "domain": "Epistemology",
+      "subdomain": "Belief Formation",
+      "original": "Must justified beliefs be formed through rational deliberation or can beliefs be justified if they result from reliable non-rational processes?",
+      "proofread": "Must justified beliefs be formed through rational deliberation or is it logically possible for beliefs to be justified if they result from reliable non-rational processes?",
+      "changes": [
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "Disambiguates between logical possibility and practical feasibility"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Scope Clarity"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Epistemology",
+      "keywords": [
+        "rationalism",
+        "reliability",
+        "belief formation",
+        "process"
+      ],
+      "semantic_depth": "Tests relationship between method of belief formation and justification status"
+    },
+    {
+      "id": "1.4",
+      "domain": "Epistemology",
+      "subdomain": "Skepticism",
+      "original": "Can skeptical hypotheses (brain in vat, evil demon) ever be rationally refuted or must we accept that certainty is forever beyond reach?",
+      "proofread": "Can skeptical hypotheses (brain in vat, evil demon) ever be rationally refuted or must we accept that certainty is forever beyond reach?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Epistemology",
+      "keywords": [
+        "skepticism",
+        "certainty",
+        "refutation",
+        "possibilities"
+      ],
+      "semantic_depth": "Explores whether skeptical challenges can be definitively answered"
+    },
+    {
+      "id": "1.5",
+      "domain": "Epistemology",
+      "subdomain": "Testimony",
+      "original": "Is testimony from others sufficient justification for belief or must beliefs acquired through testimony be independently verified?",
+      "proofread": "Is testimony from others sufficient [justification: sufficient rational support for [belief: mental state directed at a proposition]] for belief or must beliefs acquired through testimony be independently verified?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "justification",
+          "change": "Add definition: [justification: sufficient rational support for belief]",
+          "reason": "Domain requires explicit definition of \"justification\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "belief",
+          "change": "Add definition: [belief: mental state directed at a proposition]",
+          "reason": "Domain requires explicit definition of \"belief\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 3,
+      "clarity_score": 79,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Epistemology",
+      "keywords": [
+        "testimony",
+        "justification",
+        "authority",
+        "independence"
+      ],
+      "semantic_depth": "Tests epistemic status of second-hand knowledge"
+    },
+    {
+      "id": "1.6",
+      "domain": "Epistemology",
+      "subdomain": "Social Epistemology",
+      "original": "Can groups have collective knowledge that cannot be reduced to individual members' knowledge or is group belief always derivative?",
+      "proofread": "Can groups have collective [knowledge: justified true [belief: mental state directed at a proposition] (or equivalent)] that cannot be reduced to individual members' knowledge or is group belief always derivative?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "knowledge",
+          "change": "Add definition: [knowledge: justified true belief (or equivalent)]",
+          "reason": "Domain requires explicit definition of \"knowledge\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "belief",
+          "change": "Add definition: [belief: mental state directed at a proposition]",
+          "reason": "Domain requires explicit definition of \"belief\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 3,
+      "clarity_score": 79,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Epistemology",
+      "keywords": [
+        "collective knowledge",
+        "reduction",
+        "groups",
+        "emergence"
+      ],
+      "semantic_depth": "Asks whether epistemic agency scales from individual to collective"
+    },
+    {
+      "id": "2.1",
+      "domain": "Logic",
+      "subdomain": "Validity",
+      "original": "Does logical validity depend on the meanings of words or is validity purely formal structure independent of semantic content?",
+      "proofread": "Does logical [validity: if premises are true then conclusion must be true] depend on the meanings of words or is validity purely formal structure independent of semantic content?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "validity",
+          "change": "Add definition: [validity: if premises are true then conclusion must be true]",
+          "reason": "Domain requires explicit definition of \"validity\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "logicalStructure",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Logic",
+      "keywords": [
+        "validity",
+        "formal",
+        "semantic",
+        "structure"
+      ],
+      "semantic_depth": "Tests relationship between logical form and meaning"
+    },
+    {
+      "id": "2.2",
+      "domain": "Logic",
+      "subdomain": "Laws of Logic",
+      "original": "Are laws of logic like non-contradiction universal necessities or are they conventional rules adopted for pragmatic purposes?",
+      "proofread": "Are laws of logic like non-contradiction universal necessities or are they conventional rules adopted for pragmatic purposes?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "logicalStructure",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Logic",
+      "keywords": [
+        "laws of logic",
+        "necessity",
+        "convention",
+        "non-contradiction"
+      ],
+      "semantic_depth": "Explores whether logic is discovered or invented"
+    },
+    {
+      "id": "2.3",
+      "domain": "Logic",
+      "subdomain": "Logical Pluralism",
+      "original": "Can multiple incompatible logics be simultaneously true in different domains or must logic be monistic with exactly one correct system?",
+      "proofread": "Can multiple incompatible logics be simultaneously true in different domains or must logic be monistic with exactly one correct system?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "logicalStructure",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Logic",
+      "keywords": [
+        "logical pluralism",
+        "monism",
+        "domains",
+        "inconsistency"
+      ],
+      "semantic_depth": "Tests whether logic is domain-dependent"
+    },
+    {
+      "id": "2.4",
+      "domain": "Logic",
+      "subdomain": "Paradox and Inconsistency",
+      "original": "When logical systems derive contradictions, should we reject the principle causing contradiction or accept contradictions as true?",
+      "proofread": "When logical systems derive contradictions, should we reject the principle causing contradiction or accept contradictions as true?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "logicalStructure",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Logic",
+      "keywords": [
+        "paradox",
+        "inconsistency",
+        "paraconsistency",
+        "rejection"
+      ],
+      "semantic_depth": "Addresses how to respond when logic breaks down"
+    },
+    {
+      "id": "2.5",
+      "domain": "Logic",
+      "subdomain": "Logical Consequence",
+      "original": "Is logical consequence determined by formal structure alone or does it depend on whether premises actually guarantee conclusion in reality?",
+      "proofread": "Is [logical consequence: conclusion follows necessarily from premises] determined by formal structure alone or does it depend on whether premises actually guarantee conclusion in reality?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "logical consequence",
+          "change": "Add definition: [logical consequence: conclusion follows necessarily from premises]",
+          "reason": "Domain requires explicit definition of \"logical consequence\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "logicalStructure",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Logic",
+      "keywords": [
+        "consequence",
+        "formal",
+        "guarantees",
+        "reality"
+      ],
+      "semantic_depth": "Tests whether logic concerns possibility or actuality"
+    },
+    {
+      "id": "2.6",
+      "domain": "Logic",
+      "subdomain": "Intuitionistic Logic",
+      "original": "Must every true proposition be provable in principle or can there be true but unprovable truths?",
+      "proofread": "Must every true proposition be provable in principle or can there be true but unprovable truths?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "logicalStructure",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Logic",
+      "keywords": [
+        "intuitionistic",
+        "provability",
+        "truth",
+        "constructivism"
+      ],
+      "semantic_depth": "Explores relationship between truth and proof"
+    },
+    {
+      "id": "3.1",
+      "domain": "Metaphysics",
+      "subdomain": "Ontology",
+      "original": "Do abstract objects like numbers and properties exist mind-independently or are they human constructs with no independent reality?",
+      "proofread": "Do [abstract: not located in space-time] objects like numbers and properties exist mind-independently or are they human constructs with no independent reality?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "abstract",
+          "change": "Add definition: [abstract: not located in space-time]",
+          "reason": "Domain requires explicit definition of \"abstract\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Metaphysics",
+      "keywords": [
+        "abstract objects",
+        "existence",
+        "mind-independence",
+        "construction"
+      ],
+      "semantic_depth": "Tests scope of what can exist"
+    },
+    {
+      "id": "3.2",
+      "domain": "Metaphysics",
+      "subdomain": "Causation",
+      "original": "Is causation a feature of the world itself or merely a pattern we impose on events for explanatory convenience?",
+      "proofread": "Is causation a feature of the world itself or merely a pattern we impose on events for explanatory convenience?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Metaphysics",
+      "keywords": [
+        "causation",
+        "real",
+        "pattern",
+        "objective"
+      ],
+      "semantic_depth": "Explores objective status of causal relations"
+    },
+    {
+      "id": "3.3",
+      "domain": "Metaphysics",
+      "subdomain": "Identity",
+      "original": "Can an object persist through change of all its properties or must identity require some unchanging substance or core?",
+      "proofread": "Can an object persist through change of all its properties or must identity require some unchanging [substance: thing that can exist independently] or core?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "substance",
+          "change": "Add definition: [substance: thing that can exist independently]",
+          "reason": "Domain requires explicit definition of \"substance\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 3,
+      "clarity_score": 79,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Metaphysics",
+      "keywords": [
+        "identity",
+        "change",
+        "substance",
+        "properties"
+      ],
+      "semantic_depth": "Tests continuity conditions for objects through time"
+    },
+    {
+      "id": "3.4",
+      "domain": "Metaphysics",
+      "subdomain": "Possible Worlds",
+      "original": "Are possible worlds real entities with same ontological status as actual world or are they useful fictions for modal discourse?",
+      "proofread": "Are possible worlds real entities with same ontological status as actual world or are they useful fictions for modal discourse?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Metaphysics",
+      "keywords": [
+        "possible worlds",
+        "modality",
+        "reality",
+        "fiction"
+      ],
+      "semantic_depth": "Addresses metaphysical commitment of modal language"
+    },
+    {
+      "id": "3.5",
+      "domain": "Metaphysics",
+      "subdomain": "Time",
+      "original": "Does temporal flow and the passage of time exist objectively or is time just a static structure we experience subjectively?",
+      "proofread": "Does temporal flow and the passage of time exist objectively or is time just a static structure we experience subjectively?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Metaphysics",
+      "keywords": [
+        "time",
+        "flow",
+        "objectivity",
+        "A-theory",
+        "B-theory"
+      ],
+      "semantic_depth": "Tests whether time is dynamic or static reality"
+    },
+    {
+      "id": "3.6",
+      "domain": "Metaphysics",
+      "subdomain": "Composition",
+      "original": "Do composite objects like tables truly exist or are only fundamental particles real with mereological composition being a linguistic convenience?",
+      "proofread": "Do composite objects like tables truly exist or are only fundamental particles real with mereological composition being a linguistic convenience?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Metaphysics",
+      "keywords": [
+        "composition",
+        "parts",
+        "mereology",
+        "fundamental",
+        "composite"
+      ],
+      "semantic_depth": "Explores ontological status of composed objects"
+    },
+    {
+      "id": "4.1",
+      "domain": "Philosophy of Mind",
+      "subdomain": "Consciousness",
+      "original": "Is consciousness reducible to physical processes in the brain or does subjective experience exhibit properties irreducible to physical description?",
+      "proofread": "Is [consciousness: property of having subjective experience] reducible to physical processes in the brain or does subjective experience exhibit properties irreducible to physical description?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "consciousness",
+          "change": "Add definition: [consciousness: property of having subjective experience]",
+          "reason": "Domain requires explicit definition of \"consciousness\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Mind",
+      "keywords": [
+        "consciousness",
+        "physical",
+        "reducibility",
+        "qualia"
+      ],
+      "semantic_depth": "Tests whether mind/body divide is fundamental"
+    },
+    {
+      "id": "4.2",
+      "domain": "Philosophy of Mind",
+      "subdomain": "Intentionality",
+      "original": "Can mental states refer to objects in the world independently or does intentionality depend on causal history and interpretation?",
+      "proofread": "Can mental states refer to objects in the world independently or does [intentionality: property of being about or directed at something] depend on causal history and interpretation?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "intentionality",
+          "change": "Add definition: [intentionality: property of being about or directed at something]",
+          "reason": "Domain requires explicit definition of \"intentionality\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Mind",
+      "keywords": [
+        "intentionality",
+        "reference",
+        "causation",
+        "interpretation"
+      ],
+      "semantic_depth": "Explores how mental states get meaning"
+    },
+    {
+      "id": "4.3",
+      "domain": "Philosophy of Mind",
+      "subdomain": "Free Will",
+      "original": "If every mental event has a prior physical cause, can we maintain that our decisions are genuinely free or is free will incompatible with causation?",
+      "proofread": "If every mental event has a prior physical cause, can we maintain that our decisions are genuinely free or is free will incompatible with causation?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mind",
+      "keywords": [
+        "free will",
+        "causation",
+        "determinism",
+        "libertarianism"
+      ],
+      "semantic_depth": "Tests whether agency survives causal order"
+    },
+    {
+      "id": "4.4",
+      "domain": "Philosophy of Mind",
+      "subdomain": "Personal Identity",
+      "original": "Is personal identity constituted by psychological continuity (memory, personality) or biological continuity (same brain/body)?",
+      "proofread": "Is personal identity constituted by psychological continuity (memory, personality) or biological continuity (same brain/body)?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mind",
+      "keywords": [
+        "personal identity",
+        "continuity",
+        "psychological",
+        "biological"
+      ],
+      "semantic_depth": "Addresses what makes me the same person over time"
+    },
+    {
+      "id": "4.5",
+      "domain": "Philosophy of Mind",
+      "subdomain": "Other Minds",
+      "original": "Can we ever have justified belief in other minds or must we always remain agnostic about whether others are conscious?",
+      "proofread": "Can we ever have justified belief in other minds or must we always remain agnostic about whether others are conscious?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mind",
+      "keywords": [
+        "other minds",
+        "justified belief",
+        "consciousness",
+        "behavior"
+      ],
+      "semantic_depth": "Tests epistemology of mental states in others"
+    },
+    {
+      "id": "4.6",
+      "domain": "Philosophy of Mind",
+      "subdomain": "Artificial Intelligence",
+      "original": "Can artificial systems be genuinely conscious if they exhibit appropriate functional organization or is consciousness necessarily biological?",
+      "proofread": "Can artificial systems be genuinely conscious if they exhibit appropriate functional organization or is [consciousness: property of having subjective experience] necessarily biological, [then what follows?]",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "consciousness",
+          "change": "Add definition: [consciousness: property of having subjective experience]",
+          "reason": "Domain requires explicit definition of \"consciousness\" to prevent equivocation"
+        },
+        {
+          "type": "Logical Structure",
+          "original": "if X?",
+          "change": "if X, [then what follows?]",
+          "reason": "Makes explicit that conditional requires consequent to be fully formed"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 98,
+      "metrics_applied": [
+        "Technical Precision",
+        "Logical Structure"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Philosophy of Mind",
+      "keywords": [
+        "consciousness",
+        "artificial",
+        "functional",
+        "substrate",
+        "qualia"
+      ],
+      "semantic_depth": "Explores whether consciousness depends on implementation"
+    },
+    {
+      "id": "5.1",
+      "domain": "Aesthetics",
+      "subdomain": "Beauty",
+      "original": "Is aesthetic beauty an objective property of objects or is it fundamentally subjective existing only in the eye of the beholder?",
+      "proofread": "Is aesthetic beauty an objective property of objects versus fundamentally subjective existing only in the eye of the beholder?",
+      "changes": [
+        {
+          "type": "Ambiguity Reduction",
+          "original": "X or is it Y",
+          "change": "X versus Y",
+          "reason": "Clarifies exclusive contrast, removing ambiguity about mutual exclusivity"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Ambiguity Reduction"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "ambiguityReduction"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Aesthetics",
+      "keywords": [
+        "beauty",
+        "objective",
+        "subjective",
+        "properties"
+      ],
+      "semantic_depth": "Tests ontological status of aesthetic properties"
+    },
+    {
+      "id": "5.2",
+      "domain": "Aesthetics",
+      "subdomain": "Art Definition",
+      "original": "Can art be defined by necessary and sufficient conditions or is \"art\" an open-ended family resemblance concept?",
+      "proofread": "Can art be defined by necessary and sufficient conditions or is \"art\" an open-ended family resemblance concept?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "ambiguityReduction"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Aesthetics",
+      "keywords": [
+        "art",
+        "definition",
+        "necessary",
+        "sufficient",
+        "family resemblance"
+      ],
+      "semantic_depth": "Explores whether art has essential properties"
+    },
+    {
+      "id": "5.3",
+      "domain": "Aesthetics",
+      "subdomain": "Aesthetic Judgment",
+      "original": "Are aesthetic judgments \"merely subjective\" that cannot be contested or can aesthetic taste be educated and refined?",
+      "proofread": "Are aesthetic judgments \"merely subjective\" that cannot be contested or can aesthetic taste be educated and refined?",
+      "changes": [],
+      "issues_detected": 3,
+      "clarity_score": 76,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "ambiguityReduction"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Aesthetics",
+      "keywords": [
+        "judgment",
+        "subjectivity",
+        "taste",
+        "education",
+        "dispute"
+      ],
+      "semantic_depth": "Tests whether aesthetic disagreement can be resolved"
+    },
+    {
+      "id": "5.4",
+      "domain": "Aesthetics",
+      "subdomain": "Art and Emotion",
+      "original": "Must aesthetic experience involve emotional response or can objects be aesthetically appreciated through purely cognitive analysis?",
+      "proofread": "Must aesthetic experience involve emotional response versus logically possible for objects to be aesthetically appreciated through purely cognitive analysis?",
+      "changes": [
+        {
+          "type": "Scope Clarity",
+          "original": "can X be",
+          "change": "is it logically possible for X to be",
+          "reason": "Disambiguates between logical possibility and practical feasibility"
+        },
+        {
+          "type": "Ambiguity Reduction",
+          "original": "X or is it Y",
+          "change": "X versus Y",
+          "reason": "Clarifies exclusive contrast, removing ambiguity about mutual exclusivity"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 90,
+      "metrics_applied": [
+        "Scope Clarity",
+        "Ambiguity Reduction"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "ambiguityReduction"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Aesthetics",
+      "keywords": [
+        "aesthetic experience",
+        "emotion",
+        "cognitive",
+        "appreciation"
+      ],
+      "semantic_depth": "Explores role of feeling in aesthetic judgment"
+    },
+    {
+      "id": "5.5",
+      "domain": "Aesthetics",
+      "subdomain": "Representation",
+      "original": "Can art represent reality accurately and if so how does artistic representation differ from scientific description or photography?",
+      "proofread": "Can art represent reality accurately and if so how does artistic representation differ from scientific description or photography?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "ambiguityReduction"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Aesthetics",
+      "keywords": [
+        "representation",
+        "reality",
+        "accuracy",
+        "description",
+        "photograph"
+      ],
+      "semantic_depth": "Tests relationship between artwork and world"
+    },
+    {
+      "id": "5.6",
+      "domain": "Aesthetics",
+      "subdomain": "Aesthetic Value",
+      "original": "Is aesthetic value intrinsic to artworks or is value assigned by communities and historical contexts?",
+      "proofread": "Is aesthetic value intrinsic to artworks or is value assigned by communities and historical contexts?",
+      "changes": [],
+      "issues_detected": 2,
+      "clarity_score": 84,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "ambiguityReduction"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Aesthetics",
+      "keywords": [
+        "aesthetic value",
+        "intrinsic",
+        "community",
+        "history"
+      ],
+      "semantic_depth": "Explores source of artistic worth"
+    },
+    {
+      "id": "6.1",
+      "domain": "Political Philosophy",
+      "subdomain": "Authority",
+      "original": "Do governments have legitimate authority to command obedience or is political authority always a power that must be morally justified?",
+      "proofread": "Do governments have legitimate [authority: legitimate [right: entitlement to something, protected by law/morality] to command obedience] to command obedience or is political authority always a power that must be morally justified?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "authority",
+          "change": "Add definition: [authority: legitimate right to command obedience]",
+          "reason": "Domain requires explicit definition of \"authority\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "right",
+          "change": "Add definition: [right: entitlement to something, protected by law/morality]",
+          "reason": "Domain requires explicit definition of \"right\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Political Philosophy",
+      "keywords": [
+        "authority",
+        "legitimacy",
+        "power",
+        "obedience"
+      ],
+      "semantic_depth": "Tests foundation of political obligation"
+    },
+    {
+      "id": "6.2",
+      "domain": "Political Philosophy",
+      "subdomain": "Justice",
+      "original": "Is distributive justice primarily concerned with equality of outcome or equality of opportunity or something else entirely?",
+      "proofread": "Is distributive [justice: fair distribution of benefits and burdens] primarily concerned with equality of outcome or equality of opportunity or something else entirely?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "justice",
+          "change": "Add definition: [justice: fair distribution of benefits and burdens]",
+          "reason": "Domain requires explicit definition of \"justice\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Political Philosophy",
+      "keywords": [
+        "justice",
+        "equality",
+        "outcome",
+        "opportunity",
+        "distribution"
+      ],
+      "semantic_depth": "Explores different conceptions of fairness"
+    },
+    {
+      "id": "6.3",
+      "domain": "Political Philosophy",
+      "subdomain": "Rights",
+      "original": "Are rights natural properties humans possess independently or are they conventional social constructs defined by legal systems?",
+      "proofread": "Are rights natural properties humans possess independently or are they conventional social constructs defined by legal systems?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Political Philosophy",
+      "keywords": [
+        "rights",
+        "natural",
+        "conventional",
+        "legal",
+        "human"
+      ],
+      "semantic_depth": "Tests ontological status of rights"
+    },
+    {
+      "id": "6.4",
+      "domain": "Political Philosophy",
+      "subdomain": "Social Contract",
+      "original": "Can an actual social contract ground political authority or only a hypothetical contract that rational beings would agree to?",
+      "proofread": "Can an actual social contract ground political [authority: legitimate [right: entitlement to something, protected by law/morality] to command obedience] or only a hypothetical contract that rational beings would agree to?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "authority",
+          "change": "Add definition: [authority: legitimate right to command obedience]",
+          "reason": "Domain requires explicit definition of \"authority\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "right",
+          "change": "Add definition: [right: entitlement to something, protected by law/morality]",
+          "reason": "Domain requires explicit definition of \"right\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Political Philosophy",
+      "keywords": [
+        "social contract",
+        "actual",
+        "hypothetical",
+        "rational",
+        "authority"
+      ],
+      "semantic_depth": "Explores whether contract must be real or ideal"
+    },
+    {
+      "id": "6.5",
+      "domain": "Political Philosophy",
+      "subdomain": "Freedom",
+      "original": "Is freedom negative (absence of interference) or positive (presence of capacity to do what one wants)?",
+      "proofread": "Is [freedom: absence of interference (negative) or capacity (positive)] negative (absence of interference) or positive (presence of capacity to do what one wants)?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "freedom",
+          "change": "Add definition: [freedom: absence of interference (negative) or capacity (positive)]",
+          "reason": "Domain requires explicit definition of \"freedom\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Political Philosophy",
+      "keywords": [
+        "freedom",
+        "liberty",
+        "negative",
+        "positive",
+        "interference",
+        "capacity"
+      ],
+      "semantic_depth": "Tests conception of political freedom"
+    },
+    {
+      "id": "6.6",
+      "domain": "Political Philosophy",
+      "subdomain": "Democracy",
+      "original": "Does democratic legitimacy require direct participation of all citizens or can representative structures preserve democratic authority?",
+      "proofread": "Does democratic legitimacy require direct participation of all citizens or can representative structures preserve democratic [authority: legitimate [right: entitlement to something, protected by law/morality] to command obedience]?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "authority",
+          "change": "Add definition: [authority: legitimate right to command obedience]",
+          "reason": "Domain requires explicit definition of \"authority\" to prevent equivocation"
+        },
+        {
+          "type": "Technical Precision",
+          "original": "right",
+          "change": "Add definition: [right: entitlement to something, protected by law/morality]",
+          "reason": "Domain requires explicit definition of \"right\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "scopeClarity",
+        "technicalPrecision"
+      ],
+      "reasoning": "Applied 2 clarity improvements using 2 priority metrics for Political Philosophy",
+      "keywords": [
+        "democracy",
+        "participation",
+        "representation",
+        "legitimacy"
+      ],
+      "semantic_depth": "Explores forms of democratic governance"
+    },
+    {
+      "id": "7.1",
+      "domain": "Philosophy of Science",
+      "subdomain": "Scientific Method",
+      "original": "Is there a single scientific method or do different sciences employ fundamentally different approaches to knowledge?",
+      "proofread": "Is there a single scientific method or do different sciences employ fundamentally different approaches to knowledge?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Science",
+      "keywords": [
+        "scientific method",
+        "unified",
+        "diverse",
+        "approaches"
+      ],
+      "semantic_depth": "Tests universality of scientific methodology"
+    },
+    {
+      "id": "7.2",
+      "domain": "Philosophy of Science",
+      "subdomain": "Laws of Nature",
+      "original": "Are laws of nature regularities in what actually happens or do they govern what must happen as constraints on possibility?",
+      "proofread": "Are laws of nature regularities in what actually happens or do they govern what must happen as constraints on possibility?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Science",
+      "keywords": [
+        "laws",
+        "nature",
+        "regularities",
+        "necessity",
+        "possibility"
+      ],
+      "semantic_depth": "Explores modal status of scientific laws"
+    },
+    {
+      "id": "7.3",
+      "domain": "Philosophy of Science",
+      "subdomain": "Explanation",
+      "original": "Do scientific explanations require causal mechanisms or is predictive power sufficient for explanatory adequacy?",
+      "proofread": "Do scientific explanations require causal mechanisms or is predictive power sufficient for explanatory adequacy?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Science",
+      "keywords": [
+        "explanation",
+        "causation",
+        "mechanism",
+        "prediction"
+      ],
+      "semantic_depth": "Tests requirements for scientific understanding"
+    },
+    {
+      "id": "7.4",
+      "domain": "Philosophy of Science",
+      "subdomain": "Realism",
+      "original": "Do scientific theories describe reality as it actually is or do they merely provide useful instruments for prediction?",
+      "proofread": "Do scientific theories describe reality as it actually is or do they merely provide useful instruments for prediction?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Science",
+      "keywords": [
+        "realism",
+        "theory",
+        "reality",
+        "instrumentalism",
+        "prediction"
+      ],
+      "semantic_depth": "Explores what science tells us about world"
+    },
+    {
+      "id": "7.5",
+      "domain": "Philosophy of Science",
+      "subdomain": "Reduction",
+      "original": "Can higher-level sciences like biology be reduced to physics or do they describe genuinely novel properties irreducible to fundamental level?",
+      "proofread": "Can higher-level sciences like biology be reduced to physics or do they describe genuinely novel properties irreducible to fundamental level?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Science",
+      "keywords": [
+        "reduction",
+        "emergence",
+        "levels",
+        "properties",
+        "physics"
+      ],
+      "semantic_depth": "Tests hierarchical structure of sciences"
+    },
+    {
+      "id": "7.6",
+      "domain": "Philosophy of Science",
+      "subdomain": "Observation",
+      "original": "Can scientific observation be theory-neutral or does what scientists observe depend on the theoretical framework they bring to observation?",
+      "proofread": "Can scientific observation be [theory: comprehensive framework explaining phenomena]-neutral or does what scientists observe depend on the theoretical framework they bring to observation?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "theory",
+          "change": "Add definition: [theory: comprehensive framework explaining phenomena]",
+          "reason": "Domain requires explicit definition of \"theory\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Science",
+      "keywords": [
+        "observation",
+        "theory-laden",
+        "neutral",
+        "framework"
+      ],
+      "semantic_depth": "Addresses independence of data from theory"
+    },
+    {
+      "id": "8.1",
+      "domain": "Philosophy of Mathematics",
+      "subdomain": "Platonism",
+      "original": "Do mathematical objects like numbers exist independently in an abstract realm or are they human constructions?",
+      "proofread": "Do mathematical objects like numbers exist independently in an abstract realm or are they human constructions?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mathematics",
+      "keywords": [
+        "Platonism",
+        "abstract objects",
+        "existence",
+        "construction"
+      ],
+      "semantic_depth": "Tests ontology of mathematical entities"
+    },
+    {
+      "id": "8.2",
+      "domain": "Philosophy of Mathematics",
+      "subdomain": "Mathematical Truth",
+      "original": "Are mathematical truths discovered or invented by mathematicians?",
+      "proofread": "Are mathematical truths discovered or invented by mathematicians?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mathematics",
+      "keywords": [
+        "truth",
+        "discovery",
+        "invention",
+        "mathematical"
+      ],
+      "semantic_depth": "Explores epistemology of mathematics"
+    },
+    {
+      "id": "8.3",
+      "domain": "Philosophy of Mathematics",
+      "subdomain": "Infinity",
+      "original": "Can infinity be treated as completed totality in mathematics or only as a potential limit never fully actualized?",
+      "proofread": "Can [infinity: unbounded quantity (potential or actual)] be treated as completed totality in mathematics or only as a potential limit never fully actualized?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "infinity",
+          "change": "Add definition: [infinity: unbounded quantity (potential or actual)]",
+          "reason": "Domain requires explicit definition of \"infinity\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Mathematics",
+      "keywords": [
+        "infinity",
+        "actual",
+        "potential",
+        "completed",
+        "totality"
+      ],
+      "semantic_depth": "Tests mathematical status of infinite quantities"
+    },
+    {
+      "id": "8.4",
+      "domain": "Philosophy of Mathematics",
+      "subdomain": "Mathematical Necessity",
+      "original": "Are mathematical truths necessary in all possible worlds or only in worlds with mathematics?",
+      "proofread": "Are mathematical truths necessary in all possible worlds or only in worlds with mathematics?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mathematics",
+      "keywords": [
+        "necessity",
+        "possible worlds",
+        "modality",
+        "contingency"
+      ],
+      "semantic_depth": "Explores modal properties of mathematics"
+    },
+    {
+      "id": "8.5",
+      "domain": "Philosophy of Mathematics",
+      "subdomain": "Applicability",
+      "original": "Why is mathematics so unreasonably effective at describing physical reality if it is merely abstract human construction?",
+      "proofread": "Why is mathematics so unreasonably effective at describing physical reality if it is merely abstract human construction, [then what follows?]",
+      "changes": [
+        {
+          "type": "Logical Structure",
+          "original": "if X?",
+          "change": "if X, [then what follows?]",
+          "reason": "Makes explicit that conditional requires consequent to be fully formed"
+        }
+      ],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [
+        "Logical Structure"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Mathematics",
+      "keywords": [
+        "applicability",
+        "effectiveness",
+        "reality",
+        "construction"
+      ],
+      "semantic_depth": "Tests relationship between mathematics and world"
+    },
+    {
+      "id": "8.6",
+      "domain": "Philosophy of Mathematics",
+      "subdomain": "Axiom Systems",
+      "original": "If multiple incompatible axiom systems are all logically consistent, can they all be equally valid or is there a unique true mathematics?",
+      "proofread": "If multiple incompatible axiom systems are all logically consistent, can they all be equally valid or is there a unique true mathematics?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "logicalStructure"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Mathematics",
+      "keywords": [
+        "axioms",
+        "consistency",
+        "incompatibility",
+        "uniqueness",
+        "truth"
+      ],
+      "semantic_depth": "Tests pluralism in mathematical foundations"
+    },
+    {
+      "id": "9.1",
+      "domain": "Philosophy of Language",
+      "subdomain": "Meaning",
+      "original": "Does the meaning of a word depend on its use in language or on what the word refers to in the world?",
+      "proofread": "Does the [meaning: semantic content of words/sentences] of a word depend on its use in language or on what the word refers to in the world?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "meaning",
+          "change": "Add definition: [meaning: semantic content of words/sentences]",
+          "reason": "Domain requires explicit definition of \"meaning\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Language",
+      "keywords": [
+        "meaning",
+        "use",
+        "reference",
+        "intentionality"
+      ],
+      "semantic_depth": "Tests theory of semantic content"
+    },
+    {
+      "id": "9.2",
+      "domain": "Philosophy of Language",
+      "subdomain": "Reference",
+      "original": "Can empty names like \"Sherlock Holmes\" have meaning and truth-conditions even though they fail to refer to anything?",
+      "proofread": "Can empty names like \"Sherlock Holmes\" have [meaning: semantic content of words/sentences] and truth-conditions even though they fail to refer to anything?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "meaning",
+          "change": "Add definition: [meaning: semantic content of words/sentences]",
+          "reason": "Domain requires explicit definition of \"meaning\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 2,
+      "clarity_score": 87,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Language",
+      "keywords": [
+        "reference",
+        "empty names",
+        "meaning",
+        "truth-conditions"
+      ],
+      "semantic_depth": "Explores non-referring expressions"
+    },
+    {
+      "id": "9.3",
+      "domain": "Philosophy of Language",
+      "subdomain": "Truth",
+      "original": "Does a sentence become true or false by corresponding to reality or does truth depend on coherence within a system?",
+      "proofread": "Does a sentence become true or false by corresponding to reality or does truth depend on coherence within a system?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Language",
+      "keywords": [
+        "truth",
+        "correspondence",
+        "reality",
+        "coherence"
+      ],
+      "semantic_depth": "Tests theories of truth"
+    },
+    {
+      "id": "9.4",
+      "domain": "Philosophy of Language",
+      "subdomain": "Context",
+      "original": "Can sentences have truth-conditions independent of context or do utterances always depend on speaker, time, and place?",
+      "proofread": "Can sentences have truth-conditions independent of context or do utterances always depend on speaker, time, and place?",
+      "changes": [],
+      "issues_detected": 1,
+      "clarity_score": 92,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Language",
+      "keywords": [
+        "context",
+        "truth-conditions",
+        "utterance",
+        "indexical"
+      ],
+      "semantic_depth": "Explores role of context in language"
+    },
+    {
+      "id": "9.5",
+      "domain": "Philosophy of Language",
+      "subdomain": "Private Language",
+      "original": "Could a language be private to a single speaker referring only to their private experiences or is language necessarily shared?",
+      "proofread": "Could a language be private to a single speaker referring only to their private experiences or is language necessarily shared?",
+      "changes": [],
+      "issues_detected": 0,
+      "clarity_score": 100,
+      "metrics_applied": [],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 0 clarity improvements using 2 priority metrics for Philosophy of Language",
+      "keywords": [
+        "private language",
+        "experience",
+        "sharing",
+        "community"
+      ],
+      "semantic_depth": "Tests social nature of language"
+    },
+    {
+      "id": "9.6",
+      "domain": "Philosophy of Language",
+      "subdomain": "Translation",
+      "original": "Is perfect translation between languages possible or is meaning partially relative to each language's conceptual scheme?",
+      "proofread": "Is perfect translation between languages possible or is [meaning: semantic content of words/sentences] partially relative to each language's conceptual scheme?",
+      "changes": [
+        {
+          "type": "Technical Precision",
+          "original": "meaning",
+          "change": "Add definition: [meaning: semantic content of words/sentences]",
+          "reason": "Domain requires explicit definition of \"meaning\" to prevent equivocation"
+        }
+      ],
+      "issues_detected": 1,
+      "clarity_score": 95,
+      "metrics_applied": [
+        "Technical Precision"
+      ],
+      "domain_customization": [
+        "technicalPrecision",
+        "scopeClarity"
+      ],
+      "reasoning": "Applied 1 clarity improvements using 2 priority metrics for Philosophy of Language",
+      "keywords": [
+        "translation",
+        "meaning",
+        "language",
+        "conceptual scheme",
+        "relativity"
+      ],
+      "semantic_depth": "Explores universality of meaning"
+    }
+  ]
+}

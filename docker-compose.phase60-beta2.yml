@@ -1,0 +1,98 @@
+version: '3.8'
+
+services:
+  # Phase 17.5 Simulator Node 1
+  phase17-node-1:
+    build:
+      context: .
+      dockerfile: Dockerfile.phase60-test
+    container_name: phase17-simulator-node1
+    hostname: phase17-node1
+    ports:
+      - "2201:22"
+    volumes:
+      - ./mist:/opt/phase17.5/mist:ro
+      - ./:/opt/phase17.5/workspace:ro
+      - ./test-env/ssh/node1/.ssh:/root/.ssh
+      - phase17-node1-results:/opt/phase17.5/results
+    environment:
+      - NODE_ENV=production
+      - PHASE_17_5_MODE=validator
+      - SIMULATOR_NODE_ID=node-1
+      - CLUSTER_PEERS=phase17-node2,phase17-node3
+    networks:
+      - phase17-test
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Phase 17.5 Simulator Node 2
+  phase17-node-2:
+    build:
+      context: .
+      dockerfile: Dockerfile.phase60-test
+    container_name: phase17-simulator-node2
+    hostname: phase17-node2
+    ports:
+      - "2202:22"
+    volumes:
+      - ./mist:/opt/phase17.5/mist:ro
+      - ./:/opt/phase17.5/workspace:ro
+      - ./test-env/ssh/node2/.ssh:/root/.ssh
+      - phase17-node2-results:/opt/phase17.5/results
+    environment:
+      - NODE_ENV=production
+      - PHASE_17_5_MODE=validator
+      - SIMULATOR_NODE_ID=node-2
+      - CLUSTER_PEERS=phase17-node1,phase17-node3
+    networks:
+      - phase17-test
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Phase 17.5 Simulator Node 3 (NEW - Torrent topology testing)
+  phase17-node-3:
+    build:
+      context: .
+      dockerfile: Dockerfile.phase60-test
+    container_name: phase17-simulator-node3
+    hostname: phase17-node3
+    ports:
+      - "2203:22"
+    volumes:
+      - ./mist:/opt/phase17.5/mist:ro
+      - ./:/opt/phase17.5/workspace:ro
+      - ./test-env/ssh/node3/.ssh:/root/.ssh
+      - phase17-node3-results:/opt/phase17.5/results
+    environment:
+      - NODE_ENV=production
+      - PHASE_17_5_MODE=validator
+      - SIMULATOR_NODE_ID=node-3
+      - CLUSTER_PEERS=phase17-node1,phase17-node2
+    networks:
+      - phase17-test
+    restart: unless-stopped
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  phase17-test:
+    driver: bridge
+
+volumes:
+  phase17-node1-results:
+    driver: local
+  phase17-node2-results:
+    driver: local
+  phase17-node3-results:
+    driver: local

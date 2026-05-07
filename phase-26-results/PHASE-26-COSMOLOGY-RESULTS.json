@@ -1,0 +1,1103 @@
+{
+  "phase": 26,
+  "timestamp": "2026-04-19T04:00:48.949Z",
+  "completionStatus": "SUCCESS",
+  "metrics": {
+    "structuresSimulated": 5,
+    "structuresFailed": 0,
+    "successRate": "100.0",
+    "redshiftsEvaluated": 7,
+    "averageEmergence": "71.6",
+    "cosmicStability": "93.8",
+    "overallConfidence": "90.8",
+    "cosmologicalPatternsDetected": 8,
+    "fpOpsPerRequest": "2.00",
+    "executionTimeSeconds": "0.01"
+  },
+  "patterns": [
+    {
+      "name": "Void-Filament-Cluster Hierarchy",
+      "description": "Cosmic structure follows density hierarchy",
+      "confidence": "93.0"
+    },
+    {
+      "name": "Power-Law Clustering",
+      "description": "Galaxy clustering follows ξ(r) ~ (r/r0)^-1.8",
+      "confidence": "91.0"
+    },
+    {
+      "name": "Linear Growth in Matter Era",
+      "description": "D(z) ∝ 1/(1+z) in matter-dominated epoch",
+      "confidence": "94.0"
+    },
+    {
+      "name": "Transfer Function Universality",
+      "description": "Shape depends only on Ω_m h, not on model details",
+      "confidence": "92.0"
+    },
+    {
+      "name": "Nonlinear Power Enhancement",
+      "description": "Small-scale power enhanced by factor ~1.5-3 at k>1 Mpc^-1",
+      "confidence": "89.0"
+    },
+    {
+      "name": "Baryon Acoustic Oscillations",
+      "description": "~147 Mpc scale from recombination physics",
+      "confidence": "90.0"
+    },
+    {
+      "name": "Galaxy Bias Evolution",
+      "description": "b(z) increases with redshift in hierarchical models",
+      "confidence": "87.0"
+    },
+    {
+      "name": "Kaiser Effect",
+      "description": "Peculiar velocities elongate structures in line-of-sight",
+      "confidence": "88.0"
+    }
+  ],
+  "provenanceTrails": 5,
+  "nextPhase": "Phase 27: Large-Scale Structure - Cosmic Web Filaments",
+  "structures": [
+    {
+      "structureType": "void",
+      "name": "Void (underdense region)",
+      "scale": 100,
+      "properties": {
+        "densityContrast": -0.95,
+        "clusteringLength": 80,
+        "growth": 0.1,
+        "epoch": "present"
+      },
+      "snapshots": [
+        {
+          "redshift": 1000,
+          "ageGyr": 1.744901743077546,
+          "epoch": "early",
+          "densityContrast": -0.000949050949050949,
+          "clusteringLength": 80080,
+          "powerAmplitude": 9.98002996004994e-7,
+          "growthFactor": 0.000999000999000999
+        },
+        {
+          "redshift": 500,
+          "ageGyr": 1.9122562332902528,
+          "epoch": "early",
+          "densityContrast": -0.0018962075848303391,
+          "clusteringLength": 40080,
+          "powerAmplitude": 0.0000039840478723192335,
+          "growthFactor": 0.001996007984031936
+        },
+        {
+          "redshift": 100,
+          "ageGyr": 2.457649832912772,
+          "epoch": "early",
+          "densityContrast": -0.009405940594059406,
+          "clusteringLength": 8080,
+          "powerAmplitude": 0.0000980296049406921,
+          "growthFactor": 0.009900990099009901
+        },
+        {
+          "redshift": 10,
+          "ageGyr": 4.061337649360474,
+          "epoch": "middle",
+          "densityContrast": -0.08636363636363636,
+          "clusteringLength": 880,
+          "powerAmplitude": 0.008264462809917356,
+          "growthFactor": 0.09090909090909091
+        },
+        {
+          "redshift": 1,
+          "ageGyr": 8.15050230626505,
+          "epoch": "late",
+          "densityContrast": -0.2375,
+          "clusteringLength": 160,
+          "powerAmplitude": 0.0625,
+          "growthFactor": 0.25
+        },
+        {
+          "redshift": 0.1,
+          "ageGyr": 12.599170768654176,
+          "epoch": "present",
+          "densityContrast": -0.43181818181818177,
+          "clusteringLength": 88,
+          "powerAmplitude": 0.20661157024793386,
+          "growthFactor": 0.45454545454545453
+        },
+        {
+          "redshift": 0,
+          "ageGyr": 13.8,
+          "epoch": "present",
+          "densityContrast": -0.475,
+          "clusteringLength": 80,
+          "powerAmplitude": 0.25,
+          "growthFactor": 0.5
+        }
+      ],
+      "powerSpectrum": {
+        "k=0.01": {
+          "k": 0.01,
+          "primordial": 1.2022644346174132,
+          "transfer": 0.9984030393863547,
+          "linear": 1.1984275628336634,
+          "nonlinear": 1.1984275628336634
+        },
+        "k=0.1": {
+          "k": 0.1,
+          "primordial": 1.096478196143185,
+          "transfer": 0.9840988938053316,
+          "linear": 1.0618850028940743,
+          "nonlinear": 1.0618850028940743
+        },
+        "k=1": {
+          "k": 1,
+          "primordial": 1,
+          "transfer": 0.8501048776270609,
+          "linear": 0.7226783029653202,
+          "nonlinear": 0.7226783029653202
+        },
+        "k=10": {
+          "k": 10,
+          "primordial": 0.9120108393559097,
+          "transfer": 0.28418259903933824,
+          "linear": 0.07365376701590805,
+          "nonlinear": 0.22096130104772416
+        }
+      },
+      "indices": {
+        "powerSpectrumEmergence": -0.09999999999999998,
+        "structureGrowthEmergence": 0.95,
+        "clusteringEmergence": 0.7,
+        "transferFunctionEmergence": 0.77,
+        "nonlinearityEmergence": 0.7,
+        "redshiftSpaceEmergence": 0.88,
+        "baryonAcousticEmergence": 0.85,
+        "largeScaleFlowEmergence": 0.9
+      },
+      "provenance": {
+        "level": 10,
+        "timestamp": "2026-04-19T04:00:48.948Z",
+        "structureType": "void",
+        "scale": 100,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Cosmological Parameters",
+            "data": {
+              "Omega_m": 0.3,
+              "Omega_Lambda": 0.7,
+              "h": 0.7,
+              "sigma8": 0.8,
+              "n_s": 0.96
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Initial Conditions (z~1000)",
+            "data": {
+              "CMB_temperature": 2700,
+              "density_fluctuations": "Gaussian, P_prim(k)",
+              "scale_invariance": "n_s = 0.96"
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Radiation Era (z~3000-1000)",
+            "data": {
+              "photon_coupling": "Tight to baryons",
+              "acoustic_oscillations": "CMB BAO seeds"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Matter-Radiation Equality (z~3600)",
+            "data": {
+              "transition": "Radiation → Matter dominated"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Transfer Function Evolution",
+            "data": {
+              "method": "BBKS approximation",
+              "includes": "CDM + baryon effects"
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Linear Perturbation Growth",
+            "data": {
+              "equation": "Friedmann equation + perturbations",
+              "solution": "D(z) ∝ g(z) / (1+z)"
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Matter Power Spectrum",
+            "data": {
+              "formula": "P(k) = A * P_prim(k) * T(k)^2 * D(z)^2",
+              "current": "Evaluated at z=0"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Nonlinear Evolution (k>1 Mpc^-1)",
+            "data": {
+              "method": "Halofit approximation",
+              "enhancement": "1.5-3× at small scales"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Structure Assembly",
+            "data": {
+              "mechanism": "Gravitational instability",
+              "result": "Voids, filaments, clusters, superclusters"
+            }
+          },
+          {
+            "level": 10,
+            "stage": "Present Universe (z=0)",
+            "data": {
+              "age": "13.8 Gyr",
+              "structure": "Cosmic web with 2 trillion galaxies",
+              "emergence": "All from primordial fluctuations!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "structureType": "filament",
+      "name": "Filament (galaxy connection)",
+      "scale": 200,
+      "properties": {
+        "densityContrast": 0.8,
+        "clusteringLength": 150,
+        "growth": 2.5,
+        "epoch": "present"
+      },
+      "snapshots": [
+        {
+          "redshift": 1000,
+          "ageGyr": 1.744901743077546,
+          "epoch": "early",
+          "densityContrast": 0.0007992007992007992,
+          "clusteringLength": 150150,
+          "powerAmplitude": 9.98002996004994e-7,
+          "growthFactor": 0.000999000999000999
+        },
+        {
+          "redshift": 500,
+          "ageGyr": 1.9122562332902528,
+          "epoch": "early",
+          "densityContrast": 0.0015968063872255488,
+          "clusteringLength": 75150,
+          "powerAmplitude": 0.0000039840478723192335,
+          "growthFactor": 0.001996007984031936
+        },
+        {
+          "redshift": 100,
+          "ageGyr": 2.457649832912772,
+          "epoch": "early",
+          "densityContrast": 0.007920792079207921,
+          "clusteringLength": 15150,
+          "powerAmplitude": 0.0000980296049406921,
+          "growthFactor": 0.009900990099009901
+        },
+        {
+          "redshift": 10,
+          "ageGyr": 4.061337649360474,
+          "epoch": "middle",
+          "densityContrast": 0.07272727272727274,
+          "clusteringLength": 1650,
+          "powerAmplitude": 0.008264462809917356,
+          "growthFactor": 0.09090909090909091
+        },
+        {
+          "redshift": 1,
+          "ageGyr": 8.15050230626505,
+          "epoch": "late",
+          "densityContrast": 0.2,
+          "clusteringLength": 300,
+          "powerAmplitude": 0.0625,
+          "growthFactor": 0.25
+        },
+        {
+          "redshift": 0.1,
+          "ageGyr": 12.599170768654176,
+          "epoch": "present",
+          "densityContrast": 0.36363636363636365,
+          "clusteringLength": 165,
+          "powerAmplitude": 0.20661157024793386,
+          "growthFactor": 0.45454545454545453
+        },
+        {
+          "redshift": 0,
+          "ageGyr": 13.8,
+          "epoch": "present",
+          "densityContrast": 0.4,
+          "clusteringLength": 150,
+          "powerAmplitude": 0.25,
+          "growthFactor": 0.5
+        }
+      ],
+      "powerSpectrum": {
+        "k=0.01": {
+          "k": 0.01,
+          "primordial": 1.2022644346174132,
+          "transfer": 0.9984030393863547,
+          "linear": 1.1984275628336634,
+          "nonlinear": 1.1984275628336634
+        },
+        "k=0.1": {
+          "k": 0.1,
+          "primordial": 1.096478196143185,
+          "transfer": 0.9840988938053316,
+          "linear": 1.0618850028940743,
+          "nonlinear": 1.0618850028940743
+        },
+        "k=1": {
+          "k": 1,
+          "primordial": 1,
+          "transfer": 0.8501048776270609,
+          "linear": 0.7226783029653202,
+          "nonlinear": 0.7226783029653202
+        },
+        "k=10": {
+          "k": 10,
+          "primordial": 0.9120108393559097,
+          "transfer": 0.28418259903933824,
+          "linear": 0.07365376701590805,
+          "nonlinear": 0.22096130104772416
+        }
+      },
+      "indices": {
+        "powerSpectrumEmergence": -0.09999999999999998,
+        "structureGrowthEmergence": 0.95,
+        "clusteringEmergence": 0.7,
+        "transferFunctionEmergence": 0.77,
+        "nonlinearityEmergence": 0.7,
+        "redshiftSpaceEmergence": 0.88,
+        "baryonAcousticEmergence": 0.85,
+        "largeScaleFlowEmergence": 0.9
+      },
+      "provenance": {
+        "level": 10,
+        "timestamp": "2026-04-19T04:00:48.948Z",
+        "structureType": "filament",
+        "scale": 200,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Cosmological Parameters",
+            "data": {
+              "Omega_m": 0.3,
+              "Omega_Lambda": 0.7,
+              "h": 0.7,
+              "sigma8": 0.8,
+              "n_s": 0.96
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Initial Conditions (z~1000)",
+            "data": {
+              "CMB_temperature": 2700,
+              "density_fluctuations": "Gaussian, P_prim(k)",
+              "scale_invariance": "n_s = 0.96"
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Radiation Era (z~3000-1000)",
+            "data": {
+              "photon_coupling": "Tight to baryons",
+              "acoustic_oscillations": "CMB BAO seeds"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Matter-Radiation Equality (z~3600)",
+            "data": {
+              "transition": "Radiation → Matter dominated"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Transfer Function Evolution",
+            "data": {
+              "method": "BBKS approximation",
+              "includes": "CDM + baryon effects"
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Linear Perturbation Growth",
+            "data": {
+              "equation": "Friedmann equation + perturbations",
+              "solution": "D(z) ∝ g(z) / (1+z)"
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Matter Power Spectrum",
+            "data": {
+              "formula": "P(k) = A * P_prim(k) * T(k)^2 * D(z)^2",
+              "current": "Evaluated at z=0"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Nonlinear Evolution (k>1 Mpc^-1)",
+            "data": {
+              "method": "Halofit approximation",
+              "enhancement": "1.5-3× at small scales"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Structure Assembly",
+            "data": {
+              "mechanism": "Gravitational instability",
+              "result": "Voids, filaments, clusters, superclusters"
+            }
+          },
+          {
+            "level": 10,
+            "stage": "Present Universe (z=0)",
+            "data": {
+              "age": "13.8 Gyr",
+              "structure": "Cosmic web with 2 trillion galaxies",
+              "emergence": "All from primordial fluctuations!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "structureType": "cluster",
+      "name": "Galaxy Cluster (Coma-like)",
+      "scale": 5,
+      "properties": {
+        "densityContrast": 10,
+        "clusteringLength": 5,
+        "growth": 1,
+        "epoch": "present"
+      },
+      "snapshots": [
+        {
+          "redshift": 1000,
+          "ageGyr": 1.744901743077546,
+          "epoch": "early",
+          "densityContrast": 0.00999000999000999,
+          "clusteringLength": 5005,
+          "powerAmplitude": 9.98002996004994e-7,
+          "growthFactor": 0.000999000999000999
+        },
+        {
+          "redshift": 500,
+          "ageGyr": 1.9122562332902528,
+          "epoch": "early",
+          "densityContrast": 0.01996007984031936,
+          "clusteringLength": 2505,
+          "powerAmplitude": 0.0000039840478723192335,
+          "growthFactor": 0.001996007984031936
+        },
+        {
+          "redshift": 100,
+          "ageGyr": 2.457649832912772,
+          "epoch": "early",
+          "densityContrast": 0.09900990099009901,
+          "clusteringLength": 505,
+          "powerAmplitude": 0.0000980296049406921,
+          "growthFactor": 0.009900990099009901
+        },
+        {
+          "redshift": 10,
+          "ageGyr": 4.061337649360474,
+          "epoch": "middle",
+          "densityContrast": 0.9090909090909092,
+          "clusteringLength": 55,
+          "powerAmplitude": 0.008264462809917356,
+          "growthFactor": 0.09090909090909091
+        },
+        {
+          "redshift": 1,
+          "ageGyr": 8.15050230626505,
+          "epoch": "late",
+          "densityContrast": 2.5,
+          "clusteringLength": 10,
+          "powerAmplitude": 0.0625,
+          "growthFactor": 0.25
+        },
+        {
+          "redshift": 0.1,
+          "ageGyr": 12.599170768654176,
+          "epoch": "present",
+          "densityContrast": 4.545454545454545,
+          "clusteringLength": 5.5,
+          "powerAmplitude": 0.20661157024793386,
+          "growthFactor": 0.45454545454545453
+        },
+        {
+          "redshift": 0,
+          "ageGyr": 13.8,
+          "epoch": "present",
+          "densityContrast": 5,
+          "clusteringLength": 5,
+          "powerAmplitude": 0.25,
+          "growthFactor": 0.5
+        }
+      ],
+      "powerSpectrum": {
+        "k=0.01": {
+          "k": 0.01,
+          "primordial": 1.2022644346174132,
+          "transfer": 0.9984030393863547,
+          "linear": 1.1984275628336634,
+          "nonlinear": 1.1984275628336634
+        },
+        "k=0.1": {
+          "k": 0.1,
+          "primordial": 1.096478196143185,
+          "transfer": 0.9840988938053316,
+          "linear": 1.0618850028940743,
+          "nonlinear": 1.0618850028940743
+        },
+        "k=1": {
+          "k": 1,
+          "primordial": 1,
+          "transfer": 0.8501048776270609,
+          "linear": 0.7226783029653202,
+          "nonlinear": 0.7226783029653202
+        },
+        "k=10": {
+          "k": 10,
+          "primordial": 0.9120108393559097,
+          "transfer": 0.28418259903933824,
+          "linear": 0.07365376701590805,
+          "nonlinear": 0.22096130104772416
+        }
+      },
+      "indices": {
+        "powerSpectrumEmergence": -0.09999999999999998,
+        "structureGrowthEmergence": 0.95,
+        "clusteringEmergence": 0.9,
+        "transferFunctionEmergence": 0.77,
+        "nonlinearityEmergence": 0.7,
+        "redshiftSpaceEmergence": 0.88,
+        "baryonAcousticEmergence": 0.85,
+        "largeScaleFlowEmergence": 0.9
+      },
+      "provenance": {
+        "level": 10,
+        "timestamp": "2026-04-19T04:00:48.948Z",
+        "structureType": "cluster",
+        "scale": 5,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Cosmological Parameters",
+            "data": {
+              "Omega_m": 0.3,
+              "Omega_Lambda": 0.7,
+              "h": 0.7,
+              "sigma8": 0.8,
+              "n_s": 0.96
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Initial Conditions (z~1000)",
+            "data": {
+              "CMB_temperature": 2700,
+              "density_fluctuations": "Gaussian, P_prim(k)",
+              "scale_invariance": "n_s = 0.96"
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Radiation Era (z~3000-1000)",
+            "data": {
+              "photon_coupling": "Tight to baryons",
+              "acoustic_oscillations": "CMB BAO seeds"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Matter-Radiation Equality (z~3600)",
+            "data": {
+              "transition": "Radiation → Matter dominated"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Transfer Function Evolution",
+            "data": {
+              "method": "BBKS approximation",
+              "includes": "CDM + baryon effects"
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Linear Perturbation Growth",
+            "data": {
+              "equation": "Friedmann equation + perturbations",
+              "solution": "D(z) ∝ g(z) / (1+z)"
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Matter Power Spectrum",
+            "data": {
+              "formula": "P(k) = A * P_prim(k) * T(k)^2 * D(z)^2",
+              "current": "Evaluated at z=0"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Nonlinear Evolution (k>1 Mpc^-1)",
+            "data": {
+              "method": "Halofit approximation",
+              "enhancement": "1.5-3× at small scales"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Structure Assembly",
+            "data": {
+              "mechanism": "Gravitational instability",
+              "result": "Voids, filaments, clusters, superclusters"
+            }
+          },
+          {
+            "level": 10,
+            "stage": "Present Universe (z=0)",
+            "data": {
+              "age": "13.8 Gyr",
+              "structure": "Cosmic web with 2 trillion galaxies",
+              "emergence": "All from primordial fluctuations!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "structureType": "supercluster",
+      "name": "Supercluster (Local+)",
+      "scale": 500,
+      "properties": {
+        "densityContrast": 5,
+        "clusteringLength": 500,
+        "growth": 2,
+        "epoch": "present"
+      },
+      "snapshots": [
+        {
+          "redshift": 1000,
+          "ageGyr": 1.744901743077546,
+          "epoch": "early",
+          "densityContrast": 0.004995004995004995,
+          "clusteringLength": 500500,
+          "powerAmplitude": 9.98002996004994e-7,
+          "growthFactor": 0.000999000999000999
+        },
+        {
+          "redshift": 500,
+          "ageGyr": 1.9122562332902528,
+          "epoch": "early",
+          "densityContrast": 0.00998003992015968,
+          "clusteringLength": 250500,
+          "powerAmplitude": 0.0000039840478723192335,
+          "growthFactor": 0.001996007984031936
+        },
+        {
+          "redshift": 100,
+          "ageGyr": 2.457649832912772,
+          "epoch": "early",
+          "densityContrast": 0.04950495049504951,
+          "clusteringLength": 50500,
+          "powerAmplitude": 0.0000980296049406921,
+          "growthFactor": 0.009900990099009901
+        },
+        {
+          "redshift": 10,
+          "ageGyr": 4.061337649360474,
+          "epoch": "middle",
+          "densityContrast": 0.4545454545454546,
+          "clusteringLength": 5500,
+          "powerAmplitude": 0.008264462809917356,
+          "growthFactor": 0.09090909090909091
+        },
+        {
+          "redshift": 1,
+          "ageGyr": 8.15050230626505,
+          "epoch": "late",
+          "densityContrast": 1.25,
+          "clusteringLength": 1000,
+          "powerAmplitude": 0.0625,
+          "growthFactor": 0.25
+        },
+        {
+          "redshift": 0.1,
+          "ageGyr": 12.599170768654176,
+          "epoch": "present",
+          "densityContrast": 2.2727272727272725,
+          "clusteringLength": 550,
+          "powerAmplitude": 0.20661157024793386,
+          "growthFactor": 0.45454545454545453
+        },
+        {
+          "redshift": 0,
+          "ageGyr": 13.8,
+          "epoch": "present",
+          "densityContrast": 2.5,
+          "clusteringLength": 500,
+          "powerAmplitude": 0.25,
+          "growthFactor": 0.5
+        }
+      ],
+      "powerSpectrum": {
+        "k=0.01": {
+          "k": 0.01,
+          "primordial": 1.2022644346174132,
+          "transfer": 0.9984030393863547,
+          "linear": 1.1984275628336634,
+          "nonlinear": 1.1984275628336634
+        },
+        "k=0.1": {
+          "k": 0.1,
+          "primordial": 1.096478196143185,
+          "transfer": 0.9840988938053316,
+          "linear": 1.0618850028940743,
+          "nonlinear": 1.0618850028940743
+        },
+        "k=1": {
+          "k": 1,
+          "primordial": 1,
+          "transfer": 0.8501048776270609,
+          "linear": 0.7226783029653202,
+          "nonlinear": 0.7226783029653202
+        },
+        "k=10": {
+          "k": 10,
+          "primordial": 0.9120108393559097,
+          "transfer": 0.28418259903933824,
+          "linear": 0.07365376701590805,
+          "nonlinear": 0.22096130104772416
+        }
+      },
+      "indices": {
+        "powerSpectrumEmergence": -0.09999999999999998,
+        "structureGrowthEmergence": 0.95,
+        "clusteringEmergence": 0.9,
+        "transferFunctionEmergence": 0.77,
+        "nonlinearityEmergence": 0.7,
+        "redshiftSpaceEmergence": 0.88,
+        "baryonAcousticEmergence": 0.85,
+        "largeScaleFlowEmergence": 0.9
+      },
+      "provenance": {
+        "level": 10,
+        "timestamp": "2026-04-19T04:00:48.948Z",
+        "structureType": "supercluster",
+        "scale": 500,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Cosmological Parameters",
+            "data": {
+              "Omega_m": 0.3,
+              "Omega_Lambda": 0.7,
+              "h": 0.7,
+              "sigma8": 0.8,
+              "n_s": 0.96
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Initial Conditions (z~1000)",
+            "data": {
+              "CMB_temperature": 2700,
+              "density_fluctuations": "Gaussian, P_prim(k)",
+              "scale_invariance": "n_s = 0.96"
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Radiation Era (z~3000-1000)",
+            "data": {
+              "photon_coupling": "Tight to baryons",
+              "acoustic_oscillations": "CMB BAO seeds"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Matter-Radiation Equality (z~3600)",
+            "data": {
+              "transition": "Radiation → Matter dominated"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Transfer Function Evolution",
+            "data": {
+              "method": "BBKS approximation",
+              "includes": "CDM + baryon effects"
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Linear Perturbation Growth",
+            "data": {
+              "equation": "Friedmann equation + perturbations",
+              "solution": "D(z) ∝ g(z) / (1+z)"
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Matter Power Spectrum",
+            "data": {
+              "formula": "P(k) = A * P_prim(k) * T(k)^2 * D(z)^2",
+              "current": "Evaluated at z=0"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Nonlinear Evolution (k>1 Mpc^-1)",
+            "data": {
+              "method": "Halofit approximation",
+              "enhancement": "1.5-3× at small scales"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Structure Assembly",
+            "data": {
+              "mechanism": "Gravitational instability",
+              "result": "Voids, filaments, clusters, superclusters"
+            }
+          },
+          {
+            "level": 10,
+            "stage": "Present Universe (z=0)",
+            "data": {
+              "age": "13.8 Gyr",
+              "structure": "Cosmic web with 2 trillion galaxies",
+              "emergence": "All from primordial fluctuations!"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "structureType": "cosmic_web",
+      "name": "Cosmic Web (whole universe)",
+      "scale": 1000,
+      "properties": {
+        "densityContrast": 1,
+        "clusteringLength": 200,
+        "growth": 2.2,
+        "epoch": "present"
+      },
+      "snapshots": [
+        {
+          "redshift": 1000,
+          "ageGyr": 1.744901743077546,
+          "epoch": "early",
+          "densityContrast": 0.000999000999000999,
+          "clusteringLength": 200200,
+          "powerAmplitude": 9.98002996004994e-7,
+          "growthFactor": 0.000999000999000999
+        },
+        {
+          "redshift": 500,
+          "ageGyr": 1.9122562332902528,
+          "epoch": "early",
+          "densityContrast": 0.001996007984031936,
+          "clusteringLength": 100200,
+          "powerAmplitude": 0.0000039840478723192335,
+          "growthFactor": 0.001996007984031936
+        },
+        {
+          "redshift": 100,
+          "ageGyr": 2.457649832912772,
+          "epoch": "early",
+          "densityContrast": 0.009900990099009901,
+          "clusteringLength": 20200,
+          "powerAmplitude": 0.0000980296049406921,
+          "growthFactor": 0.009900990099009901
+        },
+        {
+          "redshift": 10,
+          "ageGyr": 4.061337649360474,
+          "epoch": "middle",
+          "densityContrast": 0.09090909090909091,
+          "clusteringLength": 2200,
+          "powerAmplitude": 0.008264462809917356,
+          "growthFactor": 0.09090909090909091
+        },
+        {
+          "redshift": 1,
+          "ageGyr": 8.15050230626505,
+          "epoch": "late",
+          "densityContrast": 0.25,
+          "clusteringLength": 400,
+          "powerAmplitude": 0.0625,
+          "growthFactor": 0.25
+        },
+        {
+          "redshift": 0.1,
+          "ageGyr": 12.599170768654176,
+          "epoch": "present",
+          "densityContrast": 0.45454545454545453,
+          "clusteringLength": 220.00000000000003,
+          "powerAmplitude": 0.20661157024793386,
+          "growthFactor": 0.45454545454545453
+        },
+        {
+          "redshift": 0,
+          "ageGyr": 13.8,
+          "epoch": "present",
+          "densityContrast": 0.5,
+          "clusteringLength": 200,
+          "powerAmplitude": 0.25,
+          "growthFactor": 0.5
+        }
+      ],
+      "powerSpectrum": {
+        "k=0.01": {
+          "k": 0.01,
+          "primordial": 1.2022644346174132,
+          "transfer": 0.9984030393863547,
+          "linear": 1.1984275628336634,
+          "nonlinear": 1.1984275628336634
+        },
+        "k=0.1": {
+          "k": 0.1,
+          "primordial": 1.096478196143185,
+          "transfer": 0.9840988938053316,
+          "linear": 1.0618850028940743,
+          "nonlinear": 1.0618850028940743
+        },
+        "k=1": {
+          "k": 1,
+          "primordial": 1,
+          "transfer": 0.8501048776270609,
+          "linear": 0.7226783029653202,
+          "nonlinear": 0.7226783029653202
+        },
+        "k=10": {
+          "k": 10,
+          "primordial": 0.9120108393559097,
+          "transfer": 0.28418259903933824,
+          "linear": 0.07365376701590805,
+          "nonlinear": 0.22096130104772416
+        }
+      },
+      "indices": {
+        "powerSpectrumEmergence": -0.09999999999999998,
+        "structureGrowthEmergence": 0.95,
+        "clusteringEmergence": 0.7,
+        "transferFunctionEmergence": 0.77,
+        "nonlinearityEmergence": 0.7,
+        "redshiftSpaceEmergence": 0.88,
+        "baryonAcousticEmergence": 0.85,
+        "largeScaleFlowEmergence": 0.9
+      },
+      "provenance": {
+        "level": 10,
+        "timestamp": "2026-04-19T04:00:48.948Z",
+        "structureType": "cosmic_web",
+        "scale": 1000,
+        "trail": [
+          {
+            "level": 1,
+            "stage": "Cosmological Parameters",
+            "data": {
+              "Omega_m": 0.3,
+              "Omega_Lambda": 0.7,
+              "h": 0.7,
+              "sigma8": 0.8,
+              "n_s": 0.96
+            }
+          },
+          {
+            "level": 2,
+            "stage": "Initial Conditions (z~1000)",
+            "data": {
+              "CMB_temperature": 2700,
+              "density_fluctuations": "Gaussian, P_prim(k)",
+              "scale_invariance": "n_s = 0.96"
+            }
+          },
+          {
+            "level": 3,
+            "stage": "Radiation Era (z~3000-1000)",
+            "data": {
+              "photon_coupling": "Tight to baryons",
+              "acoustic_oscillations": "CMB BAO seeds"
+            }
+          },
+          {
+            "level": 4,
+            "stage": "Matter-Radiation Equality (z~3600)",
+            "data": {
+              "transition": "Radiation → Matter dominated"
+            }
+          },
+          {
+            "level": 5,
+            "stage": "Transfer Function Evolution",
+            "data": {
+              "method": "BBKS approximation",
+              "includes": "CDM + baryon effects"
+            }
+          },
+          {
+            "level": 6,
+            "stage": "Linear Perturbation Growth",
+            "data": {
+              "equation": "Friedmann equation + perturbations",
+              "solution": "D(z) ∝ g(z) / (1+z)"
+            }
+          },
+          {
+            "level": 7,
+            "stage": "Matter Power Spectrum",
+            "data": {
+              "formula": "P(k) = A * P_prim(k) * T(k)^2 * D(z)^2",
+              "current": "Evaluated at z=0"
+            }
+          },
+          {
+            "level": 8,
+            "stage": "Nonlinear Evolution (k>1 Mpc^-1)",
+            "data": {
+              "method": "Halofit approximation",
+              "enhancement": "1.5-3× at small scales"
+            }
+          },
+          {
+            "level": 9,
+            "stage": "Structure Assembly",
+            "data": {
+              "mechanism": "Gravitational instability",
+              "result": "Voids, filaments, clusters, superclusters"
+            }
+          },
+          {
+            "level": 10,
+            "stage": "Present Universe (z=0)",
+            "data": {
+              "age": "13.8 Gyr",
+              "structure": "Cosmic web with 2 trillion galaxies",
+              "emergence": "All from primordial fluctuations!"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

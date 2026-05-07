@@ -1,0 +1,184 @@
+Psionics (Magic Trick - Holographic Interface)
+Establishment: Subway. Remote interaction from outside building via holographic interface to touchscreen inside. First proof of distributed execution capability. Shows system can operate at distance without local presence. Causality chain measurable across boundary.
+
+Meiosis: Number of DNA Molecules
+Count DNA molecules as in mitosis: doubles after S phase, halves after each division. After meiosis I, each cell has half the chromosome number but each chromosome has two chromatids (DNA molecules). After meiosis II, each gamete has one chromatid per chromosome.
+
+Meiosis: Ensuring Genetic Diversity
+1. Crossing over (prophase I)
+2. Independent assortment (metaphase I)
+3. Random fertilization
+
+Mitosis vs. Meiosis
+Mitosis: 1 division, 2 identical cells, for growth/repair. Meiosis: 2 divisions, 4 unique gametes, for reproduction.
+
+Non-Mendelian Inheritance Types
+Incomplete dominance, codominance, multiple alleles, polygenic traits, mitochondrial inheritance, epistasis, genomic imprinting.
+
+Autosomal Inheritance Probability
+Use Punnett squares: For recessive, both parents must carry allele. Probability = chance of inheriting two recessive alleles.
+
+Dihybrid Cross: F1, F2 Genotypes/Phenotypes
+F1: All heterozygous, one phenotype. F2: 9:3:3:1 phenotypic ratio, genotypes from Punnett square.
+
+Klinefelter & Turner Syndrome Genotypes
+Klinefelter: XXY. Turner: XO (single X, no second sex chromosome).
+
+Single-Gene vs. Chromosomal Mutations
+Single-gene mutations are more common than chromosomal changes.
+
+DNA Complementary Sequence
+Replace A↔T, C↔G on opposite strand.
+
+Chargaff’s Contributions
+Discovered A=T and C=G ratios; base pairing rules.
+
+Transcribe DNA to RNA
+Replace A→U, T→A, C↔G (use RNA bases).
+
+mRNA vs. Nontemplate DNA Sequence
+They are identical except mRNA has U instead of T.
+
+Mutation Types Affecting Protein
+Frameshift and nonsense mutations most likely to alter protein product.
+
+Gene Expression Control Points
+Transcription, RNA processing, translation, post-translation.
+
+Nerve vs. Skin Cells (Same Genes)
+Different genes are expressed (differential gene expression).
+
+Repressible vs. Inducible Operons
+Repressible: usually on, turned off by repressor (e.g., trp). Inducible: usually off, turned on by inducer (e.g., lac).
+
+Would I Get My Genome Sequenced?
+Personal choice; consider privacy, health benefits, and risks.
+
+DNA Fingerprint & Paternity
+Child’s bands must match bands from one parent and one from the other; unmatched bands exclude paternity.
+Quick Summary: Number of DNA Molecules in the Cell Cycle
+- G1 phase: DNA molecule count equals chromosome count (e.g., human: 46).
+- After S phase (G2, prophase, metaphase): DNA molecule count is doubled (e.g., human: 92), but chromosome count is unchanged.
+- After anaphase and cytokinesis: Each daughter cell returns to the original DNA molecule count (e.g., human: 46).
+Comparison of Cytokinesis in Plant and Animal Cells:
+
+Cytokinesis, the division of the cytoplasm following mitosis or meiosis, differs between plant and animal cells. In animal cells, cytokinesis occurs through the formation of a cleavage furrow, where the cell membrane pinches inward due to the contraction of a ring of actin and myosin filaments, eventually splitting the cell into two daughter cells. In contrast, plant cells, which have rigid cell walls, undergo cytokinesis by forming a cell plate at the center of the cell. Vesicles from the Golgi apparatus coalesce at the center, fusing to form the cell plate, which gradually develops into a new cell wall separating the two daughter cells. Thus, while animal cells divide by membrane constriction, plant cells build a new dividing wall from within.
+Determining the Number of DNA Molecules at Different Points of the Cell Cycle:
+
+1. Interphase (G1 phase):
+	- Each chromosome consists of a single DNA molecule (chromatid).
+	- The number of DNA molecules equals the number of chromosomes (e.g., human somatic cell: 46 DNA molecules).
+
+2. S phase (Synthesis):
+	- DNA replication occurs; each chromosome is duplicated.
+	- Each chromosome now consists of two sister chromatids (each is a DNA molecule) joined at the centromere.
+	- The number of DNA molecules doubles, but the chromosome count remains the same (e.g., human: 92 DNA molecules, still 46 chromosomes).
+
+3. G2 phase and Mitosis (before anaphase):
+	- Each chromosome is still composed of two sister chromatids (two DNA molecules per chromosome).
+	- The number of DNA molecules remains doubled.
+
+4. Mitosis (after anaphase):
+	- Sister chromatids separate and are considered individual chromosomes.
+	- The number of chromosomes and DNA molecules are both doubled temporarily until cell division completes.
+
+5. After cytokinesis:
+	- Each daughter cell returns to the original number of chromosomes and DNA molecules (e.g., human: 46 chromosomes, 46 DNA molecules).
+
+Summary: The number of DNA molecules doubles during S phase and remains doubled until after cell division, when it returns to the original count in each daughter cell.
+Effect of Adding a Solute to One of Two Solutions Separated by a Selectively Permeable Membrane:
+
+When a solute is added to one of two solutions separated by a selectively permeable membrane (which allows water but not the solute to pass), the following effects occur:
+
+- The solution with added solute becomes hypertonic (higher solute concentration), while the other becomes hypotonic (lower solute concentration).
+- Water moves by osmosis from the hypotonic (lower solute) side to the hypertonic (higher solute) side.
+- This movement of water continues until equilibrium is reached or until prevented by physical forces (e.g., pressure).
+- The volume of the hypertonic solution increases, and the volume of the hypotonic solution decreases.
+- The process can cause cells in a hypotonic environment to lose water and shrink (crenate), or in a hypertonic environment to gain water and swell (possibly burst).
+
+This principle is fundamental to understanding osmosis and the movement of water in biological systems.
+Comparison of the Chemical Structures of the Four Groups of Biological Molecules:
+
+1. Carbohydrates:
+	- Structure: Composed of carbon (C), hydrogen (H), and oxygen (O) in a roughly 1:2:1 ratio (CH₂O)n.
+	- Monomer: Monosaccharides (simple sugars, e.g., glucose).
+	- Features: Often form ring structures in aqueous solutions; contain multiple hydroxyl (-OH) groups.
+
+2. Lipids:
+	- Structure: Mostly hydrocarbons (C and H), with much less oxygen than carbohydrates.
+	- Monomer: No true monomer, but common building blocks include fatty acids and glycerol.
+	- Features: Long nonpolar hydrocarbon chains or rings; hydrophobic; include fats, oils, phospholipids, and steroids.
+
+3. Proteins:
+	- Structure: Contain carbon (C), hydrogen (H), oxygen (O), nitrogen (N), and sometimes sulfur (S).
+	- Monomer: Amino acids (20 types), each with a central carbon, amino group (-NH₂), carboxyl group (-COOH), hydrogen, and variable R group.
+	- Features: Fold into complex 3D shapes; peptide bonds link amino acids.
+
+4. Nucleic Acids:
+	- Structure: Contain carbon (C), hydrogen (H), oxygen (O), nitrogen (N), and phosphorus (P).
+	- Monomer: Nucleotides (each with a sugar, phosphate group, and nitrogenous base).
+	- Features: Sugar-phosphate backbone; nitrogenous bases (A, T/U, G, C); form double helix (DNA) or single strand (RNA).
+
+Contrast:
+- Carbohydrates and lipids are mainly energy sources, but carbohydrates are hydrophilic (water-soluble) while lipids are hydrophobic.
+- Proteins and nucleic acids contain nitrogen; only nucleic acids contain phosphorus.
+- Proteins have diverse R groups, giving them varied functions; nucleic acids store genetic information.
+- Carbohydrates have ring/chain forms; lipids have long chains/rings; proteins have complex folded shapes; nucleic acids have long chains with repeating units.
+Enzyme (Properties):
+1. Biological catalysts: Speed up biochemical reactions without being consumed.
+2. Specificity: Act on specific substrates or groups of related substrates.
+3. Protein nature: Most are proteins (some RNA molecules act as enzymes, called ribozymes).
+4. Active site: Have a unique region where the substrate binds and the reaction occurs.
+5. Efficiency: Greatly increase reaction rates, often by factors of millions.
+6. Regulation: Activity can be regulated by inhibitors, activators, or environmental conditions.
+7. Sensitivity: Activity is affected by temperature, pH, and concentration of substrate and enzyme.
+8. Reusability: Not permanently changed or consumed in the reaction; can be used repeatedly.
+9. Cofactors/coenzymes: Some require non-protein helpers for activity.
+10. Denaturation: Extreme conditions (heat, pH, chemicals) can cause loss of function.
+Allele: A variant form of a gene at a particular locus on a chromosome, responsible for variations in inherited characteristics.
+
+Aneuploid: A cell or organism with an abnormal number of chromosomes, not an exact multiple of the haploid set.
+
+Electrophoresis: A laboratory technique used to separate molecules (such as DNA, RNA, or proteins) based on their size and charge by applying an electric field.
+
+Euploid: A cell or organism with a chromosome number that is an exact multiple of the haploid set for the species.
+
+Exon: A segment of a gene that contains coding information for protein synthesis and is retained in the final mRNA after splicing.
+
+Gene expression: The process by which information from a gene is used to synthesize a functional gene product, such as a protein or RNA.
+
+Gene therapy: A medical technique that involves introducing, removing, or altering genetic material within a person's cells to treat or prevent disease.
+
+Genetic engineering: The direct manipulation of an organism's DNA using biotechnology to alter its characteristics.
+
+Genotype: The genetic makeup of an organism; the specific set of alleles present at one or more loci.
+
+Germ cells: Reproductive cells (sperm or eggs) that carry genetic information to offspring and are involved in sexual reproduction.
+
+Helicase: An enzyme that unwinds and separates double-stranded DNA or RNA during replication or transcription.
+
+Homologous chromosomes: Pairs of chromosomes in a diploid organism that have the same structure and gene sequence, one inherited from each parent.
+
+Karyotype: The complete set of chromosomes in a cell, displayed as a systematic arrangement of chromosome pairs by size and shape.
+
+Meiosis: A type of cell division that reduces the chromosome number by half, producing four genetically distinct gametes.
+
+Mitosis: A type of cell division that results in two genetically identical daughter cells, each with the same number of chromosomes as the parent cell.
+
+Mutation: A change in the DNA sequence of a gene or chromosome, which can lead to genetic variation or disease.
+
+Operon: A cluster of genes under the control of a single promoter and regulatory elements, commonly found in prokaryotes, that are transcribed together.
+
+Phenotype: The observable physical or biochemical characteristics of an organism, determined by its genotype and environment.
+
+Promoter: A DNA sequence upstream of a gene that provides a binding site for RNA polymerase and initiates transcription.
+
+Proto-oncogene: A normal gene that can become an oncogene due to mutations or increased expression, potentially leading to cancer.
+
+Reading frame: The way nucleotides in mRNA are grouped into codons for translation, determining the sequence of amino acids in a protein.
+
+Somatic cell: Any cell of a multicellular organism except germ cells; somatic cells make up the body tissues and organs.
+
+Telomerase: An enzyme that adds repetitive nucleotide sequences to the ends of chromosomes (telomeres), maintaining their length during cell division.
+
+Transcription factor: A protein that binds to specific DNA sequences to regulate the transcription of genetic information from DNA to mRNA.

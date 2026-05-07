@@ -25,6 +25,7 @@ export class GeometryHandler {
       scale = { x: 1, y: 1, z: 1 },
       rotation = { x: 0, y: 0, z: 0 },
       color = '#FF6B6B',
+      label = null, // NEW: Optional text label for the geometry
       properties = {}
     } = itemData;
 
@@ -61,6 +62,7 @@ export class GeometryHandler {
       rotation,
       scale,
       color,
+      label, // NEW: Include text label in geometry data
       geometry,
       bounds,
       properties,
@@ -178,6 +180,17 @@ export class GeometryHandler {
       case 'colorize':
         // Update color
         if (value.color) geometry.color = value.color;
+        break;
+
+      case 'label':
+      case 'set-label':
+        // NEW: Update or set text label on geometry
+        if (value && value.label !== undefined) {
+          geometry.label = value.label;
+        } else if (typeof value === 'string') {
+          // Allow passing label directly as string
+          geometry.label = value;
+        }
         break;
 
       case 'delete':

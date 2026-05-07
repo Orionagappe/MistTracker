@@ -1,0 +1,1521 @@
+{
+  "flows": [
+    {
+      "id": "TURBULENCE-0-Low Reynolds (Re=100)",
+      "type": "Low Reynolds (Re=100)",
+      "Reynolds": 100,
+      "emergence": "77.5",
+      "patternCount": 12,
+      "scaleSeparation": "3162.28",
+      "cascadeTime": "32.806",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "3.16e-4",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 83.99706057771685,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 83.65439280480818,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 75.81138830084188,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00003257200471,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000036851108,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 80.73178629282872,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.92351424384654,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Low Reynolds (Re=100): Re=100, L=1.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 1.000m, Taylor: 0.3162m, Kolmogorov: 0.000316m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.0500 m³/s³, U_rms: 0.224 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=6.28, k_η=19869.2, ratio=3162",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 32.806s, steps: 7.3, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0000, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-1-Moderate Reynolds (Re=500)",
+      "type": "Moderate Reynolds (Re=500)",
+      "Reynolds": 500,
+      "emergence": "78.9",
+      "patternCount": 12,
+      "scaleSeparation": "1880.30",
+      "cascadeTime": "21.701",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "5.32e-4",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 89.49362530576212,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 88.16424894755357,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 83.36480088351946,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.0001302870417,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000147404414,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 85.929344341007,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.69184070681557,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Moderate Reynolds (Re=500): Re=500, L=1.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 1.000m, Taylor: 0.3162m, Kolmogorov: 0.000532m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.1000 m³/s³, U_rms: 0.316 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=6.28, k_η=11814.3, ratio=1880",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 21.701s, steps: 6.9, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0000, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-2-High Reynolds (Re=1000)",
+      "type": "High Reynolds (Re=1000)",
+      "Reynolds": 1000,
+      "emergence": "78.4",
+      "patternCount": 12,
+      "scaleSeparation": "562.34",
+      "cascadeTime": "14.882",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "1.78e-3",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 89.47902579947177,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 87.16623214733315,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 82.60703929960805,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00097708930441,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00002018414446,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 86.63052119252242,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.08563143968644,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "High Reynolds (Re=1000): Re=1000, L=1.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 1.000m, Taylor: 0.3162m, Kolmogorov: 0.001778m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.1500 m³/s³, U_rms: 0.387 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=6.28, k_η=3533.3, ratio=562",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 14.882s, steps: 5.8, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0003, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-3-Very High Reynolds (Re=5000)",
+      "type": "Very High Reynolds (Re=5000)",
+      "Reynolds": 5000,
+      "emergence": "77.8",
+      "patternCount": 12,
+      "scaleSeparation": "334.37",
+      "cascadeTime": "11.830",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "2.99e-3",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 84.80258216875026,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 92,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 82.23499730503892,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00260524587698,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.0000659208505,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 80.19382002601611,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 82.18214879224315,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 75.78799784403114,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Very High Reynolds (Re=5000): Re=5000, L=1.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 1.000m, Taylor: 0.3162m, Kolmogorov: 0.002991m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.2000 m³/s³, U_rms: 0.447 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=6.28, k_η=2100.9, ratio=334",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 11.830s, steps: 5.3, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0008, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-4-Grid Turbulence",
+      "type": "Grid Turbulence",
+      "Reynolds": 250,
+      "emergence": "78.1",
+      "patternCount": 12,
+      "scaleSeparation": "559.02",
+      "cascadeTime": "14.396",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "8.94e-4",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 87.03601370081965,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 87.69290891253547,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 82.60297083605391,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 79.88176821917627,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00041690936168,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000527369872,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 81.97940008672037,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 86.882772676831,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.08237666884312,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Grid Turbulence: Re=250, L=0.50m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 0.500m, Taylor: 0.1581m, Kolmogorov: 0.000894m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.0800 m³/s³, U_rms: 0.200 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=12.57, k_η=7024.8, ratio=559",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 14.396s, steps: 5.8, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0001, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-5-Jet Flow",
+      "type": "Jet Flow",
+      "Reynolds": 1500,
+      "emergence": "78.7",
+      "patternCount": 12,
+      "scaleSeparation": "1891.48",
+      "cascadeTime": "19.425",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "1.06e-3",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 89.23391151447467,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 88.7247288503578,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 83.3682150142484,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00040713835385,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000651441316,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 83.93553247576405,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.69457201139872,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Jet Flow: Re=1500, L=2.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 2.000m, Taylor: 0.6325m, Kolmogorov: 0.001057m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.2500 m³/s³, U_rms: 0.707 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=3.14, k_η=5942.3, ratio=1891",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 19.425s, steps: 6.9, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0001, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-6-Wake Flow",
+      "type": "Wake Flow",
+      "Reynolds": 800,
+      "emergence": "78.3",
+      "patternCount": 12,
+      "scaleSeparation": "3499.64",
+      "cascadeTime": "26.262",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "4.29e-4",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 84.26314759995712,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 87.27779993482748,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 83.70867745139626,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00007817253771,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000085634231,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 84.74231309444258,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.966941961117,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Wake Flow: Re=800, L=1.50m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 1.500m, Taylor: 0.4743m, Kolmogorov: 0.000429m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.1200 m³/s³, U_rms: 0.424 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=4.19, k_η=14659.2, ratio=3500",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 26.262s, steps: 7.4, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0000, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-7-Mixing Layer",
+      "type": "Mixing Layer",
+      "Reynolds": 2000,
+      "emergence": "77.6",
+      "patternCount": 12,
+      "scaleSeparation": "486.86",
+      "cascadeTime": "11.874",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "1.64e-3",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 85.73815381982548,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 85.457236332895,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 82.50704858742846,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.0013190359409,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00002110666908,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 81.4992648392996,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 82.86640241739047,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.00563886994277,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Mixing Layer: Re=2000, L=0.80m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 0.800m, Taylor: 0.2530m, Kolmogorov: 0.001643m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.1800 m³/s³, U_rms: 0.379 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=7.85, k_η=3823.8, ratio=487",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 11.874s, steps: 5.6, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0004, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-8-Atmospheric Turbulence",
+      "type": "Atmospheric Turbulence",
+      "Reynolds": 10000,
+      "emergence": "78.8",
+      "patternCount": 12,
+      "scaleSeparation": "233309.03",
+      "cascadeTime": "205.408",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "4.29e-4",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 86.8767534432738,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 85.26044644379058,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 85.51178205816117,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00000293148709,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000016582999,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 86.97868862398678,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 78.40942564652894,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Atmospheric Turbulence: Re=10000, L=100.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 100.000m, Taylor: 31.6228m, Kolmogorov: 0.000429m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.3000 m³/s³, U_rms: 5.477 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=0.06, k_η=14659.2, ratio=233309",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 205.408s, steps: 11.3, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0000, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "TURBULENCE-9-Isotropic Turbulence",
+      "type": "Isotropic Turbulence",
+      "Reynolds": 3000,
+      "emergence": "78.6",
+      "patternCount": 12,
+      "scaleSeparation": "1291.56",
+      "cascadeTime": "16.301",
+      "dissipationRate": "0.1000",
+      "kolmogorovScale": "7.74e-4",
+      "patterns": [
+        {
+          "name": "Kolmogorov -5/3 Spectrum",
+          "detected": true,
+          "confidence": 88.77502586518978,
+          "physics": "Energy cascade follows universal power law"
+        },
+        {
+          "name": "Energy Cascade",
+          "detected": true,
+          "confidence": 70.82785370316451,
+          "physics": "Energy flows from large to small scales"
+        },
+        {
+          "name": "Energy Balance (Injection = Dissipation)",
+          "detected": true,
+          "confidence": 91.49122995250676,
+          "physics": "Steady-state: P_in = P_diss = epsilon"
+        },
+        {
+          "name": "Kolmogorov Scaling Relations",
+          "detected": true,
+          "confidence": 83.14287237398491,
+          "physics": "Length scales follow L/η = (Re_λ)^(3/4)"
+        },
+        {
+          "name": "Viscous Dissipation",
+          "detected": false,
+          "confidence": 65,
+          "physics": "Strain-induced viscous heating"
+        },
+        {
+          "name": "Intermittency and Coherent Structures",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Non-Gaussian statistics from coherent vortices"
+        },
+        {
+          "name": "Enstrophy Cascade",
+          "detected": false,
+          "confidence": 70.00034395214941,
+          "physics": "Vorticity squared cascades at twice power law rate"
+        },
+        {
+          "name": "Reynolds Number Scaling",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Inertial range expands with Re"
+        },
+        {
+          "name": "Coherent Vortex Tubes",
+          "detected": false,
+          "confidence": 65.00000395181216,
+          "physics": "Quasi-2D vortex structures emerge spontaneously"
+        },
+        {
+          "name": "Scale Separation",
+          "detected": true,
+          "confidence": 84.88891636073268,
+          "physics": "Many decades between injection and dissipation scales"
+        },
+        {
+          "name": "Energy Flux Constancy",
+          "detected": true,
+          "confidence": 81.1792574324686,
+          "physics": "π(k) ≈ constant across inertial range"
+        },
+        {
+          "name": "Turbulent Diffusion",
+          "detected": true,
+          "confidence": 76.51429789918794,
+          "physics": "Anomalous diffusion from small-scale turbulence"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Flow Initiation",
+          "description": "Isotropic Turbulence: Re=3000, L=1.00m, ε=0.1000",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Scale Definition",
+          "description": "Large: 1.000m, Taylor: 0.3162m, Kolmogorov: 0.000774m",
+          "timestamp": 0.002,
+          "physics": "Length scales from Re and ν"
+        },
+        {
+          "level": 2,
+          "step": "Energy Injection",
+          "description": "Power input: 0.1600 m³/s³, U_rms: 0.400 m/s",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Navier-Stokes Dynamics",
+          "description": "∂u/∂t + u·∇u = -∇p/ρ + ν∇²u + f_ext",
+          "timestamp": 0.004,
+          "physics": "Momentum equation drives cascade"
+        },
+        {
+          "level": 4,
+          "step": "Inertial Range Formation",
+          "description": "k_L=6.28, k_η=8115.1, ratio=1292",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Energy Cascade",
+          "description": "Cascade time: 16.301s, steps: 6.5, rate: 0.1000",
+          "timestamp": 0.006,
+          "physics": "Energy flows down scale hierarchy"
+        },
+        {
+          "level": 6,
+          "step": "Kolmogorov Spectrum",
+          "description": "E(k) ∝ k^-1.6666666666666667, slope verified",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Dissipation Mechanisms",
+          "description": "ε_viscous=0.0001, ε_kolmogorov=0.1000",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Energy Balance",
+          "description": "P_in = P_out = ε_total = 0.1000 m³/s³",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Turbulence Fully Determined",
+          "description": "All patterns emergent from Navier-Stokes + viscosity",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalFlows": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "78.3"
+  }
+}

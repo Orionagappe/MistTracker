@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Neon",
+  "timestamp": "2026-05-01T02:13:58.861Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0009333333333333333,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0265,
+      "measured": 0.026530386,
+      "error_pct": "0.11"
+    },
+    "ionization_energy": {
+      "reference": 21.56,
+      "measured": 21.549443,
+      "error_pct": "-0.05"
+    },
+    "ground_state_energy": {
+      "reference": -128.5,
+      "measured": -128.35172,
+      "error_pct": "-0.12"
+    }
+  }
+}

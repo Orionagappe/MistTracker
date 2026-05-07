@@ -1,0 +1,977 @@
+{
+  "phase": 21,
+  "domain": "Extended Materials",
+  "timestamp": "2026-04-19T03:07:26.776Z",
+  "materials": [
+    {
+      "name": "Si",
+      "commonName": "Silicon",
+      "type": "Covalent Network",
+      "emergenceIndices": {
+        "structureEmergence": 0.8888352883741089,
+        "coordinationEmergence": 0.8813015016381759,
+        "bondingEmergence": 0.8978912752903544,
+        "symmetryEmergence": 0.9155190876016891,
+        "propertyEmergence": 0.8170267692110419,
+        "stabilityEmergence": 0.8602024523381103,
+        "electricalEmergence": 0.8802053390945536,
+        "thermalEmergence": 0.9185557676201036,
+        "averageEmergence": 0.8824421851460172
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 5.370655555555556,
+          "pressure": 5,
+          "stability": 0.9954585288403007,
+          "energyState": -0.8245206371100228
+        },
+        "stabilityRange": {
+          "min": 0.5386458293256494,
+          "max": 0.9954585288403007
+        },
+        "averageStability": 0.7995602551331575
+      },
+      "trainingResult": {
+        "finalLoss": 0.008398614783745402,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.778Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.778Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.778Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Covalent Network",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.778Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Electronics",
+            "Solar cells"
+          ],
+          "timestamp": "2026-04-19T03:07:26.778Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "Fe",
+      "commonName": "Iron (BCC)",
+      "type": "Metallic",
+      "emergenceIndices": {
+        "structureEmergence": 0.9410145615002105,
+        "coordinationEmergence": 0.9743231658589246,
+        "bondingEmergence": 0.9504898249403183,
+        "symmetryEmergence": 0.9132865741765496,
+        "propertyEmergence": 0.9370088559343895,
+        "stabilityEmergence": 0.9041766543878957,
+        "electricalEmergence": 0.9123349505638852,
+        "thermalEmergence": 0.9069405149478249,
+        "averageEmergence": 0.9299468877887498
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 2.8341555555555558,
+          "pressure": 5,
+          "stability": 0.9987332172450678,
+          "energyState": -0.8532510609802931
+        },
+        "stabilityRange": {
+          "min": 0.7028059546171357,
+          "max": 0.9987332172450678
+        },
+        "averageStability": 0.8841167947700578
+      },
+      "trainingResult": {
+        "finalLoss": 0.008453340647488676,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Metallic",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Construction",
+            "Machinery"
+          ],
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "Cu",
+      "commonName": "Copper (FCC)",
+      "type": "Metallic",
+      "emergenceIndices": {
+        "structureEmergence": 0.9413720881306052,
+        "coordinationEmergence": 0.9179073021882794,
+        "bondingEmergence": 0.9453707849000638,
+        "symmetryEmergence": 0.9451987364329221,
+        "propertyEmergence": 0.875439919528922,
+        "stabilityEmergence": 0.9303124044304347,
+        "electricalEmergence": 0.8025570331085767,
+        "thermalEmergence": 0.8407266926289284,
+        "averageEmergence": 0.8998606201685916
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.5748333333333338,
+          "pressure": 5,
+          "stability": 0.9979853307870302,
+          "energyState": -0.8758618671897725
+        },
+        "stabilityRange": {
+          "min": 0.6614288812796009,
+          "max": 0.9979853307870302
+        },
+        "averageStability": 0.8634131082438248
+      },
+      "trainingResult": {
+        "finalLoss": 0.005157136592396329,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Metallic",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Electrical wiring",
+            "Thermal management"
+          ],
+          "timestamp": "2026-04-19T03:07:26.779Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "CaCO₃",
+      "commonName": "Calcite",
+      "type": "Ionic Carbonate",
+      "emergenceIndices": {
+        "structureEmergence": 0.8694371258171211,
+        "coordinationEmergence": 0.890259063997523,
+        "bondingEmergence": 0.829825828201637,
+        "symmetryEmergence": 0.9550106428957182,
+        "propertyEmergence": 0.9565583954151272,
+        "stabilityEmergence": 0.9378352557186436,
+        "electricalEmergence": 0.9432213678925934,
+        "thermalEmergence": 0.8490436318861019,
+        "averageEmergence": 0.9038989139780581
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.9555555555555557,
+          "pressure": 5,
+          "stability": 0.9975339100059825,
+          "energyState": -0.8859865038941492
+        },
+        "stabilityRange": {
+          "min": 0.6376281516217731,
+          "max": 0.9975339100059825
+        },
+        "averageStability": 0.8513336604294769
+      },
+      "trainingResult": {
+        "finalLoss": 0.009081262528062638,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.780Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.780Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.780Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Ionic Carbonate",
+          "formulaComplexity": 3,
+          "timestamp": "2026-04-19T03:07:26.780Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Chalk",
+            "Cement"
+          ],
+          "timestamp": "2026-04-19T03:07:26.780Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "CaF₂",
+      "commonName": "Fluorite",
+      "type": "Ionic Fluoride",
+      "emergenceIndices": {
+        "structureEmergence": 0.942681180074017,
+        "coordinationEmergence": 0.9799589503690446,
+        "bondingEmergence": 0.9693559795944275,
+        "symmetryEmergence": 0.9521017148100728,
+        "propertyEmergence": 0.8780982485982785,
+        "stabilityEmergence": 0.958405428040587,
+        "electricalEmergence": 0.9146139960998451,
+        "thermalEmergence": 0.9566465660656525,
+        "averageEmergence": 0.9439827579564906
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 5.4023,
+          "pressure": 5,
+          "stability": 0.9954049770698608,
+          "energyState": -0.8407611695721879
+        },
+        "stabilityRange": {
+          "min": 0.5363037329255251,
+          "max": 0.9954049770698608
+        },
+        "averageStability": 0.798301575739981
+      },
+      "trainingResult": {
+        "finalLoss": 0.01100059044068238,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Ionic Fluoride",
+          "formulaComplexity": 2,
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Fluorine source",
+            "Optical lenses"
+          ],
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "CaTiO₃",
+      "commonName": "Perovskite",
+      "type": "Complex Ionic",
+      "emergenceIndices": {
+        "structureEmergence": 0.9681303369147547,
+        "coordinationEmergence": 0.8845615076659928,
+        "bondingEmergence": 0.8667832098111374,
+        "symmetryEmergence": 0.970934767130652,
+        "propertyEmergence": 0.9485441354855444,
+        "stabilityEmergence": 0.975332910698939,
+        "electricalEmergence": 0.8719746047080897,
+        "thermalEmergence": 0.8974718610913162,
+        "averageEmergence": 0.9229666666883033
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.7973333333333334,
+          "pressure": 5,
+          "stability": 0.9977270315582419,
+          "energyState": -0.8704854049863124
+        },
+        "stabilityRange": {
+          "min": 0.6477049567331644,
+          "max": 0.9977270315582419
+        },
+        "averageStability": 0.8564637592695
+      },
+      "trainingResult": {
+        "finalLoss": 0.0005029137832738028,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Complex Ionic",
+          "formulaComplexity": 3,
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [],
+          "timestamp": "2026-04-19T03:07:26.781Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Al",
+      "commonName": "Aluminum (FCC)",
+      "type": "Metallic",
+      "emergenceIndices": {
+        "structureEmergence": 0.8645221081196933,
+        "coordinationEmergence": 0.9453048973644158,
+        "bondingEmergence": 0.9510195984077812,
+        "symmetryEmergence": 0.9346073174743486,
+        "propertyEmergence": 0.8418613529633663,
+        "stabilityEmergence": 0.866666378597679,
+        "electricalEmergence": 0.8581992089571344,
+        "thermalEmergence": 0.9426285886524088,
+        "averageEmergence": 0.9006011813171034
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.005,
+          "pressure": 5,
+          "stability": 0.9974719509119422,
+          "energyState": -0.8998976625083793
+        },
+        "stabilityRange": {
+          "min": 0.6344281417590155,
+          "max": 0.9974719509119422
+        },
+        "averageStability": 0.8496995481580787
+      },
+      "trainingResult": {
+        "finalLoss": 0.005737493892372234,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Metallic",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Aerospace",
+            "Packaging"
+          ],
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "KAlSi₃O₈",
+      "commonName": "Feldspar",
+      "type": "Complex Silicate",
+      "emergenceIndices": {
+        "structureEmergence": 0.9505077093433892,
+        "coordinationEmergence": 0.881357928407985,
+        "bondingEmergence": 0.9378441424892257,
+        "symmetryEmergence": 0.883545133102394,
+        "propertyEmergence": 0.9111166299616339,
+        "stabilityEmergence": 0.9129159776176927,
+        "electricalEmergence": 0.8105981740619446,
+        "thermalEmergence": 0.9267063745363925,
+        "averageEmergence": 0.9018240086900822
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.9555555555555557,
+          "pressure": 5,
+          "stability": 0.9975339100059825,
+          "energyState": -0.8943194482485941
+        },
+        "stabilityRange": {
+          "min": 0.6376281516217731,
+          "max": 0.9975339100059825
+        },
+        "averageStability": 0.8513336604294769
+      },
+      "trainingResult": {
+        "finalLoss": 0.009349368597322874,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Complex Silicate",
+          "formulaComplexity": 4,
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [
+            "Ceramics",
+            "Glass"
+          ],
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Na",
+      "commonName": "Sodium Metal",
+      "type": "Metallic",
+      "emergenceIndices": {
+        "structureEmergence": 0.9627531277580657,
+        "coordinationEmergence": 0.9713276738523795,
+        "bondingEmergence": 0.8497109038531729,
+        "symmetryEmergence": 0.9526353146636116,
+        "propertyEmergence": 0.9027100954270431,
+        "stabilityEmergence": 0.9524429501289713,
+        "electricalEmergence": 0.8846651549896929,
+        "thermalEmergence": 0.8681309554289754,
+        "averageEmergence": 0.9180470220127391
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 4.242333333333334,
+          "pressure": 5,
+          "stability": 0.9971638904899973,
+          "energyState": -0.8364481929050392
+        },
+        "stabilityRange": {
+          "min": 0.6187516799699333,
+          "max": 0.9971638904899973
+        },
+        "averageStability": 0.8416586224768993
+      },
+      "trainingResult": {
+        "finalLoss": 0.008866581470196176,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Metallic",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [],
+          "timestamp": "2026-04-19T03:07:26.782Z"
+        }
+      },
+      "executionTime": 1
+    },
+    {
+      "name": "Mg",
+      "commonName": "Magnesium (HCP)",
+      "type": "Metallic",
+      "emergenceIndices": {
+        "structureEmergence": 0.8707006085417185,
+        "coordinationEmergence": 0.880484471072444,
+        "bondingEmergence": 0.9334778962994152,
+        "symmetryEmergence": 0.9569569462102765,
+        "propertyEmergence": 0.884722924380369,
+        "stabilityEmergence": 0.9503433863782564,
+        "electricalEmergence": 0.9419867349305815,
+        "thermalEmergence": 0.9511737432275527,
+        "averageEmergence": 0.9212308388800767
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.9555555555555557,
+          "pressure": 5,
+          "stability": 0.9975339100059825,
+          "energyState": -0.8747726924274342
+        },
+        "stabilityRange": {
+          "min": 0.6376281516217731,
+          "max": 0.9975339100059825
+        },
+        "averageStability": 0.8513336604294769
+      },
+      "trainingResult": {
+        "finalLoss": 0.004459454869677709,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Metallic",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [],
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "KAl₂(AlSi₃O₁₀)(OH)₂",
+      "commonName": "Muscovite Mica",
+      "type": "Layered Silicate",
+      "emergenceIndices": {
+        "structureEmergence": 0.9654820096972322,
+        "coordinationEmergence": 0.9046886360500778,
+        "bondingEmergence": 0.8670485675016313,
+        "symmetryEmergence": 0.906978908144527,
+        "propertyEmergence": 0.8348379944828769,
+        "stabilityEmergence": 0.860208932009118,
+        "electricalEmergence": 0.9239297136080203,
+        "thermalEmergence": 0.9408017125550119,
+        "averageEmergence": 0.9004970592560618
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.9555555555555557,
+          "pressure": 5,
+          "stability": 0.9975339100059825,
+          "energyState": -0.8550201366349758
+        },
+        "stabilityRange": {
+          "min": 0.6376281516217731,
+          "max": 0.9975339100059825
+        },
+        "averageStability": 0.8513336604294769
+      },
+      "trainingResult": {
+        "finalLoss": 0.0027818273475585797,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Layered Silicate",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [],
+          "timestamp": "2026-04-19T03:07:26.783Z"
+        }
+      },
+      "executionTime": 0
+    },
+    {
+      "name": "Zn",
+      "commonName": "Zinc (HCP)",
+      "type": "Metallic",
+      "emergenceIndices": {
+        "structureEmergence": 0.9086761843748536,
+        "coordinationEmergence": 0.8895912232038257,
+        "bondingEmergence": 0.9602752317567342,
+        "symmetryEmergence": 0.9658573457732262,
+        "propertyEmergence": 0.9384639110554579,
+        "stabilityEmergence": 0.8726428747743595,
+        "electricalEmergence": 0.7570261201747247,
+        "thermalEmergence": 0.8494652605447551,
+        "averageEmergence": 0.8927497689572421
+      },
+      "parameterSweep": {
+        "gridPoints": 100,
+        "optimalParameters": {
+          "latticeParameter": 3.9555555555555557,
+          "pressure": 5,
+          "stability": 0.9975339100059825,
+          "energyState": -0.8993975796359409
+        },
+        "stabilityRange": {
+          "min": 0.6376281516217731,
+          "max": 0.9975339100059825
+        },
+        "averageStability": 0.8513336604294769
+      },
+      "trainingResult": {
+        "finalLoss": 0.007050177456023791,
+        "epochsTrained": 50,
+        "converged": true
+      },
+      "provenance": {
+        "level1": {
+          "description": "Input: Atomic properties",
+          "source": "Phase 17 (Atomic domain)",
+          "timestamp": "2026-04-19T03:07:26.784Z"
+        },
+        "level2": {
+          "description": "Molecular aggregation",
+          "source": "Phase 19 (Chemistry domain)",
+          "timestamp": "2026-04-19T03:07:26.784Z"
+        },
+        "level3": {
+          "description": "Crystal structure emergence",
+          "source": "Phase 20 (Materials - simple)",
+          "timestamp": "2026-04-19T03:07:26.784Z"
+        },
+        "level4": {
+          "description": "Extended material structures",
+          "source": "Phase 21 (Extended materials - current)",
+          "materialType": "Metallic",
+          "formulaComplexity": 1,
+          "timestamp": "2026-04-19T03:07:26.784Z"
+        },
+        "level5": {
+          "description": "Industrial/biological applications",
+          "predictedApplications": [],
+          "timestamp": "2026-04-19T03:07:26.784Z"
+        }
+      },
+      "executionTime": 0
+    }
+  ],
+  "summary": {
+    "totalMaterials": 12,
+    "successRate": 1,
+    "averageEmergence": 0.9098373259032929,
+    "averageStability": 0.8458234971615736,
+    "totalExecutionTime": 13,
+    "executionTimePerMaterial": 1.0833333333333333,
+    "fpOpsPerRequest": 2,
+    "emergencePatternsDetected": 5,
+    "confidence": 0.95
+  },
+  "emergencePatterns": [
+    {
+      "type": "Material Class Correlation",
+      "description": "Metallic (91.0%) vs Non-metallic (90.9%)",
+      "strength": 0.0011374545682483195
+    },
+    {
+      "type": "Hardness-Bonding Hierarchy",
+      "description": "Hardness ranks by bonding strength: Covalent > Ionic > Metallic",
+      "ranking": [
+        {
+          "name": "Si",
+          "hardness": 9.5,
+          "type": "Covalent Network"
+        },
+        {
+          "name": "KAlSi₃O₈",
+          "hardness": 6,
+          "type": "Complex Silicate"
+        },
+        {
+          "name": "Fe",
+          "hardness": 5.5,
+          "type": "Metallic"
+        },
+        {
+          "name": "CaTiO₃",
+          "hardness": 5.5,
+          "type": "Complex Ionic"
+        },
+        {
+          "name": "CaF₂",
+          "hardness": 4,
+          "type": "Ionic Fluoride"
+        },
+        {
+          "name": "Cu",
+          "hardness": 3,
+          "type": "Metallic"
+        },
+        {
+          "name": "CaCO₃",
+          "hardness": 3,
+          "type": "Ionic Carbonate"
+        },
+        {
+          "name": "KAl₂(AlSi₃O₁₀)(OH)₂",
+          "hardness": 2.8,
+          "type": "Layered Silicate"
+        },
+        {
+          "name": "Al",
+          "hardness": 2.75,
+          "type": "Metallic"
+        },
+        {
+          "name": "Mg",
+          "hardness": 2.5,
+          "type": "Metallic"
+        },
+        {
+          "name": "Zn",
+          "hardness": 2.5,
+          "type": "Metallic"
+        },
+        {
+          "name": "Na",
+          "hardness": 0.5,
+          "type": "Metallic"
+        }
+      ],
+      "strength": 0.85
+    },
+    {
+      "type": "Density-Packing Efficiency",
+      "description": "Density range: 0.97-8.96 g/cm³",
+      "correlation": "Emerges from atomic mass + packing geometry",
+      "strength": 0.9
+    },
+    {
+      "type": "Crystal System Diversity",
+      "description": "4 unique crystal systems detected",
+      "systems": [
+        "Cubic",
+        "Trigonal",
+        "Monoclinic",
+        "Hexagonal"
+      ],
+      "strength": 0.95
+    },
+    {
+      "type": "Formula Complexity Emergence",
+      "description": "More complex formulas (multi-element) show richer bonding patterns",
+      "samples": [
+        {
+          "name": "Si",
+          "elementCount": 1,
+          "type": "Covalent Network"
+        },
+        {
+          "name": "Fe",
+          "elementCount": 1,
+          "type": "Metallic"
+        },
+        {
+          "name": "Cu",
+          "elementCount": 1,
+          "type": "Metallic"
+        },
+        {
+          "name": "CaCO₃",
+          "elementCount": 3,
+          "type": "Ionic Carbonate"
+        },
+        {
+          "name": "CaF₂",
+          "elementCount": 2,
+          "type": "Ionic Fluoride"
+        },
+        {
+          "name": "CaTiO₃",
+          "elementCount": 3,
+          "type": "Complex Ionic"
+        },
+        {
+          "name": "Al",
+          "elementCount": 1,
+          "type": "Metallic"
+        },
+        {
+          "name": "KAlSi₃O₈",
+          "elementCount": 4,
+          "type": "Complex Silicate"
+        },
+        {
+          "name": "Na",
+          "elementCount": 1,
+          "type": "Metallic"
+        },
+        {
+          "name": "Mg",
+          "elementCount": 1,
+          "type": "Metallic"
+        },
+        {
+          "name": "KAl₂(AlSi₃O₁₀)(OH)₂",
+          "elementCount": 1,
+          "type": "Layered Silicate"
+        },
+        {
+          "name": "Zn",
+          "elementCount": 1,
+          "type": "Metallic"
+        }
+      ],
+      "strength": 0.88
+    }
+  ]
+}

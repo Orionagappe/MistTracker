@@ -1,0 +1,1511 @@
+{
+  "objects": [
+    {
+      "id": "ADVANCED-0-Tokamak Plasma (ITER-like)",
+      "type": "Tokamak Plasma (ITER-like)",
+      "emergence": "68.8",
+      "patternCount": 12,
+      "temperature_K": "1.00e+8",
+      "density_m3": "1.00e+20",
+      "magnetic_field_T": "5.00e+0",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Color-Flavor-Locked",
+      "superconducting": "No",
+      "vortex_count": 15184834123222750,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": 18.01962549896126,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 78.83829897667262,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 62.4703954168843,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Tokamak Plasma (ITER-like)",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-1-Stellar Flare Plasma",
+      "type": "Stellar Flare Plasma",
+      "emergence": "64.0",
+      "patternCount": 12,
+      "temperature_K": "1.00e+7",
+      "density_m3": "1.00e+15",
+      "magnetic_field_T": "5.00e-1",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Neutron Liquid",
+      "superconducting": "No",
+      "vortex_count": 379620853080568700000,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": false,
+          "confidence": 75,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": -19.745224586339177,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 57.246538941984475,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 69.9703954168843,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Stellar Flare Plasma",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-2-Neutron Star Crust",
+      "type": "Neutron Star Crust",
+      "emergence": "65.4",
+      "patternCount": 12,
+      "temperature_K": "1.00e+6",
+      "density_m3": "1.00e+18",
+      "magnetic_field_T": "1.00e+12",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Neutron Liquid",
+      "superconducting": "No",
+      "vortex_count": 7.592417061611375e+30,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": false,
+          "confidence": 75,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": -5.765954559645067,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 65.24653894198447,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 65.4703954168843,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Neutron Star Crust",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-3-Quark Matter Core",
+      "type": "Quark Matter Core",
+      "emergence": "67.7",
+      "patternCount": 12,
+      "temperature_K": "1.00e+5",
+      "density_m3": "5.00e+18",
+      "magnetic_field_T": "1.00e+8",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Color-Flavor-Locked",
+      "superconducting": "No",
+      "vortex_count": 7.592417061611375e+24,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": 8.234045438256999,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 73.24653894198447,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 64.42194041038027,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Quark Matter Core",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-4-High-Tc Superconductor",
+      "type": "High-Tc Superconductor",
+      "emergence": "71.5",
+      "patternCount": 12,
+      "temperature_K": "1.00e+2",
+      "density_m3": "1.00e+28",
+      "magnetic_field_T": "1.00e-2",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Color-Flavor-Locked",
+      "superconducting": "No",
+      "vortex_count": 7592417,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 81.97521947921888,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": 64.234045438257,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": false,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 50.470395416884294,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "High-Tc Superconductor",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-5-Superfluid Helium-3",
+      "type": "Superfluid Helium-3",
+      "emergence": "74.7",
+      "patternCount": 12,
+      "temperature_K": "1.00e-3",
+      "density_m3": "1.00e+26",
+      "magnetic_field_T": "1.00e-5",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Color-Flavor-Locked",
+      "superconducting": "Yes",
+      "vortex_count": 0,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 80.28657728662405,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": false,
+          "confidence": 75.94119402023894,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": true,
+          "confidence": 21.157112525264594,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": false,
+          "confidence": 80,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 53.470395416884294,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Superfluid Helium-3",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-6-Quantum Hall Regime",
+      "type": "Quantum Hall Regime",
+      "emergence": "77.1",
+      "patternCount": 12,
+      "temperature_K": "1.00e-1",
+      "density_m3": "1.00e+15",
+      "magnetic_field_T": "1.00e+1",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Neutron Liquid",
+      "superconducting": "Yes",
+      "vortex_count": 759242,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": false,
+          "confidence": 75,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": true,
+          "confidence": 21.156467272053632,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 69.9703954168843,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Quantum Hall Regime",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-7-Skyrmion Crystal",
+      "type": "Skyrmion Crystal",
+      "emergence": "76.0",
+      "patternCount": 12,
+      "temperature_K": "5.00e+1",
+      "density_m3": "1.00e+24",
+      "magnetic_field_T": "1.00e-1",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Color-Flavor-Locked",
+      "superconducting": "Yes",
+      "vortex_count": 1,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 84.97060165725114,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 83.94119402023894,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": true,
+          "confidence": 81,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 80,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": true,
+          "confidence": 20.705574046440447,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": false,
+          "confidence": 80.60205999132796,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": true,
+          "confidence": 87,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 56.470395416884294,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Skyrmion Crystal",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-8-Solar Chromosphere",
+      "type": "Solar Chromosphere",
+      "emergence": "65.7",
+      "patternCount": 12,
+      "temperature_K": "1.00e+4",
+      "density_m3": "1.00e+12",
+      "magnetic_field_T": "1.00e-2",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Neutron Liquid",
+      "superconducting": "No",
+      "vortex_count": 75924170616113740,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": false,
+          "confidence": 75,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 79.47171900012445,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": -5.765954559645067,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 65.24653894198447,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 74.4703954168843,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Solar Chromosphere",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    },
+    {
+      "id": "ADVANCED-9-Pulsar Magnetosphere",
+      "type": "Pulsar Magnetosphere",
+      "emergence": "64.3",
+      "patternCount": 12,
+      "temperature_K": "1.00e+5",
+      "density_m3": "1.00e+8",
+      "magnetic_field_T": "1.00e+8",
+      "confinement_time_s": "1.00e+8",
+      "phase_type": "Neutron Liquid",
+      "superconducting": "No",
+      "vortex_count": 7.592417061611375e+28,
+      "patterns": [
+        {
+          "name": "Plasma Confinement",
+          "detected": true,
+          "confidence": 88,
+          "physics": "MHD equilibrium and stability"
+        },
+        {
+          "name": "Alfven Wave Propagation",
+          "detected": true,
+          "confidence": 85,
+          "physics": "Magnetohydrodynamic waves"
+        },
+        {
+          "name": "Magnetic Reconnection",
+          "detected": true,
+          "confidence": 84,
+          "physics": "Plasmoid instability and energy release"
+        },
+        {
+          "name": "Exotic Matter Phases",
+          "detected": false,
+          "confidence": 75,
+          "physics": "Nuclear to quark matter transition"
+        },
+        {
+          "name": "Equation of State",
+          "detected": true,
+          "confidence": 79.00471719000124,
+          "physics": "Polytropic pressure relation"
+        },
+        {
+          "name": "Quantum Vacuum Effects",
+          "detected": true,
+          "confidence": -19.745224586339177,
+          "physics": "Zero-point energy manifestation"
+        },
+        {
+          "name": "Dynamical Casimir Effect",
+          "detected": true,
+          "confidence": 57.246538941984475,
+          "physics": "Moving boundary quantum effects"
+        },
+        {
+          "name": "Superconductivity",
+          "detected": false,
+          "confidence": -7,
+          "physics": "Cooper pair condensation"
+        },
+        {
+          "name": "Vortex Lattice Formation",
+          "detected": true,
+          "confidence": 86,
+          "physics": "Mixed state with quantized flux"
+        },
+        {
+          "name": "Meissner Diamagnetism",
+          "detected": false,
+          "confidence": 82,
+          "physics": "Perfect diamagnetic screening"
+        },
+        {
+          "name": "Topological Skyrmions",
+          "detected": true,
+          "confidence": 82,
+          "physics": "Topological spin textures"
+        },
+        {
+          "name": "Persistent Supercurrent",
+          "detected": false,
+          "confidence": 80.4703954168843,
+          "physics": "Lossless current circulation"
+        }
+      ],
+      "provenance": [
+        {
+          "level": 0,
+          "step": "Complex System",
+          "description": "Pulsar Magnetosphere",
+          "timestamp": 0.001
+        },
+        {
+          "level": 1,
+          "step": "Fundamental Interactions",
+          "description": "EM + Strong + Weak forces",
+          "timestamp": 0.002
+        },
+        {
+          "level": 2,
+          "step": "Plasma Dynamics",
+          "description": "MHD and kinetic effects",
+          "timestamp": 0.003
+        },
+        {
+          "level": 3,
+          "step": "Phase Transitions",
+          "description": "Exotic matter formation",
+          "timestamp": 0.004
+        },
+        {
+          "level": 4,
+          "step": "Quantum Vacuum",
+          "description": "Zero-point manifestation",
+          "timestamp": 0.005
+        },
+        {
+          "level": 5,
+          "step": "Anomalous Transport",
+          "description": "Superconductivity emerges",
+          "timestamp": 0.006
+        },
+        {
+          "level": 6,
+          "step": "Topological Defects",
+          "description": "Vortices and skyrmions",
+          "timestamp": 0.007
+        },
+        {
+          "level": 7,
+          "step": "Collective Phenomena",
+          "description": "Emergent properties",
+          "timestamp": 0.008
+        },
+        {
+          "level": 8,
+          "step": "Multi-Scale Coupling",
+          "description": "Macro ← Micro physics",
+          "timestamp": 0.009
+        },
+        {
+          "level": 9,
+          "step": "Complete Theory",
+          "description": "First principles description",
+          "timestamp": 0.01
+        }
+      ],
+      "success": true
+    }
+  ],
+  "statistics": {
+    "totalObjects": 10,
+    "successCount": 10,
+    "failureCount": 0,
+    "patternCount": 120,
+    "averageEmergence": "69.5"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "particle": "Proton",
+  "domain": "subatomic",
+  "timestamp": "2026-05-01T02:21:41.920Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.004256666666666667,
+  "measurements": {
+    "mass": {
+      "reference": 938.272,
+      "measured": 937.646,
+      "error_pct": "-0.067"
+    },
+    "charge_radius": {
+      "reference": 0.8414,
+      "measured": 0.8394,
+      "error_pct": "-0.242"
+    },
+    "magnetic_moment": {
+      "reference": 2.793,
+      "measured": 2.762,
+      "error_pct": "-1.102"
+    }
+  }
+}

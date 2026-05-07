@@ -1,0 +1,27 @@
+{
+  "status": "passed",
+  "atom": "Helium",
+  "model": "Bohr",
+  "timestamp": "2026-04-20T23:49:24.244Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0013110279888915435,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.265,
+      "measured": 0.2660027151692191,
+      "error_pct": "0.38"
+    },
+    "ionization_energy": {
+      "reference": 24.587,
+      "measured": 24.293861372951316,
+      "error_pct": "1.19"
+    },
+    "ground_state_energy": {
+      "reference": -78.975,
+      "measured": -79.90479255481122,
+      "error_pct": "-1.18"
+    }
+  }
+}

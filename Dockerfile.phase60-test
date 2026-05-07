@@ -1,0 +1,176 @@
+# Phase 17.5 Simulator Container Test Environment
+# Devuan Excalibur 6.1.1 base with Phase 17.5 integration
+# Purpose: Test SSHD daemon and Phase 17.5 validator execution via SSH
+
+FROM devuan/devuan:excalibur
+
+LABEL maintainer="MistTracker Phase 17.5"
+LABEL description="Phase 17.5 Simulator Node - SSHD Testing Environment"
+
+# Set environment
+ENV DEBIAN_FRONTEND=noninteractive
+ENV NODE_ENV=production
+
+# Update and install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssh-server \
+    openssh-client \
+    openssh-sftp-server \
+    curl \
+    wget \
+    git \
+    build-essential \
+    python3 \
+    python3-pip \
+    nodejs \
+    npm \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Generate SSH host keys (Devuan strict defaults skip auto-generation)
+RUN ssh-keygen -A && \
+    mkdir -p /run/sshd /root/.ssh && \
+    chmod 700 /root/.ssh
+
+# Configure SSH daemon - Devuan privacy defaults hardening
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config && \
+    sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config && \
+    sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config && \
+    sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config && \
+    sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+
+# Add Devuan-specific SSH security configuration
+RUN cat >> /etc/ssh/sshd_config << 'EOF'
+
+# Phase 17.5 Test Configuration
+Protocol 2
+AllowUsers root
+LogLevel DEBUG
+X11Forwarding no
+PrintMotd no
+Subsystem sftp /usr/lib/openssh/sftp-server
+EOF
+
+# Set SSH permissions
+RUN chmod 700 /root/.ssh && \
+    chmod 600 /etc/ssh/sshd_config
+
+# Create Phase 17.5 working directory
+RUN mkdir -p /opt/phase17.5/data /opt/phase17.5/results /opt/phase17.5/validators
+
+WORKDIR /opt/phase17.5
+
+# Copy Phase 17.5 files (will be provided by docker-compose volume)
+# For now, create placeholder directories
+RUN mkdir -p /opt/phase17.5/mist
+
+# Copy atomic domain validator from host
+COPY atomic-domain-validator.js /opt/phase17.5/atomic-domain-validator.js
+
+# Create the run-validator.sh wrapper script that executes distributed validation
+RUN cat > /opt/phase17.5/run-validator.sh << 'VALIDATOR_SCRIPT'
+#!/bin/bash
+set -e
+
+# Phase 17.5 Distributed Validator Wrapper
+# Executes atomic domain validation on container node
+
+RESULTS_DIR="/opt/phase17.5/results"
+TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+RESULT_FILE="$RESULTS_DIR/validation-result-$TIMESTAMP.json"
+LOG_FILE="$RESULTS_DIR/validation-$TIMESTAMP.log"
+
+# Ensure results directory exists
+mkdir -p "$RESULTS_DIR"
+
+echo "[Validator] Starting Phase 17.5 Atomic Domain Validation" | tee -a "$LOG_FILE"
+echo "[Validator] Node: $(hostname)" | tee -a "$LOG_FILE"
+echo "[Validator] Timestamp: $TIMESTAMP" | tee -a "$LOG_FILE"
+echo "" | tee -a "$LOG_FILE"
+
+# Determine which atoms to validate (can be passed via environment or default to common atoms)
+ATOMS_TO_VALIDATE="${ATOMS_TO_VALIDATE:-Hydrogen,Helium,Lithium}"
+
+# Parse atoms and run validators
+IFS=',' read -ra atom_list <<< "$ATOMS_TO_VALIDATE"
+
+echo "[Validator] Validating atoms: ${atom_list[@]}" | tee -a "$LOG_FILE"
+echo "" | tee -a "$LOG_FILE"
+
+validation_passed=0
+validation_failed=0
+
+for atom in "${atom_list[@]}"; do
+    atom=$(echo "$atom" | xargs)  # Trim whitespace
+    echo "[Validator] Running validation for: $atom" | tee -a "$LOG_FILE"
+    
+    atom_result_file="$RESULTS_DIR/validation-${atom}-$TIMESTAMP.json"
+    
+    # Execute validator with atom parameter
+    if node /opt/phase17.5/atomic-domain-validator.js \
+        --atom "$atom" \
+        --model Bohr \
+        --output "$atom_result_file" >> "$LOG_FILE" 2>&1; then
+        
+        echo "[Validator] ✓ $atom validation passed" | tee -a "$LOG_FILE"
+        ((validation_passed++))
+    else
+        echo "[Validator] ✗ $atom validation failed" | tee -a "$LOG_FILE"
+        ((validation_failed++))
+    fi
+    
+    echo "" | tee -a "$LOG_FILE"
+done
+
+# Generate summary
+echo "[Validator] ======================================" | tee -a "$LOG_FILE"
+echo "[Validator] Validation Summary" | tee -a "$LOG_FILE"
+echo "[Validator] ======================================" | tee -a "$LOG_FILE"
+echo "[Validator] Passed: $validation_passed" | tee -a "$LOG_FILE"
+echo "[Validator] Failed: $validation_failed" | tee -a "$LOG_FILE"
+
+# Create summary JSON
+SUMMARY_FILE="$RESULTS_DIR/validation-summary-$TIMESTAMP.json"
+cat > "$SUMMARY_FILE" << EOF_JSON
+{
+  "node": "$(hostname)",
+  "timestamp": "$TIMESTAMP",
+  "atoms_validated": ${#atom_list[@]},
+  "validation_passed": $validation_passed,
+  "validation_failed": $validation_failed,
+  "status": "$([ $validation_failed -eq 0 ] && echo 'all-passed' || echo 'some-failed')",
+  "log_file": "$LOG_FILE",
+  "results_directory": "$RESULTS_DIR"
+}
+EOF_JSON
+
+echo "[Validator] Summary written to: $SUMMARY_FILE" | tee -a "$LOG_FILE"
+echo "" | tee -a "$LOG_FILE"
+echo "[Validator] Validator complete" | tee -a "$LOG_FILE"
+
+# Exit with appropriate code
+[ $validation_failed -eq 0 ]
+VALIDATOR_SCRIPT
+
+RUN chmod +x /opt/phase17.5/run-validator.sh
+
+RUN printf '#!/bin/bash\nset -e\necho "[SSH Validation] Starting SSH daemon validation..."\necho "[SSH Validation] Fixing SSH permissions (handling Windows mount)."\nif [ -d /root/.ssh ]; then\n  chmod 700 /root/.ssh 2>/dev/null || echo "[SSH Validation] WARNING: Could not chmod /root/.ssh"\n  if [ -f /root/.ssh/authorized_keys ]; then\n    chmod 600 /root/.ssh/authorized_keys 2>/dev/null || echo "[SSH Validation] WARNING: Could not chmod authorized_keys"\n    echo "[SSH Validation] authorized_keys size: $(wc -c < /root/.ssh/authorized_keys) bytes"\n  else\n    echo "[SSH Validation] WARNING: authorized_keys not found"\n  fi\nelse\n  echo "[SSH Validation] ERROR: /root/.ssh directory not found"\n  exit 1\nfi\necho "[SSH Validation] SSH validation complete - ready to start SSHD"\n' > /opt/phase17.5/validate-ssh.sh && chmod +x /opt/phase17.5/validate-ssh.sh
+
+# Expose SSH port
+EXPOSE 22
+
+# Pre-startup validation
+RUN /opt/phase17.5/validate-ssh.sh
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD sshd -t || exit 1
+
+# Start SSH daemon with validation and verbose output for debugging
+CMD ["/bin/sh", "-c", "/opt/phase17.5/validate-ssh.sh && echo '[Startup] SSH Daemon starting...' && exec /usr/sbin/sshd -D -e"]
+
+
+
+

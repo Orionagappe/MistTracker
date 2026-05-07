@@ -1,0 +1,191 @@
+/* Milestone Timeline Styles */
+
+.milestone-timeline {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 24px;
+  margin: 16px 0;
+  color: #e0e0e0;
+}
+
+.milestone-timeline h2 {
+  margin: 0 0 20px 0;
+  font-size: 1.5em;
+  color: #fff;
+}
+
+.timeline-container {
+  margin: 24px 0;
+}
+
+.timeline-track {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.timeline-label {
+  min-width: 100px;
+  padding: 8px 0;
+  font-weight: bold;
+  font-size: 0.9em;
+  text-align: right;
+}
+
+.timeline-events {
+  flex: 1;
+  position: relative;
+  height: 40px;
+  background: #0f0f0f;
+  border-radius: 4px;
+  border: 1px solid #222;
+}
+
+.main-timeline .timeline-events {
+  border: 1px solid #333;
+}
+
+.atom-track .timeline-events {
+  border-left: 3px solid;
+}
+
+.timeline-point {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid #1a1a1a;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+}
+
+.timeline-point:hover .timeline-dot {
+  width: 16px;
+  height: 16px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+.milestone-detail {
+  position: relative;
+  margin: 16px 0;
+  padding: 16px;
+  background: linear-gradient(135deg, #1a1a1a, #0f0f0f);
+  border: 1px solid #333;
+  border-radius: 4px;
+}
+
+.detail-header {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.detail-atom {
+  padding: 4px 12px;
+  border-radius: 4px;
+  color: white;
+  font-weight: bold;
+  font-size: 0.85em;
+}
+
+.detail-metrics {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .detail-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.metric-label {
+  color: #888;
+  font-size: 0.85em;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-value {
+  color: #4ecdc4;
+  font-weight: bold;
+  font-family: monospace;
+  font-size: 1.1em;
+}
+
+.atom-stats {
+  margin-top: 32px;
+}
+
+.atom-stats h3 {
+  margin: 0 0 16px 0;
+  color: #fff;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.stat-card {
+  padding: 16px;
+  background: #0f0f0f;
+  border: 1px solid #222;
+  border-left: 3px solid;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.stat-card:hover {
+  background: #111;
+  border-color: #333;
+}
+
+.stat-header {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 12px;
+}
+
+.stat-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px solid #1a1a1a;
+  font-family: monospace;
+  font-size: 0.85em;
+}
+
+.stat-row span {
+  color: #888;
+}
+
+.stat-row strong {
+  color: #4ecdc4;
+}
+
+.no-data {
+  padding: 32px;
+  text-align: center;
+  color: #666;
+  background: #0f0f0f;
+  border-radius: 4px;
+  border: 1px dashed #333;
+}

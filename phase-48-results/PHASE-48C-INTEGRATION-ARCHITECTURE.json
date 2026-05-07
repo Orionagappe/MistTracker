@@ -1,0 +1,429 @@
+{
+  "timestamp": "2026-04-19T15:40:37.596Z",
+  "phase": 48,
+  "subphase": "C",
+  "status": "Integration Architecture Designed",
+  "audio_integration": {
+    "purpose": "Integrate synthesized voice narration into Phase 47 simulator UI",
+    "integration_layers": [
+      {
+        "layer": "Audio Playback Engine",
+        "components": [
+          {
+            "name": "AudioPlayer",
+            "purpose": "Core playback control",
+            "features": [
+              "play",
+              "pause",
+              "stop",
+              "seek",
+              "volume",
+              "speed_adjustment"
+            ],
+            "supported_formats": [
+              "WAV",
+              "MP3",
+              "OGG Vorbis"
+            ],
+            "latency_target_ms": 50
+          },
+          {
+            "name": "PlaybackScheduler",
+            "purpose": "Synchronize audio with physics animation",
+            "features": [
+              "timeline_sync",
+              "event_triggering",
+              "parameter_linking"
+            ],
+            "granularity_ms": 100
+          },
+          {
+            "name": "VolumeNormalization",
+            "purpose": "Maintain consistent perceived loudness",
+            "standard": "LUFS-16 (loudness units relative to full scale)",
+            "target_loudness": -16
+          }
+        ]
+      },
+      {
+        "layer": "UI Controls",
+        "components": [
+          {
+            "name": "NarrationToggle",
+            "purpose": "Enable/disable voice narration",
+            "default_state": "enabled",
+            "accessibility": "Keyboard shortcut available"
+          },
+          {
+            "name": "TierSelector",
+            "purpose": "Switch between 1/2/3-tier narration",
+            "options": [
+              {
+                "tier": 1,
+                "name": "Executive",
+                "duration_reduction": "100%"
+              },
+              {
+                "tier": 2,
+                "name": "Technical (Default)",
+                "duration_reduction": "0%"
+              },
+              {
+                "tier": 3,
+                "name": "Deep Technical",
+                "duration_reduction": "-100%"
+              }
+            ],
+            "affects_audio": true,
+            "affects_visual": true
+          },
+          {
+            "name": "PlaybackControls",
+            "purpose": "Play/pause/stop narration",
+            "layout": "Standard media player controls",
+            "position": "Below findings panel"
+          },
+          {
+            "name": "ProgressBar",
+            "purpose": "Show narration timeline",
+            "features": [
+              "scrubbing",
+              "time_display",
+              "duration_display"
+            ],
+            "clickable": true
+          },
+          {
+            "name": "SpeedControl",
+            "purpose": "Adjust playback speed",
+            "range": [
+              "0.8x",
+              "1.0x (Normal)",
+              "1.25x",
+              "1.5x"
+            ],
+            "preserves_pitch": true,
+            "default": "1.0x"
+          },
+          {
+            "name": "CaptionDisplay",
+            "purpose": "Optional real-time subtitle matching audio",
+            "format": "WebVTT",
+            "sync_tolerance_ms": 200
+          }
+        ]
+      },
+      {
+        "layer": "Synchronization",
+        "components": [
+          {
+            "name": "AudioVisualSync",
+            "purpose": "Keep voice narration synchronized with UI updates",
+            "sync_events": [
+              "domain_switch",
+              "parameter_change",
+              "tier_change",
+              "clarity_update"
+            ],
+            "drift_tolerance_ms": 500
+          },
+          {
+            "name": "TimingMarkers",
+            "purpose": "Insert markers at key points in audio",
+            "marker_types": [
+              "Finding title",
+              "Key concept emphasis",
+              "Numerical results",
+              "Transition to next section"
+            ],
+            "use_cases": [
+              "Highlighting synchronized text",
+              "Triggering visual emphasis",
+              "Enabling precise seeking"
+            ]
+          },
+          {
+            "name": "EventTriggering",
+            "purpose": "Trigger UI updates based on audio position",
+            "events": [
+              "Finding title announcement",
+              "Visual highlight of key term",
+              "Graph animation update",
+              "Findings panel update"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "file_management": {
+    "directory_structure": {
+      "root": "./audio-narration",
+      "organized_by_finding": {
+        "structure": "./audio-narration/findings/{finding_id}",
+        "contents": [
+          "{finding_id}_executive.wav",
+          "{finding_id}_executive.mp3",
+          "{finding_id}_technical.wav",
+          "{finding_id}_technical.mp3",
+          "{finding_id}_deep.wav",
+          "{finding_id}_deep.mp3",
+          "{finding_id}_metadata.json"
+        ]
+      },
+      "organized_by_tier": {
+        "structure": "./audio-narration/by-tier/{tier}",
+        "contents": "All findings of that tier"
+      },
+      "consolidated": {
+        "structure": "./audio-narration/consolidated",
+        "contents": [
+          "full_narration_executive.wav (all findings concatenated)",
+          "full_narration_technical.wav",
+          "full_narration_deep.wav",
+          "manifest.json"
+        ]
+      }
+    },
+    "metadata_structure": {
+      "finding_id": "P1",
+      "title": "Example Finding",
+      "audio_files": {
+        "executive": {
+          "file_wav": "P1_executive.wav",
+          "file_mp3": "P1_executive.mp3",
+          "duration_seconds": 5.2,
+          "word_count": 28,
+          "sample_rate": 44100,
+          "bit_depth": 16,
+          "filesize_wav_kb": 412,
+          "filesize_mp3_kb": 31
+        },
+        "technical": {
+          "file_wav": "P1_technical.wav",
+          "file_mp3": "P1_technical.mp3",
+          "duration_seconds": 8.5,
+          "word_count": 38,
+          "filesize_wav_kb": 673,
+          "filesize_mp3_kb": 51
+        },
+        "deep": {
+          "file_wav": "P1_deep.wav",
+          "file_mp3": "P1_deep.mp3",
+          "duration_seconds": 15.3,
+          "word_count": 74,
+          "filesize_wav_kb": 1210,
+          "filesize_mp3_kb": 92
+        }
+      },
+      "timing_markers": [
+        {
+          "timestamp": 0.5,
+          "type": "title",
+          "text": "Emergence Ceiling in Deterministic Systems"
+        },
+        {
+          "timestamp": 2.1,
+          "type": "emphasis",
+          "text": "natural limit"
+        },
+        {
+          "timestamp": 4.2,
+          "type": "emphasis",
+          "text": "eighty point nine percent"
+        }
+      ],
+      "cadence_validation": {
+        "actual_bpm": 145.2,
+        "target_bpm": 145,
+        "deviation_percent": 0.14,
+        "status": "PASS"
+      },
+      "clarity_score": 91,
+      "suitability_for_phase_49_qa": "YES - suitable for knowledge base"
+    }
+  },
+  "simulator_integration": {
+    "integration_points": [
+      {
+        "component": "FindingsPanel",
+        "integration": "Play button appears with each finding display",
+        "behavior": "Clicking play triggers audio playback for current tier",
+        "sync": "Narration synchronized with findings text highlighting"
+      },
+      {
+        "component": "DomainTabBar",
+        "integration": "Audio controls appear below domain tabs",
+        "behavior": "Switching domains queues appropriate audio",
+        "sync": "Narration stops on switch; resumes when returning to same domain"
+      },
+      {
+        "component": "TierSelector",
+        "integration": "Tier changes trigger audio playback at appropriate tier",
+        "behavior": "Switching 1→2→3 queues new audio; preserves timeline position",
+        "sync": "Visual highlights synchronized with current audio word"
+      },
+      {
+        "component": "PerformanceIndicator",
+        "integration": "Shows audio playback state (buffering, playing, paused)",
+        "behavior": "Real-time display of playback position and remaining duration",
+        "sync": "Audio latency monitored; warnings if >200ms drift"
+      },
+      {
+        "component": "3D Geometry Visualization",
+        "integration": "Audio synchronized with animation timeline",
+        "behavior": "Key physics concepts highlighted when mentioned in narration",
+        "sync": "Precision timing ±100ms for visual emphasis"
+      }
+    ],
+    "user_interaction_flows": [
+      {
+        "scenario": "User switches to Quantum domain",
+        "flow": [
+          "1. Domain switch event triggered",
+          "2. Previous audio (if playing) fades out over 500ms",
+          "3. Quantum domain loader begins",
+          "4. Findings panel updates with quantum findings",
+          "5. Play button becomes active",
+          "6. User clicks play",
+          "7. Quantum finding audio begins playback",
+          "8. Narration synchronized with visualization"
+        ]
+      },
+      {
+        "scenario": "User switches from Technical to Deep tier",
+        "flow": [
+          "1. Tier change event triggered",
+          "2. Current audio pauses, position recorded",
+          "3. Deep tier audio loads (may take 1-2 seconds)",
+          "4. Resume button shows instead of play",
+          "5. Optional: User can resume from where they paused",
+          "6. Audio playback continues with extended deep explanation"
+        ]
+      },
+      {
+        "scenario": "User seeks in audio timeline",
+        "flow": [
+          "1. User clicks/drags progress bar",
+          "2. Seek event sent to audio engine",
+          "3. Waveform visualizer updates position",
+          "4. UI synchronized to match audio position",
+          "5. Findings text highlights current section",
+          "6. Playback resumes from new position"
+        ]
+      }
+    ]
+  },
+  "statistics": {
+    "total_findings": 17,
+    "total_audio_files": 51,
+    "total_duration_seconds": 508.6,
+    "total_duration_minutes": 8.5,
+    "total_words": 2429,
+    "average_words_per_finding": 143,
+    "job_statistics": [
+      {
+        "finding_id": "P1",
+        "total_duration_seconds": 29,
+        "total_words": 140,
+        "tasks": 3
+      },
+      {
+        "finding_id": "P2",
+        "total_duration_seconds": 30.4,
+        "total_words": 132,
+        "tasks": 3
+      },
+      {
+        "finding_id": "P3",
+        "total_duration_seconds": 31.4,
+        "total_words": 141,
+        "tasks": 3
+      },
+      {
+        "finding_id": "P4",
+        "total_duration_seconds": 32.4,
+        "total_words": 150,
+        "tasks": 3
+      },
+      {
+        "finding_id": "P5",
+        "total_duration_seconds": 33.3,
+        "total_words": 160,
+        "tasks": 3
+      },
+      {
+        "finding_id": "L1",
+        "total_duration_seconds": 32.8,
+        "total_words": 155,
+        "tasks": 3
+      },
+      {
+        "finding_id": "S1",
+        "total_duration_seconds": 34.1,
+        "total_words": 174,
+        "tasks": 3
+      },
+      {
+        "finding_id": "I1",
+        "total_duration_seconds": 33.2,
+        "total_words": 162,
+        "tasks": 3
+      },
+      {
+        "finding_id": "I2",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "I3",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "L2",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "L3",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "L4",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "S2",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "S3",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "S4",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      },
+      {
+        "finding_id": "S5",
+        "total_duration_seconds": 28,
+        "total_words": 135,
+        "tasks": 3
+      }
+    ]
+  }
+}

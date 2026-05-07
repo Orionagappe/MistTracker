@@ -1,0 +1,166 @@
+# Phase 17.5 Simulator Container Test Environment
+# Devuan Excalibur 6.1.1 base with Phase 17.5 integration
+# Purpose: Test SSHD daemon and Phase 17.5 validator execution via SSH
+
+FROM devuan/devuan:excalibur
+
+LABEL maintainer="MistTracker Phase 17.5"
+LABEL description="Phase 17.5 Simulator Node - SSHD Testing Environment"
+
+# Set environment
+ENV DEBIAN_FRONTEND=noninteractive
+ENV NODE_ENV=production
+
+# Update and install dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    openssh-server \
+    openssh-client \
+    openssh-sftp-server \
+    curl \
+    wget \
+    git \
+    build-essential \
+    python3 \
+    python3-pip \
+    nodejs \
+    npm \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Generate SSH host keys (Devuan strict defaults skip auto-generation)
+RUN ssh-keygen -A && \
+    mkdir -p /run/sshd /root/.ssh && \
+    chmod 700 /root/.ssh
+
+# Configure SSH daemon - Devuan privacy defaults hardening
+RUN sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config && \
+    sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin without-password/' /etc/ssh/sshd_config && \
+    sed -i 's/#PubkeyAuthentication yes/PubkeyAuthentication yes/' /etc/ssh/sshd_config && \
+    sed -i 's/#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config && \
+    sed -i 's/PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd_config && \
+    sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config && \
+    sed -i 's/#Port 22/Port 22/' /etc/ssh/sshd_config
+
+# Add Devuan-specific SSH security configuration
+RUN cat >> /etc/ssh/sshd_config << 'EOF'
+
+# Phase 17.5 Test Configuration
+Protocol 2
+AllowUsers root
+LogLevel DEBUG
+X11Forwarding no
+PrintMotd no
+Subsystem sftp /usr/lib/openssh/sftp-server
+EOF
+
+# Set SSH permissions
+RUN chmod 700 /root/.ssh && \
+    chmod 600 /etc/ssh/sshd_config
+
+# Create Phase 17.5 working directory
+RUN mkdir -p /opt/phase17.5/data /opt/phase17.5/results /opt/phase17.5/validators
+
+WORKDIR /opt/phase17.5
+
+# Copy Phase 17.5 files (will be provided by docker-compose volume)
+# For now, create placeholder directories
+RUN mkdir -p /opt/phase17.5/mist
+
+# Create a test runner script
+RUN cat > /opt/phase17.5/run-validator.sh << 'EOF'
+#!/bin/bash
+set -e
+
+# Phase 17.5 Validator Execution Script
+# Runs atomic domain validation and captures results
+
+echo "[$(date)] Phase 17.5 Validator Starting..."
+echo "[$(date)] Node: $(hostname)"
+echo "[$(date)] User: $(whoami)"
+
+# Source environment
+export NODE_PATH=/opt/phase17.5/mist:/opt/phase17.5/node_modules
+
+# Check Phase 17.5 availability
+if [ ! -f "/opt/phase17.5/mist/cli.js" ]; then
+    echo "[ERROR] Phase 17.5 CLI not found"
+    exit 1
+fi
+
+# Create results directory
+mkdir -p /opt/phase17.5/results/$(date +%Y%m%d-%H%M%S)
+
+# Execute Phase 17.5 simulation
+echo "[$(date)] Executing Phase 17.5 atomic domain validator..."
+cd /opt/phase17.5
+
+# Run validator (adapt to actual Phase 17.5 command)
+# node mist/cli.js --mode validator --atomic-domain H-Ar > results/validator.log 2>&1
+
+# Simple test: list available validators
+if [ -d "/opt/phase17.5/mist" ]; then
+    echo "[$(date)] Available MistTracker files:"
+    ls -la /opt/phase17.5/mist/
+fi
+
+echo "[$(date)] Validator complete"
+exit 0
+EOF
+
+RUN chmod +x /opt/phase17.5/run-validator.sh
+
+# Create SSH startup validation script
+RUN cat > /opt/phase17.5/validate-ssh.sh << 'EOF'
+#!/bin/bash
+set -e
+#!/bin/bash
+set -e
+
+echo "[SSH Validation] Starting SSH daemon validation..."
+
+# Verify SSH configuration syntax
+echo "[SSH Validation] Checking SSH daemon configuration..."
+/usr/sbin/sshd -t -f /etc/ssh/sshd_config || {
+    echo "[SSH Validation] ERROR: SSH configuration syntax error"
+    exit 1
+}
+
+# Verify SSH host keys exist
+echo "[SSH Validation] Checking SSH host keys..."
+if [ ! -f /etc/ssh/ssh_host_ed25519_key ]; then
+    echo "[SSH Validation] ERROR: ED25519 host key missing"
+    exit 1
+fi
+
+# Verify authorized_keys if present
+if [ -f /root/.ssh/authorized_keys ]; then
+    echo "[SSH Validation] Authorized keys found, validating..."
+    if [ ! -s /root/.ssh/authorized_keys ]; then
+        echo "[SSH Validation] WARNING: authorized_keys is empty"
+    else
+        echo "[SSH Validation] Authorized keys size: $(wc -c < /root/.ssh/authorized_keys) bytes"
+    fi
+fi
+
+# Verify SSH directory permissions
+echo "[SSH Validation] Checking directory permissions..."
+[ -d /run/sshd ] || mkdir -p /run/sshd
+chmod 755 /run/sshd
+
+echo "[SSH Validation] SSH validation complete - ready to start SSHD"
+EOF
+
+RUN chmod +x /opt/phase17.5/validate-ssh.sh
+
+# Expose SSH port
+EXPOSE 22
+
+# Pre-startup validation
+RUN /opt/phase17.5/validate-ssh.sh
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD sshd -t || exit 1
+
+# Start SSH daemon with validation and verbose output for debugging
+CMD ["/bin/sh", "-c", "/opt/phase17.5/validate-ssh.sh && echo '[Startup] SSH Daemon starting...' && exec /usr/sbin/sshd -D -e"]

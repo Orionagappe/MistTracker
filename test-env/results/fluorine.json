@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "atom": "Fluorine",
+  "timestamp": "2026-05-01T02:13:52.309Z",
+  "tests_passed": 3,
+  "tests_total": 3,
+  "causality_score": 100,
+  "residual_error": 0.0016,
+  "measurements": {
+    "bohr_radius": {
+      "reference": 0.0295,
+      "measured": 0.0295658434,
+      "error_pct": "0.22"
+    },
+    "ionization_energy": {
+      "reference": 17.42,
+      "measured": 17.395666,
+      "error_pct": "-0.14"
+    },
+    "ground_state_energy": {
+      "reference": -99.4,
+      "measured": -99.279129,
+      "error_pct": "-0.12"
+    }
+  }
+}

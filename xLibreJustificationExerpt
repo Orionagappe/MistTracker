@@ -1,0 +1,20 @@
+Well, you need to broaden your horizons. In that patient monitor we needed network, svg, xml, and a couple of others.
+
+In the pressure and leak tester we needed serial, xml, sql, network, dbus, json, and something else for the digital I/O.
+
+Mish-mashing a dozen different libraries written by grunts who believe "their" way is the only way anyone should ever do things, is a train wreck hit by a plane crash rolling downhill towards a daycare center at noon play.
+
+I've been there. In a UTF-8, UTF-16, UTF-32 world it sucks beyond belief. Adding insult to injury more than one of those independent libraries will demand their own main event loop so now you are forced into roll-your-own or, worse, third party, messaging library to communicate across all the processes. That library uses a UTF that is incompatible with at least three of the other libraries.
+
+Adding insult to injury, all of that overhead introduces latency when you have 64 serial ports running at speeds well above 19200 and you have an array of sensors some tied to digital I/O that must be not only sampled a configurable 10-35 times per second, the result must be recorded into the database.
+
+Oh yeah, no sample, test result, or serial data packet can be lost. Has to be stored on device until remote host not only polls them for it via the network, but ACKs the information as having been stored in the host database.
+
+Just to paint the full picture, the UI/Linux part was running a single core x86 and the RTOS part of the device was running something even older from the company that consumed CodeWarrior to make it the IDE for all its line. Don't remember name.
+
+No.
+
+Life is too short to Frankenstein that.
+
+The client ends up with an unmaintainable steaming pile where even the slightest tweak topples the house of cards.
+

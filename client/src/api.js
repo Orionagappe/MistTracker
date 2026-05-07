@@ -132,6 +132,26 @@ export const analysisAPI = {
   
   getMilestones: (userId) =>
     apiClient.get(`/milestones/${userId}`),
+
+  // Phase 17.2.0: Multi-atom analysis API
+  getAtomStatus: (atom) =>
+    apiClient.get(`/api/analysis/${atom}/status`),
+  
+  startAtomTraining: (atom, config = {}) =>
+    apiClient.post(`/api/analysis/${atom}/train`, config),
+  
+  stopAtomTraining: (atom) =>
+    apiClient.delete(`/api/analysis/${atom}/train`),
+  
+  compareAtoms: () =>
+    apiClient.get(`/api/analysis/atoms/compare`),
+
+  // Cluster API (Phase 17.2.1)
+  getClusterNodes: () =>
+    apiClient.get(`/api/cluster/nodes`),
+  
+  getClusterMilestones: () =>
+    apiClient.get(`/api/cluster/milestones`),
 };
 
 export default apiClient;

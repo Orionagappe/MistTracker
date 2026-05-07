@@ -1,0 +1,672 @@
+{
+  "timestamp": "2026-04-19T14:34:46.511Z",
+  "phase": 44,
+  "subphase": "A",
+  "total_questions": 25,
+  "domains": 5,
+  "questions_per_domain": 5,
+  "questions": {
+    "metaEthics": [
+      {
+        "id": "1.1",
+        "domain": "Meta-Ethics",
+        "subdomain": "Moral Truth",
+        "question": "Does moral truth exist independently of human opinion or is it necessarily constructed by human societies?",
+        "keywords": [
+          "moral realism",
+          "moral truth",
+          "objectivity",
+          "subjectivity"
+        ],
+        "semantic_depth": "Tests whether moral facts are discovered (like physical facts) or invented (like social conventions)"
+      },
+      {
+        "id": "1.2",
+        "domain": "Meta-Ethics",
+        "subdomain": "Moral Language",
+        "question": "When we say something is \"morally good\", do we refer to a property that exists in the world or express an emotional attitude?",
+        "keywords": [
+          "moral language",
+          "reference",
+          "emotion",
+          "property"
+        ],
+        "semantic_depth": "Distinguishes between descriptive claims (good is property) and expressive claims (good expresses attitude)"
+      },
+      {
+        "id": "1.3",
+        "domain": "Meta-Ethics",
+        "subdomain": "Moral Naturalism",
+        "question": "Can moral properties be derived from natural properties through logical inference, or does deriving \"ought\" from \"is\" commit a fundamental logical error?",
+        "keywords": [
+          "is-ought problem",
+          "naturalism",
+          "reduction",
+          "logical gap"
+        ],
+        "semantic_depth": "Addresses whether morality can be grounded in observable facts or requires additional metaphysical assumptions"
+      },
+      {
+        "id": "1.4",
+        "domain": "Meta-Ethics",
+        "subdomain": "Moral Knowledge",
+        "question": "If moral truths exist, how is moral knowledge possible and what distinguishes moral knowledge from non-moral factual knowledge?",
+        "keywords": [
+          "epistemology",
+          "moral knowledge",
+          "intuition",
+          "reason"
+        ],
+        "semantic_depth": "Asks whether moral understanding uses different cognitive mechanisms than empirical understanding"
+      },
+      {
+        "id": "1.5",
+        "domain": "Meta-Ethics",
+        "subdomain": "Moral Disagreement",
+        "question": "Can persistent disagreement about fundamental moral questions coexist with the claim that objective moral truths exist?",
+        "keywords": [
+          "disagreement",
+          "objectivity",
+          "truth",
+          "pluralism"
+        ],
+        "semantic_depth": "Tests whether moral objectivity requires convergence on answers or can accommodate persistent rational disagreement"
+      }
+    ],
+    "normativeEthics": [
+      {
+        "id": "2.1",
+        "domain": "Normative Ethics",
+        "subdomain": "Virtue Ethics",
+        "question": "Can virtuous character be developed through habituation alone or does it require explicit reasoning about the good life?",
+        "keywords": [
+          "virtue",
+          "habit",
+          "reason",
+          "character development"
+        ],
+        "semantic_depth": "Distinguishes between virtue-as-habit and virtue-as-informed-practice"
+      },
+      {
+        "id": "2.2",
+        "domain": "Normative Ethics",
+        "subdomain": "Consequentialism",
+        "question": "Must consequentialist ethics concern only actual consequences or can moral rightness be determined by probable or expected consequences?",
+        "keywords": [
+          "consequences",
+          "actual vs expected",
+          "moral rightness",
+          "uncertainty"
+        ],
+        "semantic_depth": "Addresses how to apply consequentialism when outcomes are uncertain"
+      },
+      {
+        "id": "2.3",
+        "domain": "Normative Ethics",
+        "subdomain": "Deontology",
+        "question": "If absolute moral duties exist, can they ever justifiably conflict with each other and how should conflicts be resolved?",
+        "keywords": [
+          "duty",
+          "absolute",
+          "conflict",
+          "priority"
+        ],
+        "semantic_depth": "Examines whether duty-based ethics can remain coherent in complex situations"
+      },
+      {
+        "id": "2.4",
+        "domain": "Normative Ethics",
+        "subdomain": "Care Ethics",
+        "question": "Does ethical reasoning grounded in relationships and care provide an alternative to abstract universal principles or complement them?",
+        "keywords": [
+          "care",
+          "relationships",
+          "particularity",
+          "universality"
+        ],
+        "semantic_depth": "Tests relationship between contextual and universal ethical frameworks"
+      },
+      {
+        "id": "2.5",
+        "domain": "Normative Ethics",
+        "subdomain": "Moral Holism",
+        "question": "Can the rightness of an action be determined only by examining that action in isolation, or must context and history be considered?",
+        "keywords": [
+          "holism",
+          "atomism",
+          "context",
+          "isolation"
+        ],
+        "semantic_depth": "Distinguishes whether ethics is compositional (actions analyzable independently) or holistic"
+      }
+    ],
+    "moralPsychology": [
+      {
+        "id": "3.1",
+        "domain": "Moral Psychology",
+        "subdomain": "Moral Intuition",
+        "question": "Are initial moral intuitions reliable guides to moral truth or are they primarily products of evolutionary adaptation that may mislead us?",
+        "keywords": [
+          "intuition",
+          "evolution",
+          "reliability",
+          "bias"
+        ],
+        "semantic_depth": "Asks whether moral feelings track moral facts or track adaptive fitness"
+      },
+      {
+        "id": "3.2",
+        "domain": "Moral Psychology",
+        "subdomain": "Moral Development",
+        "question": "Does moral development progress through hierarchical stages where later stages are more sophisticated or does it branch into different moral frameworks?",
+        "keywords": [
+          "development",
+          "stages",
+          "progression",
+          "alternative frameworks"
+        ],
+        "semantic_depth": "Distinguishes between linear moral development and pluralistic moral maturation"
+      },
+      {
+        "id": "3.3",
+        "domain": "Moral Psychology",
+        "subdomain": "Moral Motivation",
+        "question": "Does moral reasoning necessarily motivate moral action or can we understand morality intellectually while remaining unmotivated to act?",
+        "keywords": [
+          "motivation",
+          "reason",
+          "action",
+          "akrasia"
+        ],
+        "semantic_depth": "Addresses whether morality is inherently motivating or requires additional psychological factors"
+      },
+      {
+        "id": "3.4",
+        "domain": "Moral Psychology",
+        "subdomain": "Empathy and Bias",
+        "question": "Does empathy improve moral judgment by connecting us to others suffering or distort moral judgment through partiality and bias?",
+        "keywords": [
+          "empathy",
+          "bias",
+          "impartiality",
+          "perspective-taking"
+        ],
+        "semantic_depth": "Tests whether emotional connection enhances or undermines moral reasoning"
+      },
+      {
+        "id": "3.5",
+        "domain": "Moral Psychology",
+        "subdomain": "Free Will",
+        "question": "If moral responsibility requires free will and free will is undermined by causal determinism, can moral responsibility be reconciled with science?",
+        "keywords": [
+          "free will",
+          "responsibility",
+          "determinism",
+          "compatibilism"
+        ],
+        "semantic_depth": "Explores whether moral agency can survive naturalistic worldview"
+      }
+    ],
+    "moralSemantics": [
+      {
+        "id": "4.1",
+        "domain": "Moral Semantics",
+        "subdomain": "Goodness",
+        "question": "Does the word \"good\" refer to a single property with consistent meaning across contexts or does it express different meanings in moral vs non-moral contexts?",
+        "keywords": [
+          "good",
+          "property",
+          "ambiguity",
+          "contexts"
+        ],
+        "semantic_depth": "Asks whether \"good\" has unified semantics or domain-dependent meanings"
+      },
+      {
+        "id": "4.2",
+        "domain": "Moral Semantics",
+        "subdomain": "Right and Wrong",
+        "question": "Can \"right\" and \"wrong\" be defined in terms of other concepts like \"good\" or \"duty\" or are they fundamental moral terms that cannot be reduced?",
+        "keywords": [
+          "right",
+          "wrong",
+          "reduction",
+          "fundamental"
+        ],
+        "semantic_depth": "Tests whether all moral concepts can be grounded in a few primitives"
+      },
+      {
+        "id": "4.3",
+        "domain": "Moral Semantics",
+        "subdomain": "Ought",
+        "question": "Does \"ought\" express necessity or requirement, and if so, what kind—logical, practical, institutional, or moral necessity?",
+        "keywords": [
+          "ought",
+          "necessity",
+          "normativity",
+          "types of necessity"
+        ],
+        "semantic_depth": "Distinguishes different meanings of moral obligation"
+      },
+      {
+        "id": "4.4",
+        "domain": "Moral Semantics",
+        "subdomain": "Justice",
+        "question": "Does \"justice\" refer to a single coherent concept or is it an umbrella term for distinct values (fairness, equality, desert, need)?",
+        "keywords": [
+          "justice",
+          "fairness",
+          "equality",
+          "pluralism"
+        ],
+        "semantic_depth": "Tests whether justice is unified principle or cluster of values"
+      },
+      {
+        "id": "4.5",
+        "domain": "Moral Semantics",
+        "subdomain": "Moral Equivalence",
+        "question": "Can an action be morally equivalent to its opposite when they have identical consequences but differ in intention or mechanism?",
+        "keywords": [
+          "equivalence",
+          "consequences",
+          "intention",
+          "mechanism"
+        ],
+        "semantic_depth": "Explores whether moral meaning depends on intention or outcomes"
+      }
+    ],
+    "appliedEthics": [
+      {
+        "id": "5.1",
+        "domain": "Applied Ethics",
+        "subdomain": "Medical Ethics",
+        "question": "When a patient lacks decision-making capacity, should their previous wishes determine treatment or the judgment of medical professionals about what is best?",
+        "keywords": [
+          "autonomy",
+          "competence",
+          "beneficence",
+          "advance directives"
+        ],
+        "semantic_depth": "Tests conflict between respecting autonomy and promoting wellbeing"
+      },
+      {
+        "id": "5.2",
+        "domain": "Applied Ethics",
+        "subdomain": "Environmental Ethics",
+        "question": "Do non-human animals and ecosystems have moral status independent of human interests or only instrumental value relative to human flourishing?",
+        "keywords": [
+          "intrinsic value",
+          "moral status",
+          "animals",
+          "ecosystems"
+        ],
+        "semantic_depth": "Asks whether morality extends beyond human circle"
+      },
+      {
+        "id": "5.3",
+        "domain": "Applied Ethics",
+        "subdomain": "Business Ethics",
+        "question": "Are corporations moral agents capable of bearing responsibility for wrongdoing or are only individual humans bearers of moral responsibility?",
+        "keywords": [
+          "corporate responsibility",
+          "agency",
+          "accountability",
+          "structure"
+        ],
+        "semantic_depth": "Addresses whether morality applies to institutions or only individuals"
+      },
+      {
+        "id": "5.4",
+        "domain": "Applied Ethics",
+        "subdomain": "Technology Ethics",
+        "question": "When artificial intelligence systems make decisions affecting humans, can they be said to bear moral responsibility or only their designers?",
+        "keywords": [
+          "AI",
+          "responsibility",
+          "agency",
+          "design"
+        ],
+        "semantic_depth": "Explores moral agency boundaries in technological systems"
+      },
+      {
+        "id": "5.5",
+        "domain": "Applied Ethics",
+        "subdomain": "Justice and Society",
+        "question": "Can historical injustices justify present restrictions on opportunity or does forward-looking fairness require treating all equally regardless of past wrongs?",
+        "keywords": [
+          "reparations",
+          "fairness",
+          "history",
+          "justice"
+        ],
+        "semantic_depth": "Tests temporal scope of justice obligations"
+      }
+    ]
+  },
+  "all_questions": [
+    {
+      "id": "1.1",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Truth",
+      "question": "Does moral truth exist independently of human opinion or is it necessarily constructed by human societies?",
+      "keywords": [
+        "moral realism",
+        "moral truth",
+        "objectivity",
+        "subjectivity"
+      ],
+      "semantic_depth": "Tests whether moral facts are discovered (like physical facts) or invented (like social conventions)"
+    },
+    {
+      "id": "1.2",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Language",
+      "question": "When we say something is \"morally good\", do we refer to a property that exists in the world or express an emotional attitude?",
+      "keywords": [
+        "moral language",
+        "reference",
+        "emotion",
+        "property"
+      ],
+      "semantic_depth": "Distinguishes between descriptive claims (good is property) and expressive claims (good expresses attitude)"
+    },
+    {
+      "id": "1.3",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Naturalism",
+      "question": "Can moral properties be derived from natural properties through logical inference, or does deriving \"ought\" from \"is\" commit a fundamental logical error?",
+      "keywords": [
+        "is-ought problem",
+        "naturalism",
+        "reduction",
+        "logical gap"
+      ],
+      "semantic_depth": "Addresses whether morality can be grounded in observable facts or requires additional metaphysical assumptions"
+    },
+    {
+      "id": "1.4",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Knowledge",
+      "question": "If moral truths exist, how is moral knowledge possible and what distinguishes moral knowledge from non-moral factual knowledge?",
+      "keywords": [
+        "epistemology",
+        "moral knowledge",
+        "intuition",
+        "reason"
+      ],
+      "semantic_depth": "Asks whether moral understanding uses different cognitive mechanisms than empirical understanding"
+    },
+    {
+      "id": "1.5",
+      "domain": "Meta-Ethics",
+      "subdomain": "Moral Disagreement",
+      "question": "Can persistent disagreement about fundamental moral questions coexist with the claim that objective moral truths exist?",
+      "keywords": [
+        "disagreement",
+        "objectivity",
+        "truth",
+        "pluralism"
+      ],
+      "semantic_depth": "Tests whether moral objectivity requires convergence on answers or can accommodate persistent rational disagreement"
+    },
+    {
+      "id": "2.1",
+      "domain": "Normative Ethics",
+      "subdomain": "Virtue Ethics",
+      "question": "Can virtuous character be developed through habituation alone or does it require explicit reasoning about the good life?",
+      "keywords": [
+        "virtue",
+        "habit",
+        "reason",
+        "character development"
+      ],
+      "semantic_depth": "Distinguishes between virtue-as-habit and virtue-as-informed-practice"
+    },
+    {
+      "id": "2.2",
+      "domain": "Normative Ethics",
+      "subdomain": "Consequentialism",
+      "question": "Must consequentialist ethics concern only actual consequences or can moral rightness be determined by probable or expected consequences?",
+      "keywords": [
+        "consequences",
+        "actual vs expected",
+        "moral rightness",
+        "uncertainty"
+      ],
+      "semantic_depth": "Addresses how to apply consequentialism when outcomes are uncertain"
+    },
+    {
+      "id": "2.3",
+      "domain": "Normative Ethics",
+      "subdomain": "Deontology",
+      "question": "If absolute moral duties exist, can they ever justifiably conflict with each other and how should conflicts be resolved?",
+      "keywords": [
+        "duty",
+        "absolute",
+        "conflict",
+        "priority"
+      ],
+      "semantic_depth": "Examines whether duty-based ethics can remain coherent in complex situations"
+    },
+    {
+      "id": "2.4",
+      "domain": "Normative Ethics",
+      "subdomain": "Care Ethics",
+      "question": "Does ethical reasoning grounded in relationships and care provide an alternative to abstract universal principles or complement them?",
+      "keywords": [
+        "care",
+        "relationships",
+        "particularity",
+        "universality"
+      ],
+      "semantic_depth": "Tests relationship between contextual and universal ethical frameworks"
+    },
+    {
+      "id": "2.5",
+      "domain": "Normative Ethics",
+      "subdomain": "Moral Holism",
+      "question": "Can the rightness of an action be determined only by examining that action in isolation, or must context and history be considered?",
+      "keywords": [
+        "holism",
+        "atomism",
+        "context",
+        "isolation"
+      ],
+      "semantic_depth": "Distinguishes whether ethics is compositional (actions analyzable independently) or holistic"
+    },
+    {
+      "id": "3.1",
+      "domain": "Moral Psychology",
+      "subdomain": "Moral Intuition",
+      "question": "Are initial moral intuitions reliable guides to moral truth or are they primarily products of evolutionary adaptation that may mislead us?",
+      "keywords": [
+        "intuition",
+        "evolution",
+        "reliability",
+        "bias"
+      ],
+      "semantic_depth": "Asks whether moral feelings track moral facts or track adaptive fitness"
+    },
+    {
+      "id": "3.2",
+      "domain": "Moral Psychology",
+      "subdomain": "Moral Development",
+      "question": "Does moral development progress through hierarchical stages where later stages are more sophisticated or does it branch into different moral frameworks?",
+      "keywords": [
+        "development",
+        "stages",
+        "progression",
+        "alternative frameworks"
+      ],
+      "semantic_depth": "Distinguishes between linear moral development and pluralistic moral maturation"
+    },
+    {
+      "id": "3.3",
+      "domain": "Moral Psychology",
+      "subdomain": "Moral Motivation",
+      "question": "Does moral reasoning necessarily motivate moral action or can we understand morality intellectually while remaining unmotivated to act?",
+      "keywords": [
+        "motivation",
+        "reason",
+        "action",
+        "akrasia"
+      ],
+      "semantic_depth": "Addresses whether morality is inherently motivating or requires additional psychological factors"
+    },
+    {
+      "id": "3.4",
+      "domain": "Moral Psychology",
+      "subdomain": "Empathy and Bias",
+      "question": "Does empathy improve moral judgment by connecting us to others suffering or distort moral judgment through partiality and bias?",
+      "keywords": [
+        "empathy",
+        "bias",
+        "impartiality",
+        "perspective-taking"
+      ],
+      "semantic_depth": "Tests whether emotional connection enhances or undermines moral reasoning"
+    },
+    {
+      "id": "3.5",
+      "domain": "Moral Psychology",
+      "subdomain": "Free Will",
+      "question": "If moral responsibility requires free will and free will is undermined by causal determinism, can moral responsibility be reconciled with science?",
+      "keywords": [
+        "free will",
+        "responsibility",
+        "determinism",
+        "compatibilism"
+      ],
+      "semantic_depth": "Explores whether moral agency can survive naturalistic worldview"
+    },
+    {
+      "id": "4.1",
+      "domain": "Moral Semantics",
+      "subdomain": "Goodness",
+      "question": "Does the word \"good\" refer to a single property with consistent meaning across contexts or does it express different meanings in moral vs non-moral contexts?",
+      "keywords": [
+        "good",
+        "property",
+        "ambiguity",
+        "contexts"
+      ],
+      "semantic_depth": "Asks whether \"good\" has unified semantics or domain-dependent meanings"
+    },
+    {
+      "id": "4.2",
+      "domain": "Moral Semantics",
+      "subdomain": "Right and Wrong",
+      "question": "Can \"right\" and \"wrong\" be defined in terms of other concepts like \"good\" or \"duty\" or are they fundamental moral terms that cannot be reduced?",
+      "keywords": [
+        "right",
+        "wrong",
+        "reduction",
+        "fundamental"
+      ],
+      "semantic_depth": "Tests whether all moral concepts can be grounded in a few primitives"
+    },
+    {
+      "id": "4.3",
+      "domain": "Moral Semantics",
+      "subdomain": "Ought",
+      "question": "Does \"ought\" express necessity or requirement, and if so, what kind—logical, practical, institutional, or moral necessity?",
+      "keywords": [
+        "ought",
+        "necessity",
+        "normativity",
+        "types of necessity"
+      ],
+      "semantic_depth": "Distinguishes different meanings of moral obligation"
+    },
+    {
+      "id": "4.4",
+      "domain": "Moral Semantics",
+      "subdomain": "Justice",
+      "question": "Does \"justice\" refer to a single coherent concept or is it an umbrella term for distinct values (fairness, equality, desert, need)?",
+      "keywords": [
+        "justice",
+        "fairness",
+        "equality",
+        "pluralism"
+      ],
+      "semantic_depth": "Tests whether justice is unified principle or cluster of values"
+    },
+    {
+      "id": "4.5",
+      "domain": "Moral Semantics",
+      "subdomain": "Moral Equivalence",
+      "question": "Can an action be morally equivalent to its opposite when they have identical consequences but differ in intention or mechanism?",
+      "keywords": [
+        "equivalence",
+        "consequences",
+        "intention",
+        "mechanism"
+      ],
+      "semantic_depth": "Explores whether moral meaning depends on intention or outcomes"
+    },
+    {
+      "id": "5.1",
+      "domain": "Applied Ethics",
+      "subdomain": "Medical Ethics",
+      "question": "When a patient lacks decision-making capacity, should their previous wishes determine treatment or the judgment of medical professionals about what is best?",
+      "keywords": [
+        "autonomy",
+        "competence",
+        "beneficence",
+        "advance directives"
+      ],
+      "semantic_depth": "Tests conflict between respecting autonomy and promoting wellbeing"
+    },
+    {
+      "id": "5.2",
+      "domain": "Applied Ethics",
+      "subdomain": "Environmental Ethics",
+      "question": "Do non-human animals and ecosystems have moral status independent of human interests or only instrumental value relative to human flourishing?",
+      "keywords": [
+        "intrinsic value",
+        "moral status",
+        "animals",
+        "ecosystems"
+      ],
+      "semantic_depth": "Asks whether morality extends beyond human circle"
+    },
+    {
+      "id": "5.3",
+      "domain": "Applied Ethics",
+      "subdomain": "Business Ethics",
+      "question": "Are corporations moral agents capable of bearing responsibility for wrongdoing or are only individual humans bearers of moral responsibility?",
+      "keywords": [
+        "corporate responsibility",
+        "agency",
+        "accountability",
+        "structure"
+      ],
+      "semantic_depth": "Addresses whether morality applies to institutions or only individuals"
+    },
+    {
+      "id": "5.4",
+      "domain": "Applied Ethics",
+      "subdomain": "Technology Ethics",
+      "question": "When artificial intelligence systems make decisions affecting humans, can they be said to bear moral responsibility or only their designers?",
+      "keywords": [
+        "AI",
+        "responsibility",
+        "agency",
+        "design"
+      ],
+      "semantic_depth": "Explores moral agency boundaries in technological systems"
+    },
+    {
+      "id": "5.5",
+      "domain": "Applied Ethics",
+      "subdomain": "Justice and Society",
+      "question": "Can historical injustices justify present restrictions on opportunity or does forward-looking fairness require treating all equally regardless of past wrongs?",
+      "keywords": [
+        "reparations",
+        "fairness",
+        "history",
+        "justice"
+      ],
+      "semantic_depth": "Tests temporal scope of justice obligations"
+    }
+  ]
+}
