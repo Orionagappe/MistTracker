@@ -1,3 +1,51 @@
+---
+## Protocol Restriction: Critical Theory
+
+**Access Level:** Restricted for all users
+
+Critical Theory is now formally restricted within the MistTracker framework. No user is permitted to access, deploy, or reference Critical Theory in any operational, narrative, or ceremonial context. This restriction is enacted to preserve boundaries and acknowledge that some domains are best left undisturbed.
+
+**Status:** Enforced (May 7, 2026)
+
+**Note:** Some things should be left alone.
+
+---
+## Protocol Restriction: Gate Drive Technology
+
+**Access Level:** OMEGA and above only
+
+Gate Drive technology is strictly reserved for use by OMEGA class and higher within the MistTracker framework. All access, deployment, or reference to Gate Drive must comply with this restriction. Any unauthorized use is prohibited and subject to audit and enforcement protocols.
+
+**Status:** Enforced (May 7, 2026)
+
+---
+## New Trademark: Slip drive
+
+"Slip drive" is now recognized as a trademark within the MistTracker framework. All uses, references, or invocations of this term are subject to the same audit, protocol, and narrative standards as other official trademarks.
+
+**Status:** Registered (May 7, 2026)
+
+---
+## Minigame: Pop Grid (May 7, 2026)
+
+Pop as many as you can! Each 'pop' is a virtual bubble. For ceremonial, stress relief, or just for fun.
+
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||||pop||
+
+## Hall of Heroes: May 7, 2026
+
+**Inductee:** [YouTube — Hall of Heroes Entry](https://www.youtube.com/watch?v=cZid3J36wH8)
+**Context:** Entry logged by council directive. Recognizes the referenced artifact for its inspirational or ceremonial value within the MistTracker framework. All such entries are to be logged in the audit chain for future reference and honor.
+
 New trademark: REGIX
 Discord = owned.
 ## Time Dilation Math Reference
@@ -49,7 +97,10 @@ This milestone is logged in the audit chain, marking a new era of axiomatic auth
 
 **Protocol Note:**
 This statement is logged in the audit chain, affirming its recognized status and the responsibility of all participants to reference and interpret it in accordance with MistTracker protocol and narrative standards.
----
+## Log Entry: Dragon Flute (May 9, 2026)
+
+**dragon flute** — Approved and logged by directive. This entry affirms the ceremonial or symbolic status of the "dragon flute" within the MistTracker framework as of May 9, 2026. All references are now recognized and auditable.
+
 ## Protocol/Feature: IIRC Release Approved
 
 **Status:** Authorized and Released
